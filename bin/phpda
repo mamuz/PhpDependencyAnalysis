@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+ini_set('memory_limit', -1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use PhpDA\Command\Analysis;
+
+$app = new Application;
+$app->add(new Analysis);
+$app->run();
+?>
