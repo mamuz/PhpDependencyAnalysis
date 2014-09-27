@@ -64,11 +64,24 @@ class Analysis extends Command
         $progress->start($output, iterator_count($finder));
 
         foreach ($finder as $file) {
-
+            /** @var \Symfony\Component\Finder\SplFileInfo $file */
+            $file->getRealpath();
+            $this->parse($file->getContents());
             $progress->advance();
         }
 
         $progress->finish();
         $output->writeln('Done');
+    }
+
+    private function parse($code)
+    {
+        $parser = new \PhpParser\Parser(new \PhpParser\Lexer\Emulative);
+
+        try {
+            $stmts = $parser->parse($code);
+        } catch (\PhpParser\Error $e) {
+            print 'Parse Error: '. $e->getMessage() . PHP_EOL;
+        }
     }
 }
