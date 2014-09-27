@@ -28,5 +28,6 @@
         "psr-4": {
             "PhpDA\\": "src/"
         }
-    }
+    },
+    "bin"              : ["bin/phpda"]
 }

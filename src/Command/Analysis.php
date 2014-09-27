@@ -35,14 +35,14 @@ class Analysis extends Command
             )
             ->addOption(
                 'target',
-                'i',
+                't',
                 InputOption::VALUE_OPTIONAL,
                 'Excluding directories',
                 self::DEFAULT_TARGET
             )
             ->addOption(
                 'format',
-                'i',
+                'f',
                 InputOption::VALUE_OPTIONAL,
                 'Excluding directories',
                 self::DEFAULT_FORMAT
