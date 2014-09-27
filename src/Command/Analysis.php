@@ -80,6 +80,7 @@ class Analysis extends Command
 
         try {
             $stmts = $parser->parse($code);
+            print_r($stmts);
         } catch (\PhpParser\Error $e) {
             print 'Parse Error: '. $e->getMessage() . PHP_EOL;
         }
