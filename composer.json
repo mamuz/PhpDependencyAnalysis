@@ -1,8 +1,8 @@
 {
-    "name"             : "mamuz/MamuzDependencyAnalysis",
+    "name"             : "mamuz/PhpDependencyAnalysis",
     "type"             : "library",
-    "description"      : "",
-    "homepage"         : "https://github.com/mamuz/MamuzDependencyAnalysis",
+    "description"      : "Static code analysis for php projects to provide a dependency graph",
+    "homepage"         : "https://github.com/mamuz/PhpDependencyAnalysis",
     "license"          : "MIT",
     "keywords"         : ["mamuz", "php", "dependency", "analysis"],
     "authors"          : [
@@ -25,8 +25,8 @@
         "mockery/mockery"       : "0.9.*"
     },
     "autoload"         : {
-        "psr-0": {
-            "MamuzDependencyAnalysis\\": "src/"
+        "psr-4": {
+            "PhpDependencyAnalysis\\": "src/"
         }
     }
 }
