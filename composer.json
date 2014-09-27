@@ -1,0 +1,32 @@
+{
+    "name"             : "mamuz/MamuzDependencyAnalysis",
+    "type"             : "library",
+    "description"      : "",
+    "homepage"         : "https://github.com/mamuz/MamuzDependencyAnalysis",
+    "license"          : "MIT",
+    "keywords"         : ["mamuz", "php", "dependency", "analysis"],
+    "authors"          : [
+        {
+            "name" : "Marco Muths",
+            "email": "muzzi_is@web.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable"    : true,
+    "require"          : {
+        "php"             : ">=5.4",
+        "nikic/php-parser": "1.0.0beta2",
+        "symfony/console" : "2.3.*",
+        "symfony/finder"  : "2.3.*"
+    },
+    "require-dev"      : {
+        "satooshi/php-coveralls": "0.6.*",
+        "phpunit/phpunit"       : "4.2.*",
+        "mockery/mockery"       : "0.9.*"
+    },
+    "autoload"         : {
+        "psr-0": {
+            "MamuzDependencyAnalysis\\": "src/"
+        }
+    }
+}
