@@ -4,7 +4,7 @@ namespace PhpDA\Feature;
 
 use PhpDA\Entity\Collection;
 
-interface WriteFilterInterface
+interface WriteStrategyInterface
 {
     /**
      * @param Collection $collection

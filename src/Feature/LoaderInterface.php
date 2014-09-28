@@ -7,7 +7,7 @@ interface LoaderInterface
     /**
      * @param string $name
      * @throws \RuntimeException
-     * @return WriteFilterInterface
+     * @return WriteStrategyInterface
      */
-    public function getWriteFilterFor($name);
+    public function getWriteStrategyFor($name);
 }

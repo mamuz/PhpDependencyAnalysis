@@ -44,6 +44,7 @@ class Adapter implements WriterInterface
      */
     private function createContent()
     {
-        return $this->getPluginLoader()->getWriteFilterFor($this->format)->filter($this->collection);
+        $strategy = $this->getPluginLoader()->getWriteStrategyFor($this->format);
+        return $strategy->filter($this->collection);
     }
 }

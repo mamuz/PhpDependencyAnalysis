@@ -4,7 +4,7 @@ namespace PhpDA\Parser;
 
 use PhpDA\Entity\Script;
 use PhpDA\Feature\ParserInterface;
-use PhpDA\Parser\Mapper\ScriptAwareTrait as ScriptMapperAwareTrait;
+use PhpDA\Mapper\ScriptAwareTrait as ScriptMapperAwareTrait;
 use PhpParser\Error;
 use PhpParser\Parser;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDA\Parser\Mapper;
+namespace PhpDA\Mapper;
 
 use PhpDA\Feature\ScriptMapperInterface;
 

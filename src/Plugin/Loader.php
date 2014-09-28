@@ -3,22 +3,24 @@
 namespace PhpDA\Plugin;
 
 use PhpDA\Feature\LoaderInterface;
-use PhpDA\Feature\WriteFilterInterface;
+use PhpDA\Feature\WriteStrategyInterface;
 
 class Loader implements LoaderInterface
 {
-    public function getWriteFilterFor($name)
+    public function getWriteStrategyFor($name)
     {
-        $fqn = 'PhpDA\\Writer\\Filter\\' . ucfirst($name);
+        $fqn = 'PhpDA\\Writer\\Strategy\\' . ucfirst($name);
 
         if (!class_exists($fqn)) {
-            throw new \RuntimeException('Filter for ' . $name . ' does not exist');
+            throw new \RuntimeException('Strategy for ' . $name . ' does not exist');
         }
 
         $formatter = new $fqn;
 
-        if (!$formatter instanceof WriteFilterInterface) {
-            throw new \RuntimeException('Filter ' . $fqn . ' is not instance of WriteFilterInterface');
+        if (!$formatter instanceof WriteStrategyInterface) {
+            throw new \RuntimeException(
+                'Strategy ' . $fqn . ' is not an instance of WriteStrategyInterface'
+            );
         }
 
         return $formatter;
