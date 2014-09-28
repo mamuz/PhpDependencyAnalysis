@@ -2,20 +2,21 @@
 
 namespace PhpDA\Command;
 
+use PhpDA\Entity\Collection;
+use PhpDA\Finder\AwareTrait as FinderAwareTrait;
+use PhpDA\Parser\AwareTrait as ParserAwareTrait;
+use PhpDA\Writer\AwareTrait as WriterAwareTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
 
 class Analysis extends Command
 {
-    const DEFAULT_SOURCE = '.';
-
-    const DEFAULT_TARGET = './phpda';
-
-    const DEFAULT_FORMAT = 'txt';
+    use FinderAwareTrait;
+    use ParserAwareTrait;
+    use WriterAwareTrait;
 
     protected function configure()
     {
@@ -25,7 +26,7 @@ class Analysis extends Command
                 'source',
                 InputArgument::OPTIONAL,
                 'Directory to parse, default is current path',
-                self::DEFAULT_SOURCE
+                '.'
             )
             ->addOption(
                 'ignore',
@@ -38,14 +39,14 @@ class Analysis extends Command
                 't',
                 InputOption::VALUE_OPTIONAL,
                 'Excluding directories',
-                self::DEFAULT_TARGET
+                './phpda'
             )
             ->addOption(
                 'format',
                 'f',
                 InputOption::VALUE_OPTIONAL,
                 'Excluding directories',
-                self::DEFAULT_FORMAT
+                'txt'
             )
             ->setHelp('....');
     }
@@ -57,32 +58,23 @@ class Analysis extends Command
         $target = $input->getOption('target');
         $format = $input->getOption('format');
 
-        $finder = new Finder();
+        $finder = $this->getFinder();
         $finder->files()->name('*.php')->in(realpath($source))->exclude($ignore);
 
         $progress = $this->getHelper('progress');
         $progress->start($output, iterator_count($finder));
 
+        $collection = new Collection;
         foreach ($finder as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            $file->getRealpath();
-            $this->parse($file->getContents());
+            $scriptEntity = $this->getParser()->analyze($file->getContents());
+            $collection->attach($scriptEntity, $file->getRealPath());
             $progress->advance();
         }
 
+        $this->getWriter()->write($collection)->to($format)->in($target);
+
         $progress->finish();
         $output->writeln('Done');
-    }
-
-    private function parse($code)
-    {
-        $parser = new \PhpParser\Parser(new \PhpParser\Lexer\Emulative);
-
-        try {
-            $stmts = $parser->parse($code);
-            print_r($stmts);
-        } catch (\PhpParser\Error $e) {
-            print 'Parse Error: '. $e->getMessage() . PHP_EOL;
-        }
     }
 }
