@@ -13,4 +13,3 @@ use PhpDA\Command\Analysis;
 $app = new Application;
 $app->add(new Analysis);
 $app->run();
-?>
