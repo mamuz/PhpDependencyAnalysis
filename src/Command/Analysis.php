@@ -58,6 +58,7 @@ class Analysis extends Command
         $target = $input->getOption('target');
         $format = $input->getOption('format');
 
+        // @todo start extract to service
         $finder = $this->getFinder();
         $finder->files()->name('*.php')->in(realpath($source))->exclude($ignore);
 
@@ -73,8 +74,9 @@ class Analysis extends Command
         }
 
         $this->getWriter()->write($collection)->to($format)->in($target);
-
         $progress->finish();
+        // end extract to service
+
         $output->writeln('Done');
     }
 }
