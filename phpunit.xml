@@ -2,8 +2,8 @@
 
 <phpunit bootstrap="./tests/Bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="MamuzBlog Testsuite">
-            <directory>./tests</directory>
+        <testsuite name="phpDa Testsuite">
+        <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <listeners>
