@@ -2,12 +2,11 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use PhpDA\Entity\Collection;
-use PhpDA\Feature\WriteStrategyInterface;
+use PhpDA\Entity\AnalysisCollection;
 
-class Txt implements WriteStrategyInterface
+class Txt implements FilterInterface
 {
-    public function filter(Collection $collection)
+    public function filter(AnalysisCollection $collection)
     {
         return print_r($collection, true);
     }

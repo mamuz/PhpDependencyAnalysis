@@ -2,21 +2,52 @@
 
 namespace PhpDA\Command;
 
-use PhpDA\Entity\Collection;
-use PhpDA\Finder\AwareTrait as FinderAwareTrait;
-use PhpDA\Parser\AwareTrait as ParserAwareTrait;
-use PhpDA\Writer\AwareTrait as WriterAwareTrait;
+use PhpDA\Parser\AnalyzerInterface;
+use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
-class Analysis extends Command
+class Analyze extends Command
 {
-    use FinderAwareTrait;
-    use ParserAwareTrait;
-    use WriterAwareTrait;
+    /** @var Finder */
+    private $finder;
+
+    /** @var AnalyzerInterface */
+    private $analyzer;
+
+    /** @var AdapterInterface */
+    private $writeAdapter;
+
+    /**
+     * @param Finder $finder
+     * @return void
+     */
+    public function setFinder(Finder $finder)
+    {
+        $this->finder = $finder;
+    }
+
+    /**
+     * @param AdapterInterface $writeAdapter
+     * @return void
+     */
+    public function setWriteAdapter(AdapterInterface $writeAdapter)
+    {
+        $this->writeAdapter = $writeAdapter;
+    }
+
+    /**
+     * @param AnalyzerInterface $analyzer
+     * @return void
+     */
+    public function setAnalyzer(AnalyzerInterface $analyzer)
+    {
+        $this->analyzer = $analyzer;
+    }
 
     protected function configure()
     {
@@ -58,23 +89,20 @@ class Analysis extends Command
         $target = $input->getOption('target');
         $format = $input->getOption('format');
 
-        $finder = $this->getFinder();
-        $finder->files()->name('*.php')->in(realpath($source))->exclude($ignore);
+        $this->finder->files()->name('*.php')->in(realpath($source))->exclude($ignore);
 
         $progress = $this->getHelper('progress');
-        $progress->start($output, iterator_count($finder));
+        $progress->start($output, iterator_count($this->finder));
 
-        $collection = new Collection;
-        foreach ($finder as $file) {
+        foreach ($this->finder as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            $scriptEntity = $this->getParser()->analyze($file->getContents());
-            $collection->attach($scriptEntity, $file->getRealPath());
+            $this->analyzer->analyze($file);
             $progress->advance();
         }
 
-        $this->getWriter()->write($collection)->to($format)->in($target);
-        $progress->finish();
+        $this->writeAdapter->write($this->analyzer->getAnalysisCollection())->to($format)->in($target);
 
+        $progress->finish();
         $output->writeln('Done');
     }
 }

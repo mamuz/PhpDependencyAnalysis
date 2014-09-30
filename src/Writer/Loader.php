@@ -1,15 +1,14 @@
 <?php
 
-namespace PhpDA\Plugin;
+namespace PhpDA\Writer;
 
-use PhpDA\Feature\LoaderInterface;
-use PhpDA\Feature\WriteStrategyInterface;
+use PhpDA\Writer\Strategy\FilterInterface;
 
 class Loader implements LoaderInterface
 {
-    public function getWriteStrategyFor($name)
+    public function getStrategyFor($name)
     {
-        $fqn = 'PhpDA\\Writer\\Strategy\\' . ucfirst($name);
+        $fqn = 'Writer\\Strategy\\' . ucfirst($name);
 
         if (!class_exists($fqn)) {
             throw new \RuntimeException('Strategy for ' . $name . ' does not exist');
@@ -17,7 +16,7 @@ class Loader implements LoaderInterface
 
         $formatter = new $fqn;
 
-        if (!$formatter instanceof WriteStrategyInterface) {
+        if (!$formatter instanceof FilterInterface) {
             throw new \RuntimeException(
                 'Strategy ' . $fqn . ' is not an instance of WriteStrategyInterface'
             );

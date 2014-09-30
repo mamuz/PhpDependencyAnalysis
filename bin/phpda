@@ -14,9 +14,7 @@ if (!isset($loader)) {
     throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
 
-use Symfony\Component\Console\Application;
-use PhpDA\Command\Analysis;
+use PhpDA\Service\Factory;
 
-$app = new Application;
-$app->add(new Analysis);
-$app->run();
+$appFactory = new ApplicationFactory;
+$appFactory->create()->run();

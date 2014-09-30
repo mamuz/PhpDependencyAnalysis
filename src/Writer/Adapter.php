@@ -2,28 +2,28 @@
 
 namespace PhpDA\Writer;
 
-use PhpDA\Entity\Collection;
-use PhpDA\Feature\WriterInterface;
-use PhpDA\Plugin\LoaderAwareTrait;
+use PhpDA\Entity\AnalysisCollection;
 
-class Adapter implements WriterInterface
+class Adapter implements AdapterInterface
 {
-    use LoaderAwareTrait;
+    /** @var LoaderInterface */
+    private $strategyLoader;
 
-    /** @var Collection */
-    private $collection;
+    /** @var AnalysisCollection */
+    private $analysisCollection;
 
     /** @var string */
     private $format = 'txt';
 
-    public function __construct()
+    public function __construct(LoaderInterface $pluginLoader)
     {
-        $this->collection = new Collection;
+        $this->strategyLoader = $pluginLoader;
+        $this->analysisCollection = new AnalysisCollection;
     }
 
-    public function write(Collection $collection)
+    public function write(AnalysisCollection $collection)
     {
-        $this->collection = $collection;
+        $this->analysisCollection = $collection;
         return $this;
     }
 
@@ -44,7 +44,7 @@ class Adapter implements WriterInterface
      */
     private function createContent()
     {
-        $strategy = $this->getPluginLoader()->getWriteStrategyFor($this->format);
-        return $strategy->filter($this->collection);
+        $strategy = $this->strategyLoader->getStrategyFor($this->format);
+        return $strategy->filter($this->analysisCollection);
     }
 }

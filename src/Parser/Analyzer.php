@@ -2,35 +2,39 @@
 
 namespace PhpDA\Parser;
 
-use PhpDA\Entity\Script;
-use PhpDA\Feature\ParserInterface;
-use PhpDA\Mapper\ScriptAwareTrait as ScriptMapperAwareTrait;
+use PhpDA\Entity\AnalysisCollection;
 use PhpParser\Error;
-use PhpParser\Parser;
+use PhpParser\NodeTraverserInterface;
+use PhpParser\ParserAbstract;
+use Symfony\Component\Finder\SplFileInfo;
 
-class Analyzer implements ParserInterface
+class Analyzer implements AnalyzerInterface
 {
-    use ScriptMapperAwareTrait;
-
-    /** @var Parser */
+    /** @var ParserAbstract */
     private $parser;
 
-    public function __construct(Parser $parser)
+    /** @var NodeTraverserInterface */
+    private $traverser;
+
+    public function __construct(ParserAbstract $parser, NodeTraverserInterface $traveser)
     {
         $this->parser = $parser;
+        $this->traverser = $traveser;
     }
 
-    public function analyze($code)
+    public function analyze(SplFileInfo $file)
     {
-        $script = new Script;
-
         try {
-            $stmts = $this->parser->parse($code);
-            $this->getScriptMapper()->populate($stmts)->to($script);
+            $stmts = $this->parser->parse($file->getContents());
+            $this->traverser->traverse($stmts);
         } catch (Error $e) {
-            $script->setError($e->getMessage());
+            // @todo
         }
+    }
 
-        return $script;
+    public function getAnalysisCollection()
+    {
+        // @todo
+        return new AnalysisCollection;
     }
 }
