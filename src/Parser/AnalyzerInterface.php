@@ -8,7 +8,7 @@ interface AnalyzerInterface
 {
     /**
      * @param SplFileInfo $file
-     * @return void
+     * @return \PhpDA\Entity\Analysis
      */
     public function analyze(SplFileInfo $file);
 

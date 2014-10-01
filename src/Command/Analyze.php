@@ -13,7 +13,7 @@ use Symfony\Component\Finder\Finder;
 
 class Analyze extends Command
 {
-    /** @var Finder */
+    /** @var Finder|\Symfony\Component\Finder\SplFileInfo[] */
     private $finder;
 
     /** @var AnalyzerInterface */
@@ -95,7 +95,6 @@ class Analyze extends Command
         $progress->start($output, iterator_count($this->finder));
 
         foreach ($this->finder as $file) {
-            /** @var \Symfony\Component\Finder\SplFileInfo $file */
             $this->analyzer->analyze($file);
             $progress->advance();
         }
