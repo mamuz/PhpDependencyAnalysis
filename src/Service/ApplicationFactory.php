@@ -4,11 +4,11 @@ namespace PhpDA\Service;
 
 use PhpDA\Command\Analyze;
 use PhpDA\Parser\Analyzer;
-use PhpDA\Parser\Visitor\Mapper;
+use PhpDA\Parser\NodeTraverser;
+use PhpDA\Parser\Visitor\NodeClass;
 use PhpDA\Writer\Adapter;
 use PhpDA\Writer\Loader;
 use PhpParser\Lexer\Emulative;
-use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
 use Symfony\Component\Console\Application;
@@ -71,7 +71,7 @@ class ApplicationFactory
     {
         $traverser = new NodeTraverser;
         $traverser->addVisitor(new NameResolver);
-        $traverser->addVisitor(new Mapper);
+        $traverser->addVisitor(new NodeClass);
 
         return $traverser;
     }

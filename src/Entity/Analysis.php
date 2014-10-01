@@ -2,9 +2,11 @@
 
 namespace PhpDA\Entity;
 
+use PhpParser\Node;
+
 class Analysis
 {
-    /** @var \PhpParser\Node[] */
+    /** @var Node[] */
     private $stmts = array();
 
     /** @var string */
@@ -35,10 +37,10 @@ class Analysis
     }
 
     /**
-     * @param \PhpParser\Node[] $stmts
+     * @param Node $stmt
      */
-    public function setStmts(array $stmts)
+    public function addStmt(Node $stmt)
     {
-        $this->stmts = $stmts;
+        $this->stmts[] = $stmt;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDa\Parser;
+namespace PhpDA\Parser;
 
 use PhpDA\Entity\AnalysisAwareInterface;
 use PhpDA\Entity\AnalysisAwareTrait;
