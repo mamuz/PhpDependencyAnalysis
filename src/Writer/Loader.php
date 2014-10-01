@@ -9,7 +9,7 @@ class Loader implements LoaderInterface
 {
     /** @var array */
     private $aliases = array(
-        'txt' => 'PhpDA\\Writer\\Strategy\\Writer\\Strategy\\Txt',
+        'txt' => 'PhpDA\\Writer\\Strategy\\Txt',
     );
 
     /**

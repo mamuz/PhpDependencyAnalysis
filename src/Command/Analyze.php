@@ -51,7 +51,7 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->setName("phpda:analysis")
+        $this->setName("phpda:analyze")
             ->setDescription("Report dependencies of directory")
             ->addArgument(
                 'source',

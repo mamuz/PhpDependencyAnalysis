@@ -14,7 +14,7 @@ if (!isset($loader)) {
     throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
 
-use PhpDA\Service\Factory;
+use PhpDA\Service\ApplicationFactory;
 
 $appFactory = new ApplicationFactory;
 $appFactory->create()->run();
