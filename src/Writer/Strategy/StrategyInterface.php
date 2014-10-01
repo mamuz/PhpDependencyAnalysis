@@ -4,7 +4,7 @@ namespace PhpDA\Writer\Strategy;
 
 use PhpDA\Entity\AnalysisCollection;
 
-interface FilterInterface
+interface StrategyInterface
 {
     /**
      * @param AnalysisCollection $analysisCollection
