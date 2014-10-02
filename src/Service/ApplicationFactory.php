@@ -3,19 +3,32 @@
 namespace PhpDA\Service;
 
 use PhpDA\Command\Analyze;
-use PhpDA\Parser\Analyzer;
-use PhpDA\Parser\NodeTraverser;
-use PhpDA\Parser\Visitor\NodeClass;
-use PhpDA\Writer\Adapter;
-use PhpDA\Writer\Loader;
-use PhpParser\Lexer\Emulative;
-use PhpParser\NodeVisitor\NameResolver;
-use PhpParser\Parser;
+use PhpDA\Parser\AnalyzerInterface;
+use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
 
-class ApplicationFactory
+class ApplicationFactory implements FactoryInterface
 {
+    /** @var FactoryInterface */
+    private $finderFactory;
+
+    /** @var FactoryInterface */
+    private $analyzerFactory;
+
+    /** @var FactoryInterface */
+    private $writeAdapterFactory;
+
+    public function __construct(
+        FactoryInterface $finderFactory,
+        FactoryInterface $analyzerFactory,
+        FactoryInterface $writeAdapterFactory
+    ) {
+        $this->finderFactory = $finderFactory;
+        $this->analyzerFactory = $analyzerFactory;
+        $this->writeAdapterFactory = $writeAdapterFactory;
+    }
+
     /**
      * @return Application
      */
@@ -43,44 +56,24 @@ class ApplicationFactory
     /**
      * @return Finder
      */
-    protected function createFinder()
+    private function createFinder()
     {
-        return new Finder;
+        return $this->finderFactory->create();
     }
 
     /**
-     * @return Analyzer
+     * @return AnalyzerInterface
      */
-    protected function createAnalyzer()
+    private function createAnalyzer()
     {
-        return new Analyzer($this->createParser(), $this->createTraverser());
+        return $this->analyzerFactory->create();
     }
 
     /**
-     * @return Parser
+     * @return AdapterInterface
      */
-    protected function createParser()
+    private function createWriteAdapter()
     {
-        return new Parser(new Emulative);
-    }
-
-    /**
-     * @return NodeTraverser
-     */
-    protected function createTraverser()
-    {
-        $traverser = new NodeTraverser;
-        $traverser->addVisitor(new NameResolver);
-        $traverser->addVisitor(new NodeClass);
-
-        return $traverser;
-    }
-
-    /**
-     * @return Adapter
-     */
-    protected function createWriteAdapter()
-    {
-        return new Adapter(new Loader);
+        return $this->writeAdapterFactory->create();
     }
 }

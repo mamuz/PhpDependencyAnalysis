@@ -2,7 +2,7 @@
 
 namespace PhpDA\Writer;
 
-use PhpDA\Writer\Strategy\FactoryInterface;
+use PhpDA\Service\FactoryInterface;
 use PhpDA\Writer\Strategy\StrategyInterface;
 
 class Loader implements LoaderInterface

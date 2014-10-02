@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpDA\Writer\Strategy;
+namespace PhpDA\Service;
 
 interface FactoryInterface
 {
     /**
-     * @return StrategyInterface
+     * @return object
      */
     public function create();
 }
