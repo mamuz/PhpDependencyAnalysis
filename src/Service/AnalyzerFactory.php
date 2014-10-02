@@ -4,7 +4,9 @@ namespace PhpDA\Service;
 
 use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
-use PhpDA\Parser\Visitor\NodeClass;
+use PhpDA\Parser\Visitor\IncludeCollector;
+use PhpDA\Parser\Visitor\NamespaceCollector;
+use PhpDA\Parser\Visitor\SuperglobalCollector;
 use PhpParser\Lexer\Emulative;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
@@ -34,7 +36,9 @@ class AnalyzerFactory implements FactoryInterface
     {
         $traverser = new NodeTraverser;
         $traverser->addVisitor(new NameResolver);
-        $traverser->addVisitor(new NodeClass);
+        $traverser->addVisitor(new NamespaceCollector);
+        $traverser->addVisitor(new SuperglobalCollector);
+        $traverser->addVisitor(new IncludeCollector);
 
         return $traverser;
     }

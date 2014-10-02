@@ -6,11 +6,17 @@ use PhpParser\Node;
 
 class Analysis
 {
-    /** @var Node[] */
-    private $stmts = array();
-
     /** @var string */
     private $parseError = '';
+
+    /** @var Node\Name[] */
+    private $namespaces = array();
+
+    /** @var Node\Expr\Variable[] */
+    private $superglobals = array();
+
+    /** @var Node\Expr\Include_[] */
+    private $includes = array();
 
     /**
      * @param string $message
@@ -37,10 +43,26 @@ class Analysis
     }
 
     /**
-     * @param Node $stmt
+     * @param Node\Name $namespace
      */
-    public function addStmt(Node $stmt)
+    public function addNamespace(Node\Name $namespace)
     {
-        $this->stmts[] = $stmt;
+        $this->namespaces[$namespace->toString()] = $namespace;
+    }
+
+    /**
+     * @param Node\Expr\Variable $var
+     */
+    public function addSuperglobal(Node\Expr\Variable $var)
+    {
+        $this->superglobals[] = $var;
+    }
+
+    /**
+     * @param Node\Expr\Include_ $include
+     */
+    public function addInclude(Node\Expr\Include_ $include)
+    {
+        $this->includes[] = $include;
     }
 }
