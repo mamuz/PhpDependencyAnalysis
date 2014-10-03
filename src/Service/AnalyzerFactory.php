@@ -6,7 +6,6 @@ use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
 use PhpDA\Plugin\Loader;
 use PhpParser\Lexer\Emulative;
-use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
 
 class AnalyzerFactory implements FactoryInterface
@@ -34,7 +33,6 @@ class AnalyzerFactory implements FactoryInterface
     {
         $traverser = new NodeTraverser;
         $traverser->setVisitorLoader(new Loader);
-        $traverser->addVisitor(new NameResolver);
 
         return $traverser;
     }

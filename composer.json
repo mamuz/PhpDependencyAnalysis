@@ -4,7 +4,7 @@
     "description"      : "Static code analysis for php projects to provide a dependency graph",
     "homepage"         : "https://github.com/mamuz/PhpDependencyAnalysis",
     "license"          : "MIT",
-    "keywords"         : ["mamuz", "php", "dependency", "analysis"],
+    "keywords"         : ["mamuz", "php", "dependency", "analysis", "graph"],
     "authors"          : [
         {
             "name" : "Marco Muths",
@@ -16,6 +16,7 @@
     "require"          : {
         "php"             : ">=5.4",
         "nikic/php-parser": "1.0.0beta2",
+        "clue/graph"      : "0.7.*",
         "symfony/yaml"    : "2.5.*",
         "symfony/console" : "2.5.*",
         "symfony/finder"  : "2.5.*"
