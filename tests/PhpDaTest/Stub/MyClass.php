@@ -91,9 +91,8 @@ $nameSpace1 = '\Test\Object';
 $nameSpace2 = '\Test';
 $nameSpace3 = 'Test_Object';
 
+$class = new \stdClass();
+
 $class->$test();
 $class->get();
 $class->get('test');
-
-// namespaced strings
-// DI.get('FQN/Alias')
