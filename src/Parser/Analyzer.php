@@ -43,8 +43,8 @@ class Analyzer implements AnalyzerInterface
         try {
             $stmts = $this->parser->parse($file->getContents());
             $this->traverser->traverse($stmts);
-        } catch (Error $e) {
-            $analysis->setParseError($e->getMessage());
+        } catch (Error $error) {
+            $analysis->setParseError($error);
         }
 
         $this->collection->attach($analysis, $file->getRealPath());

@@ -22,18 +22,18 @@ class SuperglobalCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Expr\Variable) {
-            if ($this->match($node->name)) {
+            if ($this->match($node)) {
                 $this->getAnalysis()->addSuperglobal($node);
             }
         }
     }
 
     /**
-     * @param string $name
+     * @param Node\Expr\Variable $var
      * @return bool
      */
-    private function match($name)
+    private function match(Node\Expr\Variable $var)
     {
-        return in_array($name, $this->vars);
+        return in_array($var->name, $this->vars);
     }
 }

@@ -57,3 +57,25 @@ function myFunc(AdapterInterface $adapter)
 {
     $eol = PHP_EOL;
 }
+
+$str = 'foo';
+eval ("\$str = \"$str\"; new DateTime;");
+
+$str = trim($str);
+
+call_user_func($str);
+call_user_func_array($str, array());
+forward_static_call($str);
+forward_static_call_array($str);
+create_function($str, $str);
+
+$var = 'baz';
+$$var;
+$staticClass::$staticMethod();
+$func();
+
+new $dynClassBrackets();
+new $dynClass;
+
+// shell exec
+// global in func, static in func

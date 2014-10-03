@@ -2,12 +2,13 @@
 
 namespace PhpDA\Entity;
 
+use PhpParser\Error;
 use PhpParser\Node;
 
 class Analysis
 {
-    /** @var string */
-    private $parseError = '';
+    /** @var Error */
+    private $parseError;
 
     /** @var Node\Name[] */
     private $namespaces = array();
@@ -18,16 +19,19 @@ class Analysis
     /** @var Node\Expr\Include_[] */
     private $includes = array();
 
+    /** @var Node\Expr[] */
+    private $unsupportedStmts = array();
+
     /**
-     * @param string $message
+     * @param Error $error
      */
-    public function setParseError($message)
+    public function setParseError(Error $error)
     {
-        $this->parseError = (string) $message;
+        $this->parseError = $error;
     }
 
     /**
-     * @return string
+     * @return Error|null
      */
     public function getParseError()
     {
@@ -39,7 +43,7 @@ class Analysis
      */
     public function hasParseError()
     {
-        return !empty($this->parseError);
+        return $this->parseError instanceof Error;
     }
 
     /**
@@ -47,7 +51,7 @@ class Analysis
      */
     public function addNamespace(Node\Name $namespace)
     {
-        $this->namespaces[$namespace->toString()] = $namespace;
+        $this->namespaces[] = $namespace;
     }
 
     /**
@@ -64,5 +68,19 @@ class Analysis
     public function addInclude(Node\Expr\Include_ $include)
     {
         $this->includes[] = $include;
+    }
+
+    /**
+     * - $$x
+     * - new $x
+     * - $x::$y
+     * - $x()
+     * - DI.get('FQN/Alias')
+     *
+     * @param Node\Expr $stmt
+     */
+    public function addUnsupportedStmt(Node\Expr $stmt)
+    {
+        $this->unsupportedStmts[] = $stmt;
     }
 }
