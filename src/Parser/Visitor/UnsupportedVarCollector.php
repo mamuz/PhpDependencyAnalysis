@@ -9,7 +9,7 @@ class UnsupportedVarCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($this->unsupports($node)) {
-            $this->getAnalysis()->addUnsupportedStmt($node);
+            $this->collect($node);
         }
     }
 

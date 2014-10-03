@@ -7,12 +7,10 @@ use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Parser;
 
 class ApplicationFactory implements FactoryInterface
 {
-    /** @var FactoryInterface */
-    private $finderFactory;
-
     /** @var FactoryInterface */
     private $analyzerFactory;
 
@@ -20,11 +18,9 @@ class ApplicationFactory implements FactoryInterface
     private $writeAdapterFactory;
 
     public function __construct(
-        FactoryInterface $finderFactory,
         FactoryInterface $analyzerFactory,
         FactoryInterface $writeAdapterFactory
     ) {
-        $this->finderFactory = $finderFactory;
         $this->analyzerFactory = $analyzerFactory;
         $this->writeAdapterFactory = $writeAdapterFactory;
     }
@@ -46,6 +42,8 @@ class ApplicationFactory implements FactoryInterface
     protected function createAnalyzeCommand()
     {
         $command = new Analyze;
+
+        $command->setConfigParser($this->createConfigParser());
         $command->setFinder($this->createFinder());
         $command->setAnalyzer($this->createAnalyzer());
         $command->setWriteAdapter($this->createWriteAdapter());
@@ -58,7 +56,15 @@ class ApplicationFactory implements FactoryInterface
      */
     private function createFinder()
     {
-        return $this->finderFactory->create();
+        return new Finder;
+    }
+
+    /**
+     * @return Parser
+     */
+    private function createConfigParser()
+    {
+        return new Parser;
     }
 
     /**

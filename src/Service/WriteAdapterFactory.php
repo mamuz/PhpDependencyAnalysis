@@ -2,8 +2,8 @@
 
 namespace PhpDA\Service;
 
+use PhpDA\Plugin\Loader;
 use PhpDA\Writer\Adapter;
-use PhpDA\Writer\Loader;
 
 class WriteAdapterFactory implements FactoryInterface
 {

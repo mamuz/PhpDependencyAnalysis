@@ -23,7 +23,7 @@ class SuperglobalCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Expr\Variable) {
             if ($this->match($node)) {
-                $this->getAnalysis()->addSuperglobal($node);
+                $this->collect($node);
             }
         }
     }

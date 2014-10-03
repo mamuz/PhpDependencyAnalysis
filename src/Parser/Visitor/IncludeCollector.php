@@ -9,7 +9,7 @@ class IncludeCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Expr\Include_) {
-            $this->getAnalysis()->addInclude($node);
+            $this->collect($node);
         }
     }
 }

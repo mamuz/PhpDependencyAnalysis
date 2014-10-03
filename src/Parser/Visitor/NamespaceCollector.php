@@ -13,7 +13,7 @@ class NamespaceCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Name) {
             if (!$this->ignores($node)) {
-                $this->getAnalysis()->addNamespace($node);
+                $this->collect($node);
             }
         }
     }

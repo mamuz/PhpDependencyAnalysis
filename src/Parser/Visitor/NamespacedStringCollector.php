@@ -12,7 +12,7 @@ class NamespacedStringCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Scalar\String) {
             if ($this->match($node)) {
-                $this->getAnalysis()->addNamespacedString($node);
+                $this->collect($node);
             }
         }
     }

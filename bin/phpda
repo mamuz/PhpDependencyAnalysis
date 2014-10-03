@@ -16,11 +16,9 @@ if (!isset($loader)) {
 
 use PhpDA\Service\AnalyzerFactory;
 use PhpDA\Service\ApplicationFactory;
-use PhpDA\Service\FinderFactory;
 use PhpDA\Service\WriteAdapterFactory;
 
 $appFactory = new ApplicationFactory(
-    new FinderFactory,
     new AnalyzerFactory,
     new WriteAdapterFactory
 );

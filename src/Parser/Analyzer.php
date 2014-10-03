@@ -22,14 +22,19 @@ class Analyzer implements AnalyzerInterface
     private $collection;
 
     /**
-     * @param ParserAbstract         $parser
-     * @param NodeTraverserInterface $traveser
+     * @param ParserAbstract    $parser
+     * @param TraverseInterface $traveser
      */
-    public function __construct(ParserAbstract $parser, NodeTraverserInterface $traveser)
+    public function __construct(ParserAbstract $parser, TraverseInterface $traveser)
     {
         $this->parser = $parser;
         $this->traverser = $traveser;
         $this->collection = new AnalysisCollection;
+    }
+
+    public function getTraverser()
+    {
+        return $this->traverser;
     }
 
     public function analyze(SplFileInfo $file)
@@ -48,6 +53,7 @@ class Analyzer implements AnalyzerInterface
         }
 
         $this->collection->attach($analysis, $file->getRealPath());
+
         return $analysis;
     }
 

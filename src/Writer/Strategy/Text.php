@@ -4,7 +4,7 @@ namespace PhpDA\Writer\Strategy;
 
 use PhpDA\Entity\AnalysisCollection;
 
-class Txt implements StrategyInterface
+class Text implements StrategyInterface
 {
     public function filter(AnalysisCollection $collection)
     {

@@ -16,4 +16,9 @@ interface AnalyzerInterface
      * @return \PhpDA\Entity\AnalysisCollection
      */
     public function getAnalysisCollection();
+
+    /**
+     * @return TraverseInterface
+     */
+    public function getTraverser();
 }

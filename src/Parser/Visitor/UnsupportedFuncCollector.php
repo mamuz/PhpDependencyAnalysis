@@ -21,7 +21,7 @@ class UnsupportedFuncCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Expr\FuncCall) {
             if ($this->unsupports($node)) {
-                $this->getAnalysis()->addUnsupportedStmt($node);
+                $this->collect($node);
             }
         }
     }

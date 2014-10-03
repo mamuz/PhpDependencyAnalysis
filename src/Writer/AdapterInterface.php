@@ -13,14 +13,14 @@ interface AdapterInterface
     public function write(AnalysisCollection $analysisCollection);
 
     /**
-     * @param string $format
+     * @param string $fqn
      * @return AdapterInterface
      */
-    public function to($format);
+    public function with($fqn);
 
     /**
      * @param string $file
      * @return AdapterInterface
      */
-    public function in($file);
+    public function to($file);
 }

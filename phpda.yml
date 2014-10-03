@@ -1,0 +1,15 @@
+source: './tests/PhpDaTest/Stub'
+ignore: 'foo'
+formatter: 'PhpDA\Writer\Strategy\Text'
+target: './tmp/da.txt'
+visitor:
+  - PhpDA\Parser\Visitor\NamespaceCollector
+  - PhpDA\Parser\Visitor\SuperglobalCollector
+  - PhpDA\Parser\Visitor\IncludeCollector
+  - PhpDA\Parser\Visitor\ShellExecCollector
+  - PhpDA\Parser\Visitor\UnsupportedEvalCollector
+  - PhpDA\Parser\Visitor\UnsupportedFuncCollector
+  - PhpDA\Parser\Visitor\UnsupportedVarCollector
+  - PhpDA\Parser\Visitor\UnsupportedGlobalCollector
+  - PhpDA\Parser\Visitor\NamespacedStringCollector
+  - PhpDA\Parser\Visitor\IocContainerAccessorCollector

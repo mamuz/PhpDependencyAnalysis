@@ -20,7 +20,7 @@ class ShellExecCollector extends AbstractVisitor
         if ($node instanceof Node\Expr\ShellExec
             || ($node instanceof Node\Expr\FuncCall && $this->supports($node))
         ) {
-            $this->getAnalysis()->addShellExec($node);
+            $this->collect($node);
         }
     }
 

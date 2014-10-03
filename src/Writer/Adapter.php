@@ -3,6 +3,8 @@
 namespace PhpDA\Writer;
 
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Plugin\LoaderInterface;
+use PhpDA\Writer\Strategy\StrategyInterface;
 
 class Adapter implements AdapterInterface
 {
@@ -13,11 +15,11 @@ class Adapter implements AdapterInterface
     private $analysisCollection;
 
     /** @var string */
-    private $format = 'txt';
+    private $fqn;
 
-    public function __construct(LoaderInterface $pluginLoader)
+    public function __construct(LoaderInterface $loader)
     {
-        $this->strategyLoader = $pluginLoader;
+        $this->strategyLoader = $loader;
         $this->analysisCollection = new AnalysisCollection;
     }
 
@@ -27,13 +29,13 @@ class Adapter implements AdapterInterface
         return $this;
     }
 
-    public function to($format)
+    public function with($fqn)
     {
-        $this->format = $format;
+        $this->fqn = $fqn;
         return $this;
     }
 
-    public function in($file)
+    public function to($file)
     {
         file_put_contents($file, $this->createContent());
         return $this;
@@ -44,7 +46,21 @@ class Adapter implements AdapterInterface
      */
     private function createContent()
     {
-        $strategy = $this->strategyLoader->getStrategyFor($this->format);
-        return $strategy->filter($this->analysisCollection);
+        return $this->loadStrategy()->filter($this->analysisCollection);
+    }
+
+    /**
+     * @throws \RuntimeException
+     * @return StrategyInterface
+     */
+    private function loadStrategy()
+    {
+        $strategy = $this->strategyLoader->get($this->fqn);
+
+        if (!$strategy instanceof StrategyInterface) {
+            throw new \RuntimeException('Strategy ' . $this->fqn . ' is not an instance of StrategyInterface');
+        }
+
+        return $strategy;
     }
 }

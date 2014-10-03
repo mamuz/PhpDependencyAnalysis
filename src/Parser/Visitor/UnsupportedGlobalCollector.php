@@ -10,7 +10,7 @@ class UnsupportedGlobalCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Stmt\Global_) {
             foreach ($node->vars as $var) {
-                $this->getAnalysis()->addUnsupportedStmt($var);
+                $this->collect($var);
             }
         }
     }

@@ -10,7 +10,7 @@ class IocContainerAccessorCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Expr\MethodCall) {
             if ($node->name === 'get' && count($node->args) > 0) {
-                $this->getAnalysis()->addIocContainerAccessor($node);
+                $this->collect($node);
             }
         }
     }

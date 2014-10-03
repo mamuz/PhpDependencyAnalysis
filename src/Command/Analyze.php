@@ -7,12 +7,18 @@ use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Parser;
 
 class Analyze extends Command
 {
+    /** @var Config */
+    private $config;
+
+    /** @var Parser */
+    private $configParser;
+
     /** @var Finder|\Symfony\Component\Finder\SplFileInfo[] */
     private $finder;
 
@@ -21,6 +27,15 @@ class Analyze extends Command
 
     /** @var AdapterInterface */
     private $writeAdapter;
+
+    /**
+     * @param Parser $parser
+     * @return void
+     */
+    public function setConfigParser(Parser $parser)
+    {
+        $this->configParser = $parser;
+    }
 
     /**
      * @param Finder $finder
@@ -52,44 +67,19 @@ class Analyze extends Command
     protected function configure()
     {
         $this->setName("phpda:analyze")
-            ->setDescription("Report dependencies of directory")
+            ->setDescription("Analyze php dependencies")
             ->addArgument(
-                'source',
+                'config',
                 InputArgument::OPTIONAL,
-                'Directory to parse, default is current path',
-                '.'
-            )
-            ->addOption(
-                'ignore',
-                'i',
-                InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
-                'Excluding directories'
-            )
-            ->addOption(
-                'target',
-                't',
-                InputOption::VALUE_OPTIONAL,
-                'Excluding directories',
-                './phpda'
-            )
-            ->addOption(
-                'format',
-                'f',
-                InputOption::VALUE_OPTIONAL,
-                'Excluding directories',
-                'txt'
+                'Path to yaml configuration file',
+                'phpda.yml'
             )
             ->setHelp('....');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $source = $input->getArgument('source');
-        $ignore = $input->getOption('ignore');
-        $target = $input->getOption('target');
-        $format = $input->getOption('format');
-
-        $this->finder->files()->name('*.php')->in(realpath($source))->exclude($ignore);
+        $this->bindConfigBy($input);
 
         $progress = $this->getHelper('progress');
         $progress->start($output, iterator_count($this->finder));
@@ -98,10 +88,45 @@ class Analyze extends Command
             $this->analyzer->analyze($file);
             $progress->advance();
         }
-
-        $this->writeAdapter->write($this->analyzer->getAnalysisCollection())->to($format)->in($target);
+        $this->writeAnalysis();
 
         $progress->finish();
         $output->writeln('Done');
+    }
+
+    /**
+     * @param InputInterface $input
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    private function bindConfigBy(InputInterface $input)
+    {
+        $configFile = $input->getArgument('config');
+        $config = $this->configParser->parse(file_get_contents($configFile));
+
+        if (!is_array($config)) {
+            throw new \InvalidArgumentException('Configuration is invalid');
+        }
+
+        $this->config = new Config($config);
+
+        $this->finder
+            ->files()
+            ->name('*.php')
+            ->in(realpath($this->config->getSource()))
+            ->exclude($this->config->getIgnore());
+
+        $this->analyzer->getTraverser()->bindVisitors($this->config->getVisitor());
+    }
+
+    /**
+     * @return void
+     */
+    private function writeAnalysis()
+    {
+        $this->writeAdapter
+            ->write($this->analyzer->getAnalysisCollection())
+            ->with($this->config->getFormatter())
+            ->to($this->config->getTarget());
     }
 }
