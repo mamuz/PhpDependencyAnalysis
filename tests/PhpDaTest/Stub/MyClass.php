@@ -55,6 +55,7 @@ include_once 'config.php';
 
 function myFunc(AdapterInterface $adapter)
 {
+    global $post;
     $eol = PHP_EOL;
 }
 
@@ -67,9 +68,11 @@ call_user_func($str);
 call_user_func_array($str, array());
 forward_static_call($str);
 forward_static_call_array($str);
+call_user_method($str, $str);
+call_user_method_array($str, $str, array());
 create_function($str, $str);
 
-$var = 'baz';
+$staticClass = $staticMethod = $var = $func = $dynClassBrackets = $dynClass = 'baz';
 $$var;
 $staticClass::$staticMethod();
 $func();
@@ -77,5 +80,20 @@ $func();
 new $dynClassBrackets();
 new $dynClass;
 
-// shell exec
-// global in func, static in func
+exec('foo');
+passthru('foo');
+proc_open('foo', array(), $var);
+shell_exec('foo');
+system('foo');
+`test`;
+
+$nameSpace1 = '\Test\Object';
+$nameSpace2 = '\Test';
+$nameSpace3 = 'Test_Object';
+
+$class->$test();
+$class->get();
+$class->get('test');
+
+// namespaced strings
+// DI.get('FQN/Alias')

@@ -6,9 +6,7 @@ use PhpParser\Node;
 
 class UnsupportedFuncCollector extends AbstractVisitor
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $unsupportedFuncs = array(
         'call_user_func',
         'call_user_func_array',
