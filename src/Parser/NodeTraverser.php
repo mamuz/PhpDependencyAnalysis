@@ -17,7 +17,8 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
     private $requiredVisitors = array(
         'PhpDA\Parser\Visitor\MultiNamespaceDetector',
         'PhpParser\NodeVisitor\NameResolver',
-        'PhpDA\Parser\Visitor\NamespaceCollector',
+        'PhpDA\Parser\Visitor\DeclaredNamespaceCollector',
+        'PhpDA\Parser\Visitor\UsedNamespaceCollector',
     );
 
     /** @var LoaderInterface */
@@ -48,6 +49,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
     private function filterVisitors(array $visitors)
     {
         $fqns = $this->requiredVisitors;
+
         foreach ($visitors as $fqn) {
             $fqn = trim($fqn, '\\');
             if (!in_array($fqn, $fqns)) {

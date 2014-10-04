@@ -78,6 +78,13 @@ class Analysis
      */
     public function getUsedNamespaces()
     {
+        foreach ($this->usedNamespaces as $index => $namespace) {
+            /** @var Node\Name $namespace */
+            if ($namespace->toString() === $this->getDeclaredNamespace()->toString()) {
+                unset($this->usedNamespaces[$index]);
+            }
+        }
+
         return $this->usedNamespaces;
     }
 

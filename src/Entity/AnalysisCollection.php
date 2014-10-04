@@ -22,6 +22,14 @@ class AnalysisCollection
     }
 
     /**
+     * @return Graph
+     */
+    public function getGraph()
+    {
+        return $this->graph;
+    }
+
+    /**
      * @param Analysis $analysis
      * @param string   $filepath
      * @return void
@@ -34,7 +42,9 @@ class AnalysisCollection
 
         foreach ($analysis->getUsedNamespaces() as $usedNamespace) {
             $usedNamespace = $this->createVertexBy($usedNamespace);
-            $usedNamespace->createEdgeTo($declaredNamespace);
+            if (!$usedNamespace->hasEdgeTo($declaredNamespace)) {
+                $usedNamespace->createEdgeTo($declaredNamespace);
+            }
         }
     }
 
