@@ -22,14 +22,18 @@ class Analyzer implements AnalyzerInterface
     private $collection;
 
     /**
-     * @param ParserAbstract    $parser
-     * @param TraverseInterface $traveser
+     * @param ParserAbstract     $parser
+     * @param TraverseInterface  $traveser
+     * @param AnalysisCollection $collection
      */
-    public function __construct(ParserAbstract $parser, TraverseInterface $traveser)
-    {
+    public function __construct(
+        ParserAbstract $parser,
+        TraverseInterface $traveser,
+        AnalysisCollection $collection
+    ) {
         $this->parser = $parser;
         $this->traverser = $traveser;
-        $this->collection = new AnalysisCollection;
+        $this->collection = $collection;
     }
 
     public function getTraverser()

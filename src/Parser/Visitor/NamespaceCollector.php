@@ -11,9 +11,14 @@ class NamespaceCollector extends AbstractVisitor
 
     public function leaveNode(Node $node)
     {
+        if ($node instanceof Node\Stmt\Namespace_) {
+            $name = new Node\Name($node->name);
+            $this->getAnalysis()->setDeclaredNamespace($name);
+        }
+
         if ($node instanceof Node\Name) {
             if (!$this->ignores($node)) {
-                $this->collect($node);
+                $this->getAnalysis()->addUsedNamespace($node);
             }
         }
     }

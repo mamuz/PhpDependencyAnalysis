@@ -20,7 +20,6 @@ class Adapter implements AdapterInterface
     public function __construct(LoaderInterface $loader)
     {
         $this->strategyLoader = $loader;
-        $this->analysisCollection = new AnalysisCollection;
     }
 
     public function write(AnalysisCollection $collection)

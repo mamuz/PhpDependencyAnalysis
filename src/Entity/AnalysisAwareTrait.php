@@ -16,7 +16,7 @@ trait AnalysisAwareTrait
     }
 
     /**
-     * @return Analysis $analysis
+     * @return Analysis
      */
     public function getAnalysis()
     {

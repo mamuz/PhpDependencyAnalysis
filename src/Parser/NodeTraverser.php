@@ -7,12 +7,15 @@ use PhpDA\Entity\AnalysisAwareTrait;
 use PhpDA\Plugin\LoaderInterface;
 use PhpParser\NodeVisitor;
 
-class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInterface, TraverseInterface
+class NodeTraverser extends \PhpParser\NodeTraverser implements
+    AnalysisAwareInterface,
+    TraverseInterface
 {
     use AnalysisAwareTrait;
 
     /** @var array */
     private $requiredVisitors = array(
+        'PhpDA\Parser\Visitor\MultiNamespaceDetector',
         'PhpParser\NodeVisitor\NameResolver',
         'PhpDA\Parser\Visitor\NamespaceCollector',
     );

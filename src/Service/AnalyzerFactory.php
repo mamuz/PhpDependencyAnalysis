@@ -2,6 +2,8 @@
 
 namespace PhpDA\Service;
 
+use Fhaculty\Graph\Graph;
+use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
 use PhpDA\Plugin\Loader;
@@ -15,7 +17,11 @@ class AnalyzerFactory implements FactoryInterface
      */
     public function create()
     {
-        return new Analyzer($this->createParser(), $this->createTraverser());
+        return new Analyzer(
+            $this->createParser(),
+            $this->createTraverser(),
+            $this->createCollection()
+        );
     }
 
     /**
@@ -35,5 +41,13 @@ class AnalyzerFactory implements FactoryInterface
         $traverser->setVisitorLoader(new Loader);
 
         return $traverser;
+    }
+
+    /**
+     * @return AnalysisCollection
+     */
+    protected function createCollection()
+    {
+        return new AnalysisCollection(new Graph);
     }
 }

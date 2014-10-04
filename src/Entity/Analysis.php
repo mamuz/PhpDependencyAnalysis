@@ -13,6 +13,17 @@ class Analysis
     /** @var Node[] */
     private $stmts = array();
 
+    /** @var Node/Name */
+    private $declaredNamespace;
+
+    /** @var Node/Name */
+    private $usedNamespaces = array();
+
+    public function __construct()
+    {
+        $this->declaredNamespace = new Node\Name('\\');
+    }
+
     /**
      * @param Error $error
      */
@@ -35,6 +46,39 @@ class Analysis
     public function hasParseError()
     {
         return $this->parseError instanceof Error;
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    public function setDeclaredNamespace(Node\Name $name)
+    {
+        $this->declaredNamespace = $name;
+    }
+
+    /**
+     * @return Node\Name
+     */
+    public function getDeclaredNamespace()
+    {
+        return $this->declaredNamespace;
+    }
+
+    /**
+     * @param Node\Name $usedNamespace
+     */
+    public function addUsedNamespace(Node\Name $usedNamespace)
+    {
+        $this->usedNamespaces[] = $usedNamespace;
+    }
+
+    /**
+     * @return Node\Name[]
+     */
+    public function getUsedNamespaces()
+    {
+        return $this->usedNamespaces;
     }
 
     /**
