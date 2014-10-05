@@ -2,15 +2,10 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use Fhaculty\Graph\GraphViz;
-use PhpDA\Entity\AnalysisCollection;
-
-class Text implements StrategyInterface
+class Text extends AbstractStrategy
 {
-    public function filter(AnalysisCollection $collection)
+    public function createOutput()
     {
-        $graphViz = new GraphViz($collection->getGraph());
-        //echo $graphViz->createScript();
-        return print_r($collection, true);
+        return $this->getGraphViz()->createScript();
     }
 }
