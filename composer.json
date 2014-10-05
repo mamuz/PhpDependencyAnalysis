@@ -1,10 +1,10 @@
 {
-    "name"             : "mamuz/PhpDependencyAnalysis",
+    "name"       : "mamuz/php-dependency-analysis",
     "type"             : "library",
-    "description"      : "Static code analysis for php projects to provide a dependency graph",
+    "description": "Static code analysis for php projects to provide a dependency graph based on namespaces",
     "homepage"         : "https://github.com/mamuz/PhpDependencyAnalysis",
     "license"          : "MIT",
-    "keywords"         : ["mamuz", "php", "dependency", "analysis", "graph"],
+    "keywords"   : ["mamuz", "php", "dependency", "analysis", "graph", "namespace"],
     "authors"          : [
         {
             "name" : "Marco Muths",
