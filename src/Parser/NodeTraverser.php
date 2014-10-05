@@ -38,7 +38,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
     {
         $visitors = $this->filterVisitors($visitors);
         foreach ($visitors as $fqn) {
-            $visitorOptions = isset($options[$fqn]) ? $options[$fqn] : null;
+            $visitorOptions = isset($options[$fqn]) ? (array) $options[$fqn] : null;
             $this->addVisitor($this->loadVisitorBy($fqn, $visitorOptions));
         }
     }
