@@ -109,6 +109,6 @@ class Config
             throw new \InvalidArgumentException('Config for visitorOptions must be an array');
         }
 
-        return $this->visitor;
+        return $this->visitorOptions;
     }
 }

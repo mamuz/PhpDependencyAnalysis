@@ -1,7 +1,7 @@
 source: './src'
 ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
-target: './phpda.svg'
+target: './tmp/phpda.svg'
 visitor:
   - PhpDA\Parser\Visitor\SuperglobalCollector
   - PhpDA\Parser\Visitor\IncludeCollector
@@ -12,3 +12,6 @@ visitor:
   - PhpDA\Parser\Visitor\UnsupportedGlobalCollector
   - PhpDA\Parser\Visitor\NamespacedStringCollector
   - PhpDA\Parser\Visitor\IocContainerAccessorCollector
+visitorOptions:
+  PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector: {minLength: 2, length: 2}
+  PhpDA\Parser\Visitor\Required\UsedNamespaceCollector: {minLength: 2, length: 1}

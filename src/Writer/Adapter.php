@@ -36,7 +36,7 @@ class Adapter implements AdapterInterface
 
     public function to($file)
     {
-        file_put_contents($file, $this->createContent());
+        file_put_contents($file, $this->createContent(), LOCK_EX);
         return $this;
     }
 
