@@ -14,6 +14,9 @@ class UsedNamespaceCollector extends AbstractVisitor implements ConfigurableInte
     /** @var int|null */
     private $length;
 
+    /** @var int */
+    private $minLength = 0;
+
     /** @var array */
     private $ignoredNamespaces = array('self', 'static');
 
@@ -26,6 +29,10 @@ class UsedNamespaceCollector extends AbstractVisitor implements ConfigurableInte
         if (isset($options['length'])) {
             $this->length = (int) $options['length'];
         }
+
+        if (isset($options['minLength'])) {
+            $this->minLength = (int) $options['minLength'];
+        }
     }
 
     public function leaveNode(Node $node)
@@ -36,6 +43,19 @@ class UsedNamespaceCollector extends AbstractVisitor implements ConfigurableInte
                 $this->getAnalysis()->addUsedNamespace($node);
             }
         }
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return bool
+     */
+    private function ignores(Node\Name $name)
+    {
+        if ($this->minLength > 0) {
+            return count($name->parts) < $this->minLength;
+        }
+
+        return in_array($name->toString(), $this->ignoredNamespaces);
     }
 
     /**
@@ -55,14 +75,5 @@ class UsedNamespaceCollector extends AbstractVisitor implements ConfigurableInte
         }
 
         return new Node\Name($parts);
-    }
-
-    /**
-     * @param Node\Name $name
-     * @return bool
-     */
-    private function ignores(Node\Name $name)
-    {
-        return in_array($name->toString(), $this->ignoredNamespaces);
     }
 }
