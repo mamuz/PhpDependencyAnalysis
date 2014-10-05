@@ -75,14 +75,20 @@ class Analyze extends Command
                 'config',
                 InputArgument::OPTIONAL,
                 'Path to yaml configuration file',
-                'phpda.yml'
+                './phpda.yml'
             )
             ->setHelp('Please visit https://github.com/mamuz/PhpDependencyAnalysis for detailed informations.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->bindConfigBy($input);
+        $output->writeln('PhpDependencyAnalyse v0.1 by Marco Muths.');
+        $output->writeln('');
+
+        $configFile = $input->getArgument('config');
+        $this->bindConfigFrom($configFile);
+        $output->writeln('Configuration read from ' . realpath($configFile));
+        $output->writeln('');
 
         $progress = $this->getHelper('progress');
         $progress->start($output, iterator_count($this->finder));
@@ -94,17 +100,18 @@ class Analyze extends Command
         $this->writeAnalysis();
 
         $progress->finish();
+        $output->writeln('');
         $output->writeln('Done');
+        $output->writeln('');
     }
 
     /**
-     * @param InputInterface $input
+     * @param string $configFile
      * @throws \InvalidArgumentException
      * @return void
      */
-    private function bindConfigBy(InputInterface $input)
+    private function bindConfigFrom($configFile)
     {
-        $configFile = $input->getArgument('config');
         $config = $this->configParser->parse(file_get_contents($configFile));
 
         if (!is_array($config)) {
