@@ -11,6 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Parser;
 
+/**
+ * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ */
 class Analyze extends Command
 {
     /** @var Config */
@@ -74,7 +77,7 @@ class Analyze extends Command
                 'Path to yaml configuration file',
                 'phpda.yml'
             )
-            ->setHelp('....');
+            ->setHelp('Please visit https://github.com/mamuz/PhpDependencyAnalysis for detailed informations.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
