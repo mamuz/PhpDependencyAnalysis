@@ -66,7 +66,7 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->setName("phpda:analyze")
+        $this->setName("analyze")
             ->setDescription("Analyze php dependencies")
             ->addArgument(
                 'config',
