@@ -1,7 +1,7 @@
 source: './src'
-ignore: 'foo'
-formatter: 'PhpDA\Writer\Strategy\Html'
-target: './tmp/da.html'
+ignore: 'tests'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: './phpda.svg'
 visitor:
   - PhpDA\Parser\Visitor\SuperglobalCollector
   - PhpDA\Parser\Visitor\IncludeCollector
