@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpDA\Parser\Visitor;
+namespace PhpDA\Parser\Visitor\Required;
 
 use PhpParser\Error;
 use PhpParser\Node;

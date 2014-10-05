@@ -1,7 +1,8 @@
 <?php
 
-namespace PhpDA\Parser\Visitor;
+namespace PhpDA\Parser\Visitor\Required;
 
+use PhpDA\Parser\Visitor\AbstractVisitor;
 use PhpParser\Node;
 
 class DeclaredNamespaceCollector extends AbstractVisitor

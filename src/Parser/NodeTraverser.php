@@ -15,10 +15,10 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
 
     /** @var array */
     private $requiredVisitors = array(
-        'PhpDA\Parser\Visitor\MultiNamespaceDetector',
+        'PhpDA\Parser\Visitor\Required\MultiNamespaceDetector',
         'PhpParser\NodeVisitor\NameResolver',
-        'PhpDA\Parser\Visitor\DeclaredNamespaceCollector',
-        'PhpDA\Parser\Visitor\UsedNamespaceCollector',
+        'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+        'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
     );
 
     /** @var LoaderInterface */
