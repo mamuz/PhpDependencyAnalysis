@@ -2,8 +2,6 @@
 
 namespace PhpDA\Parser;
 
-use PhpParser\Node;
-
 interface TraverseInterface
 {
     /**

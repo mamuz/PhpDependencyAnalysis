@@ -56,7 +56,7 @@ class Analyzer implements AnalyzerInterface
             $analysis->setParseError($error);
         }
 
-        $this->collection->attach($analysis, $file->getRealPath());
+        $this->collection->attach($analysis);
 
         return $analysis;
     }

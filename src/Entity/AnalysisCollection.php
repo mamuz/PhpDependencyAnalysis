@@ -10,9 +10,6 @@ class AnalysisCollection
     /** @var Graph */
     private $graph;
 
-    /** @var Analysis[] */
-    private $analyses = array();
-
     /**
      * @param Graph $graph
      */
@@ -31,13 +28,10 @@ class AnalysisCollection
 
     /**
      * @param Analysis $analysis
-     * @param string   $filepath
      * @return void
      */
-    public function attach(Analysis $analysis, $filepath)
+    public function attach(Analysis $analysis)
     {
-        $this->analyses[$filepath] = $analysis;
-
         $declaredNamespace = $this->createVertexBy($analysis->getDeclaredNamespace());
 
         foreach ($analysis->getUsedNamespaces() as $usedNamespace) {
