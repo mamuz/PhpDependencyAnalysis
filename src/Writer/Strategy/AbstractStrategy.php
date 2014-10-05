@@ -7,17 +7,18 @@ use PhpDA\Entity\AnalysisCollection;
 
 abstract class AbstractStrategy implements StrategyInterface
 {
+    /** @var AnalysisCollection */
+    private $analysisCollection;
+
     /** @var GraphViz */
     private $graphViz;
 
     /**
-     * @param GraphViz $graphViz
-     * @return AbstractStrategy
+     * @return AnalysisCollection
      */
-    protected function setGraphViz(GraphViz $graphViz)
+    protected function getAnalysisCollection()
     {
-        $this->graphViz = $graphViz;
-        return $this;
+        return $this->analysisCollection;
     }
 
     /**
@@ -30,7 +31,8 @@ abstract class AbstractStrategy implements StrategyInterface
 
     public function filter(AnalysisCollection $collection)
     {
-        $this->setGraphViz(new GraphViz($collection->getGraph()));
+        $this->analysisCollection = $collection;
+        $this->graphViz = new GraphViz($collection->getGraph());
 
         return $this->createOutput();
     }
