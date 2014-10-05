@@ -5,9 +5,10 @@ namespace PhpDA\Plugin;
 interface LoaderInterface
 {
     /**
-     * @param string $fqn
+     * @param string     $fqn
+     * @param array|null $options
      * @throws \RuntimeException
      * @return object
      */
-    public function get($fqn);
+    public function get($fqn, array $options = null);
 }

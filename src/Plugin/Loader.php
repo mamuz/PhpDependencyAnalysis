@@ -6,7 +6,7 @@ use PhpDA\Service\FactoryInterface;
 
 class Loader implements LoaderInterface
 {
-    public function get($fqn)
+    public function get($fqn, array $options = null)
     {
         if (!class_exists($fqn)) {
             throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
@@ -23,6 +23,10 @@ class Loader implements LoaderInterface
 
         if ($plugin instanceof FactoryInterface) {
             $plugin = $plugin->create();
+        }
+
+        if ($options && $plugin instanceof ConfigurableInterface) {
+            $plugin->setOptions($options);
         }
 
         return $plugin;

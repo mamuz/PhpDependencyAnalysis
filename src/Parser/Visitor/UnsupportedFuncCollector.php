@@ -2,9 +2,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 
-class UnsupportedFuncCollector extends AbstractVisitor
+class UnsupportedFuncCollector extends AbstractVisitor implements ConfigurableInterface
 {
     /** @var array */
     private $unsupportedFuncs = array(
@@ -16,6 +17,13 @@ class UnsupportedFuncCollector extends AbstractVisitor
         'forward_static_call_array',
         'create_function',
     );
+
+    public function setOptions(array $options)
+    {
+        if (isset($options['unsupportedFuncs'])) {
+            $this->unsupportedFuncs = (array) $options['unsupportedFuncs'];
+        }
+    }
 
     public function leaveNode(Node $node)
     {

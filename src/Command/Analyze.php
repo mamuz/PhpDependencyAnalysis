@@ -116,7 +116,10 @@ class Analyze extends Command
             ->in(realpath($this->config->getSource()))
             ->exclude($this->config->getIgnore());
 
-        $this->analyzer->getTraverser()->bindVisitors($this->config->getVisitor());
+        $this->analyzer->getTraverser()->bindVisitors(
+            $this->config->getVisitor(),
+            $this->config->getVisitorOptions()
+        );
     }
 
     /**

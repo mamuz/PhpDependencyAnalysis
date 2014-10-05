@@ -19,6 +19,9 @@ class Config
     /** @var array */
     private $visitor = array();
 
+    /** @var array */
+    private $visitorOptions = array();
+
     /**
      * @param array $config
      */
@@ -91,6 +94,19 @@ class Config
     {
         if (!is_array($this->visitor)) {
             throw new \InvalidArgumentException('Config for visitor must be an array');
+        }
+
+        return $this->visitor;
+    }
+
+    /**
+     * @return array
+     * @throws \InvalidArgumentException
+     */
+    public function getVisitorOptions()
+    {
+        if (!is_array($this->visitorOptions)) {
+            throw new \InvalidArgumentException('Config for visitorOptions must be an array');
         }
 
         return $this->visitor;

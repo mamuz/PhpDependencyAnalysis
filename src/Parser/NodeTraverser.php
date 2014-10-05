@@ -34,11 +34,12 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
         return $this;
     }
 
-    public function bindVisitors(array $visitors)
+    public function bindVisitors(array $visitors, array $options = null)
     {
         $visitors = $this->filterVisitors($visitors);
         foreach ($visitors as $fqn) {
-            $this->addVisitor($this->loadVisitorBy($fqn));
+            $visitorOptions = isset($options[$fqn]) ? $options[$fqn] : null;
+            $this->addVisitor($this->loadVisitorBy($fqn, $visitorOptions));
         }
     }
 
@@ -61,13 +62,14 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
     }
 
     /**
-     * @param string $fqn
+     * @param string     $fqn
+     * @param array|null $options
      * @throws \RuntimeException
      * @return NodeVisitor
      */
-    private function loadVisitorBy($fqn)
+    private function loadVisitorBy($fqn, array $options = null)
     {
-        $visitor = $this->visitorLoader->get($fqn);
+        $visitor = $this->visitorLoader->get($fqn, $options);
 
         if (!$visitor instanceof NodeVisitor) {
             throw new \RuntimeException('Visitor ' . $fqn . ' is not an instance of NodeVisitor');

@@ -2,9 +2,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 
-class ShellExecCollector extends AbstractVisitor
+class ShellExecCollector extends AbstractVisitor implements ConfigurableInterface
 {
     /** @var array */
     private $shellFuncs = array(
@@ -14,6 +15,13 @@ class ShellExecCollector extends AbstractVisitor
         'shell_exec',
         'system',
     );
+
+    public function setOptions(array $options)
+    {
+        if (isset($options['shellFuncs'])) {
+            $this->shellFuncs = (array) $options['shellFuncs'];
+        }
+    }
 
     public function leaveNode(Node $node)
     {
