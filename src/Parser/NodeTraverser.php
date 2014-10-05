@@ -72,7 +72,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements
         $visitor = $this->visitorLoader->get($fqn, $options);
 
         if (!$visitor instanceof NodeVisitor) {
-            throw new \RuntimeException('Visitor ' . $fqn . ' is not an instance of NodeVisitor');
+            throw new \RuntimeException('Visitor ' . $fqn . ' must be an instance of NodeVisitor');
         }
 
         return $visitor;
