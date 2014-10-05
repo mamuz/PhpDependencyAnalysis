@@ -1,14 +1,14 @@
 PhpDependencyAnalysis
 =====================
 
-**THIS PROJECT IS IN WIP STATE, NO RELEASE EXISTS YET**
+**THIS PROJECT IS IN WIP STATE**
 
 PhpDependencyAnalysis is an extandable static code analysis for
 php projects to provide a dependency graph based on php namespaces.
 It builds dependency graphs on customizable levels, e.g. on framework-, on package- or on script level.
 Thus, it's usable to declare dependencies in general, but it's also usable to
 detect violations between layers in a layered architecture, like SoC, LoD and other Package-Principles.
-For huge php-projects it's recommend to integrate this to the CI process to monitor dependencies and package violations.
+For huge php-projects it's recommend to integrate it to your CI to monitor dependencies and violations.
 
 [![Build Status](https://travis-ci.org/mamuz/PhpDependencyAnalysis.svg?branch=master)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
 [![Coverage Status](https://coveralls.io/repos/mamuz/PhpDependencyAnalysis/badge.png?branch=master)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
@@ -43,17 +43,21 @@ The recommended way to install
 - Graphs can be printed in several formats
 - Collecting dependencies and detecting violations is extandable
 
+## Workflow
+
+tba
+
 ## Configuration
 
 Create a yaml config and handover is to cli invoker.
 ..tba
-
-## Workflow
-
-tba
 
 ## Usage
 
 ```sh
 phpda analyze ./myconfig.yml
 ```
+
+## Limitations
+
+tba
