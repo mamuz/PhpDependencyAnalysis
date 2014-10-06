@@ -19,27 +19,23 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer;
+set_time_limit(0);
+ini_set('memory_limit', -1);
+ini_set('xdebug.max_nesting_level', 2000);
 
-use PhpDA\Entity\AnalysisCollection;
-
-interface AdapterInterface
-{
-    /**
-     * @param AnalysisCollection $analysisCollection
-     * @return AdapterInterface
-     */
-    public function write(AnalysisCollection $analysisCollection);
-
-    /**
-     * @param string $fqn
-     * @return AdapterInterface
-     */
-    public function with($fqn);
-
-    /**
-     * @param string $file
-     * @return AdapterInterface
-     */
-    public function to($file);
+if (!(@include_once __DIR__ . '/../vendor/autoload.php')
+    && !(@include_once __DIR__ . '/../../../autoload.php')
+) {
+    throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
+
+use PhpDA\Service\AnalyzerFactory;
+use PhpDA\Service\ApplicationFactory;
+use PhpDA\Service\WriteAdapterFactory;
+
+$appFactory = new ApplicationFactory(
+    new AnalyzerFactory,
+    new WriteAdapterFactory
+);
+
+$appFactory->create()->run();
