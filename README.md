@@ -23,7 +23,7 @@ to monitor dependencies and violations.
 
 ## Installation
 
-For creating graphs [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
+For graph creating [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
 an open source graph visualization software and available for the most platforms.
 
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
