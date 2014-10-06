@@ -21,7 +21,7 @@
 
 namespace PhpDA\Writer\Strategy;
 
-class Text extends AbstractStrategy
+class Script extends AbstractStrategy
 {
     public function createOutput()
     {
