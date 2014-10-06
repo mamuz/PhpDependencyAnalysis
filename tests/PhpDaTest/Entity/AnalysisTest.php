@@ -44,4 +44,52 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->fixture->hasParseError());
         $this->assertSame($error, $this->fixture->getParseError());
     }
+
+    public function testMutateAndAccessDeclaredNamespace()
+    {
+        $name = $this->fixture->getDeclaredNamespace();
+        $this->assertInstanceOf('PhpParser\Node\Name', $name);
+        $this->assertSame('\\', $name->toString());
+
+        $name = \Mockery::mock('PhpParser\Node\Name');
+        $this->fixture->setDeclaredNamespace($name);
+
+        $this->assertSame($name, $this->fixture->getDeclaredNamespace());
+    }
+
+    public function testMutateAndAccessUsedNamespace()
+    {
+        $this->assertSame(array(), $this->fixture->getUsedNamespaces());
+
+        $name1 = \Mockery::mock('PhpParser\Node\Name');
+        $name1->shouldReceive('toString');
+        $name2 = \Mockery::mock('PhpParser\Node\Name');
+        $name2->shouldReceive('toString');
+        $this->fixture->addUsedNamespace($name1);
+        $this->fixture->addUsedNamespace($name2);
+
+        $this->assertSame(array($name1, $name2), $this->fixture->getUsedNamespaces());
+    }
+
+    public function testMutateAndAccessUsedNamespaceWithFilteredDeclaredNamespace()
+    {
+        $declaredNamespace = 'Foo\Bar';
+
+        $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('toString')->andReturn($declaredNamespace);
+        $this->fixture->setDeclaredNamespace($name);
+
+        $name1 = \Mockery::mock('PhpParser\Node\Name');
+        $name1->shouldReceive('toString');
+        $name2 = \Mockery::mock('PhpParser\Node\Name');
+        $name2->shouldReceive('toString')->andReturn($declaredNamespace);
+        $name3 = \Mockery::mock('PhpParser\Node\Name');
+        $name3->shouldReceive('toString');
+
+        $this->fixture->addUsedNamespace($name1);
+        $this->fixture->addUsedNamespace($name2);
+        $this->fixture->addUsedNamespace($name3);
+
+        $this->assertSame(array($name1, $name3), $this->fixture->getUsedNamespaces());
+    }
 }

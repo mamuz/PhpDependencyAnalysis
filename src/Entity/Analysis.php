@@ -104,6 +104,8 @@ class Analysis
             }
         }
 
+        $this->usedNamespaces = array_values($this->usedNamespaces);
+
         return $this->usedNamespaces;
     }
 
