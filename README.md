@@ -49,7 +49,8 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ## Workflow
 
 PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser/) for parsing
-php files. It collects all found namespaces to resolve dependecies to other packages or libraries.
+php files. It collects all found namespaces adapted from provided visitor pattern to
+resolve dependecies to other packages or libraries.
 After that [`clues's Graph`](https://github.com/clue/graph) is used to illustrate dependencies based
 on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathematics%29).
 
