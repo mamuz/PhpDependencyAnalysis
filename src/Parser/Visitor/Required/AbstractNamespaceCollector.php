@@ -28,26 +28,26 @@ use PhpParser\Node;
 abstract class AbstractNamespaceCollector extends AbstractVisitor implements ConfigurableInterface
 {
     /** @var int|null */
-    private $offset;
+    private $sliceOffset;
 
     /** @var int|null */
-    private $length;
+    private $sliceLength;
 
     /** @var int */
-    private $minLength = 0;
+    private $minDepth = 0;
 
     public function setOptions(array $options)
     {
-        if (isset($options['offset'])) {
-            $this->offset = (int) $options['offset'];
+        if (isset($options['sliceOffset'])) {
+            $this->sliceOffset = (int) $options['sliceOffset'];
         }
 
-        if (isset($options['length'])) {
-            $this->length = (int) $options['length'];
+        if (isset($options['sliceLength'])) {
+            $this->sliceLength = (int) $options['sliceLength'];
         }
 
-        if (isset($options['minLength'])) {
-            $this->minLength = (int) $options['minLength'];
+        if (isset($options['minDepth'])) {
+            $this->minDepth = (int) $options['minDepth'];
         }
     }
 
@@ -57,8 +57,8 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
      */
     protected function ignores(Node\Name $name)
     {
-        if ($this->minLength > 0) {
-            return count($name->parts) < $this->minLength;
+        if ($this->minDepth > 0) {
+            return count($name->parts) < $this->minDepth;
         }
 
         return false;
@@ -70,14 +70,14 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
      */
     protected function filter(Node\Name $name)
     {
-        if (is_null($this->offset) && is_null($this->length)) {
+        if (is_null($this->sliceOffset) && is_null($this->sliceLength)) {
             return $name;
         }
 
-        if (is_null($this->length)) {
-            $parts = array_slice($name->parts, (int) $this->offset);
+        if (is_null($this->sliceLength)) {
+            $parts = array_slice($name->parts, (int) $this->sliceOffset);
         } else {
-            $parts = array_slice($name->parts, (int) $this->offset, (int) $this->length);
+            $parts = array_slice($name->parts, (int) $this->sliceOffset, (int) $this->sliceLength);
         }
 
         return new Node\Name($parts);

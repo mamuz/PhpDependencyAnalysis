@@ -26,7 +26,7 @@ use PhpParser\Node;
 class UsedNamespaceCollector extends AbstractNamespaceCollector
 {
     /** @var array */
-    private $ignoredNamespaces = array('self', 'static');
+    private $ignoredNamespaces = array('self', 'static', 'null', 'true', 'false');
 
     public function leaveNode(Node $node)
     {
@@ -44,6 +44,6 @@ class UsedNamespaceCollector extends AbstractNamespaceCollector
             return $ignores;
         }
 
-        return in_array($name->toString(), $this->ignoredNamespaces);
+        return in_array(strtolower($name->toString()), $this->ignoredNamespaces);
     }
 }

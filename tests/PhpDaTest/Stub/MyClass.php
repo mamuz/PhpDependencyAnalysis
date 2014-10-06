@@ -48,6 +48,11 @@ $post = $_ENV;
 $post = $GLOBALS;
 $post = $_SESSION;
 
+$var = true;
+$var = null;
+$var = false;
+$var = null;
+
 require_once 'config.php';
 require 'config.php';
 include 'config.php';
