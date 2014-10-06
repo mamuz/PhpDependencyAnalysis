@@ -24,7 +24,7 @@ to monitor dependencies and violations.
 ## Installation
 
 For creating graphs [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
-a open source graph visualization software and available for the most platforms.
+an open source graph visualization software and available for the most platforms.
 
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
 [`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is through
@@ -48,7 +48,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 ## Workflow
 
-PhpDependencyAnalysis uses [`Nikic's PhpParser`](https://github.com/nikic/PHP-Parser/) for parsing
+PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser/) for parsing
 php files. It collects all found namespaces to resolve dependecies to other packages or libraries.
 After that [`clues's Graph`](https://github.com/clue/graph) is used to illustrate dependencies based
 on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathematics%29).
