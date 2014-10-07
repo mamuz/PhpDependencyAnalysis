@@ -38,7 +38,7 @@ class UnsupportedFuncCollector extends AbstractVisitor implements ConfigurableIn
         'call_user_method_array',
         'forward_static_call',
         'forward_static_call_array',
-        'create_function2',
+        'create_function',
     );
 
     public function setOptions(array $options)
