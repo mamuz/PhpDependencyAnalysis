@@ -101,17 +101,15 @@ class Analysis
      */
     public function getUsedNamespaces()
     {
-        $usedNamespaces = $this->usedNamespaces;
-        $this->usedNamespaces = array();
-
-        foreach ($usedNamespaces as $namespace) {
+        $usedNamespaces = array();
+        foreach ($this->usedNamespaces as $namespace) {
             /** @var Node\Name $namespace */
             if ($namespace->toString() !== $this->getDeclaredNamespace()->toString()) {
-                $this->usedNamespaces[] = $namespace;
+                $usedNamespaces[] = $namespace;
             }
         }
 
-        return $this->usedNamespaces;
+        return $usedNamespaces;
     }
 
     /**
