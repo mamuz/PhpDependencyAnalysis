@@ -29,7 +29,6 @@ use PhpDA\Entity\Analysis;
 use PhpDA\Entity\AnalysisAwareInterface;
 use PhpDA\Entity\AnalysisCollection;
 use PhpParser\Error;
-use PhpParser\NodeTraverserInterface;
 use PhpParser\ParserAbstract;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -38,7 +37,7 @@ class Analyzer implements AnalyzerInterface
     /** @var ParserAbstract */
     private $parser;
 
-    /** @var NodeTraverserInterface */
+    /** @var NodeTraverser */
     private $traverser;
 
     /** @var AnalysisCollection */
@@ -46,12 +45,12 @@ class Analyzer implements AnalyzerInterface
 
     /**
      * @param ParserAbstract     $parser
-     * @param TraverseInterface  $traveser
+     * @param NodeTraverser      $traveser
      * @param AnalysisCollection $collection
      */
     public function __construct(
         ParserAbstract $parser,
-        TraverseInterface $traveser,
+        NodeTraverser $traveser,
         AnalysisCollection $collection
     ) {
         $this->parser = $parser;

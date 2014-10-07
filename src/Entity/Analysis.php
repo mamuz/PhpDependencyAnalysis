@@ -39,7 +39,7 @@ class Analysis
     /** @var Node/Name */
     private $declaredNamespace;
 
-    /** @var Node/Name */
+    /** @var Node/Name[] */
     private $usedNamespaces = array();
 
     public function __construct()

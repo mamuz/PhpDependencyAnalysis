@@ -41,7 +41,7 @@ interface AnalyzerInterface
     public function getAnalysisCollection();
 
     /**
-     * @return TraverseInterface
+     * @return NodeTraverser
      */
     public function getTraverser();
 }
