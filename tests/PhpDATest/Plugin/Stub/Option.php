@@ -19,12 +19,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Service;
+namespace PhpDATest\Plugin\Stub;
 
-interface FactoryInterface
+use PhpDA\Plugin\ConfigurableInterface;
+
+class Option implements ConfigurableInterface
 {
-    /**
-     * @return object
-     */
-    public function create();
+    private $options;
+
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        return $this;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
 }

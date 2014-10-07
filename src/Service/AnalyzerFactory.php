@@ -25,6 +25,7 @@ use Fhaculty\Graph\Graph;
 use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
+use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpParser\Lexer\Emulative;
 use PhpParser\Parser;

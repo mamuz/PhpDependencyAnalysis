@@ -23,6 +23,7 @@ namespace PhpDA\Service;
 
 use PhpDA\Command\Analyze;
 use PhpDA\Parser\AnalyzerInterface;
+use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;

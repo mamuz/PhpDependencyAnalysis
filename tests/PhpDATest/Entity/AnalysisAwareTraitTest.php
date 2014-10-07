@@ -19,33 +19,25 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Plugin;
+namespace PhpDATest\Entity;
 
-class Loader implements LoaderInterface
+class AnalysisAwareTraitTest extends \PHPUnit_Framework_TestCase
 {
-    public function get($fqn, array $options = null)
+    /** @var \PhpDA\Entity\AnalysisAwareTrait */
+    protected $fixture;
+
+    protected function setUp()
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
-        }
+        $this->fixture = $this->getMockForTrait('PhpDA\Entity\AnalysisAwareTrait');
+    }
 
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException('Class ' . $fqn . ' must be creatable without arguments');
-            }
-        }
+    public function testMutateAndAccessAnalysis()
+    {
+        $this->assertNull($this->fixture->getAnalysis());
 
-        $plugin = new $fqn;
+        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $this->fixture->setAnalysis($analysis);
 
-        if ($plugin instanceof FactoryInterface) {
-            $plugin = $plugin->create();
-        }
-
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
-        }
-
-        return $plugin;
+        $this->assertSame($analysis, $this->fixture->getAnalysis());
     }
 }

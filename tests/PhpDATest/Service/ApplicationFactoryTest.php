@@ -19,33 +19,28 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Plugin;
+namespace PhpDATest\Service;
 
-class Loader implements LoaderInterface
+use PhpDA\Service\ApplicationFactory;
+
+class ApplicationFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function get($fqn, array $options = null)
+    /** @var ApplicationFactory */
+    protected $fixture;
+
+    protected function setUp()
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
-        }
+        $analyzerFactory = \Mockery::mock('PhpDA\Plugin\FactoryInterface');
+        $analyzerFactory->shouldReceive('create')->andReturn(\Mockery::mock('PhpDA\Parser\AnalyzerInterface'));
 
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException('Class ' . $fqn . ' must be creatable without arguments');
-            }
-        }
+        $writeAdapterFactory = \Mockery::mock('PhpDA\Plugin\FactoryInterface');
+        $writeAdapterFactory->shouldReceive('create')->andReturn(\Mockery::mock('PhpDA\Writer\AdapterInterface'));
 
-        $plugin = new $fqn;
+        $this->fixture = new ApplicationFactory($analyzerFactory, $writeAdapterFactory);
+    }
 
-        if ($plugin instanceof FactoryInterface) {
-            $plugin = $plugin->create();
-        }
-
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
-        }
-
-        return $plugin;
+    public function testCreate()
+    {
+        $this->assertInstanceOf('Symfony\Component\Console\Application', $this->fixture->create());
     }
 }

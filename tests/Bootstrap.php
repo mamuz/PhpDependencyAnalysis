@@ -11,4 +11,7 @@ if (!isset($loader)) {
     throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
 
+/** @var \Composer\Autoload\ClassLoader $loader */
+$loader->add('PhpDATest\\', __DIR__);
+
 unset($file, $loader);

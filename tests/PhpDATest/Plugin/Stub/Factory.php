@@ -19,33 +19,14 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Plugin;
+namespace PhpDATest\Plugin\Stub;
 
-class Loader implements LoaderInterface
+use PhpDA\Plugin\FactoryInterface;
+
+class Factory implements FactoryInterface
 {
-    public function get($fqn, array $options = null)
+    public function create()
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
-        }
-
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException('Class ' . $fqn . ' must be creatable without arguments');
-            }
-        }
-
-        $plugin = new $fqn;
-
-        if ($plugin instanceof FactoryInterface) {
-            $plugin = $plugin->create();
-        }
-
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
-        }
-
-        return $plugin;
+        return new \stdClass;
     }
 }

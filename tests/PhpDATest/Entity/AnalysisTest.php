@@ -19,7 +19,7 @@
  * SOFTWARE.
  */
 
-namespace PhpDaTest\Entity;
+namespace PhpDATest\Entity;
 
 use PhpDA\Entity\Analysis;
 
@@ -62,9 +62,9 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $this->fixture->getUsedNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString');
+        $name1->shouldReceive('toString')->once();
         $name2 = \Mockery::mock('PhpParser\Node\Name');
-        $name2->shouldReceive('toString');
+        $name2->shouldReceive('toString')->once();
         $this->fixture->addUsedNamespace($name1);
         $this->fixture->addUsedNamespace($name2);
 
@@ -80,11 +80,11 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setDeclaredNamespace($name);
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString');
+        $name1->shouldReceive('toString')->once();
         $name2 = \Mockery::mock('PhpParser\Node\Name');
         $name2->shouldReceive('toString')->andReturn($declaredNamespace);
         $name3 = \Mockery::mock('PhpParser\Node\Name');
-        $name3->shouldReceive('toString');
+        $name3->shouldReceive('toString')->once();
 
         $this->fixture->addUsedNamespace($name1);
         $this->fixture->addUsedNamespace($name2);

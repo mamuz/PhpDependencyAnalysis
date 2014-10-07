@@ -19,33 +19,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Plugin;
+namespace PhpDATest\Service;
 
-class Loader implements LoaderInterface
+use PhpDA\Service\AnalyzerFactory;
+
+class AnalyzerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function get($fqn, array $options = null)
+    /** @var AnalyzerFactory */
+    protected $fixture;
+
+    protected function setUp()
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
-        }
+        $this->fixture = new AnalyzerFactory;
+    }
 
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException('Class ' . $fqn . ' must be creatable without arguments');
-            }
-        }
-
-        $plugin = new $fqn;
-
-        if ($plugin instanceof FactoryInterface) {
-            $plugin = $plugin->create();
-        }
-
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
-        }
-
-        return $plugin;
+    public function testCreate()
+    {
+        $this->assertInstanceOf('PhpDA\Parser\Analyzer', $this->fixture->create());
     }
 }

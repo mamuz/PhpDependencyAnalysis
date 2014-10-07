@@ -21,6 +21,7 @@
 
 namespace PhpDA\Service;
 
+use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpDA\Writer\Adapter;
 
