@@ -149,7 +149,7 @@ class Analyze extends Command
             ->in($this->config->getSource())
             
         if ($ignores = $this->config->getIgnore()) {
-            $this->finder->exclude($this->config->getIgnore());
+            $this->finder->exclude($ignores);
         }
 
         $this->analyzer->getTraverser()->bindVisitors(
