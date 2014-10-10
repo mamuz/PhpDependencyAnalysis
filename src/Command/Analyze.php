@@ -146,7 +146,7 @@ class Analyze extends Command
         $this->finder
             ->files()
             ->name('*.php')
-            ->in($this->config->getSource())
+            ->in($this->config->getSource());
             
         if ($ignores = $this->config->getIgnore()) {
             $this->finder->exclude($ignores);
