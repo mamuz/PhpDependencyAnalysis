@@ -146,8 +146,11 @@ class Analyze extends Command
         $this->finder
             ->files()
             ->name('*.php')
-            ->in(realpath($this->config->getSource()))
-            ->exclude($this->config->getIgnore());
+            ->in($this->config->getSource())
+            
+        if ($ignores = $this->config->getIgnore()) {
+            $this->finder->exclude($this->config->getIgnore());
+        }
 
         $this->analyzer->getTraverser()->bindVisitors(
             $this->config->getVisitor(),
