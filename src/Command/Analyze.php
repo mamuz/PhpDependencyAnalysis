@@ -105,7 +105,7 @@ class Analyze extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('PhpDependencyAnalyse v0.1 by Marco Muths.');
+        $output->writeln('PhpDependencyAnalyse ' . $this->getVersion() . ' by Marco Muths.');
         $output->writeln('');
 
         $configFile = $input->getArgument('config');
@@ -129,6 +129,14 @@ class Analyze extends Command
     }
 
     /**
+     * @return string
+     */
+    private function getVersion()
+    {
+        return trim(file_get_contents(__DIR__ . '/../../VERSION'));
+    }
+
+    /**
      * @param string $configFile
      * @throws \InvalidArgumentException
      * @return void
@@ -147,7 +155,7 @@ class Analyze extends Command
             ->files()
             ->name('*.php')
             ->in($this->config->getSource());
-            
+
         if ($ignores = $this->config->getIgnore()) {
             $this->finder->exclude($ignores);
         }

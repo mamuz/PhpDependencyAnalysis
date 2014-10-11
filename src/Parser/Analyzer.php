@@ -26,7 +26,6 @@
 namespace PhpDA\Parser;
 
 use PhpDA\Entity\Analysis;
-use PhpDA\Entity\AnalysisAwareInterface;
 use PhpDA\Entity\AnalysisCollection;
 use PhpParser\Error;
 use PhpParser\ParserAbstract;
@@ -66,10 +65,7 @@ class Analyzer implements AnalyzerInterface
     public function analyze(SplFileInfo $file)
     {
         $analysis = new Analysis;
-
-        if ($this->traverser instanceof AnalysisAwareInterface) {
-            $this->traverser->setAnalysis($analysis);
-        }
+        $this->traverser->setAnalysis($analysis);
 
         try {
             $stmts = $this->parser->parse($file->getContents());

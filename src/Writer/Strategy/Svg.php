@@ -27,7 +27,7 @@ namespace PhpDA\Writer\Strategy;
 
 class Svg extends AbstractStrategy
 {
-    public function createOutput()
+    protected function createOutput()
     {
         return $this->getGraphViz()->setFormat('svg')->createImageData();
     }

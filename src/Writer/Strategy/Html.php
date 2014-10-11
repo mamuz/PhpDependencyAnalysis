@@ -81,7 +81,7 @@ class Html extends AbstractStrategy
         $this->setTemplate('<html><body>' . $this->getImagePlaceholder() . '</body></html>');
     }
 
-    public function createOutput()
+    protected function createOutput()
     {
         $this->getGraphViz()->setFormat('svg');
 

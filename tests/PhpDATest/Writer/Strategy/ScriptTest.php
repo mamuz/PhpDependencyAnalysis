@@ -23,12 +23,40 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer\Strategy;
+namespace PhpDATest\Writer\Strategy;
 
-class Script extends AbstractStrategy
+use Fhaculty\Graph\Graph;
+use PhpDA\Writer\Strategy\Script;
+
+class ScriptTest extends \PHPUnit_Framework_TestCase
 {
-    protected function createOutput()
+    /** @var Script */
+    protected $fixture;
+
+    /** @var string */
+    protected $output = 'foo';
+
+    /** @var \Fhaculty\Graph\GraphViz | \Mockery\MockInterface */
+    protected $graphViz = 'foo';
+
+    protected function setUp()
     {
-        return $this->getGraphViz()->createScript();
+        $this->graphViz = \Mockery::mock('Fhaculty\Graph\GraphViz');
+        $callback = function (Graph $graph) {
+            return $this->graphViz;
+        };
+        $this->fixture = new Script;
+        $this->fixture->setGraphCreationCallback($callback);
+    }
+
+    public function testFilter()
+    {
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
+        $analysisCollection->shouldReceive('getGraph')->once()->andReturn($graph);
+
+        $this->graphViz->shouldReceive('createScript')->once()->andReturn($this->output);
+
+        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
     }
 }

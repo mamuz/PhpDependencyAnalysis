@@ -25,6 +25,7 @@
 
 namespace PhpDA\Writer\Strategy;
 
+use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\GraphViz;
 use PhpDA\Entity\AnalysisCollection;
 
@@ -35,6 +36,38 @@ abstract class AbstractStrategy implements StrategyInterface
 
     /** @var GraphViz */
     private $graphViz;
+
+    /** @var callable */
+    private $graphCreationCallback;
+
+    public function __construct()
+    {
+        $this->graphCreationCallback = function (Graph $graph) {
+            return new GraphViz($graph);
+        };
+    }
+
+    /**
+     * @param callable $graphCreationCallback
+     * @return void
+     * @throws \InvalidArgumentException
+     */
+    public function setGraphCreationCallback($graphCreationCallback)
+    {
+        if (!is_callable($graphCreationCallback)) {
+            throw new \InvalidArgumentException('Argument must be callable');
+        }
+
+        $this->graphCreationCallback = $graphCreationCallback;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getGraphCreationCallback()
+    {
+        return $this->graphCreationCallback;
+    }
 
     /**
      * @return AnalysisCollection
@@ -55,7 +88,12 @@ abstract class AbstractStrategy implements StrategyInterface
     public function filter(AnalysisCollection $collection)
     {
         $this->analysisCollection = $collection;
-        $this->graphViz = new GraphViz($collection->getGraph());
+        $graphCreationCallback = $this->getGraphCreationCallback();
+        $this->graphViz = $graphCreationCallback($this->getAnalysisCollection()->getGraph());
+
+        if (!$this->graphViz instanceof GraphViz) {
+            throw new \RuntimeException('Created GraphViz is invalid');
+        }
 
         return $this->createOutput();
     }
