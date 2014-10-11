@@ -37,7 +37,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 ```json
 {
-    "require": {
+    "require-dev": {
         "mamuz/php-dependency-analysis": "*"
     }
 }
