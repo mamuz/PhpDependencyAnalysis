@@ -9,7 +9,7 @@ It builds dependency graphs on customizable levels, e.g. on appliaction-, on pac
 Thus, it's usable to declare dependencies in general, but it's also usable to
 detect dependency violations between layers in a tiered architecture according to
 compliance with [`SoC`](http://en.wikipedia.org/wiki/Separation_of_concerns),
-[`LoD`](http://en.wikipedia.org/wiki/Law_of_Demeter) and
+[`LoD`](http://en.wikipedia.org/wiki/Law_of_Demeter), [`ADP`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle) and other
 [`Package-Principles`](http://en.wikipedia.org/wiki/Package_principles).
 For huge php-projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
 to monitor dependencies and violations.
