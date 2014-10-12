@@ -9,13 +9,23 @@ use PhpDA\Service\AnalyzerFactory;
 use PhpDA\Service\WriteAdapterFactory;
 use PhpDA\Writer\AdapterInterface;
 
+class MyClassCycle
+{
+    use AnalysisAwareTrait;
+
+    public function __construct()
+    {
+        $test = new MyClass();
+    }
+}
+
 class MyClass extends \SplObjectStorage implements B
 {
     use AnalysisAwareTrait;
 
     public function __construct()
     {
-        $test = new AnalysisCollection();
+        $test = new MyClassCycle();
     }
 }
 
