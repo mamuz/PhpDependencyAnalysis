@@ -42,7 +42,7 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->fixture->hasParseError());
         $this->assertNull($this->fixture->getParseError());
 
-        $error = \Mockery::mock('PhpParser\Error');
+        $error = new \PhpParser\Error('');
         $this->fixture->setParseError($error);
 
         $this->assertTrue($this->fixture->hasParseError());
