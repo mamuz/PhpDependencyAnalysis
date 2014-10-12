@@ -51,14 +51,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 ## Examples
 
-### Aplication-Level
-![Aplication-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/application-level.svg)
-### Package-Level
-![Package-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/package-level.svg)
-### Subpackage-Level
-![Subpackage-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/subpackage-level.svg)
-### Subpackage-Leve (Deep)
-![Subpackage-Level-Deep](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/subpackage-level-deep.svg)
+See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples) for examples on several levels.
 
 ## Workflow
 
