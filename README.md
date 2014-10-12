@@ -150,7 +150,7 @@ Read the [`docs`](https://github.com/nikic/PHP-Parser/tree/master/doc) to get in
 To get your your own visitor, just create a new Visitor by extending
 [`PhpDA\Parser\Visitor\AbstractVisitor`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Parser/Visitor/AbstractVisitor.php).
 Beside this you can make your visitor configurable by implementing
-[`PhpDA\lugin/ConfigurableInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Plugin/ConfigurableInterface.php)
+[`PhpDA\Plugin/ConfigurableInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Plugin/ConfigurableInterface.php)
 
 After that you can declare your own visitor for usage in the configuration.
 
