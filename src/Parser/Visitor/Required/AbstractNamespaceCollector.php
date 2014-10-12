@@ -68,15 +68,17 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
      */
     protected function ignores(Node\Name $name)
     {
+        $isIgnored = false;
+
         if ($this->minDepth > 0) {
-            return count($name->parts) < $this->minDepth;
+            $isIgnored = count($name->parts) < $this->minDepth;
         }
 
-        if ($this->excludePattern) {
-            return (bool) preg_match($this->excludePattern, $name->toString());
+        if (!$isIgnored && $this->excludePattern) {
+            $isIgnored = (bool) preg_match($this->excludePattern, $name->toString());
         }
 
-        return false;
+        return $isIgnored;
     }
 
     /**
