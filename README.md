@@ -130,7 +130,7 @@ After that open report file, which is declared as `target` in the configuration,
 PHP is a dynamic language with a weak type system.
 It also contains a lot of expressions, which will be resolved first in runtime.
 This tool is a static code analysis, thus it have some limitations.
-Here is a non-exhaustive list:
+Here is a non-exhaustive list of unsupported php-features:
 
 - Dynamic features such as `eval` and `$$x`
 - Globals such as `global $x;`
