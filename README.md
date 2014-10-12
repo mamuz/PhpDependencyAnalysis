@@ -104,11 +104,12 @@ Following visitors are configurable by setting *visitorOptions*.
 **PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector**:
 **PhpDA\Parser\Visitor\Required\UsedNamespaceCollector**:
 
-Property      | Type      | Description
-------------- | --------- | -----------
-*minDepth*    | `integer` | Filter Namespaces by count of subnamespaces before usage as graph node. Default is `0`, which means that filter is disabled
-*sliceOffset* | `integer` | Filter Namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
-*sliceLength* | `integer` | Filter Namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
+Property         | Type      | Description
+---------------- | --------- | -----------
+*excludePattern* | `string`  | Ignore namespaces where pattern is matched. Default is `null`, which means that filter is disabled
+*minDepth*       | `integer` | Ignore namespaces where count of subnamespaces is less than defined. Default is `0`, which means that filter is disabled
+*sliceOffset*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
+*sliceLength*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
 
 **Notice:** These visitors are built-in visitors
 

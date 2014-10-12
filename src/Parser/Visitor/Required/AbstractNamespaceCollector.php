@@ -40,6 +40,9 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
     /** @var int */
     private $minDepth = 0;
 
+    /** @var string */
+    private $excludePattern;
+
     public function setOptions(array $options)
     {
         if (isset($options['sliceOffset'])) {
@@ -53,6 +56,10 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
         if (isset($options['minDepth'])) {
             $this->minDepth = (int) $options['minDepth'];
         }
+
+        if (isset($options['excludePattern'])) {
+            $this->excludePattern = (string) $options['excludePattern'];
+        }
     }
 
     /**
@@ -63,6 +70,10 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
     {
         if ($this->minDepth > 0) {
             return count($name->parts) < $this->minDepth;
+        }
+
+        if ($this->excludePattern) {
+            return (bool) preg_match($this->excludePattern, $name->toString());
         }
 
         return false;
