@@ -11,7 +11,7 @@
 - Add writer
 - Add write adapter
 - Add parse dispatcher
-- Add plugin Loader
+- Add plugin loader
 - Add command
 - Add graph library
 - Add PHP-Parser
