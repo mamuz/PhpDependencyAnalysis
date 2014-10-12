@@ -47,17 +47,31 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInt
 
     /**
      * @param LoaderInterface $visitorLoader
-     * @return NodeTraverser
+     * @return void
      */
     public function setVisitorLoader(LoaderInterface $visitorLoader)
     {
         $this->visitorLoader = $visitorLoader;
-        return $this;
+    }
+
+    /**
+     * @return LoaderInterface
+     * @throws \DomainException
+     */
+    public function getVisitorLoader()
+    {
+        if (!$this->visitorLoader instanceof LoaderInterface) {
+            throw new \DomainException('VisitorLoader has not been set');
+        }
+
+        return $this->visitorLoader;
     }
 
     public function bindVisitors(array $visitors, array $options = null)
     {
         $visitors = $this->filterVisitors($visitors);
+        $options = $this->filterOptions($options);
+
         foreach ($visitors as $fqn) {
             $visitorOptions = isset($options[$fqn]) ? (array) $options[$fqn] : null;
             $this->addVisitor($this->loadVisitorBy($fqn, $visitorOptions));
@@ -83,6 +97,24 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInt
     }
 
     /**
+     * @param array|null $options
+     * @return array|null
+     */
+    private function filterOptions(array $options = null)
+    {
+        if (is_array($options)) {
+            $filtered = array();
+            foreach ($options as $key => $value) {
+                $key = trim($key, '\\');
+                $filtered[$key] = $value;
+            }
+            $options = $filtered;
+        }
+
+        return $options;
+    }
+
+    /**
      * @param string     $fqn
      * @param array|null $options
      * @throws \RuntimeException
@@ -90,7 +122,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInt
      */
     private function loadVisitorBy($fqn, array $options = null)
     {
-        $visitor = $this->visitorLoader->get($fqn, $options);
+        $visitor = $this->getVisitorLoader()->get($fqn, $options);
 
         if (!$visitor instanceof NodeVisitor) {
             throw new \RuntimeException('Visitor ' . $fqn . ' must be an instance of NodeVisitor');

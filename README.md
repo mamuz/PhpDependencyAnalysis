@@ -1,8 +1,6 @@
 PhpDependencyAnalysis
 =====================
 
-**THIS PROJECT IS IN WIP STATE**
-
 PhpDependencyAnalysis is an extandable static code analysis for
 php projects to provide a dependency graph based on php namespaces.
 It builds dependency graphs on customizable levels, e.g. on appliaction-, on package- or on script level.

@@ -23,16 +23,28 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor;
+namespace PhpDATest\Parser\Visitor;
 
-use PhpParser\Node;
-
-class IncludeCollector extends AbstractVisitor
+class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
 {
-    public function leaveNode(Node $node)
+    /** @var \PhpDA\Parser\Visitor\AbstractVisitor */
+    protected $fixture;
+
+    protected function setUp()
     {
-        if ($node instanceof Node\Expr\Include_) {
-            $this->collect($node);
-        }
+        $this->fixture = $this->getMockForAbstractClass('PhpDA\Parser\Visitor\AbstractVisitor');
+    }
+
+    public function testExtendingNodeVisitor()
+    {
+        $this->assertInstanceOf('PhpParser\NodeVisitorAbstract', $this->fixture);
+    }
+
+    public function testMutateAndAccessAnalysis()
+    {
+        $this->assertNull($this->fixture->getAnalysis());
+        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $this->fixture->setAnalysis($analysis);
+        $this->assertSame($analysis, $this->fixture->getAnalysis());
     }
 }

@@ -27,7 +27,7 @@ namespace PhpDA\Entity;
 
 trait AnalysisAwareTrait
 {
-    /** @var Analysis */
+    /** @var Analysis|null */
     private $analysis;
 
     /**
@@ -39,7 +39,7 @@ trait AnalysisAwareTrait
     }
 
     /**
-     * @return Analysis
+     * @return Analysis|null
      */
     public function getAnalysis()
     {

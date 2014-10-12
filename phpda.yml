@@ -4,8 +4,6 @@ formatter: 'PhpDA\Writer\Strategy\Svg'
 target: './phpda.svg'
 visitor:
   - PhpDA\Parser\Visitor\SuperglobalCollector
-  - PhpDA\Parser\Visitor\IncludeCollector
-  - PhpDA\Parser\Visitor\ShellExecCollector
   - PhpDA\Parser\Visitor\UnsupportedEvalCollector
   - PhpDA\Parser\Visitor\UnsupportedFuncCollector
   - PhpDA\Parser\Visitor\UnsupportedVarCollector
