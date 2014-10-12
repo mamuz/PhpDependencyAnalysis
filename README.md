@@ -1,17 +1,6 @@
 PhpDependencyAnalysis
 =====================
 
-PhpDependencyAnalysis is an extandable static code analysis for
-php projects to provide a dependency graph based on php namespaces.
-It builds dependency graphs on customizable levels, e.g. on appliaction-, on package- or on script level.
-Thus, it's usable to declare dependencies in general, but it's also usable to
-detect dependency violations between layers in a tiered architecture according to
-compliance with [`SoC`](http://en.wikipedia.org/wiki/Separation_of_concerns),
-[`LoD`](http://en.wikipedia.org/wiki/Law_of_Demeter), [`ADP`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle) and other
-[`Package-Principles`](http://en.wikipedia.org/wiki/Package_principles).
-For huge php-projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
-to monitor dependencies and violations.
-
 [![Build Status](https://travis-ci.org/mamuz/PhpDependencyAnalysis.svg?branch=master)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
 [![Coverage Status](https://coveralls.io/repos/mamuz/PhpDependencyAnalysis/badge.png?branch=master)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/?branch=master)
@@ -23,6 +12,17 @@ to monitor dependencies and violations.
 [![Latest Unstable Version](https://poser.pugx.org/mamuz/php-dependency-analysis/v/unstable.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![Total Downloads](https://poser.pugx.org/mamuz/php-dependency-analysis/downloads.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
+
+PhpDependencyAnalysis is an extandable static code analysis for
+php projects to provide a dependency graph based on php namespaces.
+It builds dependency graphs on customizable levels, e.g. on appliaction-, on package- or on script level.
+Thus, it's usable to declare dependencies in general, but it's also usable to
+detect dependency violations between layers in a tiered architecture according to
+compliance with [`SoC`](http://en.wikipedia.org/wiki/Separation_of_concerns),
+[`LoD`](http://en.wikipedia.org/wiki/Law_of_Demeter), [`ADP`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle) and other
+[`Package-Principles`](http://en.wikipedia.org/wiki/Package_principles).
+For huge php-projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
+to monitor dependencies and violations.
 
 ## Installation
 
@@ -36,7 +36,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "*"
+        "mamuz/php-dependency-analysis": "dev-master"
     }
 }
 ```
@@ -45,9 +45,20 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 - Creating dependency graphs on customized levels or on different scopes
 - Detect violations between layers in a tiered architecture
-- Graphs can be printed in several formats (HTML, SVG, Graph Script)
+- Graphs can be printed in several formats (HTML, SVG, DiGraphScript)
 - Collecting dependencies and detecting violations are extandable by writing plugins
 - Same is true for creating graphs in other formats
+
+## Examples
+
+### Aplication-Level
+![Aplication-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/application-level.svg)
+### Package-Level
+![Package-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/package-level.svg)
+### Subpackage-Level
+![Subpackage-Level](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/subpackage-level.svg)
+### Subpackage-Leve (Deep)
+![Subpackage-Level-Deep](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/subpackage-level-deep.svg)
 
 ## Workflow
 
@@ -59,15 +70,40 @@ on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathe
 
 ## Configuration
 
-Create a yaml config and handover is to cli invoker.
-..tba
+This tool is fully configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
+You can copy a prepared file from the vendor directory.
+
+```sh
+cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
+```
+
+See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration.
+
+Name             | Type              | Description
+---------------- | ----------------- | -----------
+*source*         | `string`          | Directory path to analyze
+*ignore*         | `string`, `array` | Optional: Ignoring directories inside *source*
+*formatter*      | `string`          | Output Formatter; must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
+*target*         | `string`          | File path for created output
+*visitor*        | `array`           | Optional: Indexed list of visitors to use in analyze; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
+*visitorOptions* | `array`           | Optional: Associative list by Visitor-FQN => Properties
 
 ## Usage
+
+Run this command line as following
 
 ```sh
 ./vendor/bin/phpda analyze ./myconfig.yml
 ```
 
+After that open the report, which is declared as `target` in the configuration, with your prefered tool.
+
 ## Limitations
 
 tba
+
+## Plugins
+
+### Write your own Visitors
+
+### Write your own Formatters
