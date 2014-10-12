@@ -140,7 +140,7 @@ Here is a non-exhaustive list of unsupported php-features:
 The cleaner your project is, the more dependencies can be detected.
 Or in other words, it's highly recommend to have a clean project before using this tool.
 Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer)
-and [`PHP Mass Detector`](http://phpmd.org/).
+and [`PHP Mess Detector`](http://phpmd.org/).
 
 ## Plugins
 
