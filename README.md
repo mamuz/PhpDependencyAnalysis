@@ -103,7 +103,7 @@ Here is a non-exhaustive list:
 - Dynamic funcs such as `call_user_func`, `call_user_func_array`, `create_function`
 - Non type hinted vars, like `function render($object)` instead of `function render(MyObject $object)`
 
-The cleaner your project is, the analysis can detect more dependencies.
+The cleaner your project is, the more dependencies are detected.
 Or in other words, it's highly recommend to have a clean project before using this tool.
 Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer)
 and [`PHP Mass Detector`](http://phpmd.org/).
