@@ -39,6 +39,9 @@ class Config
     /** @var string */
     private $target;
 
+    /** @var string */
+    private $filePattern = '*.php';
+
     /** @var array */
     private $visitor = array();
 
@@ -107,6 +110,19 @@ class Config
         }
 
         return $this->target;
+    }
+
+    /**
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    public function getFilePattern()
+    {
+        if (!is_string($this->filePattern)) {
+            throw new \InvalidArgumentException('Config for filePattern must be a string');
+        }
+
+        return $this->filePattern;
     }
 
     /**

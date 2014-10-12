@@ -1,4 +1,5 @@
 source: './src'
+filePattern: '*.php'
 ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
 target: './phpda.svg'

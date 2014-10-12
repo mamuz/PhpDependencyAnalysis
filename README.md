@@ -78,6 +78,7 @@ See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.ym
 Name             | Type              | Description
 ---------------- | ----------------- | -----------
 *source*         | `string`          | Directory path to analyze
+*filePattern*    | `string`          | Pattern to find files to analyze
 *ignore*         | `string`, `array` | Optional: Ignoring directories inside *source*
 *formatter*      | `string`          | Output Formatter; must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
 *target*         | `string`          | File path to create output

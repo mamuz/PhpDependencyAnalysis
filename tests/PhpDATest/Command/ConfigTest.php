@@ -39,6 +39,7 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
             'ignore'         => 'myIgnore',
             'formatter'      => 'myFormatter',
             'target'         => 'myTarget',
+            'filePattern'    => 'myFilePattern',
             'visitor'        => array('foo', 'baz'),
             'visitorOptions' => array('bar'),
         );
@@ -82,6 +83,14 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $config = new Config(array('target' => 1));
 
         $config->getTarget();
+    }
+
+    public function testInvalidFilePattern()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('filePattern' => 1));
+
+        $config->getFilePattern();
     }
 
     public function testInvalidIgnore()
