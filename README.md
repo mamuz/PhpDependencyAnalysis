@@ -55,8 +55,9 @@ See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples
 
 ## Workflow
 
-PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser/) for parsing
-php files. It collects all found namespaces adapted from provided visitor pattern to
+PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser) for parsing
+php files. It collects all found namespaces adapted from
+[`provided visitor pattern`](https://github.com/nikic/PHP-Parser/blob/master/doc/2_Usage_of_basic_components.markdown) to
 resolve dependecies to other packages or libraries.
 After that [`clues's Graph`](https://github.com/clue/graph) is used to illustrate dependencies based
 on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathematics%29).
@@ -72,6 +73,8 @@ cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 
 See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration.
 
+### Configuration List
+
 Name             | Type              | Description
 ---------------- | ----------------- | -----------
 *source*         | `string`          | Directory path to analyze
@@ -80,6 +83,35 @@ Name             | Type              | Description
 *target*         | `string`          | File path to create output
 *visitor*        | `array`           | Optional: Indexed list of visitors to use; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
 *visitorOptions* | `array`           | Optional: Associative list modelled by Visitor-FQN => Properties
+
+#### *visitor*
+
+FQN                                                  | Description
+---------------------------------------------------- | ------------------------------------------
+*PhpDA\Parser\Visitor\SuperglobalCollector*          | Collects [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) to declare it as a dependency
+*PhpDA\Parser\Visitor\UnsupportedEvalCollector*      | Collects `eval` expressions to log it as unsupported
+*PhpDA\Parser\Visitor\UnsupportedFuncCollector*      | Collects dynamic function handler, such as `create_function` to log it as unsupported
+*PhpDA\Parser\Visitor\UnsupportedVarCollector*       | Collects dynamic variable declarations, such as `$$x` to log it as unsupported
+*PhpDA\Parser\Visitor\UnsupportedGlobalCollector*    | Collects `global $foo` expressions to log it as unsupported
+*PhpDA\Parser\Visitor\NamespacedStringCollector*     | Collects strings which looks like a namespace
+*PhpDA\Parser\Visitor\IocContainerAccessorCollector* | Collects accessor methods which looks like a object retrieval
+
+#### *visitorOptions*
+
+Following visitors are configurable by setting *visitorOptions*.
+
+**PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector**:
+**PhpDA\Parser\Visitor\Required\UsedNamespaceCollector**:
+
+Property      | Type      | Description
+------------- | --------- | -----------
+*minDepth*    | `integer` | Filter Namespaces by count of subnamespaces before usage as graph node. Default is `0`, which means that filter is disabled
+*sliceOffset* | `integer` | Filter Namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
+*sliceLength* | `integer` | Filter Namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
+
+**Notice:** These visitors are built-in visitors
+
+#####
 
 ## Usage
 
