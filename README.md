@@ -144,4 +144,19 @@ and [`PHP Mass Detector`](http://phpmd.org/).
 
 ### Write your own Visitors
 
+Visitors are provided by Visitor-Pattern implemented by [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser).
+Read the [`docs`](https://github.com/nikic/PHP-Parser/tree/master/doc) to get into the idea of visitor.
+
+To get your your own visitor, just create a new Visitor by extending
+[`PhpDA\Parser\Visitor\AbstractVisitor`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Parser/Visitor/AbstractVisitor.php).
+Beside this you can make your visitor configurable by implementing
+[`PhpDA\lugin/ConfigurableInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Plugin/ConfigurableInterface.php)
+
+After that you can declare your own visitor for usage in the configuration.
+
 ### Write your own Formatters
+
+To have an own Formatter to create another Reports, just extends
+[`PhpDA\Writer\Strategy\AbstractStrategy`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/AbstractStrategy.php)
+or implement [`PhpDA\Writer\Strategy\StrategyInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/StrategyInterface.php)
+and declare it in the configuration.
