@@ -46,12 +46,12 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Creating dependency graphs on customized levels or on different scopes
 - Detect violations between layers in a tiered architecture
 - Graphs can be printed in several formats (HTML, SVG, DiGraphScript)
-- Collecting dependencies and detecting violations are extandable by writing plugins
-- Same is true for creating graphs in other formats
+- Add your own detection plugins (Visitor)
+- Add your own output plugins (Formatter)
 
 ## Examples
 
-See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples) for examples on several levels.
+See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples) for graph examples on several levels.
 
 ## Workflow
 
@@ -77,23 +77,36 @@ Name             | Type              | Description
 *source*         | `string`          | Directory path to analyze
 *ignore*         | `string`, `array` | Optional: Ignoring directories inside *source*
 *formatter*      | `string`          | Output Formatter; must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
-*target*         | `string`          | File path for created output
-*visitor*        | `array`           | Optional: Indexed list of visitors to use in analyze; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
-*visitorOptions* | `array`           | Optional: Associative list by Visitor-FQN => Properties
+*target*         | `string`          | File path to create output
+*visitor*        | `array`           | Optional: Indexed list of visitors to use; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
+*visitorOptions* | `array`           | Optional: Associative list modelled by Visitor-FQN => Properties
 
 ## Usage
 
-Run this command line as following
+Run this command line to create a dependecy graph:
 
 ```sh
 ./vendor/bin/phpda analyze ./myconfig.yml
 ```
 
-After that open the report, which is declared as `target` in the configuration, with your prefered tool.
+After that open report file, which is declared as `target` in the configuration, with your prefered tool.
 
 ## Limitations
 
-tba
+PHP is a dynamic language with a weak type system.
+It also contains a lot of expressions, which will be resolved first in runtime.
+This tool is a static code analysis, thus it have some limitations.
+Here is a non-exhaustive list:
+
+- Dynamic features such as `eval` and `$$x`
+- Globals such as `global $x;`
+- Dynamic funcs such as `call_user_func`, `call_user_func_array`, `create_function`
+- Non type hinted vars, like `function render($object)` instead of `function render(MyObject $object)`
+
+The cleaner your project is, the analysis can detect more dependencies.
+Or in other words, it's highly recommend to have a clean project before using this tool.
+Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer)
+and [`PHP Mass Detector`](http://phpmd.org/).
 
 ## Plugins
 
