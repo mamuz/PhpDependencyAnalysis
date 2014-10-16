@@ -48,6 +48,14 @@ class Analysis
     }
 
     /**
+     * @return SplFileInfo
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
      * @param Error $error
      */
     public function setParseError(Error $error)
