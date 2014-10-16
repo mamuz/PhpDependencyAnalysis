@@ -2,7 +2,7 @@ source: './src'
 filePattern: '*.php'
 ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
-target: './tmp/cycle.svg'
+target: './phpda.svg'
 visitor:
   - PhpDA\Parser\Visitor\SuperglobalCollector
   - PhpDA\Parser\Visitor\UnsupportedEvalCollector
