@@ -14,7 +14,7 @@ PhpDependencyAnalysis
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
 PhpDependencyAnalysis is an extandable static code analysis for
-php projects to provide a dependency graph based on php namespaces.
+php-projects to provide a dependency graph based on php namespaces.
 It builds dependency graphs on customizable levels, e.g. on appliaction-, on package- or on script level.
 Thus, it's usable to declare dependencies in general, but it's also usable to
 detect dependency violations between layers in a tiered architecture according to
@@ -45,7 +45,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 - Creating dependency graphs on customized levels or on different scopes
 - Detect violations between layers in a tiered architecture
-- Graphs can be printed in several formats (HTML, SVG, DiGraphScript)
+- Graphs can be printed in several formats (HTML, SVG, DOT)
 - Add your own detection plugins (Visitor)
 - Add your own output plugins (Formatter)
 
@@ -58,7 +58,7 @@ See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples
 PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser) for parsing
 php files. It collects all found namespaces adapted from
 [`provided visitor pattern`](https://github.com/nikic/PHP-Parser/blob/master/doc/2_Usage_of_basic_components.markdown) to
-resolve dependecies to other packages or libraries.
+resolve dependecies to other namespaces, packages or libraries.
 After that [`clues's Graph`](https://github.com/clue/graph) is used to illustrate dependencies based
 on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathematics%29).
 
@@ -73,19 +73,19 @@ cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 
 See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration.
 
-### Configuration List
+### Available Configs
 
 Name             | Type              | Description
 ---------------- | ----------------- | -----------
-*source*         | `string`          | Directory path to analyze
-*filePattern*    | `string`          | Pattern to find files to analyze
+*source*         | `string`          | Directory to find files to analyze
+*filePattern*    | `string`          | Pattern to match files inside *source* to analyze
 *ignore*         | `string`, `array` | Optional: Ignoring directories inside *source*
 *formatter*      | `string`          | Output Formatter; must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
-*target*         | `string`          | File path to create output
+*target*         | `string`          | File path to write output
 *visitor*        | `array`           | Optional: Indexed list of visitors to use; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
 *visitorOptions* | `array`           | Optional: Associative list modelled by Visitor-FQN => Properties
 
-#### *visitor*
+#### *visitor* Config
 
 FQN                                                  | Description
 ---------------------------------------------------- | ------------------------------------------
@@ -97,9 +97,9 @@ FQN                                                  | Description
 *PhpDA\Parser\Visitor\NamespacedStringCollector*     | Collects strings which looks like a namespace
 *PhpDA\Parser\Visitor\IocContainerAccessorCollector* | Collects accessor methods which looks like a object retrieval
 
-#### *visitorOptions*
+#### *visitorOptions* Config
 
-Following visitors are configurable by setting *visitorOptions*.
+Following built-in visitors are configurable by setting *visitorOptions*.
 
 **PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector**:
 **PhpDA\Parser\Visitor\Required\UsedNamespaceCollector**:
@@ -110,8 +110,6 @@ Property         | Type      | Description
 *minDepth*       | `integer` | Ignore namespaces where count of subnamespaces is less than defined. Default is `0`, which means that filter is disabled
 *sliceOffset*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
 *sliceLength*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
-
-**Notice:** These visitors are built-in visitors
 
 #####
 
@@ -158,7 +156,7 @@ After that you can declare your own visitor for usage in the configuration.
 
 ### Write your own Formatters
 
-To have an own Formatter to create another Reports, just extends
+To have an own Formatter to create other Reports, just extend
 [`PhpDA\Writer\Strategy\AbstractStrategy`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/AbstractStrategy.php)
 or implement [`PhpDA\Writer\Strategy\StrategyInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/StrategyInterface.php)
 and declare it in the configuration.

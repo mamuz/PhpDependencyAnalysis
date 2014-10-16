@@ -23,38 +23,25 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor\Required;
+namespace PhpDATest\Entity;
 
-use PhpParser\Error;
-use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
-
-class MultiNamespaceDetector extends NodeVisitorAbstract
+class AdtAwareTraitTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var int */
-    private $count = 0;
+    /** @var \PhpDA\Entity\AdtAwareTrait */
+    protected $fixture;
 
-    /**
-     * {@inheritdoc}
-     * @SuppressWarnings("PMD.UnusedFormalParameter")
-     */
-    public function beforeTraverse(array $nodes)
+    protected function setUp()
     {
-        $this->count = 0;
+        $this->fixture = $this->getMockForTrait('PhpDA\Entity\AdtAwareTrait');
     }
 
-    /**
-     * {@inheritdoc}
-     * @throws Error
-     */
-    public function leaveNode(Node $node)
+    public function testMutateAndAccessAdt()
     {
-        if ($node instanceof Node\Stmt\Namespace_) {
-            $this->count++;
-        }
+        $this->assertNull($this->fixture->getAdt());
 
-        if ($this->count > 1) {
-            throw new Error('Script contains more than one namespace declarations');
-        }
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->fixture->setAdt($adt);
+
+        $this->assertSame($adt, $this->fixture->getAdt());
     }
 }

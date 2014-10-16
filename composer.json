@@ -11,7 +11,7 @@
             "email": "muzzi_is@web.de"
         }
     ],
-    "support": {
+    "support"          : {
         "issues": "https://github.com/mamuz/PhpDependencyAnalysis/issues",
         "source": "https://github.com/mamuz/PhpDependencyAnalysis"
     },

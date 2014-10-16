@@ -26,25 +26,25 @@
 namespace PhpDA\Entity;
 
 use PhpParser\Error;
-use PhpParser\Node;
+use Symfony\Component\Finder\SplFileInfo;
 
 class Analysis
 {
+    /** @var SplFileInfo */
+    private $file;
+
     /** @var Error */
     private $parseError;
 
-    /** @var Node[] */
-    private $stmts = array();
+    /** @var Adt[] */
+    private $adts = array();
 
-    /** @var Node/Name */
-    private $declaredNamespace;
-
-    /** @var Node/Name[] */
-    private $usedNamespaces = array();
-
-    public function __construct()
+    /**
+     * @param SplFileInfo $file
+     */
+    public function __construct(SplFileInfo $file)
     {
-        $this->declaredNamespace = new Node\Name('\\');
+        $this->file = $file;
     }
 
     /**
@@ -72,56 +72,21 @@ class Analysis
     }
 
     /**
-     * @param Node\Name $name
-     * @return void
+     * @return Adt
      */
-    public function setDeclaredNamespace(Node\Name $name)
+    public function createAdt()
     {
-        $this->declaredNamespace = $name;
+        $adt = new Adt;
+        $this->adts[] = $adt;
+
+        return $adt;
     }
 
     /**
-     * @return Node\Name
+     * @return Adt[]
      */
-    public function getDeclaredNamespace()
+    public function getAdts()
     {
-        return $this->declaredNamespace;
-    }
-
-    /**
-     * @param Node\Name $usedNamespace
-     */
-    public function addUsedNamespace(Node\Name $usedNamespace)
-    {
-        $this->usedNamespaces[] = $usedNamespace;
-    }
-
-    /**
-     * @return Node\Name[]
-     */
-    public function getUsedNamespaces()
-    {
-        $usedNamespaces = array();
-        foreach ($this->usedNamespaces as $namespace) {
-            /** @var Node\Name $namespace */
-            if ($namespace->toString() !== $this->getDeclaredNamespace()->toString()) {
-                $usedNamespaces[] = $namespace;
-            }
-        }
-
-        return $usedNamespaces;
-    }
-
-    /**
-     * @param Node  $stmt
-     * @param mixed $type
-     */
-    public function addStmt(Node $stmt, $type)
-    {
-        if (!array_key_exists($type, $this->stmts)) {
-            $this->stmts[$type] = array();
-        }
-
-        $this->stmts[$type][] = $stmt;
+        return $this->adts;
     }
 }

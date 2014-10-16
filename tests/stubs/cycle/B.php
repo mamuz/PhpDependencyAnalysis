@@ -1,11 +1,11 @@
 <?php
 
-namespace PhpDaTest\Stub\B;
+namespace PhpDaTest\Stub;
 
 class B
 {
     public function __construct()
     {
-        new \PhpDaTest\Stub\C\C;
+        new C;
     }
 }

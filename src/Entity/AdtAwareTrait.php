@@ -25,24 +25,24 @@
 
 namespace PhpDA\Entity;
 
-trait AnalysisAwareTrait
+trait AdtAwareTrait
 {
-    /** @var Analysis|null */
-    private $analysis;
+    /** @var Adt|null */
+    private $adt;
 
     /**
-     * @param Analysis $analysis
+     * @param Adt $adt
      */
-    public function setAnalysis(Analysis $analysis)
+    public function setAdt(Adt $adt)
     {
-        $this->analysis = $analysis;
+        $this->adt = $adt;
     }
 
     /**
-     * @return Analysis|null
+     * @return Adt|null
      */
-    public function getAnalysis()
+    public function getAdt()
     {
-        return $this->analysis;
+        return $this->adt;
     }
 }

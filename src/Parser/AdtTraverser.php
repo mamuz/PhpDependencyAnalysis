@@ -23,23 +23,34 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor;
+namespace PhpDA\Parser;
 
-use PhpDA\Entity\AdtAwareInterface;
-use PhpDA\Entity\AdtAwareTrait;
+use PhpDA\Parser\Visitor\Required\AdtCollector;
 use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
 
-abstract class AbstractVisitor extends NodeVisitorAbstract implements AdtAwareInterface
+class AdtTraverser extends \PhpParser\NodeTraverser
 {
-    use AdtAwareTrait;
+    /** @var AdtCollector */
+    private $adtCollector;
 
     /**
-     * @param Node $node
+     * @param AdtCollector $adtCollector
      * @return void
      */
-    protected function collect(Node $node)
+    public function setAdtCollector(AdtCollector $adtCollector)
     {
-        $this->getAdt()->addNode($node);
+        $this->adtCollector = $adtCollector;
+        $this->addVisitor($adtCollector);
+    }
+
+    /**
+     * @param Node[] $nodes Array of nodes
+     * @return array
+     */
+    public function getAdtStmtsBy(array $nodes)
+    {
+        parent::traverse($nodes);
+
+        return $this->adtCollector->getStmts();
     }
 }

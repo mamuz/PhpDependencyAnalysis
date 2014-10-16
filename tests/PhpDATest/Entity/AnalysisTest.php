@@ -32,9 +32,13 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
     /** @var Analysis */
     protected $fixture;
 
+    /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
+    protected $file;
+
     protected function setUp()
     {
-        $this->fixture = new Analysis;
+        $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
+        $this->fixture = new Analysis($this->file);
     }
 
     public function testMutateAndAccessParseError()
@@ -49,51 +53,17 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($error, $this->fixture->getParseError());
     }
 
-    public function testMutateAndAccessDeclaredNamespace()
+    public function testAdtCreation()
     {
-        $name = $this->fixture->getDeclaredNamespace();
-        $this->assertInstanceOf('PhpParser\Node\Name', $name);
-        $this->assertSame('\\', $name->toString());
+        $adt1 = $this->fixture->createAdt();
+        $adt2 = $this->fixture->createAdt();
 
-        $name = \Mockery::mock('PhpParser\Node\Name');
-        $this->fixture->setDeclaredNamespace($name);
+        $this->assertInstanceOf('PhpDA\Entity\Adt', $adt1);
+        $this->assertNotSame($adt2, $adt1);
+        $this->assertEquals($adt2, $adt1);
 
-        $this->assertSame($name, $this->fixture->getDeclaredNamespace());
-    }
-
-    public function testMutateAndAccessUsedNamespace()
-    {
-        $this->assertSame(array(), $this->fixture->getUsedNamespaces());
-
-        $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString')->once();
-        $name2 = \Mockery::mock('PhpParser\Node\Name');
-        $name2->shouldReceive('toString')->once();
-        $this->fixture->addUsedNamespace($name1);
-        $this->fixture->addUsedNamespace($name2);
-
-        $this->assertSame(array($name1, $name2), $this->fixture->getUsedNamespaces());
-    }
-
-    public function testMutateAndAccessUsedNamespaceWithFilteredDeclaredNamespace()
-    {
-        $declaredNamespace = 'Foo\Bar';
-
-        $name = \Mockery::mock('PhpParser\Node\Name');
-        $name->shouldReceive('toString')->andReturn($declaredNamespace);
-        $this->fixture->setDeclaredNamespace($name);
-
-        $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString')->once();
-        $name2 = \Mockery::mock('PhpParser\Node\Name');
-        $name2->shouldReceive('toString')->andReturn($declaredNamespace);
-        $name3 = \Mockery::mock('PhpParser\Node\Name');
-        $name3->shouldReceive('toString')->once();
-
-        $this->fixture->addUsedNamespace($name1);
-        $this->fixture->addUsedNamespace($name2);
-        $this->fixture->addUsedNamespace($name3);
-
-        $this->assertSame(array($name1, $name3), $this->fixture->getUsedNamespaces());
+        $adts = $this->fixture->getAdts();
+        $this->assertSame($adts[0], $adt1);
+        $this->assertSame($adts[1], $adt2);
     }
 }

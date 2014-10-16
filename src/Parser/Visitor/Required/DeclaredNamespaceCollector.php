@@ -31,11 +31,10 @@ class DeclaredNamespaceCollector extends AbstractNamespaceCollector
 {
     public function leaveNode(Node $node)
     {
-        if ($node instanceof Node\Stmt\Namespace_) {
-            $name = new Node\Name($node->name);
-            if (!$this->ignores($name)) {
-                $name = $this->filter($name);
-                $this->getAnalysis()->setDeclaredNamespace($name);
+        if ($node instanceof Node\Name) {
+            if (!$this->ignores($node)) {
+                $node = $this->filter($node);
+                $this->getAdt()->setDeclaredNamespace($node);
             }
         }
     }

@@ -40,11 +40,11 @@ class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('PhpParser\NodeVisitorAbstract', $this->fixture);
     }
 
-    public function testMutateAndAccessAnalysis()
+    public function testMutateAndAccessAdt()
     {
-        $this->assertNull($this->fixture->getAnalysis());
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $this->fixture->setAnalysis($analysis);
-        $this->assertSame($analysis, $this->fixture->getAnalysis());
+        $this->assertNull($this->fixture->getAdt());
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->fixture->setAdt($adt);
+        $this->assertSame($adt, $this->fixture->getAdt());
     }
 }

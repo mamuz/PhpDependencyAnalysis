@@ -23,25 +23,17 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Entity;
+namespace PhpDA\Entity;
 
-class AnalysisAwareTraitTest extends \PHPUnit_Framework_TestCase
+interface AdtAwareInterface
 {
-    /** @var \PhpDA\Entity\AnalysisAwareTrait */
-    protected $fixture;
+    /**
+     * @param Adt $adt
+     */
+    public function setAdt(Adt $adt);
 
-    protected function setUp()
-    {
-        $this->fixture = $this->getMockForTrait('PhpDA\Entity\AnalysisAwareTrait');
-    }
-
-    public function testMutateAndAccessAnalysis()
-    {
-        $this->assertNull($this->fixture->getAnalysis());
-
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $this->fixture->setAnalysis($analysis);
-
-        $this->assertSame($analysis, $this->fixture->getAnalysis());
-    }
+    /**
+     * @return Adt|null
+     */
+    public function getAdt();
 }

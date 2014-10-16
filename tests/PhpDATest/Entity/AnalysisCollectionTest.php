@@ -48,17 +48,17 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testAttachAnalysis()
     {
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
 
         $declaredName = \Mockery::mock('PhpParser\Node\Name');
         $declaredName->shouldReceive('toString')->once()->andReturn('declaredName');
-        $analysis->shouldReceive('getDeclaredNamespace')->once()->andReturn($declaredName);
+        $adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declaredName);
 
         $usedName1 = \Mockery::mock('PhpParser\Node\Name');
         $usedName1->shouldReceive('toString')->once()->andReturn('usedName1');
         $usedName2 = \Mockery::mock('PhpParser\Node\Name');
         $usedName2->shouldReceive('toString')->once()->andReturn('usedName2');
-        $analysis->shouldReceive('getUsedNamespaces')->once()->andReturn(array($usedName1, $usedName2));
+        $adt->shouldReceive('getUsedNamespaces')->once()->andReturn(array($usedName1, $usedName2));
 
         $declaredNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
         $usedName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
@@ -71,6 +71,8 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $usedName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
         $usedName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(true);
 
+        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $analysis->shouldReceive('getAdts')->andReturn(array($adt));
         $this->fixture->attach($analysis);
     }
 }

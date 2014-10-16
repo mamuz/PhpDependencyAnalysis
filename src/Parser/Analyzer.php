@@ -36,45 +36,54 @@ class Analyzer implements AnalyzerInterface
     /** @var ParserAbstract */
     private $parser;
 
+    /** @var AdtTraverser */
+    private $adtTraverser;
+
     /** @var NodeTraverser */
-    private $traverser;
+    private $nodeTraverser;
 
     /** @var AnalysisCollection */
     private $collection;
 
     /**
      * @param ParserAbstract     $parser
-     * @param NodeTraverser      $traveser
+     * @param AdtTraverser       $adtTraverser
+     * @param NodeTraverser      $nodeTraverser
      * @param AnalysisCollection $collection
      */
     public function __construct(
         ParserAbstract $parser,
-        NodeTraverser $traveser,
+        AdtTraverser $adtTraverser,
+        NodeTraverser $nodeTraverser,
         AnalysisCollection $collection
     ) {
         $this->parser = $parser;
-        $this->traverser = $traveser;
+        $this->adtTraverser = $adtTraverser;
+        $this->nodeTraverser = $nodeTraverser;
         $this->collection = $collection;
     }
 
-    public function getTraverser()
+    public function getNodeTraverser()
     {
-        return $this->traverser;
+        return $this->nodeTraverser;
     }
 
     public function analyze(SplFileInfo $file)
     {
-        $analysis = new Analysis;
-        $this->traverser->setAnalysis($analysis);
+        $analysis = new Analysis($file);
 
         try {
             $stmts = $this->parser->parse($file->getContents());
-            $this->traverser->traverse($stmts);
+            $adtStmts = $this->adtTraverser->getAdtStmtsBy($stmts);
+            foreach ($adtStmts as $nodes) {
+                $this->nodeTraverser->setAdt($analysis->createAdt());
+                $this->nodeTraverser->traverse((array) $nodes);
+            }
         } catch (Error $error) {
             $analysis->setParseError($error);
         }
 
-        $this->collection->attach($analysis);
+        $this->getAnalysisCollection()->attach($analysis);
 
         return $analysis;
     }

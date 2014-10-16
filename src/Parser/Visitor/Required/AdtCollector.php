@@ -23,17 +23,31 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Entity;
+namespace PhpDA\Parser\Visitor\Required;
 
-interface AnalysisAwareInterface
+use PhpParser\Node;
+use PhpParser\NodeVisitorAbstract;
+
+class AdtCollector extends NodeVisitorAbstract
 {
-    /**
-     * @param Analysis $analysis
-     */
-    public function setAnalysis(Analysis $analysis);
+    /** @var Node\Stmt[] */
+    private $stmts = array();
+
+    public function leaveNode(Node $node)
+    {
+        if ($node instanceof Node\Stmt\Class_
+            || $node instanceof Node\Stmt\Trait_
+            || $node instanceof Node\Stmt\Interface_
+        ) {
+            $this->stmts[] = $node;
+        }
+    }
 
     /**
-     * @return Analysis $analysis
+     * @return Node\Stmt[]
      */
-    public function getAnalysis();
+    public function getStmts()
+    {
+        return $this->stmts;
+    }
 }

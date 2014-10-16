@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Add AbstractDataType Traverser
 - Add CHANGELOG.md
 - Add visitor configuration feature
 - Add version helper

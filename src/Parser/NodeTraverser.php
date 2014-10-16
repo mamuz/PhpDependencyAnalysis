@@ -25,19 +25,17 @@
 
 namespace PhpDA\Parser;
 
-use PhpDA\Entity\AnalysisAwareInterface;
-use PhpDA\Entity\AnalysisAwareTrait;
+use PhpDA\Entity\AdtAwareInterface;
+use PhpDA\Entity\AdtAwareTrait;
 use PhpDA\Plugin\LoaderInterface;
 use PhpParser\NodeVisitor;
 
-class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInterface
+class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterface
 {
-    use AnalysisAwareTrait;
+    use AdtAwareTrait;
 
     /** @var array */
     private $requiredVisitors = array(
-        'PhpDA\Parser\Visitor\Required\MultiNamespaceDetector',
-        'PhpParser\NodeVisitor\NameResolver',
         'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
         'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
     );
@@ -134,8 +132,8 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AnalysisAwareInt
     public function traverse(array $nodes)
     {
         foreach ($this->visitors as $visitor) {
-            if ($visitor instanceof AnalysisAwareInterface) {
-                $visitor->setAnalysis($this->getAnalysis());
+            if ($visitor instanceof AdtAwareInterface) {
+                $visitor->setAdt($this->getAdt());
             }
         }
 

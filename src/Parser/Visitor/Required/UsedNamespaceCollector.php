@@ -30,14 +30,14 @@ use PhpParser\Node;
 class UsedNamespaceCollector extends AbstractNamespaceCollector
 {
     /** @var array */
-    private $ignoredNamespaces = array('self', 'static', 'null', 'true', 'false');
+    private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');
 
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Name) {
             if (!$this->ignores($node)) {
                 $node = $this->filter($node);
-                $this->getAnalysis()->addUsedNamespace($node);
+                $this->getAdt()->addUsedNamespace($node);
             }
         }
     }

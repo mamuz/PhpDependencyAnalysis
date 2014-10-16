@@ -35,8 +35,11 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpParser\ParserAbstract | \Mockery\MockInterface */
     protected $parser;
 
+    /** @var \PhpDA\Parser\AdtTraverser | \Mockery\MockInterface */
+    protected $adtTraverser;
+
     /** @var \PhpDA\Parser\NodeTraverser | \Mockery\MockInterface */
-    protected $traverser;
+    protected $nodeTraverser;
 
     /** @var \PhpDA\Entity\AnalysisCollection | \Mockery\MockInterface */
     protected $collection;
@@ -49,17 +52,23 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $this->file->shouldReceive('getContents')->andReturn('foo');
         $this->parser = \Mockery::mock('PhpParser\ParserAbstract');
-        $this->traverser = \Mockery::mock('PhpDA\Parser\NodeTraverser');
+        $this->adtTraverser = \Mockery::mock('PhpDA\Parser\AdtTraverser');
+        $this->nodeTraverser = \Mockery::mock('PhpDA\Parser\NodeTraverser');
         $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
 
-        $this->traverser->shouldReceive('setAnalysis');
+        $this->nodeTraverser->shouldReceive('setAnalysis');
 
-        $this->fixture = new Analyzer($this->parser, $this->traverser, $this->collection);
+        $this->fixture = new Analyzer(
+            $this->parser,
+            $this->adtTraverser,
+            $this->nodeTraverser,
+            $this->collection
+        );
     }
 
-    public function testAccessTraverser()
+    public function testAccessNodeTraverser()
     {
-        $this->assertSame($this->traverser, $this->fixture->getTraverser());
+        $this->assertSame($this->nodeTraverser, $this->fixture->getNodeTraverser());
     }
 
     public function testGetAnalysisCollection()
@@ -71,10 +80,10 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     {
         $this->parser->shouldReceive('parse')->once()->with('foo')->andThrow('PhpParser\Error');
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($object) {
-                $this->assertInstanceOf('PhpDA\Entity\Analysis', $object);
-                /** @var \PhpDA\Entity\Analysis $object */
-                $this->assertTrue($object->hasParseError());
+            function ($analysis) {
+                $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+                /** @var \PhpDA\Entity\Analysis $analysis */
+                $this->assertTrue($analysis->hasParseError());
             }
         );
 
@@ -85,11 +94,21 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     public function testAnalyze()
     {
         $stmts = array('foo', 'bar');
+        $adts = array('baz', 'faz');
         $this->parser->shouldReceive('parse')->once()->with('foo')->andReturn($stmts);
-        $this->traverser->shouldReceive('traverse')->once()->with($stmts);
+        $this->adtTraverser->shouldReceive('getAdtStmtsBy')->once()->with($stmts)->andReturn($adts);
+        $this->nodeTraverser->shouldReceive('setAdt')->twice()->andReturnUsing(
+            function ($adt) {
+                $this->assertInstanceOf('PhpDA\Entity\Adt', $adt);
+            }
+        );
+        $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('baz'));
+        $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('faz'));
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($object) {
-                $this->assertInstanceOf('PhpDA\Entity\Analysis', $object);
+            function ($analysis) {
+                $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+                /** @var \PhpDA\Entity\Analysis $analysis */
+                $this->assertFalse($analysis->hasParseError());
             }
         );
 

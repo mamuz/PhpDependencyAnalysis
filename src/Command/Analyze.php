@@ -92,26 +92,24 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->setName("analyze")
-            ->setDescription("Analyze php dependencies")
-            ->addArgument(
-                'config',
-                InputArgument::OPTIONAL,
-                'Path to yaml configuration file',
-                './phpda.yml'
-            )
-            ->setHelp('Please visit https://github.com/mamuz/PhpDependencyAnalysis for detailed informations.');
+        $this->setName("analyze")->setDescription("Analyze php dependencies");
+        $this->setHelp('Please visit https://github.com/mamuz/PhpDependencyAnalysis for detailed informations.');
+
+        $this->addArgument(
+            'config',
+            InputArgument::OPTIONAL,
+            'Path to yaml configuration file',
+            './phpda.yml'
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('PhpDependencyAnalyse ' . $this->getVersion() . ' by Marco Muths.');
-        $output->writeln('');
-
         $configFile = $input->getArgument('config');
         $this->bindConfigFrom($configFile);
-        $output->writeln('Configuration read from ' . realpath($configFile));
-        $output->writeln('');
+
+        $output->writeln('PhpDependencyAnalyse ' . $this->getVersion() . ' by Marco Muths.' . PHP_EOL);
+        $output->writeln('Configuration read from ' . realpath($configFile) . PHP_EOL);
 
         $progress = $this->getHelper('progress');
         $progress->start($output, iterator_count($this->finder));
@@ -123,9 +121,7 @@ class Analyze extends Command
         $this->writeAnalysis();
 
         $progress->finish();
-        $output->writeln('');
-        $output->writeln('Done');
-        $output->writeln('');
+        $output->writeln(PHP_EOL . 'Done' . PHP_EOL);
     }
 
     /**
@@ -160,7 +156,7 @@ class Analyze extends Command
             $this->finder->exclude($ignores);
         }
 
-        $this->analyzer->getTraverser()->bindVisitors(
+        $this->analyzer->getNodeTraverser()->bindVisitors(
             $this->config->getVisitor(),
             $this->config->getVisitorOptions()
         );

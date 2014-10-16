@@ -25,63 +25,79 @@
 
 namespace PhpDA\Entity;
 
-use Fhaculty\Graph\Graph;
-use PhpParser\Node\Name;
+use PhpParser\Node;
 
-class AnalysisCollection
+class Adt
 {
-    /** @var Graph */
-    private $graph;
+    /** @var Node[] */
+    private $nodes = array();
 
-    /**
-     * @param Graph $graph
-     */
-    public function __construct(Graph $graph)
+    /** @var Node/Name */
+    private $declaredNamespace;
+
+    /** @var Node/Name[] */
+    private $usedNamespaces = array();
+
+    public function __construct()
     {
-        $this->graph = $graph;
+        $this->declaredNamespace = new Node\Name('\\');
     }
 
     /**
-     * @return Graph
-     */
-    public function getGraph()
-    {
-        return $this->graph;
-    }
-
-    /**
-     * @param Analysis $analysis
+     * @param Node\Name $name
      * @return void
      */
-    public function attach(Analysis $analysis)
+    public function setDeclaredNamespace(Node\Name $name)
     {
-        foreach ($analysis->getAdts() as $adt) {
-            $this->attachAdt($adt);
-        }
+        $this->declaredNamespace = $name;
     }
 
     /**
-     * @param Adt $adt
-     * @return void
+     * @return Node\Name
      */
-    private function attachAdt(Adt $adt)
+    public function getDeclaredNamespace()
     {
-        $declaredNamespace = $this->createVertexBy($adt->getDeclaredNamespace());
+        return $this->declaredNamespace;
+    }
 
-        foreach ($adt->getUsedNamespaces() as $usedNamespace) {
-            $usedNamespace = $this->createVertexBy($usedNamespace);
-            if (!$usedNamespace->hasEdgeTo($declaredNamespace)) {
-                $usedNamespace->createEdgeTo($declaredNamespace);
+    /**
+     * @param Node\Name $usedNamespace
+     */
+    public function addUsedNamespace(Node\Name $usedNamespace)
+    {
+        $this->usedNamespaces[] = $usedNamespace;
+    }
+
+    /**
+     * @return Node\Name[]
+     */
+    public function getUsedNamespaces()
+    {
+        $usedNamespaces = array();
+        foreach ($this->usedNamespaces as $namespace) {
+            /** @var Node\Name $namespace */
+            if ($namespace->toString() !== $this->getDeclaredNamespace()->toString()) {
+                $usedNamespaces[] = $namespace;
             }
         }
+
+        return $usedNamespaces;
     }
 
     /**
-     * @param Name $name
-     * @return \Fhaculty\Graph\Vertex
+     * @param Node $node
+     * @return void
      */
-    private function createVertexBy(Name $name)
+    public function addNode($node)
     {
-        return $this->graph->createVertex($name->toString(), true);
+        $this->nodes[] = $node;
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getNodes()
+    {
+        return $this->nodes;
     }
 }

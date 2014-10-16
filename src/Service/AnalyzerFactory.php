@@ -27,13 +27,19 @@ namespace PhpDA\Service;
 
 use Fhaculty\Graph\Graph;
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Parser\AdtTraverser;
 use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
+use PhpDA\Parser\Visitor\Required\AdtCollector;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpParser\Lexer\Emulative;
+use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
 
+/**
+ * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ */
 class AnalyzerFactory implements FactoryInterface
 {
     /**
@@ -43,7 +49,8 @@ class AnalyzerFactory implements FactoryInterface
     {
         return new Analyzer(
             $this->createParser(),
-            $this->createTraverser(),
+            $this->createAdtTraverser(),
+            $this->createNodeTraverser(),
             $this->createCollection()
         );
     }
@@ -57,9 +64,21 @@ class AnalyzerFactory implements FactoryInterface
     }
 
     /**
+     * @return AdtTraverser
+     */
+    protected function createAdtTraverser()
+    {
+        $traverser = new AdtTraverser;
+        $traverser->addVisitor(new NameResolver);
+        $traverser->setAdtCollector(new AdtCollector);
+
+        return $traverser;
+    }
+
+    /**
      * @return NodeTraverser
      */
-    protected function createTraverser()
+    protected function createNodeTraverser()
     {
         $traverser = new NodeTraverser;
         $traverser->setVisitorLoader(new Loader);

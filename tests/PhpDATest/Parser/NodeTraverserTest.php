@@ -41,8 +41,6 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $requiredVisitors = array(
-            'PhpDA\Parser\Visitor\Required\MultiNamespaceDetector',
-            'PhpParser\NodeVisitor\NameResolver',
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
             'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
         );
@@ -74,7 +72,7 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
             '\\PhpDA\Parser\Visitor\Required\UsedNamespaceCollector\\',
             '\\bar\baz',
             'baz\baz\\',
-            'PhpDA\Parser\Visitor\Required\MultiNamespaceDetector',
+            'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
         );
 
         $this->visitorLoader->shouldReceive('get')->with('foo', null)->andReturn($this->visitor);
@@ -117,22 +115,22 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
         $this->fixture->bindVisitors($visitors);
     }
 
-    public function testMutateAndAccessAnalysis()
+    public function testMutateAndAccessAdt()
     {
-        $this->assertNull($this->fixture->getAnalysis());
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $this->fixture->setAnalysis($analysis);
-        $this->assertSame($analysis, $this->fixture->getAnalysis());
+        $this->assertNull($this->fixture->getAdt());
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->fixture->setAdt($adt);
+        $this->assertSame($adt, $this->fixture->getAdt());
     }
 
     public function testTraversing()
     {
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $this->fixture->setAnalysis($analysis);
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->fixture->setAdt($adt);
 
         $visitors = array('foo');
         $visitor = \Mockery::mock('PhpDA\Parser\Visitor\AbstractVisitor');
-        $visitor->shouldReceive('setAnalysis')->once()->with($analysis);
+        $visitor->shouldReceive('setAdt')->once()->with($adt);
         $this->visitorLoader->shouldReceive('get')->with('foo', null)->andReturn($visitor);
         $this->fixture->setVisitorLoader($this->visitorLoader);
         $this->fixture->bindVisitors($visitors);
