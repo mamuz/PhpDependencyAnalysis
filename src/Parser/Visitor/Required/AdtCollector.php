@@ -50,4 +50,12 @@ class AdtCollector extends NodeVisitorAbstract
     {
         return $this->stmts;
     }
+
+    /**
+     * @return void
+     */
+    public function flush()
+    {
+        $this->stmts = array();
+    }
 }

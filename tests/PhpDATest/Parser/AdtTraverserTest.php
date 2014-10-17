@@ -23,35 +23,39 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser;
+namespace PhpDATest\Parser;
 
-use PhpDA\Parser\Visitor\Required\AdtCollector;
-use PhpParser\Node;
+use PhpDA\Parser\AdtTraverser;
 
-class AdtTraverser extends \PhpParser\NodeTraverser
+class AdtTraverserTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var AdtCollector */
-    private $adtCollector;
+    /** @var AdtTraverser */
+    protected $fixture;
 
-    /**
-     * @param AdtCollector $adtCollector
-     * @return void
-     */
-    public function setAdtCollector(AdtCollector $adtCollector)
+    /** @var \PhpDA\Parser\Visitor\Required\AdtCollector | \Mockery\MockInterface */
+    protected $visitor;
+
+    protected function setUp()
     {
-        $this->adtCollector = $adtCollector;
-        $this->addVisitor($adtCollector);
+        $this->visitor = \Mockery::mock('PhpDA\Parser\Visitor\Required\AdtCollector');
+        $this->visitor->shouldIgnoreMissing();
+        $this->fixture = new AdtTraverser;
     }
 
-    /**
-     * @param Node[] $nodes Array of nodes
-     * @return array
-     */
-    public function getAdtStmtsBy(array $nodes)
+    public function testTraversing()
     {
-        $this->adtCollector->flush();
-        parent::traverse($nodes);
+        $stmtNode = \Mockery::mock('PhpParser\Node');
+        $this->visitor->shouldReceive('flush')->once();
+        $this->visitor->shouldReceive('getStmts')->once()->andReturn(array(array($stmtNode)));
+        $this->fixture->setAdtCollector($this->visitor);
 
-        return $this->adtCollector->getStmts();
+        $nodes = array('foo', 'bar');
+        $stmts = $this->fixture->getAdtStmtsBy($nodes);
+
+        foreach ($stmts as $nodes) {
+            foreach ($nodes as $node) {
+                $this->assertSame($stmtNode, $node);
+            }
+        }
     }
 }
