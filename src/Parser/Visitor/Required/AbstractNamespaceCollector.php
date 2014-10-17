@@ -67,7 +67,7 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
         if ($node instanceof Node\Name) {
             if (!$this->ignores($node)) {
                 $node = $this->filter($node);
-                $this->getAdt()->setDeclaredNamespace($node);
+                $this->bind($node);
             }
         }
     }
