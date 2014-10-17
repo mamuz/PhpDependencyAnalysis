@@ -46,7 +46,9 @@ class SuperglobalCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Expr\Variable) {
             if ($this->match($node)) {
-                $name = new Node\Name($node->name);
+                /** @var string $varname */
+                $varname = $node->name;
+                $name = new Node\Name($varname);
                 $this->getAdt()->addUsedNamespace($name);
             }
         }

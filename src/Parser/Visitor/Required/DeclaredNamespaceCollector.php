@@ -29,13 +29,8 @@ use PhpParser\Node;
 
 class DeclaredNamespaceCollector extends AbstractNamespaceCollector
 {
-    public function leaveNode(Node $node)
+    protected function bind(Node\Name $name)
     {
-        if ($node instanceof Node\Name) {
-            if (!$this->ignores($node)) {
-                $node = $this->filter($node);
-                $this->getAdt()->setDeclaredNamespace($node);
-            }
-        }
+        $this->getAdt()->setDeclaredNamespace($name);
     }
 }

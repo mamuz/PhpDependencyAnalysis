@@ -45,7 +45,7 @@ class Analyze extends Command
     /** @var Parser */
     private $configParser;
 
-    /** @var Finder|\Symfony\Component\Finder\SplFileInfo[] */
+    /** @var Finder */
     private $finder;
 
     /** @var AnalyzerInterface */
@@ -115,6 +115,7 @@ class Analyze extends Command
         $progress->start($output, iterator_count($this->finder));
 
         foreach ($this->finder as $file) {
+            /** \Symfony\Component\Finder\SplFileInfo[] $file */
             $this->analyzer->analyze($file);
             $progress->advance();
         }

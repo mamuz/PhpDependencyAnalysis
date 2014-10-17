@@ -32,14 +32,9 @@ class UsedNamespaceCollector extends AbstractNamespaceCollector
     /** @var array */
     private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');
 
-    public function leaveNode(Node $node)
+    protected function bind(Node\Name $name)
     {
-        if ($node instanceof Node\Name) {
-            if (!$this->ignores($node)) {
-                $node = $this->filter($node);
-                $this->getAdt()->addUsedNamespace($node);
-            }
-        }
+        $this->getAdt()->addUsedNamespace($name);
     }
 
     protected function ignores(Node\Name $name)

@@ -62,6 +62,16 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
         }
     }
 
+    public function leaveNode(Node $node)
+    {
+        if ($node instanceof Node\Name) {
+            if (!$this->ignores($node)) {
+                $node = $this->filter($node);
+                $this->getAdt()->setDeclaredNamespace($node);
+            }
+        }
+    }
+
     /**
      * @param Node\Name $name
      * @return bool
@@ -99,4 +109,10 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
 
         return new Node\Name($parts);
     }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    abstract protected function bind(Node\Name $name);
 }
