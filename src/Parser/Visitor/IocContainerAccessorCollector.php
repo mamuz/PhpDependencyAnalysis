@@ -33,7 +33,15 @@ class IocContainerAccessorCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Expr\MethodCall) {
             if ($node->name === 'get' && count($node->args) > 0) {
-                $this->collect($node);
+                /** @var Node\Arg $arg */
+                $arg = array_shift($node->args);
+                if ($arg->value instanceof Node\Expr\Variable
+                    && is_string($arg->value->name)
+                ) {
+                    $name = new Node\Name($arg->value->name);
+                    $this->exchange($node, $name);
+                    $this->addNamespacedString($name);
+                }
             }
         }
     }

@@ -26,6 +26,7 @@
 namespace PhpDA\Entity;
 
 use Fhaculty\Graph\Graph;
+use Fhaculty\Graph\Vertex;
 use PhpParser\Node\Name;
 
 class AnalysisCollection
@@ -67,21 +68,32 @@ class AnalysisCollection
     private function attachAdt(Adt $adt)
     {
         $declaredNamespace = $this->createVertexBy($adt->getDeclaredNamespace());
-
-        foreach ($adt->getUsedNamespaces() as $usedNamespace) {
-            $usedNamespace = $this->createVertexBy($usedNamespace);
-            if (!$usedNamespace->hasEdgeTo($declaredNamespace)) {
-                $usedNamespace->createEdgeTo($declaredNamespace);
-            }
-        }
+        $this->edgeDependencies($adt->getUsedNamespaces(), $declaredNamespace);
+        $this->edgeDependencies($adt->getUnsupportedStmts(), $declaredNamespace);
+        $this->edgeDependencies($adt->getNamespacedStrings(), $declaredNamespace);
     }
 
     /**
      * @param Name $name
-     * @return \Fhaculty\Graph\Vertex
+     * @return Vertex
      */
     private function createVertexBy(Name $name)
     {
         return $this->graph->createVertex($name->toString(), true);
+    }
+
+    /**
+     * @param Name[] $dependencies
+     * @param Vertex $root
+     * @return void
+     */
+    private function edgeDependencies(array $dependencies, Vertex $root)
+    {
+        foreach ($dependencies as $edge) {
+            $vertex = $this->createVertexBy($edge);
+            if (!$vertex->hasEdgeTo($root)) {
+                $vertex->createEdgeTo($root);
+            }
+        }
     }
 }

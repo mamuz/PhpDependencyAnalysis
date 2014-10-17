@@ -49,7 +49,8 @@ class SuperglobalCollector extends AbstractVisitor
                 /** @var string $varname */
                 $varname = $node->name;
                 $name = new Node\Name($varname);
-                $this->getAdt()->addUsedNamespace($name);
+                $this->exchange($node, $name);
+                $this->addUsedNamespace($name);
             }
         }
     }

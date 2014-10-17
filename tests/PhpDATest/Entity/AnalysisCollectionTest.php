@@ -60,16 +60,45 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $usedName2->shouldReceive('toString')->once()->andReturn('usedName2');
         $adt->shouldReceive('getUsedNamespaces')->once()->andReturn(array($usedName1, $usedName2));
 
+        $unsupportedName1 = \Mockery::mock('PhpParser\Node\Name');
+        $unsupportedName1->shouldReceive('toString')->once()->andReturn('unsupportedName1');
+        $unsupportedName2 = \Mockery::mock('PhpParser\Node\Name');
+        $unsupportedName2->shouldReceive('toString')->once()->andReturn('unsupportedName2');
+        $adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($unsupportedName1, $unsupportedName2));
+
+        $stringName1 = \Mockery::mock('PhpParser\Node\Name');
+        $stringName1->shouldReceive('toString')->once()->andReturn('stringName1');
+        $stringName2 = \Mockery::mock('PhpParser\Node\Name');
+        $stringName2->shouldReceive('toString')->once()->andReturn('stringName2');
+        $adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($stringName1, $stringName2));
+
         $declaredNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
         $usedName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
         $usedName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $unsupportedName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $unsupportedName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $stringName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $stringName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
         $this->graph->shouldReceive('createVertex')->with('declaredName', true)->andReturn($declaredNameVertex);
         $this->graph->shouldReceive('createVertex')->with('usedName1', true)->andReturn($usedName1Vertex);
         $this->graph->shouldReceive('createVertex')->with('usedName2', true)->andReturn($usedName2Vertex);
+        $this->graph->shouldReceive('createVertex')->with('unsupportedName1', true)->andReturn($unsupportedName1Vertex);
+        $this->graph->shouldReceive('createVertex')->with('unsupportedName2', true)->andReturn($unsupportedName2Vertex);
+        $this->graph->shouldReceive('createVertex')->with('stringName1', true)->andReturn($stringName1Vertex);
+        $this->graph->shouldReceive('createVertex')->with('stringName2', true)->andReturn($stringName2Vertex);
 
         $usedName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
         $usedName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
         $usedName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(true);
+
+        $unsupportedName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
+        $unsupportedName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
+        $unsupportedName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(true);
+
+        $stringName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
+        $stringName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
+        $stringName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
+        $stringName2Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
 
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));

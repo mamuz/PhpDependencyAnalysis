@@ -35,11 +35,51 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements AdtAwareIn
     use AdtAwareTrait;
 
     /**
-     * @param Node $node
+     * @param Node      $node
+     * @param Node\Name $name
      * @return void
      */
-    protected function collect(Node $node)
+    protected function exchange(Node $node, Node\Name $name)
     {
-        $this->getAdt()->addNode($node);
+        $attributes = $node->getAttributes();
+        foreach ($attributes as $attr => $value) {
+            $name->setAttribute($attr, $value);
+        }
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    protected function setDeclaredNamespace(Node\Name $name)
+    {
+        $this->getAdt()->setDeclaredNamespace($name);
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    protected function addUsedNamespace(Node\Name $name)
+    {
+        $this->getAdt()->addUsedNamespace($name);
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    protected function addUnsupportedStmt(Node\Name $name)
+    {
+        $this->getAdt()->addUnsupportedStmt($name);
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return void
+     */
+    protected function addNamespacedString(Node\Name $name)
+    {
+        $this->getAdt()->addNamespacedString($name);
     }
 }

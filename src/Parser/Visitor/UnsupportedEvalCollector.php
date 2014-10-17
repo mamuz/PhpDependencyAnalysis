@@ -32,7 +32,9 @@ class UnsupportedEvalCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Expr\Eval_) {
-            $this->collect($node);
+            $name = new Node\Name('eval');
+            $this->exchange($node, $name);
+            $this->addUnsupportedStmt($name);
         }
     }
 }

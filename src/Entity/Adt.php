@@ -29,14 +29,17 @@ use PhpParser\Node;
 
 class Adt
 {
-    /** @var Node[] */
-    private $nodes = array();
-
     /** @var Node/Name */
     private $declaredNamespace;
 
     /** @var Node/Name[] */
     private $usedNamespaces = array();
+
+    /** @var Node/Name[] */
+    private $unsupportedStmts = array();
+
+    /** @var Node/Name[] */
+    private $namespacedStrings = array();
 
     public function __construct()
     {
@@ -65,7 +68,7 @@ class Adt
      */
     public function addUsedNamespace(Node\Name $usedNamespace)
     {
-        $this->usedNamespaces[] = $usedNamespace;
+        $this->usedNamespaces[$usedNamespace->toString()] = $usedNamespace;
     }
 
     /**
@@ -85,19 +88,36 @@ class Adt
     }
 
     /**
-     * @param Node $node
+     * @param Node\Name $unsupportedStmt
      * @return void
      */
-    public function addNode($node)
+    public function addUnsupportedStmt(Node\Name $unsupportedStmt)
     {
-        $this->nodes[] = $node;
+        $this->unsupportedStmts[$unsupportedStmt->toString()] = $unsupportedStmt;
     }
 
     /**
-     * @return Node[]
+     * @return Node/Name[]
      */
-    public function getNodes()
+    public function getUnsupportedStmts()
     {
-        return $this->nodes;
+        return $this->unsupportedStmts;
+    }
+
+    /**
+     * @param Node\Name $namespacedString
+     * @return void
+     */
+    public function addNamespacedString(Node\Name $namespacedString)
+    {
+        $this->namespacedStrings[$namespacedString->toString()] = $namespacedString;
+    }
+
+    /**
+     * @return Node/Name[]
+     */
+    public function getNamespacedStrings()
+    {
+        return $this->namespacedStrings;
     }
 }

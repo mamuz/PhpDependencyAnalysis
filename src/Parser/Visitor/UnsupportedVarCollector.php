@@ -32,7 +32,9 @@ class UnsupportedVarCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($this->unsupports($node)) {
-            $this->collect($node);
+            $name = new Node\Name('VariableCall');
+            $this->exchange($node, $name);
+            $this->addUnsupportedStmt($name);
         }
     }
 

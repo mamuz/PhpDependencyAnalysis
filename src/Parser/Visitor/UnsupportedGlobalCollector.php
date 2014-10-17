@@ -32,9 +32,9 @@ class UnsupportedGlobalCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Stmt\Global_) {
-            foreach ($node->vars as $var) {
-                $this->collect($var);
-            }
+            $name = new Node\Name('global');
+            $this->exchange($node, $name);
+            $this->addUnsupportedStmt($name);
         }
     }
 }

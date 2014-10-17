@@ -54,9 +54,9 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $this->fixture->getUsedNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString')->once();
+        $name1->shouldReceive('toString')->andReturn('1');
         $name2 = \Mockery::mock('PhpParser\Node\Name');
-        $name2->shouldReceive('toString')->once();
+        $name2->shouldReceive('toString')->andReturn('2');
         $this->fixture->addUsedNamespace($name1);
         $this->fixture->addUsedNamespace($name2);
 
@@ -72,16 +72,44 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setDeclaredNamespace($name);
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
-        $name1->shouldReceive('toString')->once();
+        $name1->shouldReceive('toString')->andReturn('1');
         $name2 = \Mockery::mock('PhpParser\Node\Name');
         $name2->shouldReceive('toString')->andReturn($declaredNamespace);
         $name3 = \Mockery::mock('PhpParser\Node\Name');
-        $name3->shouldReceive('toString')->once();
+        $name3->shouldReceive('toString')->andReturn('2');
 
         $this->fixture->addUsedNamespace($name1);
         $this->fixture->addUsedNamespace($name2);
         $this->fixture->addUsedNamespace($name3);
 
         $this->assertSame(array($name1, $name3), $this->fixture->getUsedNamespaces());
+    }
+
+    public function testMutateAndAccessUnsupportedStmts()
+    {
+        $this->assertSame(array(), $this->fixture->getUnsupportedStmts());
+
+        $name1 = \Mockery::mock('PhpParser\Node\Name');
+        $name1->shouldReceive('toString')->andReturn('1');
+        $name2 = \Mockery::mock('PhpParser\Node\Name');
+        $name2->shouldReceive('toString')->andReturn('2');
+        $this->fixture->addUnsupportedStmt($name1);
+        $this->fixture->addUnsupportedStmt($name2);
+
+        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getUnsupportedStmts());
+    }
+
+    public function testMutateAndAccessNamespacedStrings()
+    {
+        $this->assertSame(array(), $this->fixture->getNamespacedStrings());
+
+        $name1 = \Mockery::mock('PhpParser\Node\Name');
+        $name1->shouldReceive('toString')->andReturn('1');
+        $name2 = \Mockery::mock('PhpParser\Node\Name');
+        $name2->shouldReceive('toString')->andReturn('2');
+        $this->fixture->addNamespacedString($name1);
+        $this->fixture->addNamespacedString($name2);
+
+        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getNamespacedStrings());
     }
 }

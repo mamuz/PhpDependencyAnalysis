@@ -2,6 +2,8 @@
 
 ## dev-master
 
+- Add namespacedStrings awareness
+- Add unsupportedStmts awareness
 - Add AbstractDataType Traverser
 - Add CHANGELOG.md
 - Add visitor configuration feature

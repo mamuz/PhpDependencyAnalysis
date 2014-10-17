@@ -34,7 +34,7 @@ class UsedNamespaceCollector extends AbstractNamespaceCollector
 
     protected function bind(Node\Name $name)
     {
-        $this->getAdt()->addUsedNamespace($name);
+        $this->addUsedNamespace($name);
     }
 
     protected function ignores(Node\Name $name)

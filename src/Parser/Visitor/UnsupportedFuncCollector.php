@@ -52,7 +52,10 @@ class UnsupportedFuncCollector extends AbstractVisitor implements ConfigurableIn
     {
         if ($node instanceof Node\Expr\FuncCall) {
             if ($this->unsupports($node)) {
-                $this->collect($node);
+                /** @var Node\Name $name */
+                $name = $node->name;
+                $this->exchange($node, $name);
+                $this->addUnsupportedStmt($name);
             }
         }
     }

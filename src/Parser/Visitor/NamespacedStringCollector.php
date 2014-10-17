@@ -35,7 +35,9 @@ class NamespacedStringCollector extends AbstractVisitor
     {
         if ($node instanceof Node\Scalar\String) {
             if ($this->match($node)) {
-                $this->collect($node);
+                $name = new Node\Name($node->value);
+                $this->exchange($node, $name);
+                $this->addNamespacedString($name);
             }
         }
     }

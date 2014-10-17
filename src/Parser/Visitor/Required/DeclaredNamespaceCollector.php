@@ -31,6 +31,6 @@ class DeclaredNamespaceCollector extends AbstractNamespaceCollector
 {
     protected function bind(Node\Name $name)
     {
-        $this->getAdt()->setDeclaredNamespace($name);
+        $this->setDeclaredNamespace($name);
     }
 }
