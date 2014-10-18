@@ -118,7 +118,7 @@ Property         | Type      | Description
 Run this command line to create a dependecy graph:
 
 ```sh
-./vendor/bin/phpda ./myconfig.yml
+./vendor/bin/phpda /path/to/myconfig.yml
 ```
 
 After that open report file, which is declared as `target` in the configuration, with your prefered tool.
