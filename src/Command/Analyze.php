@@ -118,8 +118,7 @@ class Analyze extends Command
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
             if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
                 $progress->clear();
-                $output->write("\x0D");
-                $output->writeln($file->getPath());
+                $output->writeln("\x0D" . $file->getRealPath());
                 $progress->display();
 
             }
