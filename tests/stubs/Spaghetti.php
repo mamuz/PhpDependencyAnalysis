@@ -9,16 +9,6 @@ use PhpDA\Service\AnalyzerFactory;
 use PhpDA\Service\WriteAdapterFactory;
 use PhpDA\Writer\AdapterInterface;
 
-class MyClassCycle
-{
-    use AnalysisAwareTrait;
-
-    public function __construct()
-    {
-        $test = new MyClass();
-    }
-}
-
 class MyClass extends \SplObjectStorage implements B
 {
     use AnalysisAwareTrait;
@@ -29,10 +19,8 @@ class MyClass extends \SplObjectStorage implements B
     }
 }
 
-class MyClassExt extends \SplObjectStorage implements B
+class MyClassExt extends MyClass
 {
-    use AnalysisAwareTrait;
-
     private $bar = 0;
 
     const ANY = 234;
@@ -72,6 +60,21 @@ function myFunc(AdapterInterface $adapter)
 {
     global $post;
     $eol = PHP_EOL;
+}
+
+/**
+ * @param AdapterInterface $adapter
+ * @return void
+ */
+function myOtherFunc($adapter)
+{
+    $adapter->to('any');
+}
+
+function myOther2Func($adapter)
+{
+    /** @var AdapterInterface $adapter */
+    $adapter->to('any');
 }
 
 $str = 'foo';

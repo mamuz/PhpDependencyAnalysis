@@ -2,12 +2,13 @@
 
 ## dev-master
 
+- Add debug stats to verbosity level
+- Provide configFile options overwritable by input args
 - Add namespacedStrings awareness
 - Add unsupportedStmts awareness
 - Add AbstractDataType Traverser
 - Add CHANGELOG.md
 - Add visitor configuration feature
-- Add version helper
 - Add optional visitors
 - Add required visitors
 - Add examples

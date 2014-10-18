@@ -26,6 +26,7 @@
 namespace PhpDA\Service;
 
 use PhpDA\Command\Analyze;
+use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Writer\AdapterInterface;
@@ -54,7 +55,8 @@ class ApplicationFactory implements FactoryInterface
      */
     public function create()
     {
-        $app = new Application;
+        $app = new Application(Message::NAME, Message::VERSION);
+        $app->setDefaultCommand(Message::COMMAND);
         $app->add($this->createAnalyzeCommand());
 
         return $app;
@@ -65,8 +67,10 @@ class ApplicationFactory implements FactoryInterface
      */
     protected function createAnalyzeCommand()
     {
-        $command = new Analyze;
+        $command = new Analyze(Message::COMMAND);
 
+        $command->setHelp(Message::HELP);
+        $command->setDescription(Message::NAME . ' (' . Message::VERSION . ').');
         $command->setConfigParser($this->createConfigParser());
         $command->setFinder($this->createFinder());
         $command->setAnalyzer($this->createAnalyzer());

@@ -25,11 +25,13 @@
 
 namespace PhpDA\Command;
 
+use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Parser;
@@ -92,53 +94,51 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->setName("analyze")->setDescription("Analyze php dependencies");
-        $this->setHelp('Please visit https://github.com/mamuz/PhpDependencyAnalysis for detailed informations.');
-
-        $this->addArgument(
-            'config',
-            InputArgument::OPTIONAL,
-            'Path to yaml configuration file',
-            './phpda.yml'
-        );
+        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, './phpda.yml');
+        $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::OPTION_SOURCE);
+        $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::OPTION_FILE_PATTERN);
+        $this->addOption('ignore', 'i', InputOption::VALUE_OPTIONAL, Message::OPTION_IGNORE);
+        $this->addOption('formatter', 'f', InputOption::VALUE_OPTIONAL, Message::OPTION_FORMATTER);
+        $this->addOption('target', 't', InputOption::VALUE_OPTIONAL, Message::OPTION_TARGET);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $timeStart = microtime(true);
         $configFile = $input->getArgument('config');
-        $this->bindConfigFrom($configFile);
+        $this->bindConfigFrom($configFile, $input->getOptions());
 
-        $output->writeln('PhpDependencyAnalyse ' . $this->getVersion() . ' by Marco Muths.' . PHP_EOL);
-        $output->writeln('Configuration read from ' . realpath($configFile) . PHP_EOL);
+        $output->writeln($this->getDescription() . PHP_EOL);
+        $output->writeln(Message::READ_CONFIG_FROM . realpath($configFile) . PHP_EOL);
 
         $progress = $this->getHelper('progress');
         $progress->start($output, iterator_count($this->finder));
-
         foreach ($this->finder as $file) {
             /** \Symfony\Component\Finder\SplFileInfo[] $file */
             $this->analyzer->analyze($file);
             $progress->advance();
         }
-        $this->writeAnalysis();
-
         $progress->finish();
-        $output->writeln(PHP_EOL . 'Done' . PHP_EOL);
-    }
 
-    /**
-     * @return string
-     */
-    private function getVersion()
-    {
-        return trim(file_get_contents(__DIR__ . '/../../VERSION'));
+        $output->writeln(PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
+        $this->writeAnalysis();
+        $output->writeln(PHP_EOL . Message::DONE . PHP_EOL);
+
+        if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
+            $memoryUsage = memory_get_peak_usage(true) / 1024 / 1024 . ' Mb';
+            $timeDuration = (microtime(true) - $timeStart) / 60 . ' min';
+            $output->writeln(Message::MEMORY_USAGE . $memoryUsage);
+            $output->writeln(Message::TIME_DURATION . $timeDuration . PHP_EOL);
+        }
     }
 
     /**
      * @param string $configFile
+     * @param array  $options
      * @throws \InvalidArgumentException
      * @return void
      */
-    private function bindConfigFrom($configFile)
+    private function bindConfigFrom($configFile, array $options)
     {
         $config = $this->configParser->parse(file_get_contents($configFile));
 
@@ -146,7 +146,10 @@ class Analyze extends Command
             throw new \InvalidArgumentException('Configuration is invalid');
         }
 
-        $this->config = new Config($config);
+        if (isset($options['ignore'])) {
+            $options['ignore'] = explode(',', $options['ignore']);
+        }
+        $this->config = new Config(array_merge($config, array_filter($options)));
 
         $this->finder
             ->files()
