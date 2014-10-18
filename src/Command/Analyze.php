@@ -29,6 +29,7 @@ use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -104,32 +105,30 @@ class Analyze extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $timeStart = microtime(true);
         $configFile = $input->getArgument('config');
         $this->bindConfigFrom($configFile, $input->getOptions());
 
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . realpath($configFile) . PHP_EOL);
 
-        $progress = $this->getHelper('progress');
-        $progress->start($output, iterator_count($this->finder));
+        $progress = new ProgressBar($output, iterator_count($this->finder));
+        $progress->setFormat(Message::PROGRESS_DISPLAY);
+        $progress->start();
         foreach ($this->finder as $file) {
-            /** \Symfony\Component\Finder\SplFileInfo[] $file */
+            /** @var \Symfony\Component\Finder\SplFileInfo $file */
+            if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
+                $progress->clear();
+                $output->writeln($file->getPath());
+                $progress->display();
+            }
             $this->analyzer->analyze($file);
             $progress->advance();
         }
         $progress->finish();
 
-        $output->writeln(PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
+        $output->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
         $this->writeAnalysis();
         $output->writeln(PHP_EOL . Message::DONE . PHP_EOL);
-
-        if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
-            $memoryUsage = memory_get_peak_usage(true) / 1024 / 1024 . ' Mb';
-            $timeDuration = (microtime(true) - $timeStart) / 60 . ' min';
-            $output->writeln(Message::MEMORY_USAGE . $memoryUsage);
-            $output->writeln(Message::TIME_DURATION . $timeDuration . PHP_EOL);
-        }
     }
 
     /**

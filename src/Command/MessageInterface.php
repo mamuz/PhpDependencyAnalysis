@@ -28,9 +28,7 @@ interface MessageInterface
 
     const WRITE_GRAPH_TO = 'Write dependency graph to ';
 
-    const MEMORY_USAGE = '<comment>Memory Usage:</comment> ';
-
-    const TIME_DURATION = '<comment>Time Duration:</comment> ';
+    const PROGRESS_DISPLAY = '%current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% Memory: %memory:6s%';
 
     const DONE = 'Done.';
 }
