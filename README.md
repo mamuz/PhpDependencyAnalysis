@@ -90,12 +90,16 @@ Name             | Type              | Description
 FQN                                                  | Description
 ---------------------------------------------------- | ------------------------------------------
 *PhpDA\Parser\Visitor\SuperglobalCollector*          | Collects [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) to declare it as a dependency
-*PhpDA\Parser\Visitor\UnsupportedEvalCollector*      | Collects `eval` expressions to log it as unsupported
-*PhpDA\Parser\Visitor\UnsupportedFuncCollector*      | Collects dynamic function handler, such as `create_function` to log it as unsupported
-*PhpDA\Parser\Visitor\UnsupportedVarCollector*       | Collects dynamic variable declarations, such as `$$x` to log it as unsupported
-*PhpDA\Parser\Visitor\UnsupportedGlobalCollector*    | Collects `global $foo` expressions to log it as unsupported
-*PhpDA\Parser\Visitor\NamespacedStringCollector*     | Collects strings which looks like a namespace
-*PhpDA\Parser\Visitor\IocContainerAccessorCollector* | Collects accessor methods which looks like a object retrieval
+*PhpDA\Parser\Visitor\UnsupportedEvalCollector*      | Collects `eval` expressions to log it as `Unsupported`
+*PhpDA\Parser\Visitor\UnsupportedFuncCollector*      | Collects dynamic function handler, such as `create_function` to log it as `Unsupported`
+*PhpDA\Parser\Visitor\UnsupportedVarCollector*       | Collects dynamic variable declarations, such as `$$x` to log it as `Unsupported`
+*PhpDA\Parser\Visitor\UnsupportedGlobalCollector*    | Collects `global $foo` expressions to log it as `Unsupported`
+*PhpDA\Parser\Visitor\NamespacedStringCollector*     | Collects strings which looks like a namespace to log it as `NamespacedString`
+*PhpDA\Parser\Visitor\IocContainerAccessorCollector* | Collects accessor methods which looks like a object retrieval to log it as `NamespacedString`
+
+**NOTICE**
+ - Unsupported Collector adds a `§` as Namespace-Prefix to avoid conflicts.
+ - NamespacedStrings Collector adds a `?` as Namespace-Prefix to avoid conflicts.
 
 #### *visitorOptions* Config
 
