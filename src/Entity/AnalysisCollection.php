@@ -27,12 +27,16 @@ namespace PhpDA\Entity;
 
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
+use PhpParser\Error;
 use PhpParser\Node\Name;
 
 class AnalysisCollection
 {
     /** @var Graph */
     private $graph;
+
+    /** @var Error[] */
+    private $analysisFailures = array();
 
     /**
      * @param Graph $graph
@@ -51,14 +55,43 @@ class AnalysisCollection
     }
 
     /**
+     * @return bool
+     */
+    public function hasAnalysisFailures()
+    {
+        return !empty($this->analysisFailures);
+    }
+
+    /**
+     * @return Error[]
+     */
+    public function getAnalysisFailures()
+    {
+        return $this->analysisFailures;
+    }
+
+    /**
      * @param Analysis $analysis
      * @return void
      */
     public function attach(Analysis $analysis)
     {
-        foreach ($analysis->getAdts() as $adt) {
-            $this->attachAdt($adt);
+        if ($analysis->hasParseError()) {
+            $this->addAnalysisFailure($analysis);
+        } else {
+            foreach ($analysis->getAdts() as $adt) {
+                $this->attachAdt($adt);
+            }
         }
+    }
+
+    /**
+     * @param Analysis $analysis
+     * @return void
+     */
+    private function addAnalysisFailure(Analysis $analysis)
+    {
+        $this->analysisFailures[$analysis->getFile()->getRealPath()] = $analysis->getParseError();
     }
 
     /**

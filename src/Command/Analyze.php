@@ -131,6 +131,14 @@ class Analyze extends Command
         $output->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
         $this->writeAnalysis();
         $output->writeln(PHP_EOL . Message::DONE . PHP_EOL);
+
+        if ($this->analyzer->getAnalysisCollection()->hasAnalysisFailures()) {
+            $failures = $this->analyzer->getAnalysisCollection()->getAnalysisFailures();
+            $output->writeln(Message::PARSE_ERRORS);
+            foreach ($failures as $realpath => $error) {
+                $output->writeln($realpath . ': ' . $error->getMessage());
+            }
+        }
     }
 
     /**

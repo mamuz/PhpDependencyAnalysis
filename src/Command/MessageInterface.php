@@ -30,5 +30,7 @@ interface MessageInterface
 
     const PROGRESS_DISPLAY = '%current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% Memory: %memory:6s%';
 
+    const PARSE_ERRORS = '<error>Parse Errors:</error>';
+
     const DONE = 'Done.';
 }
