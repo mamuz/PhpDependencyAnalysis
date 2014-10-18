@@ -101,9 +101,9 @@ class AnalysisCollection
     private function attachAdt(Adt $adt)
     {
         $declaredNamespace = $this->createVertexBy($adt->getDeclaredNamespace());
-        $this->edgeDependencies($adt->getUsedNamespaces(), $declaredNamespace);
-        $this->edgeDependencies($adt->getUnsupportedStmts(), $declaredNamespace);
-        $this->edgeDependencies($adt->getNamespacedStrings(), $declaredNamespace);
+        $this->createEdgesFor($adt->getUsedNamespaces(), $declaredNamespace);
+        $this->createEdgesFor($adt->getUnsupportedStmts(), $declaredNamespace);
+        $this->createEdgesFor($adt->getNamespacedStrings(), $declaredNamespace);
     }
 
     /**
@@ -120,7 +120,7 @@ class AnalysisCollection
      * @param Vertex $root
      * @return void
      */
-    private function edgeDependencies(array $dependencies, Vertex $root)
+    private function createEdgesFor(array $dependencies, Vertex $root)
     {
         foreach ($dependencies as $edge) {
             $vertex = $this->createVertexBy($edge);
