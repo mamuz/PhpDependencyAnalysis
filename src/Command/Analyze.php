@@ -114,17 +114,18 @@ class Analyze extends Command
         $progress = new ProgressBar($output, iterator_count($this->finder));
         $progress->setFormat(Message::PROGRESS_DISPLAY);
         $progress->start();
+
         foreach ($this->finder as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
             if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
                 $progress->clear();
                 $output->writeln("\x0D" . $file->getRealPath());
                 $progress->display();
-
             }
             $this->analyzer->analyze($file);
             $progress->advance();
         }
+
         $progress->finish();
 
         $output->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
