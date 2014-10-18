@@ -71,6 +71,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements AdtAwareIn
      */
     protected function addUnsupportedStmt(Node\Name $name)
     {
+        $name->prepend('§');
         $this->getAdt()->addUnsupportedStmt($name);
     }
 
@@ -80,6 +81,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements AdtAwareIn
      */
     protected function addNamespacedString(Node\Name $name)
     {
+        $name->prepend('?');
         $this->getAdt()->addNamespacedString($name);
     }
 }
