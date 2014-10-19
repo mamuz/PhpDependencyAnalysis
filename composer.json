@@ -18,12 +18,13 @@
     "minimum-stability": "dev",
     "prefer-stable"    : true,
     "require"          : {
-        "php"             : ">=5.4",
-        "nikic/php-parser": "1.0.*",
-        "clue/graph"      : "0.7.*",
-        "symfony/yaml"    : "2.5.*",
-        "symfony/console" : "2.5.*",
-        "symfony/finder"  : "2.5.*"
+        "php"                              : ">=5.4",
+        "nikic/php-parser"                 : "1.0.*",
+        "clue/graph"                       : "0.7.*",
+        "phpdocumentor/reflection-docblock": "2.0.*",
+        "symfony/yaml"                     : "2.5.*",
+        "symfony/console"                  : "2.5.*",
+        "symfony/finder"                   : "2.5.*"
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "0.6.*",

@@ -25,54 +25,18 @@
 
 namespace PhpDA\Parser\Visitor;
 
-use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
+use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpParser\Node;
 
-class AnnotationCollector extends AbstractVisitor
+class TagCollector extends AbstractVisitor
 {
-    /** @var array */
-    private $ignoredTypes = array(
-        'void',
-        'null',
-        'bool',
-        'boolean',
-        'string',
-        'array',
-        'object',
-        'resource',
-        'integer',
-        'int',
-        'float',
-        'double',
-        'real',
-        'binary',
-        'callable',
-        '$this',
-        'this',
-        'self'
-    );
-
     public function leaveNode(Node $node)
     {
-        if ($doc = $node->getDocComment()) {
-            var_dump($doc->getText());
-            $docBlock = new DocBlock($doc->getText());
-            $tags = $docBlock->getTags();
-            foreach ($tags as $tag) {
-                if ($tag instanceof ReturnTag) {
-                    $types = $tag->getTypes();
-                    foreach ($types as $type) {
-                        if (strpos($type, '\\') === 0) {
-                            $type = rtrim($type, '[]');
-                            $type = trim($type, '\\');
-                            var_dump($type);
-                            $name = new Node\Name($type);
-                            $this->exchange($node, $name);
-                            $this->addUsedNamespace($name);
-                        }
-                    }
-                }
+        if ($node->hasAttribute(NameResolver::TAG_NAMES_ATTRIBUTE)) {
+            $tagNames = $node->getAttribute(NameResolver::TAG_NAMES_ATTRIBUTE);
+            foreach ($tagNames as $name) {
+                /** @var Node\Name $name */
+                $this->addUsedNamespace($name);
             }
         }
     }

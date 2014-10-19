@@ -4,6 +4,7 @@ ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
 target: './phpda.svg'
 visitor:
+  - PhpDA\Parser\Visitor\TagCollector
   - PhpDA\Parser\Visitor\SuperglobalCollector
   - PhpDA\Parser\Visitor\UnsupportedEvalCollector
   - PhpDA\Parser\Visitor\UnsupportedFuncCollector

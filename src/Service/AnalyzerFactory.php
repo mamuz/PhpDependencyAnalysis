@@ -31,10 +31,10 @@ use PhpDA\Parser\AdtTraverser;
 use PhpDA\Parser\Analyzer;
 use PhpDA\Parser\NodeTraverser;
 use PhpDA\Parser\Visitor\Required\AdtCollector;
+use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpParser\Lexer\Emulative;
-use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
 
 /**

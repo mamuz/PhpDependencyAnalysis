@@ -89,6 +89,7 @@ Name             | Type              | Description
 
 FQN                                                  | Description
 ---------------------------------------------------- | ------------------------------------------
+*PhpDA\Parser\Visitor\TagCollector*                  | Collects found namespaces in DocBlocks to declare it as a dependency
 *PhpDA\Parser\Visitor\SuperglobalCollector*          | Collects [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) to declare it as a dependency
 *PhpDA\Parser\Visitor\UnsupportedEvalCollector*      | Collects `eval` expressions to log it as `Unsupported`
 *PhpDA\Parser\Visitor\UnsupportedFuncCollector*      | Collects dynamic function handler, such as `create_function` to log it as `Unsupported`

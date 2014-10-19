@@ -2,12 +2,13 @@
 
 namespace PhpDaTest\Stub;
 
-use PhpDA\Service\WriteAdapterFactory;
 use PhpDA\Writer\AdapterInterface as B;
 
 /**
  * MyClass <please specify short description>
- * @var PhpDaTest\Stub
+ *
+ * @property PhpDaTest\Stub\FooBarProperty
+ * @method PhpDaTest\Stub\FooBarMethod
  */
 class MyClass
 {

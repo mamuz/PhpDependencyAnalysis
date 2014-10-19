@@ -25,20 +25,21 @@
 
 namespace PhpDA\Parser\Visitor\Required;
 
-use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
 use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 
 class NameResolver extends PhpParserNameResolver
 {
-    const ATTRIBUTE = 'tagNames';
+    const TAG_NAMES_ATTRIBUTE = '__tagNames';
 
     public function enterNode(Node $node)
     {
         parent::enterNode($node);
 
         if ($doc = $node->getDocComment()) {
+            $nodeAttributes = $node->getAttributes();
             $docBlock = new DocBlock($doc->getText());
             $tags = $docBlock->getTags();
             $tagNames = array();
@@ -49,12 +50,16 @@ class NameResolver extends PhpParserNameResolver
                         if (strpos($type, '\\') === 0) {
                             $type = rtrim($type, '[]');
                             $type = trim($type, '\\');
-                            $tagNames[] = $this->resolveClassName(new Node\Name($type));
+                            $tagName = $this->resolveClassName(new Node\Name($type));
+                            foreach ($nodeAttributes as $attr => $value) {
+                                $tagName->setAttribute($attr, $value);
+                            }
+                            $tagNames[] = $tagName;
                         }
                     }
                 }
             }
-            $node->setAttribute(self::ATTRIBUTE, $tagNames);
+            $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
         }
     }
 }

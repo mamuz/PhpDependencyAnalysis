@@ -2,6 +2,8 @@
 
 ## dev-master
 
+- Add TagCollector for PhpDocBlocks
+- Add phpdocumentor/reflection-docblock
 - Add ParseError list to output
 - Add debug stats to verbosity level
 - Provide configFile options overwritable by input args
