@@ -32,5 +32,7 @@ interface MessageInterface
 
     const PARSE_ERRORS = '<error>Parse Errors:</error>';
 
+    const NOTHING_TO_PARSE = '<error>No files found!</error>';
+
     const DONE = 'Done.';
 }

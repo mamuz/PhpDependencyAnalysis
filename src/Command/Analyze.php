@@ -111,7 +111,14 @@ class Analyze extends Command
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . realpath($configFile) . PHP_EOL);
 
-        $progress = new ProgressBar($output, iterator_count($this->finder));
+        $count = iterator_count($this->finder);
+
+        if ($count < 1) {
+            $output->writeln(Message::NOTHING_TO_PARSE . PHP_EOL);
+            return;
+        }
+
+        $progress = new ProgressBar($output, $count);
         $progress->setFormat(Message::PROGRESS_DISPLAY);
         $progress->start();
 
