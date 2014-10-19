@@ -8,6 +8,7 @@ use PhpDA\Writer\AdapterInterface as B;
  * MyClass <please specify short description>
  *
  * @property PhpDaTest\Stub\FooBarProperty
+ * @property PhpDaTest\Stub\FooBarProperty2
  * @method PhpDaTest\Stub\FooBarMethod
  */
 class MyClass

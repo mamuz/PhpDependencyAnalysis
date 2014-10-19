@@ -33,9 +33,10 @@ class TagCollector extends AbstractVisitor
     public function leaveNode(Node $node)
     {
         if ($node->hasAttribute(NameResolver::TAG_NAMES_ATTRIBUTE)) {
-            $tagNames = $node->getAttribute(NameResolver::TAG_NAMES_ATTRIBUTE);
-            foreach ($tagNames as $name) {
-                /** @var Node\Name $name */
+            $tags = $node->getAttribute(NameResolver::TAG_NAMES_ATTRIBUTE);
+            foreach ($tags['tagNames'] as $tagName) {
+                $name = new Node\Name($tagName);
+                $this->exchange($tags['node'], $name);
                 $this->addUsedNamespace($name);
             }
         }

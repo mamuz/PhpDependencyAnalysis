@@ -29,16 +29,16 @@ use PhpParser\Node;
 
 class Adt
 {
-    /** @var Node/Name */
+    /** @var Node\Name */
     private $declaredNamespace;
 
-    /** @var Node/Name[] */
+    /** @var Node\Name[] */
     private $usedNamespaces = array();
 
-    /** @var Node/Name[] */
+    /** @var Node\Name[] */
     private $unsupportedStmts = array();
 
-    /** @var Node/Name[] */
+    /** @var Node\Name[] */
     private $namespacedStrings = array();
 
     public function __construct()
@@ -97,7 +97,7 @@ class Adt
     }
 
     /**
-     * @return Node/Name[]
+     * @return Node\Name[]
      */
     public function getUnsupportedStmts()
     {
@@ -114,7 +114,7 @@ class Adt
     }
 
     /**
-     * @return Node/Name[]
+     * @return Node\Name[]
      */
     public function getNamespacedStrings()
     {

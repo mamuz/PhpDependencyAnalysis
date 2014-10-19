@@ -54,12 +54,18 @@ class NameResolver extends PhpParserNameResolver
                             foreach ($nodeAttributes as $attr => $value) {
                                 $tagName->setAttribute($attr, $value);
                             }
-                            $tagNames[] = $tagName;
+                            $tagNames[] = $tagName->toString();
                         }
                     }
                 }
             }
-            $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+            $node->setAttribute(
+                self::TAG_NAMES_ATTRIBUTE,
+                array(
+                    'tagNames' => $tagNames,
+                    'node'     => $node,
+                )
+            );
         }
     }
 }
