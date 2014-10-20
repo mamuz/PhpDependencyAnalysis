@@ -23,18 +23,30 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor\Required;
+namespace PhpDA\Parser\Filter;
 
-use PhpDA\Parser\Visitor\AbstractVisitor;
-use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
-use PhpParser\Node;
-
-class UsedNamespaceCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
+trait NodeNameFilterAwareTrait
 {
-    public function leaveNode(Node $node)
+    /** @var NodeNameFilterInterface */
+    private $nodeNameFilter;
+
+    /**
+     * @param NodeNameFilterInterface $nodeNameFilter
+     */
+    public function setNodeNameFilter(NodeNameFilterInterface $nodeNameFilter)
     {
-        if ($node instanceof Node\Name) {
-            $this->collect($node);
+        $this->nodeNameFilter = $nodeNameFilter;
+    }
+
+    /**
+     * @return NodeNameFilterInterface
+     */
+    public function getNodeNameFilter()
+    {
+        if (!$this->nodeNameFilter instanceof NodeNameFilterInterface) {
+            $this->setNodeNameFilter(new NodeNameFilter);
         }
+
+        return $this->nodeNameFilter;
     }
 }

@@ -25,16 +25,16 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class UnsupportedEvalCollector extends AbstractVisitor
+class UnsupportedEvalCollector extends AbstractVisitor implements UnsupportedNamespaceCollectorInterface
 {
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Expr\Eval_) {
             $name = new Node\Name('eval');
-            $this->exchange($node, $name);
-            $this->addUnsupportedStmt($name);
+            $this->collect($name, $node);
         }
     }
 }

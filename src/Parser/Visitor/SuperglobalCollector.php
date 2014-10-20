@@ -25,9 +25,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class SuperglobalCollector extends AbstractVisitor
+class SuperglobalCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
     /** @var array */
     private $vars = array(
@@ -49,8 +50,7 @@ class SuperglobalCollector extends AbstractVisitor
                 /** @var string $varname */
                 $varname = $node->name;
                 $name = new Node\Name($varname);
-                $this->exchange($node, $name);
-                $this->addUsedNamespace($name);
+                $this->collect($name, $node);
             }
         }
     }

@@ -25,12 +25,16 @@
 
 namespace PhpDA\Parser\Visitor\Required;
 
+use PhpDA\Parser\Visitor\AbstractVisitor;
+use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class DeclaredNamespaceCollector extends AbstractNamespaceCollector
+class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredNamespaceCollectorInterface
 {
-    protected function bind(Node\Name $name)
+    public function leaveNode(Node $node)
     {
-        $this->setDeclaredNamespace($name);
+        if ($node instanceof Node\Name) {
+            $this->collect($node);
+        }
     }
 }

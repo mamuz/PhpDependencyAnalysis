@@ -124,8 +124,8 @@ class AnalysisCollection
     {
         foreach ($dependencies as $edge) {
             $vertex = $this->createVertexBy($edge);
-            if (!$vertex->hasEdgeTo($root)) {
-                $vertex->createEdgeTo($root);
+            if (!$root->hasEdgeTo($vertex)) {
+                $root->createEdgeTo($vertex);
             }
         }
     }

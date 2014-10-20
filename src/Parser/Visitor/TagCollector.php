@@ -25,10 +25,11 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
 use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpParser\Node;
 
-class TagCollector extends AbstractVisitor
+class TagCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
     public function leaveNode(Node $node)
     {
@@ -36,8 +37,7 @@ class TagCollector extends AbstractVisitor
             $tags = $node->getAttribute(NameResolver::TAG_NAMES_ATTRIBUTE);
             foreach ($tags['tagNames'] as $tagName) {
                 $name = new Node\Name($tagName);
-                $this->exchange($tags['node'], $name);
-                $this->addUsedNamespace($name);
+                $this->collect($name, $tags['node']);
             }
         }
     }

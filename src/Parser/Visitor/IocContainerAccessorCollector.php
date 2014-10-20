@@ -25,23 +25,22 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface;
 use PhpParser\Node;
 
-class IocContainerAccessorCollector extends AbstractVisitor
+class IocContainerAccessorCollector extends AbstractVisitor implements NamespacedStringCollectorInterface
 {
     public function leaveNode(Node $node)
     {
-        if ($node instanceof Node\Expr\MethodCall) {
-            if ($node->name === 'get' && count($node->args) > 0) {
-                /** @var Node\Arg $arg */
-                $arg = array_shift($node->args);
-                if ($arg->value instanceof Node\Expr\Variable
-                    && is_string($arg->value->name)
-                ) {
-                    $name = new Node\Name($arg->value->name);
-                    $this->exchange($node, $name);
-                    $this->addNamespacedString($name);
-                }
+        if ($node instanceof Node\Expr\MethodCall
+            && $node->name === 'get'
+            && count($node->args) > 0
+        ) {
+            /** @var Node\Arg $arg */
+            $arg = array_shift($node->args);
+            if ($arg->value instanceof Node\Expr\Variable && is_string($arg->value->name)) {
+                $name = new Node\Name($arg->value->name);
+                $this->collect($name, $node);
             }
         }
     }

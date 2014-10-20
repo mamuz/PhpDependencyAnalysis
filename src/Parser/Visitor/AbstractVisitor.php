@@ -27,61 +27,139 @@ namespace PhpDA\Parser\Visitor;
 
 use PhpDA\Entity\AdtAwareInterface;
 use PhpDA\Entity\AdtAwareTrait;
+use PhpDA\Parser\Filter\NodeNameFilterAwareTrait;
+use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
+use PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface;
+use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
+use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
+use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
-abstract class AbstractVisitor extends NodeVisitorAbstract implements AdtAwareInterface
+abstract class AbstractVisitor extends NodeVisitorAbstract implements
+    AdtAwareInterface,
+    ConfigurableInterface
 {
     use AdtAwareTrait;
+    use NodeNameFilterAwareTrait;
+
+    public function setOptions(array $options)
+    {
+        $this->getNodeNameFilter()->setOptions($options);
+    }
 
     /**
-     * @param Node      $node
      * @param Node\Name $name
+     * @param Node|null $node
      * @return void
      */
-    protected function exchange(Node $node, Node\Name $name)
+    private function exchange(Node\Name $name, Node $node = null)
     {
-        $attributes = $node->getAttributes();
-        foreach ($attributes as $attr => $value) {
-            $name->setAttribute($attr, $value);
+        if ($node) {
+            $attributes = $node->getAttributes();
+            foreach ($attributes as $attr => $value) {
+                $name->setAttribute($attr, $value);
+            }
         }
     }
 
     /**
      * @param Node\Name $name
+     * @return null|Node\Name
+     */
+    private function filter(Node\Name $name)
+    {
+        return $this->getNodeNameFilter()->filter($name);
+    }
+
+    /**
+     * @param Node\Name $name
+     * @param Node|null $node
      * @return void
      */
-    protected function setDeclaredNamespace(Node\Name $name)
+    protected function collect(Node\Name $name, Node $node = null)
     {
-        $this->getAdt()->setDeclaredNamespace($name);
+        if ($name = $this->filter($name)) {
+            $this->exchange($name, $node);
+            $this->modify($name);
+            $adtMutator = $this->getAdtMutator();
+            $this->getAdt()->$adtMutator($name);
+        }
+    }
+
+    /**
+     * @throws \RuntimeException
+     * @return string
+     */
+    private function getAdtMutator()
+    {
+        if ($this->isDeclaredNamespaceCollector()) {
+            return 'setDeclaredNamespace';
+        }
+
+        if ($this->isUsedNamespaceCollector()) {
+            return 'addUsedNamespace';
+        }
+
+        if ($this->isUnsupportedNamespaceCollector()) {
+            return 'addUnsupportedStmt';
+        }
+
+        if ($this->isNamespacedStringCollector()) {
+            return 'addNamespacedString';
+        }
+
+        throw new \RuntimeException('Visitor ' . get_class($this) . ' has wrong interface');
+    }
+
+    /**
+     * @return bool
+     */
+    private function isDeclaredNamespaceCollector()
+    {
+        return $this instanceof DeclaredNamespaceCollectorInterface;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isUsedNamespaceCollector()
+    {
+        return $this instanceof UsedNamespaceCollectorInterface;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isUnsupportedNamespaceCollector()
+    {
+        return $this instanceof UnsupportedNamespaceCollectorInterface;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isNamespacedStringCollector()
+    {
+        return $this instanceof NamespacedStringCollectorInterface;
     }
 
     /**
      * @param Node\Name $name
      * @return void
      */
-    protected function addUsedNamespace(Node\Name $name)
+    private function modify(Node\Name $name)
     {
-        $this->getAdt()->addUsedNamespace($name);
-    }
+        if ($this->isUnsupportedNamespaceCollector()) {
+            $prefix = '?';
+        }
 
-    /**
-     * @param Node\Name $name
-     * @return void
-     */
-    protected function addUnsupportedStmt(Node\Name $name)
-    {
-        $name->prepend('§');
-        $this->getAdt()->addUnsupportedStmt($name);
-    }
+        if ($this->isNamespacedStringCollector()) {
+            $prefix = '§';
+        }
 
-    /**
-     * @param Node\Name $name
-     * @return void
-     */
-    protected function addNamespacedString(Node\Name $name)
-    {
-        $name->prepend('?');
-        $this->getAdt()->addNamespacedString($name);
+        if (isset($prefix)) {
+            $name->prepend($prefix);
+        }
     }
 }

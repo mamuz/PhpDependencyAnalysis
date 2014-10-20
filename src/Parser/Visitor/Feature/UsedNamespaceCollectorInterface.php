@@ -23,18 +23,8 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor\Required;
+namespace PhpDA\Parser\Visitor\Feature;
 
-use PhpDA\Parser\Visitor\AbstractVisitor;
-use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
-use PhpParser\Node;
-
-class UsedNamespaceCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
+interface UsedNamespaceCollectorInterface
 {
-    public function leaveNode(Node $node)
-    {
-        if ($node instanceof Node\Name) {
-            $this->collect($node);
-        }
-    }
 }

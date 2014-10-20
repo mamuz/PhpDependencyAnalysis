@@ -25,10 +25,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
-use PhpDA\Plugin\ConfigurableInterface;
+use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class UnsupportedFuncCollector extends AbstractVisitor implements ConfigurableInterface
+class UnsupportedFuncCollector extends AbstractVisitor implements UnsupportedNamespaceCollectorInterface
 {
     /** @var array */
     private $unsupportedFuncs = array(
@@ -41,21 +41,13 @@ class UnsupportedFuncCollector extends AbstractVisitor implements ConfigurableIn
         'create_function',
     );
 
-    public function setOptions(array $options)
-    {
-        if (isset($options['unsupportedFuncs'])) {
-            $this->unsupportedFuncs = (array) $options['unsupportedFuncs'];
-        }
-    }
-
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Expr\FuncCall) {
             if ($this->unsupports($node)) {
                 /** @var Node\Name $name */
                 $name = $node->name;
-                $this->exchange($node, $name);
-                $this->addUnsupportedStmt($name);
+                $this->collect($name, $node);
             }
         }
     }

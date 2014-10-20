@@ -25,16 +25,16 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class UnsupportedGlobalCollector extends AbstractVisitor
+class UnsupportedGlobalCollector extends AbstractVisitor implements UnsupportedNamespaceCollectorInterface
 {
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Stmt\Global_) {
             $name = new Node\Name('global');
-            $this->exchange($node, $name);
-            $this->addUnsupportedStmt($name);
+            $this->collect($name, $node);
         }
     }
 }

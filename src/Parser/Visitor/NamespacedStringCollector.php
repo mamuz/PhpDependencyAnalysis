@@ -25,9 +25,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface;
 use PhpParser\Node;
 
-class NamespacedStringCollector extends AbstractVisitor
+class NamespacedStringCollector extends AbstractVisitor implements NamespacedStringCollectorInterface
 {
     const VALID_CLASSNAME_PATTERN = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
 
@@ -36,8 +37,7 @@ class NamespacedStringCollector extends AbstractVisitor
         if ($node instanceof Node\Scalar\String) {
             if ($this->match($node)) {
                 $name = new Node\Name($node->value);
-                $this->exchange($node, $name);
-                $this->addNamespacedString($name);
+                $this->collect($name, $node);
             }
         }
     }

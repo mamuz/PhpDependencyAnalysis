@@ -47,4 +47,22 @@ class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setAdt($adt);
         $this->assertSame($adt, $this->fixture->getAdt());
     }
+
+    public function testAccessNodeNameFilter()
+    {
+        $this->assertInstanceOf(
+            'PhpDA\Parser\Filter\NodeNameFilterInterface',
+            $this->fixture->getNodeNameFilter()
+        );
+    }
+
+    public function testDelegatingOptionsToNodeNameFilter()
+    {
+        $options = array('foo');
+        $filter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameFilterInterface');
+        $filter->shouldReceive('setOptions')->once()->with($options);
+        $this->fixture->setNodeNameFilter($filter);
+
+        $this->fixture->setOptions($options);
+    }
 }

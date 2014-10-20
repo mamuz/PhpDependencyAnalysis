@@ -87,18 +87,18 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->graph->shouldReceive('createVertex')->with('stringName1', true)->andReturn($stringName1Vertex);
         $this->graph->shouldReceive('createVertex')->with('stringName2', true)->andReturn($stringName2Vertex);
 
-        $usedName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
-        $usedName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
-        $usedName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(true);
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedName1Vertex)->andReturn(false);
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($usedName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedName2Vertex)->andReturn(true);
 
-        $unsupportedName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
-        $unsupportedName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
-        $unsupportedName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(true);
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($unsupportedName1Vertex)->andReturn(false);
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($unsupportedName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($unsupportedName2Vertex)->andReturn(true);
 
-        $stringName1Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
-        $stringName1Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
-        $stringName2Vertex->shouldReceive('hasEdgeTo')->with($declaredNameVertex)->andReturn(false);
-        $stringName2Vertex->shouldReceive('createEdgeTo')->with($declaredNameVertex)->once();
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($stringName1Vertex)->andReturn(false);
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->with($stringName2Vertex)->andReturn(false);
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName2Vertex)->once();
 
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));

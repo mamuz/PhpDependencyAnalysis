@@ -23,14 +23,15 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor\Required;
+namespace PhpDA\Parser\Filter;
 
-use PhpDA\Parser\Visitor\AbstractVisitor;
-use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 
-abstract class AbstractNamespaceCollector extends AbstractVisitor implements ConfigurableInterface
+class NodeNameFilter implements NodeNameFilterInterface
 {
+    /** @var array */
+    private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');
+
     /** @var int|null */
     private $sliceOffset;
 
@@ -62,21 +63,33 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
         }
     }
 
-    public function leaveNode(Node $node)
+    public function filter(Node\Name $name)
     {
-        if ($node instanceof Node\Name) {
-            if (!$this->ignores($node)) {
-                $node = $this->filter($node);
-                $this->bind($node);
-            }
+        if ($this->ignores($name)) {
+            return null;
         }
+
+        if ($this->excludes($name)) {
+            return null;
+        }
+
+        return $this->slice($name);
     }
 
     /**
      * @param Node\Name $name
      * @return bool
      */
-    protected function ignores(Node\Name $name)
+    private function ignores(Node\Name $name)
+    {
+        return in_array(strtolower($name->toString()), $this->ignoredNamespaces);
+    }
+
+    /**
+     * @param Node\Name $name
+     * @return bool
+     */
+    private function excludes(Node\Name $name)
     {
         $isIgnored = false;
 
@@ -95,7 +108,7 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
      * @param Node\Name $name
      * @return Node\Name
      */
-    protected function filter(Node\Name $name)
+    private function slice(Node\Name $name)
     {
         if (is_null($this->sliceOffset) && is_null($this->sliceLength)) {
             return $name;
@@ -109,10 +122,4 @@ abstract class AbstractNamespaceCollector extends AbstractVisitor implements Con
 
         return new Node\Name($parts);
     }
-
-    /**
-     * @param Node\Name $name
-     * @return void
-     */
-    abstract protected function bind(Node\Name $name);
 }
