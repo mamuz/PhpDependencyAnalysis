@@ -39,7 +39,6 @@ class NameResolver extends PhpParserNameResolver
         parent::enterNode($node);
 
         if ($doc = $node->getDocComment()) {
-            $nodeAttributes = $node->getAttributes();
             $docBlock = new DocBlock($doc->getText());
             $tags = $docBlock->getTags();
             $tagNames = array();
@@ -49,10 +48,9 @@ class NameResolver extends PhpParserNameResolver
                     foreach ($types as $type) {
                         if (strpos($type, '\\') === 0) {
                             $type = rtrim($type, '[]');
-                            $type = trim($type, '\\');
-                            $tagName = $this->resolveClassName(new Node\Name($type));
-                            foreach ($nodeAttributes as $attr => $value) {
-                                $tagName->setAttribute($attr, $value);
+                            $tagName = new Node\Name(trim($type, '\\'));
+                            if (strpos($tag->getContent(), $type) === false) {
+                                $tagName = $this->resolveClassName($tagName);
                             }
                             $tagNames[] = $tagName->toString();
                         }
