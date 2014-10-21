@@ -27,14 +27,25 @@ namespace PhpDA\Parser\Visitor\Required;
 
 use PhpDA\Parser\Visitor\AbstractVisitor;
 use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
+use PhpParser\Error;
 use PhpParser\Node;
 
 class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredNamespaceCollectorInterface
 {
     public function leaveNode(Node $node)
     {
-        if ($node instanceof Node\Name) {
-            $this->collect($node);
+        if ($node instanceof Node\Stmt\Class_
+            || $node instanceof Node\Stmt\Trait_
+            || $node instanceof Node\Stmt\Interface_
+        ) {
+            /** @var Node\Stmt $node */
+            if ($node->getIterator()->offsetExists('namespacedName')) {
+                if ($this->getAdt()->hasDeclaredNamespace()) {
+                    throw new Error('DeclaredNamespace is already defined');
+                }
+                $namespacedName = $node->getIterator()->offsetGet('namespacedName');
+                $this->collect(new Node\Name($namespacedName), $node);
+            }
         }
     }
 }

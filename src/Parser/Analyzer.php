@@ -75,9 +75,9 @@ class Analyzer implements AnalyzerInterface
         try {
             $stmts = $this->parser->parse($file->getContents());
             $adtStmts = $this->adtTraverser->getAdtStmtsBy($stmts);
-            foreach ($adtStmts as $nodes) {
+            foreach ($adtStmts as $node) {
                 $this->nodeTraverser->setAdt($analysis->createAdt());
-                $this->nodeTraverser->traverse((array) $nodes);
+                $this->nodeTraverser->traverse(array($node));
             }
         } catch (Error $error) {
             $analysis->setParseError($error);

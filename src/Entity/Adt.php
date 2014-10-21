@@ -64,6 +64,14 @@ class Adt
     }
 
     /**
+     * @return bool
+     */
+    public function hasDeclaredNamespace()
+    {
+        return $this->declaredNamespace->toString() !== '\\';
+    }
+
+    /**
      * @param Node\Name $usedNamespace
      */
     public function addUsedNamespace(Node\Name $usedNamespace)
