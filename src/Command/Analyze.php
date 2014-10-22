@@ -120,6 +120,9 @@ class Analyze extends Command
 
         $progress = new ProgressBar($output, $count);
         $progress->setFormat(Message::PROGRESS_DISPLAY);
+        if ($count > 5000) {
+            $progress->setRedrawFrequency(100);
+        }
         $progress->start();
 
         foreach ($this->finder as $file) {
