@@ -7,6 +7,7 @@ use PhpDA\Writer\AdapterInterface as B;
 /**
  * MyClass <please specify short description>
  *
+ * @Route("/")
  * @property PhpDaTest\Stub\FooBarProperty
  * @property PhpDaTest\Stub\FooBarProperty2
  * @method PhpDaTest\Stub\FooBarMethod
@@ -23,6 +24,9 @@ class MyClass
     }
 
     /**
+     * @deprecated
+     * @Entity
+     * @Param $uppercased
      * @param $adapter
      * @return INTeger|$this
      */

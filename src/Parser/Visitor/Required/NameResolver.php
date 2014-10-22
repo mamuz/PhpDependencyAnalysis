@@ -57,13 +57,15 @@ class NameResolver extends PhpParserNameResolver
                     }
                 }
             }
-            $node->setAttribute(
-                self::TAG_NAMES_ATTRIBUTE,
-                array(
-                    'tagNames' => $tagNames,
-                    'node'     => $node,
-                )
-            );
+            if ($tagNames) {
+                $node->setAttribute(
+                    self::TAG_NAMES_ATTRIBUTE,
+                    array(
+                        'tagNames' => $tagNames,
+                        'node'     => $node,
+                    )
+                );
+            }
         }
     }
 }
