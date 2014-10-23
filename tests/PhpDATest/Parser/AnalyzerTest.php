@@ -78,12 +78,13 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
 
     public function testAnalyzeWithParseError()
     {
+        $testcase = $this;
         $this->parser->shouldReceive('parse')->once()->with('foo')->andThrow('PhpParser\Error');
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($analysis) {
-                $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+            function ($analysis) use ($testcase) {
+                $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
                 /** @var \PhpDA\Entity\Analysis $analysis */
-                $this->assertTrue($analysis->hasParseError());
+                $testcase->assertTrue($analysis->hasParseError());
             }
         );
 
@@ -93,22 +94,23 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
 
     public function testAnalyze()
     {
+        $testcase = $this;
         $stmts = array('foo', 'bar');
         $adts = array('baz', 'faz');
         $this->parser->shouldReceive('parse')->once()->with('foo')->andReturn($stmts);
         $this->adtTraverser->shouldReceive('getAdtStmtsBy')->once()->with($stmts)->andReturn($adts);
         $this->nodeTraverser->shouldReceive('setAdt')->twice()->andReturnUsing(
-            function ($adt) {
-                $this->assertInstanceOf('PhpDA\Entity\Adt', $adt);
+            function ($adt) use ($testcase) {
+                $testcase->assertInstanceOf('PhpDA\Entity\Adt', $adt);
             }
         );
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('baz'));
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('faz'));
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($analysis) {
-                $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+            function ($analysis) use ($testcase) {
+                $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
                 /** @var \PhpDA\Entity\Analysis $analysis */
-                $this->assertFalse($analysis->hasParseError());
+                $testcase->assertFalse($analysis->hasParseError());
             }
         );
 

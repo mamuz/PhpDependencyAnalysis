@@ -41,9 +41,9 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->graphViz = \Mockery::mock('Fhaculty\Graph\GraphViz');
-        $callback = function (Graph $graph) {
-            return $this->graphViz;
+        $mock = $this->graphViz = \Mockery::mock('Fhaculty\Graph\GraphViz');
+        $callback = function (Graph $graph) use ($mock) {
+            return $mock;
         };
         $this->fixture = new Html;
         $this->fixture->setGraphCreationCallback($callback);
