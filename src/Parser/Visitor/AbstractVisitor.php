@@ -25,9 +25,10 @@
 
 namespace PhpDA\Parser\Visitor;
 
+use PhpDA\Entity\Adt;
 use PhpDA\Entity\AdtAwareInterface;
-use PhpDA\Entity\AdtAwareTrait;
-use PhpDA\Parser\Filter\NodeNameFilterAwareTrait;
+use PhpDA\Parser\Filter\NodeNameFilter;
+use PhpDA\Parser\Filter\NodeNameFilterInterface;
 use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
 use PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface;
 use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
@@ -36,16 +37,63 @@ use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
+/**
+ * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ */
 abstract class AbstractVisitor extends NodeVisitorAbstract implements
     AdtAwareInterface,
     ConfigurableInterface
 {
-    use AdtAwareTrait;
-    use NodeNameFilterAwareTrait;
+    /** @var Adt */
+    private $adt;
+
+    /** @var NodeNameFilterInterface */
+    private $nodeNameFilter;
 
     public function setOptions(array $options)
     {
         $this->getNodeNameFilter()->setOptions($options);
+    }
+
+    /**
+     * @param Adt $adt
+     */
+    public function setAdt(Adt $adt)
+    {
+        $this->adt = $adt;
+    }
+
+    /**
+     * @return Adt
+     * @throws \DomainException
+     */
+    public function getAdt()
+    {
+        if (!$this->adt instanceof Adt) {
+            throw new \DomainException('Adt has not been set');
+        }
+
+        return $this->adt;
+    }
+
+    /**
+     * @param NodeNameFilterInterface $nodeNameFilter
+     */
+    public function setNodeNameFilter(NodeNameFilterInterface $nodeNameFilter)
+    {
+        $this->nodeNameFilter = $nodeNameFilter;
+    }
+
+    /**
+     * @return NodeNameFilterInterface
+     */
+    public function getNodeNameFilter()
+    {
+        if (!$this->nodeNameFilter instanceof NodeNameFilterInterface) {
+            $this->setNodeNameFilter(new NodeNameFilter);
+        }
+
+        return $this->nodeNameFilter;
     }
 
     /**

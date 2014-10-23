@@ -25,14 +25,15 @@
 
 namespace PhpDA\Parser;
 
+use PhpDA\Entity\Adt;
 use PhpDA\Entity\AdtAwareInterface;
-use PhpDA\Entity\AdtAwareTrait;
 use PhpDA\Plugin\LoaderInterface;
 use PhpParser\NodeVisitor;
 
 class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterface
 {
-    use AdtAwareTrait;
+    /** @var Adt|null */
+    private $adt;
 
     /** @var array */
     private $requiredVisitors = array(
@@ -42,6 +43,30 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
 
     /** @var LoaderInterface */
     private $visitorLoader;
+
+    /**
+     * @param Adt $adt
+     */
+    public function setAdt(Adt $adt)
+    {
+        $this->adt = $adt;
+    }
+
+    /**
+     * @return Adt|null
+     */
+    public function getAdt()
+    {
+        return $this->adt;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAdt()
+    {
+        return $this->adt instanceof Adt;
+    }
 
     /**
      * @param LoaderInterface $visitorLoader
@@ -131,9 +156,11 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
 
     public function traverse(array $nodes)
     {
-        foreach ($this->visitors as $visitor) {
-            if ($visitor instanceof AdtAwareInterface) {
-                $visitor->setAdt($this->getAdt());
+        if ($this->hasAdt()) {
+            foreach ($this->visitors as $visitor) {
+                if ($visitor instanceof AdtAwareInterface) {
+                    $visitor->setAdt($this->getAdt());
+                }
             }
         }
 

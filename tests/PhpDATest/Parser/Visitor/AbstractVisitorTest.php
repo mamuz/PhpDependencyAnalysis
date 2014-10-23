@@ -42,10 +42,15 @@ class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessAdt()
     {
-        $this->assertNull($this->fixture->getAdt());
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->fixture->setAdt($adt);
         $this->assertSame($adt, $this->fixture->getAdt());
+    }
+
+    public function testNullPointerExceptionOnAdtAccess()
+    {
+        $this->setExpectedException('DomainException');
+        $this->fixture->getAdt();
     }
 
     public function testAccessNodeNameFilter()
