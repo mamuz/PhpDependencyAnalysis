@@ -118,12 +118,14 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
     public function testMutateAndAccessAdt()
     {
         $this->assertNull($this->fixture->getAdt());
+        $this->assertFalse($this->fixture->hasAdt());
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->fixture->setAdt($adt);
+        $this->assertTrue($this->fixture->hasAdt());
         $this->assertSame($adt, $this->fixture->getAdt());
     }
 
-    public function testTraversing()
+    public function testTraversingWithAdtAwareness()
     {
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->fixture->setAdt($adt);
@@ -131,6 +133,22 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
         $visitors = array('foo');
         $visitor = \Mockery::mock('PhpDA\Parser\Visitor\AbstractVisitor');
         $visitor->shouldReceive('setAdt')->once()->with($adt);
+        $this->visitorLoader->shouldReceive('get')->with('foo', null)->andReturn($visitor);
+        $this->fixture->setVisitorLoader($this->visitorLoader);
+        $this->fixture->bindVisitors($visitors);
+
+        $this->visitor->shouldIgnoreMissing();
+        $visitor->shouldIgnoreMissing();
+
+        $nodes = array('foo', 'bar');
+
+        $this->assertSame($nodes, $this->fixture->traverse($nodes));
+    }
+
+    public function testTraversingWithoutAdtAwareness()
+    {
+        $visitors = array('foo');
+        $visitor = \Mockery::mock('PhpDA\Parser\Visitor\AbstractVisitor');
         $this->visitorLoader->shouldReceive('get')->with('foo', null)->andReturn($visitor);
         $this->fixture->setVisitorLoader($this->visitorLoader);
         $this->fixture->bindVisitors($visitors);
