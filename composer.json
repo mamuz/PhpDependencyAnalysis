@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "prefer-stable"    : true,
     "require"          : {
-        "php": ">=5.3",
+        "php": ">=5.3.3",
         "nikic/php-parser"                 : "1.0.*",
         "clue/graph"                       : "0.7.*",
         "phpdocumentor/reflection-docblock": "2.0.*",
