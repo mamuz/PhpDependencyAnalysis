@@ -23,16 +23,29 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Filter;
+namespace PhpDATest\Parser\Visitor\Required;
 
-use PhpDA\Plugin\ConfigurableInterface;
-use PhpParser\Node;
+use PhpDA\Parser\Visitor\Required\NameResolver;
 
-interface NodeNameFilterInterface extends ConfigurableInterface
+class NameResolverTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @param Node\Name $name
-     * @return Node\Name|null
-     */
-    public function filter(Node\Name $name);
+    /** @var NameResolver */
+    protected $fixture;
+
+    protected function setUp()
+    {
+        $this->fixture = new NameResolver;
+    }
+
+    public function testExtendingPhpParserNameResolver()
+    {
+        $this->assertInstanceOf('PhpParser\NodeVisitor\NameResolver', $this->fixture);
+    }
+
+    public function testResolving()
+    {
+        $node = \Mockery::mock('PhpParser\Node');
+
+        $this->fixture->enterNode($node->shouldIgnoreMissing());
+    }
 }

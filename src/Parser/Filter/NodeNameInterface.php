@@ -23,30 +23,16 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Parser\Visitor\Required;
+namespace PhpDA\Parser\Filter;
 
-use PhpDA\Parser\Visitor\AbstractVisitor;
-use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
-use PhpParser\Error;
+use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 
-class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredNamespaceCollectorInterface
+interface NodeNameInterface extends ConfigurableInterface
 {
-    public function leaveNode(Node $node)
-    {
-        if ($node instanceof Node\Stmt\Class_
-            || $node instanceof Node\Stmt\Trait_
-            || $node instanceof Node\Stmt\Interface_
-        ) {
-            /** @var Node\Stmt $node */
-            $subNodes = $node->getIterator();
-            if ($subNodes->offsetExists('namespacedName')) {
-                if ($this->getAdt()->hasDeclaredNamespace()) {
-                    throw new Error('DeclaredNamespace is already defined');
-                }
-                $namespacedName = $subNodes->offsetGet('namespacedName');
-                $this->collect(new Node\Name($namespacedName), $node);
-            }
-        }
-    }
+    /**
+     * @param Node\Name $name
+     * @return Node\Name|null
+     */
+    public function filter(Node\Name $name);
 }

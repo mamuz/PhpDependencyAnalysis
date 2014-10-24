@@ -27,7 +27,7 @@ namespace PhpDA\Parser\Filter;
 
 use PhpParser\Node;
 
-class NodeNameFilter implements NodeNameFilterInterface
+class NodeName implements NodeNameInterface
 {
     /** @var array */
     private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');

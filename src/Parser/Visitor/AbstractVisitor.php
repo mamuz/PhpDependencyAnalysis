@@ -27,12 +27,8 @@ namespace PhpDA\Parser\Visitor;
 
 use PhpDA\Entity\Adt;
 use PhpDA\Entity\AdtAwareInterface;
-use PhpDA\Parser\Filter\NodeNameFilter;
-use PhpDA\Parser\Filter\NodeNameFilterInterface;
-use PhpDA\Parser\Visitor\Feature\DeclaredNamespaceCollectorInterface;
-use PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface;
-use PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface;
-use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
+use PhpDA\Parser\Filter;
+use PhpDA\Parser\Visitor\Feature;
 use PhpDA\Plugin\ConfigurableInterface;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
@@ -47,7 +43,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     /** @var Adt */
     private $adt;
 
-    /** @var NodeNameFilterInterface */
+    /** @var Filter\NodeNameInterface */
     private $nodeNameFilter;
 
     public function setOptions(array $options)
@@ -77,20 +73,20 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     }
 
     /**
-     * @param NodeNameFilterInterface $nodeNameFilter
+     * @param Filter\NodeNameInterface $nodeNameFilter
      */
-    public function setNodeNameFilter(NodeNameFilterInterface $nodeNameFilter)
+    public function setNodeNameFilter(Filter\NodeNameInterface $nodeNameFilter)
     {
         $this->nodeNameFilter = $nodeNameFilter;
     }
 
     /**
-     * @return NodeNameFilterInterface
+     * @return Filter\NodeNameInterface
      */
     public function getNodeNameFilter()
     {
-        if (!$this->nodeNameFilter instanceof NodeNameFilterInterface) {
-            $this->setNodeNameFilter(new NodeNameFilter);
+        if (!$this->nodeNameFilter instanceof Filter\NodeNameInterface) {
+            $this->setNodeNameFilter(new Filter\NodeName);
         }
 
         return $this->nodeNameFilter;
@@ -127,6 +123,10 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     protected function collect(Node\Name $name, Node $node = null)
     {
+        if (is_null($node)) {
+            $node = clone $name;
+        }
+
         if ($name = $this->filter($name)) {
             $this->exchange($name, $node);
             $this->modify($name);
@@ -165,7 +165,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     private function isDeclaredNamespaceCollector()
     {
-        return $this instanceof DeclaredNamespaceCollectorInterface;
+        return $this instanceof Feature\DeclaredNamespaceCollectorInterface;
     }
 
     /**
@@ -173,7 +173,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     private function isUsedNamespaceCollector()
     {
-        return $this instanceof UsedNamespaceCollectorInterface;
+        return $this instanceof Feature\UsedNamespaceCollectorInterface;
     }
 
     /**
@@ -181,7 +181,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     private function isUnsupportedNamespaceCollector()
     {
-        return $this instanceof UnsupportedNamespaceCollectorInterface;
+        return $this instanceof Feature\UnsupportedNamespaceCollectorInterface;
     }
 
     /**
@@ -189,7 +189,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     private function isNamespacedStringCollector()
     {
-        return $this instanceof NamespacedStringCollectorInterface;
+        return $this instanceof Feature\NamespacedStringCollectorInterface;
     }
 
     /**
