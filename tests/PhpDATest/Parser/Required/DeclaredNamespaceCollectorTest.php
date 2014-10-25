@@ -159,6 +159,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
 
     protected function assertCollectingBy(\Mockery\MockInterface $node)
     {
+        $testcase = $this;
         $namespace = 'Foo\Bar';
         $iterator = \Mockery::mock('ArrayIterator');
         $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
@@ -173,11 +174,11 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         );
         $this->adt->shouldReceive('hasDeclaredNamespace')->once()->andReturn(false);
         $this->adt->shouldReceive('setDeclaredNamespace')->once()->andReturnUsing(
-            function ($nodeName) use ($namespace) {
+            function ($nodeName) use ($namespace, $testcase) {
                 /** @var \PhpParser\Node\Name $nodeName */
-                $this->assertInstanceOf('PhpParser\Node\Name', $nodeName);
-                $this->assertSame('bar', $nodeName->getAttribute('foo'));
-                $this->assertSame($namespace, $nodeName->toString());
+                $testcase->assertInstanceOf('PhpParser\Node\Name', $nodeName);
+                $testcase->assertSame('bar', $nodeName->getAttribute('foo'));
+                $testcase->assertSame($namespace, $nodeName->toString());
             }
         );
 
