@@ -123,12 +123,10 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     protected function collect(Node\Name $name, Node $node = null)
     {
-        if (is_null($node)) {
-            $node = clone $name;
-        }
-
         if ($name = $this->filter($name)) {
-            $this->exchange($name, $node);
+            if (!is_null($node)) {
+                $this->exchange($name, $node);
+            }
             $this->modify($name);
             $adtMutator = $this->getAdtMutator();
             $this->getAdt()->$adtMutator($name);
