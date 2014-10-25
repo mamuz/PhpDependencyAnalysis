@@ -42,11 +42,14 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $name = $this->fixture->getDeclaredNamespace();
         $this->assertInstanceOf('PhpParser\Node\Name', $name);
         $this->assertSame('\\', $name->toString());
+        $this->assertFalse($this->fixture->hasDeclaredNamespace());
 
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('toString')->andReturn('Foo');
         $this->fixture->setDeclaredNamespace($name);
 
         $this->assertSame($name, $this->fixture->getDeclaredNamespace());
+        $this->assertTrue($this->fixture->hasDeclaredNamespace());
     }
 
     public function testMutateAndAccessUsedNamespace()

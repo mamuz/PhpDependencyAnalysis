@@ -50,6 +50,12 @@ class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($callback, $this->fixture->getGraphCreationCallback());
     }
 
+    public function testInvalidMutationOfGraphCreationCallback()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $this->fixture->setGraphCreationCallback('foo');
+    }
+
     public function testFilter()
     {
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');

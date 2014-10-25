@@ -41,6 +41,12 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->fixture = new Analysis($this->file);
     }
 
+    public function testAccessFile()
+    {
+        $this->assertSame($this->file, $this->fixture->getFile());
+    }
+
+
     public function testMutateAndAccessParseError()
     {
         $this->assertFalse($this->fixture->hasParseError());

@@ -29,6 +29,8 @@ use PhpParser\Node;
 
 class Adt
 {
+    const GlobalNamespace = '\\';
+
     /** @var Node\Name */
     private $declaredNamespace;
 
@@ -43,7 +45,7 @@ class Adt
 
     public function __construct()
     {
-        $this->declaredNamespace = new Node\Name('\\');
+        $this->declaredNamespace = new Node\Name(self::GlobalNamespace);
     }
 
     /**
@@ -68,7 +70,7 @@ class Adt
      */
     public function hasDeclaredNamespace()
     {
-        return $this->declaredNamespace->toString() !== '\\';
+        return $this->getDeclaredNamespace()->toString() !== self::GlobalNamespace;
     }
 
     /**
