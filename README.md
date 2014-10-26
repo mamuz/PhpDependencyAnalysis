@@ -16,7 +16,7 @@ PhpDependencyAnalysis
 PhpDependencyAnalysis is an extandable static code analysis for
 PHP-Projects (>= 5.3.3) to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
 for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
-It creates dependency graphs on customizable levels, e.g. on package- or on class-level.
+It creates dependency graphs on customizable levels, e.g. on package-level or on class-level.
 Thus, it's usable to declare dependencies in general, but it's also usable to
 perform a detection of violations between layers in a tiered architecture according to
 compliance with [`SoC (Separation of Concerns)`](http://en.wikipedia.org/wiki/Separation_of_concerns),
@@ -50,9 +50,9 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Printing graphs in several formats (HTML, SVG, DOT)
 - Adding user-defined detection plugins
 - Adding user-defined output plugins for printing graphs
-- Supporting collecting namespaces from a IoC-Container, like from a DependencyInjection-Manager
-- Supporting collecting superglobals as a dependency
-- Supporting collecting php-statements, which can be resolved, like `create_function` or `eval`
+- Supporting collecting namespaces from [`IoC-Container`](http://en.wikipedia.org/wiki/Inversion_of_control)
+- Supporting collecting [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) as a dependency
+- Supporting collecting PHP-Statements, which cannot be resolved, like `create_function` or `eval`
 - Supporting collecting namespaces, which are declared in DocBlocks
 - Supporting collecting string, which looks like a namespace
 
@@ -136,7 +136,7 @@ Here is a non-exhaustive list of unsupported php-features:
 
 The cleaner your project is, the more dependencies can be detected.
 Or in other words, it's highly recommend to have a clean project before using this tool.
-Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer).
+Clean means having less violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer).
 
 ## Plugins
 
