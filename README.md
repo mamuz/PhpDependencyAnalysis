@@ -72,21 +72,6 @@ Run this command line to create a dependecy graph:
 
 After that open report file, which is declared as `target` in the configuration, with your prefered tool.
 
-## Limitations
-
-PHP is a dynamic language with a weak type system.
-It also contains a lot of expressions, which will be resolved first in runtime.
-This tool is a static code analysis, thus it have some limitations.
-Here is a non-exhaustive list of unsupported php-features:
-
-- Dynamic features such as `eval` and `$$x`
-- Globals such as `global $x;`
-- Dynamic funcs such as `call_user_func`, `call_user_func_array`, `create_function`
-
-The cleaner your project is, the more dependencies can be detected.
-Or in other words, it's highly recommend to have a clean project before using this tool.
-Clean means having less violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer).
-
 ## [Wiki](https://github.com/mamuz/PhpDependencyAnalysis/wiki)
 
 1. [Introduction](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction)
