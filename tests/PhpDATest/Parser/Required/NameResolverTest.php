@@ -71,7 +71,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
          * @method string ignore9(static $var1, true $var2)
          * @method string ignore10(false $var1, TruE $var2)
          * @method string borpu($var)
-         * @method int borp() borp(Foo $int1, int | Baz $int2, boolean $int4, $int3 = null) any context
+         * @method int borp() borp(Foo $int1, int | Baz[] $int2, boolean $int4, $int3 = null) any context
          * @method \TimeDate dateFormat(\DateTime $date)
          * @deprecated
          * @property-read MyObject
@@ -80,6 +80,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
          * @Entity
          * @Param string $uppercased
          * @param \Filter\FilterInterface $adapter
+         * @param \Faz\Baz[] $collection
          * @param Adapter $adapter
          * @param $adapter
          * @return INTeger|$this
@@ -105,6 +106,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
                 "Foo\\Bar"                         => "Foo\\Bar",
                 "Collection"                       => "Collection",
                 "Filter\\FilterInterface"          => "Filter\\FilterInterface",
+                "Faz\\Baz"                         => "Faz\\Baz",
                 "Adapter"                          => "Adapter",
                 "DomainException"                  => "DomainException",
                 "Filter\\RuntimeException"         => "Filter\\RuntimeException",

@@ -68,7 +68,7 @@ class Adt
     /**
      * @return bool
      */
-    public function hasDeclaredNamespace()
+    public function hasDeclaredGlobalNamespace()
     {
         return $this->getDeclaredNamespace()->toString() !== self::GLOBAL_NAMESPACE;
     }

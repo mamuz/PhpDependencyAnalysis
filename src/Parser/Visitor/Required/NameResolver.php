@@ -25,9 +25,7 @@
 
 namespace PhpDA\Parser\Visitor\Required;
 
-use phpDocumentor\Reflection\DocBlock\Tag\MethodTag;
 use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlock\Tag\ReturnTag;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 
@@ -53,42 +51,77 @@ class NameResolver extends PhpParserNameResolver
 
         if ($doc = $node->getDocComment()) {
             $docBlock = new DocBlock($doc->getText());
-            $tags = $docBlock->getTags();
-            $tagNames = array();
-            foreach ($tags as $tag) {
-                if ($tag instanceof ReturnTag) {
-                    $types = $tag->getTypes();
-                    if ($tag instanceof MethodTag) {
-                        $args = $tag->getArguments();
-                        foreach ($args as $strings) {
-                            if (count($strings) > 1) {
-                                foreach ($strings as $string) {
-                                    $string = trim($string);
-                                    if (strpos($string, '$') === false
-                                        && !in_array(strtolower($string), $this->ignoredMethodArgumentTypes)
-                                    ) {
-                                        $types[] = '\\' . trim($string, '\\');
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    foreach ($types as $type) {
-                        if (strpos($type, '\\') === 0) {
-                            $type = rtrim($type, '[]');
-                            $tagName = new Node\Name(trim($type, '\\'));
-                            if (strpos($tag->getContent(), $type) === false) {
-                                $tagName = $this->resolveClassName($tagName);
-                            }
-                            $nameString = $tagName->toString();
-                            $tagNames[$nameString] = $tagName->toString();
-                        }
-                    }
-                }
-            }
-            if ($tagNames) {
+            if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
                 $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
             }
         }
+    }
+
+    /**
+     * @param DocBlock\Tag[] $docTags
+     * @return array()
+     */
+    private function collectTagNamesBy(array $docTags)
+    {
+        $tagNames = array();
+        foreach ($docTags as $tag) {
+            if ($tag instanceof DocBlock\Tag\ReturnTag) {
+                $types = $tag->getTypes();
+                if ($tag instanceof DocBlock\Tag\MethodTag) {
+                    $types = array_merge($types, $this->getTypesBy($tag));
+                }
+                foreach ($types as $type) {
+                    if ($resolvedString = $this->resolve($type, $tag)) {
+                        $tagNames[$resolvedString] = $resolvedString;
+                    }
+                }
+            }
+        }
+
+        return $tagNames;
+    }
+
+    /**
+     * @param DocBlock\Tag\MethodTag $tag
+     * @return array
+     */
+    private function getTypesBy(DocBlock\Tag\MethodTag $tag)
+    {
+        $types = array();
+        $args = $tag->getArguments();
+
+        foreach ($args as $strings) {
+            if (count($strings) > 1) {
+                foreach ($strings as $string) {
+                    $string = trim($string);
+                    if (strpos($string, '$') === false
+                        && !in_array(strtolower($string), $this->ignoredMethodArgumentTypes)
+                    ) {
+                        $types[] = '\\' . trim($string, '\\');
+                    }
+                }
+            }
+        }
+
+        return $types;
+    }
+
+    /**
+     * @param string       $type
+     * @param DocBlock\Tag $tag
+     * @return string|null
+     */
+    private function resolve($type, DocBlock\Tag $tag)
+    {
+        if (strpos($type, '\\') === 0) {
+            $type = rtrim($type, '[]');
+            $tagName = new Node\Name(trim($type, '\\'));
+            if (strpos($tag->getContent(), $type) === false) {
+                $tagName = $this->resolveClassName($tagName);
+            }
+            return $tagName->toString();
+        }
+
+        return null;
     }
 }
