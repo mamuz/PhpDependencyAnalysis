@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev-master
+## v0.0.1
 
 - Add TagCollector for PhpDocBlocks
 - Add phpdocumentor/reflection-docblock
