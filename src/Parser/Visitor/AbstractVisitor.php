@@ -155,7 +155,16 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
             return 'addNamespacedString';
         }
 
-        throw new \RuntimeException('Visitor ' . get_class($this) . ' has wrong interface');
+        throw new \RuntimeException(
+            sprintf(
+                'Visitor \'%s\' must implement '
+                . 'PhpDA\\Parser\\Visitor\Feature\\DeclaredNamespaceCollectorInterface'
+                . ' or PhpDA\\Parser\\Visitor\Feature\\UsedNamespaceCollectorInterface'
+                . ' or PhpDA\\Parser\\Visitor\Feature\\NamespacedStringCollectorInterface'
+                . ' or PhpDA\\Parser\\Visitor\Feature\\UnsupportedNamespaceCollectorInterface',
+                get_class($this)
+            )
+        );
     }
 
     /**

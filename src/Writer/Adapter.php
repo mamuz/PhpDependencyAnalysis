@@ -80,7 +80,9 @@ class Adapter implements AdapterInterface
         $strategy = $this->strategyLoader->get($this->fqn);
 
         if (!$strategy instanceof StrategyInterface) {
-            throw new \RuntimeException('Strategy ' . $this->fqn . ' is not an instance of StrategyInterface');
+            throw new \RuntimeException(
+                sprintf('Strategy \'%s\' must implement PhpDA\\Writer\\Strategy\\StrategyInterface', $this->fqn)
+            );
         }
 
         return $strategy;

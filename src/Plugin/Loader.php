@@ -30,13 +30,13 @@ class Loader implements LoaderInterface
     public function get($fqn, array $options = null)
     {
         if (!class_exists($fqn)) {
-            throw new \RuntimeException('Class for ' . $fqn . ' does not exist');
+            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqn));
         }
 
         $class = new \ReflectionClass($fqn);
         if ($constructor = $class->getConstructor()) {
             if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException('Class ' . $fqn . ' must be creatable without arguments');
+                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqn));
             }
         }
 

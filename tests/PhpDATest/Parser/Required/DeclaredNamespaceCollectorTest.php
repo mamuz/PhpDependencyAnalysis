@@ -135,6 +135,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $iterator = \Mockery::mock('ArrayIterator');
         $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
         $node->shouldReceive('getIterator')->once()->andReturn($iterator);
+        $node->shouldReceive('getLine')->andReturn(12);
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->fixture->leaveNode($node);
     }

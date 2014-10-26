@@ -148,7 +148,9 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
         $visitor = $this->getVisitorLoader()->get($fqn, $options);
 
         if (!$visitor instanceof NodeVisitor) {
-            throw new \RuntimeException('Visitor ' . $fqn . ' must be an instance of NodeVisitor');
+            throw new \RuntimeException(
+                sprintf('Visitor \'%s\' must be an instance of PhpParser\\NodeVisitor', $fqn)
+            );
         }
 
         return $visitor;
