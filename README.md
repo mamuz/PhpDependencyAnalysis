@@ -50,7 +50,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Printing graphs in several formats (HTML, SVG, DOT)
 - Adding user-defined detection plugins
 - Adding user-defined output plugins for printing graphs
-- Supporting collecting namespaces from [`IoC-Container`](http://en.wikipedia.org/wiki/Inversion_of_control)
+- Supporting collecting namespaces from [`IoC-Containers`](http://en.wikipedia.org/wiki/Inversion_of_control)
 - Supporting collecting [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) as a dependency
 - Supporting collecting PHP-Statements, which cannot be resolved, like `create_function` or `eval`
 - Supporting collecting namespaces, which are declared in DocBlocks
