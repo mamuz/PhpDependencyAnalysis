@@ -16,7 +16,7 @@ PhpDependencyAnalysis
 PhpDependencyAnalysis is an extandable static code analysis for
 PHP-Projects (>= 5.3.3) to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
 for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
-Read the [Introduction](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
+Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
 ## Installation
 
@@ -58,8 +58,8 @@ You can copy a prepared file from the vendor directory.
 cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 ```
 
-See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration
-and read [Configurations](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration) for available options.
+See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml)
+and read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration) for available options.
 
 ## Usage
 
