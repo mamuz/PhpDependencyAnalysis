@@ -56,10 +56,6 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Supporting collecting namespaces, which are declared in DocBlocks
 - Supporting collecting string, which looks like a namespace
 
-## Examples
-
-See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples) for graph examples on several levels.
-
 ## Configuration
 
 This tool is configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
@@ -70,48 +66,6 @@ cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 ```
 
 See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration.
-
-### Available Configs
-
-Name             | Type              | Description
----------------- | ----------------- | -----------
-*source*         | `string`          | Directory to find files to analyze
-*filePattern*    | `string`          | Pattern to match files inside *source* to analyze
-*ignore*         | `string`, `array` | Optional: Ignoring directories inside *source*
-*formatter*      | `string`          | Output Formatter; must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
-*target*         | `string`          | File path to write output
-*visitor*        | `array`           | Optional: Indexed list of visitors to use; each visitor must be declared with a [`FQN`](http://en.wikipedia.org/wiki/Fully_qualified_name)
-*visitorOptions* | `array`           | Optional: Associative list modelled by Visitor-FQN => Properties
-
-#### *visitor* Config
-
-FQN                                                  | Description
----------------------------------------------------- | ------------------------------------------
-*PhpDA\Parser\Visitor\TagCollector*                  | Collects found namespaces in DocBlocks to declare it as a dependency
-*PhpDA\Parser\Visitor\SuperglobalCollector*          | Collects [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) to declare it as a dependency
-*PhpDA\Parser\Visitor\UnsupportedEvalCollector*      | Collects `eval` expressions to log it as `Unsupported`
-*PhpDA\Parser\Visitor\UnsupportedFuncCollector*      | Collects dynamic function handler, such as `create_function` to log it as `Unsupported`
-*PhpDA\Parser\Visitor\UnsupportedVarCollector*       | Collects dynamic variable declarations, such as `$$x` to log it as `Unsupported`
-*PhpDA\Parser\Visitor\UnsupportedGlobalCollector*    | Collects `global $foo` expressions to log it as `Unsupported`
-*PhpDA\Parser\Visitor\NamespacedStringCollector*     | Collects strings which looks like a namespace to log it as `NamespacedString`
-*PhpDA\Parser\Visitor\IocContainerAccessorCollector* | Collects accessor methods which looks like a object retrieval to log it as `NamespacedString`
-
-**NOTICE**
- - Unsupported Collector adds a `§` as Namespace-Prefix to avoid conflicts.
- - NamespacedStrings Collector adds a `?` as Namespace-Prefix to avoid conflicts.
-
-#### *visitorOptions* Config
-
-Each visitor is configurable by setting *visitorOptions*.
-
-Property         | Type      | Description
----------------- | --------- | -----------
-*excludePattern* | `string`  | Ignore namespaces where pattern is matched. Default is `null`, which means that filter is disabled
-*minDepth*       | `integer` | Ignore namespaces where count of subnamespaces is less than defined. Default is `0`, which means that filter is disabled
-*sliceOffset*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
-*sliceLength*    | `integer` | Filter namespaces with [`array_slice`](http://php.net/manual/en/function.array-slice.php) on subnamespaces. Default is `null`, which means that filter is disabled
-
-#####
 
 ## Usage
 
@@ -138,25 +92,10 @@ The cleaner your project is, the more dependencies can be detected.
 Or in other words, it's highly recommend to have a clean project before using this tool.
 Clean means having less violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer).
 
-## Plugins
+## [Wiki](https://github.com/mamuz/PhpDependencyAnalysis/wiki)
 
-### Write your own Visitors
-
-Visitors are provided by Visitor-Pattern implemented by [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser).
-Read the [`docs`](https://github.com/nikic/PHP-Parser/tree/master/doc) to get into the idea of visitor.
-
-To get your own visitor, just create a new Visitor by extending
-[`PhpDA\Parser\Visitor\AbstractVisitor`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Parser/Visitor/AbstractVisitor.php).
-Beside this you have to implement one of the follwing Interface to declare the concern:
-- `PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface`
-- `PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface`
-- `PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface`
-
-After that you can declare it in the configuration.
-
-### Write your own Formatters
-
-To have an own Formatter to create other Reports, just extend
-[`PhpDA\Writer\Strategy\AbstractStrategy`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/AbstractStrategy.php)
-or implement [`PhpDA\Writer\Strategy\StrategyInterface`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Writer/Strategy/StrategyInterface.php)
-and declare it in the configuration.
+1. [Introduction](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction)
+2. [Requirements](https://github.com/mamuz/PhpDependencyAnalysis/wiki/2.-Requirements)
+3. [Configuration](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
+4. [Examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples)
+5. [Plugins](https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins)
