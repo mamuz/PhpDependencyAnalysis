@@ -16,14 +16,7 @@ PhpDependencyAnalysis
 PhpDependencyAnalysis is an extandable static code analysis for
 PHP-Projects (>= 5.3.3) to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
 for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
-It creates dependency graphs on customizable levels, e.g. on package-level or on class-level.
-Thus, it's usable to declare dependencies in general, but it's also usable to
-perform a detection of violations between layers in a tiered architecture according to
-compliance with [`SoC (Separation of Concerns)`](http://en.wikipedia.org/wiki/Separation_of_concerns),
-[`LoD (Law of Demeter)`](http://en.wikipedia.org/wiki/Law_of_Demeter) and
-[`ADP (Acyclic Dependencies Principle)`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle).
-For huge PHP-Projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
-to monitor dependencies and violations.
+Read the [Introduction](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
 ## Installation
 
@@ -65,7 +58,8 @@ You can copy a prepared file from the vendor directory.
 cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 ```
 
-See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration.
+See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml) for prepared configuration
+and read [Configurations](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration) for available options.
 
 ## Usage
 
