@@ -70,7 +70,8 @@ Run this command line to create a dependecy graph:
 ./vendor/bin/phpda analyze /path/to/myconfig.yml
 ```
 
-After that open report file, which is declared as `target` in the configuration, with your prefered tool.
+After that open created report file with your prefered tool.
+Report file is located where you declared `target` in the configuration,
 
 ## [Wiki](https://github.com/mamuz/PhpDependencyAnalysis/wiki)
 
