@@ -38,7 +38,10 @@ class IocContainerAccessorCollector extends AbstractVisitor implements Namespace
         ) {
             /** @var Node\Arg $arg */
             $arg = array_shift($node->args);
-            if ($arg->value instanceof Node\Expr\Variable && is_string($arg->value->name)) {
+            if ($arg->value instanceof Node\Expr\Variable
+                && is_string($arg->value->name)
+                && !empty($arg->value->name)
+            ) {
                 $name = new Node\Name($arg->value->name);
                 $this->collect($name, $node);
             }

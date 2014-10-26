@@ -46,7 +46,7 @@ class UnsupportedFuncCollector extends AbstractVisitor implements UnsupportedNam
         if ($node instanceof Node\Expr\FuncCall) {
             if ($this->unsupports($node)) {
                 /** @var Node\Name $name */
-                $name = $node->name;
+                $name = new Node\Name($node->name->toString());
                 $this->collect($name, $node);
             }
         }
@@ -59,6 +59,7 @@ class UnsupportedFuncCollector extends AbstractVisitor implements UnsupportedNam
     private function unsupports(Node\Expr\FuncCall $funcCall)
     {
         $name = $funcCall->name;
+
         if (!$name instanceof Node\Name) {
             return false;
         }

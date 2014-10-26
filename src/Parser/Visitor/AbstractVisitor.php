@@ -197,11 +197,11 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     private function modify(Node\Name $name)
     {
         if ($this->isUnsupportedNamespaceCollector()) {
-            $prefix = '?';
+            $prefix = '§';
         }
 
         if ($this->isNamespacedStringCollector()) {
-            $prefix = '§';
+            $prefix = '?';
         }
 
         if (isset($prefix)) {
