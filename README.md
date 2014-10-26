@@ -145,14 +145,14 @@ Clean means having less violations detected by [`PHP_CodeSniffer`](https://githu
 Visitors are provided by Visitor-Pattern implemented by [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser).
 Read the [`docs`](https://github.com/nikic/PHP-Parser/tree/master/doc) to get into the idea of visitor.
 
-To get your your own visitor, just create a new Visitor by extending
+To get your own visitor, just create a new Visitor by extending
 [`PhpDA\Parser\Visitor\AbstractVisitor`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/src/Parser/Visitor/AbstractVisitor.php).
 Beside this you have to implement one of the follwing Interface to declare the concern:
 - `PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface`
 - `PhpDA\Parser\Visitor\Feature\UnsupportedNamespaceCollectorInterface`
 - `PhpDA\Parser\Visitor\Feature\NamespacedStringCollectorInterface`
 
-After that you can declare your own visitor for usage in the configuration.
+After that you can declare it in the configuration.
 
 ### Write your own Formatters
 
