@@ -14,14 +14,15 @@ PhpDependencyAnalysis
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
 PhpDependencyAnalysis is an extandable static code analysis for
-php-projects to provide a dependency graph based on php namespaces.
-It builds dependency graphs on customizable levels, e.g. on appliaction-, on package- or on script level.
+PHP-Projects (>= 5.3.3) to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
+for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+It creates dependency graphs on customizable levels, e.g. on package- or on class-level.
 Thus, it's usable to declare dependencies in general, but it's also usable to
-detect dependency violations between layers in a tiered architecture according to
-compliance with [`SoC`](http://en.wikipedia.org/wiki/Separation_of_concerns),
-[`LoD`](http://en.wikipedia.org/wiki/Law_of_Demeter), [`ADP`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle) and other
-[`Package-Principles`](http://en.wikipedia.org/wiki/Package_principles).
-For huge php-projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
+perform a detection of violations between layers in a tiered architecture according to
+compliance with [`SoC (Separation of Concerns)`](http://en.wikipedia.org/wiki/Separation_of_concerns),
+[`LoD (Law of Demeter)`](http://en.wikipedia.org/wiki/Law_of_Demeter) and
+[`ADP (Acyclic Dependencies Principle)`](http://en.wikipedia.org/wiki/Acyclic_dependencies_principle).
+For huge PHP-Projects it's recommend to integrate it to your [`CI`](http://en.wikipedia.org/wiki/Continuous_integration)
 to monitor dependencies and violations.
 
 ## Installation
@@ -43,28 +44,25 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 
 ## Features
 
-- Creating dependency graphs on customized levels or on different scopes
-- Detect violations between layers in a tiered architecture
-- Graphs can be printed in several formats (HTML, SVG, DOT)
-- Add your own detection plugins (Visitor)
-- Add your own output plugins (Formatter)
+- Providing high customizing level
+- Creating dependency graphs on customized levels respectively different scopes
+- Detecting cycles and violations between layers in a tiered architecture
+- Printing graphs in several formats (HTML, SVG, DOT)
+- Adding user-defined detection plugins
+- Adding user-defined output plugins for printing graphs
+- Supporting collecting namespaces from a IoC-Container, like from a DependencyInjection-Manager
+- Supporting collecting superglobals as a dependency
+- Supporting collecting php-statements, which can be resolved, like `create_function` or `eval`
+- Supporting collecting namespaces, which are declared in DocBlocks
+- Supporting collecting string, which looks like a namespace
 
 ## Examples
 
 See [`here`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples) for graph examples on several levels.
 
-## Workflow
-
-PhpDependencyAnalysis uses [`Nikic's Php-Parser`](https://github.com/nikic/PHP-Parser) for parsing
-php files. It collects all found namespaces adapted from
-[`provided visitor pattern`](https://github.com/nikic/PHP-Parser/blob/master/doc/2_Usage_of_basic_components.markdown) to
-resolve dependecies to other namespaces, packages or libraries.
-After that [`clues's Graph`](https://github.com/clue/graph) is used to illustrate dependencies based
-on the [`mathematical graph theory`](http://en.wikipedia.org/wiki/Graph_%28mathematics%29).
-
 ## Configuration
 
-This tool is fully configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
+This tool is configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
 You can copy a prepared file from the vendor directory.
 
 ```sh
@@ -135,12 +133,10 @@ Here is a non-exhaustive list of unsupported php-features:
 - Dynamic features such as `eval` and `$$x`
 - Globals such as `global $x;`
 - Dynamic funcs such as `call_user_func`, `call_user_func_array`, `create_function`
-- Non type hinted vars, like `function render($object)` instead of `function render(MyObject $object)`
 
 The cleaner your project is, the more dependencies can be detected.
 Or in other words, it's highly recommend to have a clean project before using this tool.
-Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer)
-and [`PHP Mess Detector`](http://phpmd.org/).
+Clean means having not much violations detected by [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer).
 
 ## Plugins
 
