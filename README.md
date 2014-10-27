@@ -19,6 +19,10 @@ for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](
 
 Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
+### Example
+
+![](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/packages.png)
+
 ## Installation
 
 For graph creating [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
