@@ -15,7 +15,7 @@ PhpDependencyAnalysis
 
 PhpDependencyAnalysis is an extandable static code analysis for object-oriented
 PHP-Projects to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
-for abstract Datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
 
 Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
@@ -25,7 +25,7 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 ## Installation
 
-For graph creating [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
+For graph creation [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
 an open source graph visualization software and available for the most platforms.
 
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
@@ -43,16 +43,16 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ## Features
 
 - Providing high customizing level
-- Creating dependency graphs on customized levels respectively different scopes
+- Dependency graph creation on customized levels respectively different scopes
 - Detecting cycles and violations between layers in a tiered architecture
 - Printing graphs in several formats (HTML, SVG, DOT)
 - Adding user-defined detection plugins
 - Adding user-defined output plugins for printing graphs
-- Supporting collecting namespaces from [`IoC-Containers`](http://en.wikipedia.org/wiki/Inversion_of_control)
-- Supporting collecting [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) as a dependency
-- Supporting collecting PHP-Statements, which cannot be resolved, like `create_function` or `eval`
-- Supporting collecting namespaces, which are declared in DocBlocks
-- Supporting collecting string, which looks like a namespace
+- Supports collecting namespaces from [`IoC-Containers`](http://en.wikipedia.org/wiki/Inversion_of_control)
+- Supports collecting [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) as a dependency
+- Supports collecting PHP-Statements, which cannot be resolved, like `create_function` or `eval`
+- Supports collecting namespaces, which are declared in DocBlocks
+- Supports collecting strings, which looks like a namespace
 
 ## Configuration
 
