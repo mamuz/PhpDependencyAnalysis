@@ -13,7 +13,7 @@ PhpDependencyAnalysis
 [![Total Downloads](https://poser.pugx.org/mamuz/php-dependency-analysis/downloads.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
-PhpDependencyAnalysis is an extandable static code analysis for object-oriented
+PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
 for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
 
@@ -75,7 +75,6 @@ Run this command line to create a dependecy graph:
 ```
 
 After that open created report file with your prefered tool.
-Report file is located where you declared `target` in the configuration,
 
 ## [Wiki](https://github.com/mamuz/PhpDependencyAnalysis/wiki)
 
