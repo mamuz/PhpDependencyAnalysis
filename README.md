@@ -15,7 +15,7 @@ PhpDependencyAnalysis
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
-for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+for packages or for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
 
 Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
