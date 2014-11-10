@@ -33,5 +33,5 @@ if (!(@include_once __DIR__ . '/../vendor/autoload.php')
     throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
 
-$appFactory = new PhpDA\Service\ApplicationFactory;
+$appFactory = new PhpDA\Command\ApplicationFactory;
 $appFactory->create()->run();

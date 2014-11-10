@@ -23,41 +23,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Service;
+namespace PhpDATest\Service;
 
-use PhpDA\Command\Analyze;
-use PhpDA\Command\MessageInterface as Message;
-use PhpDA\Plugin\FactoryInterface;
-use PhpDA\Plugin\Loader;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Yaml\Parser;
+use PhpDA\Command\ApplicationFactory;
 
-class ApplicationFactory implements FactoryInterface
+class ApplicationFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return Application
-     */
-    public function create()
-    {
-        $app = new Application(Message::NAME, Message::VERSION);
-        $app->setDefaultCommand(Message::COMMAND);
-        $app->add($this->createAnalyzeOverallCommand());
+    /** @var ApplicationFactory */
+    protected $fixture;
 
-        return $app;
+    protected function setUp()
+    {
+        $this->fixture = new ApplicationFactory;
     }
 
-    /**
-     * @return Analyze
-     */
-    protected function createAnalyzeOverallCommand()
+    public function testCreate()
     {
-        $command = new Analyze(Message::COMMAND);
-
-        $command->setHelp(Message::HELP);
-        $command->setDescription(Message::NAME . ' (' . Message::VERSION . ').');
-        $command->setConfigParser(new Parser);
-        $command->setStrategyLoader(new Loader);
-
-        return $command;
+        $this->assertInstanceOf('Symfony\Component\Console\Application', $this->fixture->create());
     }
 }
