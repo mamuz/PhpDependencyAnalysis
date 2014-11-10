@@ -101,8 +101,8 @@ class Analyze extends Command
             throw new \InvalidArgumentException('Configuration is invalid');
         }
 
-        if (isset($options['ignore'])) {
-            $options['ignore'] = explode(',', $options['ignore']);
+        if (isset($config['ignore']) && !is_array($config['ignore'])) {
+            $config['ignore'] = array_map('trim', explode(',', $config['ignore']));
         }
 
         return new Config(array_merge($config, array_filter($options)));

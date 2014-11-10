@@ -29,10 +29,10 @@ class Overall extends AbstractStrategy
 {
     protected function init()
     {
-        $this->configureNodeTraverser();
+        $this->initNodeTraverser();
     }
 
-    private function configureNodeTraverser()
+    private function initNodeTraverser()
     {
         $requiredVisitors = array(
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
