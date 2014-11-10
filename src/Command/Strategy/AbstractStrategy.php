@@ -142,12 +142,12 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
 
     public function execute()
     {
-        $this->init();
-
         if ($this->fileCnt < 1) {
             $this->getOutput()->writeln(Message::NOTHING_TO_PARSE . PHP_EOL);
             return;
         }
+
+        $this->init();
 
         $progressHelper = $this->createProgressHelper();
 
@@ -183,7 +183,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
      */
     private function iterateFiles(ProgressBar $progressHelper)
     {
-        foreach ($this->getFinder() as $file) {
+        foreach ($this->getFinder()->getIterator() as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
             if ($this->outputVerbosityIsVerbosed()) {
                 $progressHelper->clear();
