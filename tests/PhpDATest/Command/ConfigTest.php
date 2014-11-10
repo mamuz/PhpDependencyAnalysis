@@ -27,7 +27,7 @@ namespace PhpDATest\Command;
 
 use PhpDA\Command\Config;
 
-class AnalysisTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     /** @var Config */
     protected $fixture;
