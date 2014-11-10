@@ -35,6 +35,7 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $values = array(
+            'mode' => 'inheritance',
             'source'         => 'mySource',
             'ignore'         => 'myIgnore',
             'formatter'      => 'myFormatter',
@@ -59,6 +60,15 @@ class AnalysisTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $config->getIgnore());
         $this->assertSame(array(), $config->getVisitor());
         $this->assertSame(array(), $config->getVisitorOptions());
+        $this->assertSame('call', $config->getMode());
+    }
+
+    public function testInvalidMode()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('mode' => 'foo'));
+
+        $config->getMode();
     }
 
     public function testInvalidSource()
