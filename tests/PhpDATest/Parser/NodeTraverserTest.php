@@ -38,19 +38,27 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpParser\NodeVisitor | \Mockery\MockInterface */
     protected $visitor;
 
+    /** @var array */
+    protected $requiredVisitors = array(
+        'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+        'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
+    );
+
     protected function setUp()
     {
-        $requiredVisitors = array(
-            'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
-            'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
-        );
         $this->visitor = \Mockery::mock('PhpParser\NodeVisitor');
         $this->visitorLoader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
-        foreach ($requiredVisitors as $fqn) {
+        foreach ($this->requiredVisitors as $fqn) {
             $this->visitorLoader->shouldReceive('get')->with($fqn, null)->andReturn($this->visitor);
         }
 
         $this->fixture = new NodeTraverser;
+        $this->fixture->setRequiredVisitors($this->requiredVisitors);
+    }
+
+    public function testAccessRequiredVisitors()
+    {
+        $this->assertSame($this->requiredVisitors, $this->fixture->getRequiredVisitors());
     }
 
     public function testMutateAndAccessVisitorLoader()

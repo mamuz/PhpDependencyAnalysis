@@ -29,7 +29,7 @@ use PhpDA\Parser\Visitor\AbstractVisitor;
 use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
 use PhpParser\Node;
 
-class UsedInheritNamespaceCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
+class InheritNamespaceCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
     public function leaveNode(Node $node)
     {
