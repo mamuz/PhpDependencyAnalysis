@@ -27,7 +27,7 @@ namespace PhpDATest\Command\Strategy;
 
 use PhpDA\Command\Strategy\CallFactory;
 
-class ApplicationFactoryTest extends \PHPUnit_Framework_TestCase
+class CallFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /** @var CallFactory */
     protected $fixture;
