@@ -23,13 +23,10 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Service;
+namespace PhpDA\Parser;
 
 use Fhaculty\Graph\Graph;
 use PhpDA\Entity\AnalysisCollection;
-use PhpDA\Parser\AdtTraverser;
-use PhpDA\Parser\Analyzer;
-use PhpDA\Parser\NodeTraverser;
 use PhpDA\Parser\Visitor\Required\AdtCollector;
 use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpDA\Plugin\FactoryInterface;

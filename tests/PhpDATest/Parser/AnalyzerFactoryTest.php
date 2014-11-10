@@ -23,9 +23,9 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Service;
+namespace PhpDATest\Parser;
 
-use PhpDA\Service\AnalyzerFactory;
+use PhpDA\Parser\AnalyzerFactory;
 
 class AnalyzerFactoryTest extends \PHPUnit_Framework_TestCase
 {

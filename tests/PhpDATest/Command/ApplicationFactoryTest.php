@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Service;
+namespace PhpDATest\Command;
 
 use PhpDA\Command\ApplicationFactory;
 

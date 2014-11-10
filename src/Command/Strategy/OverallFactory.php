@@ -25,9 +25,9 @@
 
 namespace PhpDA\Command\Strategy;
 
+use PhpDA\Parser\AnalyzerFactory;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
-use PhpDA\Service\AnalyzerFactory;
 use PhpDA\Writer\Adapter;
 use Symfony\Component\Finder\Finder;
 
