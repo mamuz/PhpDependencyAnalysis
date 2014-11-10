@@ -36,10 +36,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
     private $adt;
 
     /** @var array */
-    private $requiredVisitors = array(
-        'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
-        'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
-    );
+    private $requiredVisitors = array();
 
     /** @var LoaderInterface */
     private $visitorLoader;
@@ -89,6 +86,24 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
         return $this->visitorLoader;
     }
 
+    /**
+     * @param array $requiredVisitors
+     * @return NodeTraverser
+     */
+    public function setRequiredVisitors(array $requiredVisitors)
+    {
+        $this->requiredVisitors = $requiredVisitors;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRequiredVisitors()
+    {
+        return $this->requiredVisitors;
+    }
+
     public function bindVisitors(array $visitors, array $options = null)
     {
         $visitors = $this->filterVisitors($visitors);
@@ -106,7 +121,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
      */
     private function filterVisitors(array $visitors)
     {
-        $fqns = $this->requiredVisitors;
+        $fqns = $this->getRequiredVisitors();
 
         foreach ($visitors as $fqn) {
             $fqn = trim($fqn, '\\');

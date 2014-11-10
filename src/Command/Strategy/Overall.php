@@ -34,8 +34,15 @@ class Overall extends AbstractStrategy
 
     private function configureNodeTraverser()
     {
-        $this->getAnalyzer()->getNodeTraverser()->bindVisitors(
-            $this->getConfig()->getVisitor(),
+        $requiredVisitors = array(
+            'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+            'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
+        );
+
+        $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
+        $nodeTraverser->setRequiredVisitors($requiredVisitors);
+        $nodeTraverser->bindVisitors(
+        $this->getConfig()->getVisitor(),
             $this->getConfig()->getVisitorOptions()
         );
     }
