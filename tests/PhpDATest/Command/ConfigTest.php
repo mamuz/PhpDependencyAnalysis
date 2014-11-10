@@ -35,7 +35,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $values = array(
-            'mode' => 'inheritance',
+            'mode'           => 'inheritance',
             'source'         => 'mySource',
             'ignore'         => 'myIgnore',
             'formatter'      => 'myFormatter',
