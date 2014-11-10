@@ -31,6 +31,52 @@ use PhpParser\Node;
 
 class TagCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
+    const ENABLE_OPCODE_SAVE_COMMENT = "Enable opcache.save_comments=1 or zend_optimizerplus.save_comments=1.";
+
+    const ENABLE_OPCODE_LOAD_COMMENT = "Enable opcache.load_comments=1 or zend_optimizerplus.load_comments=1.";
+
+    public function __construct()
+    {
+        $this->validateZendOptimizer();
+        $this->validateZendOpCache();
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @throws \LogicException
+     */
+    private function validateZendOptimizer()
+    {
+        if (extension_loaded('Zend Optimizer+')) {
+            if (ini_get('zend_optimizerplus.save_comments') === "0"
+                || ini_get('opcache.save_comments') === "0"
+            ) {
+                throw new \LogicException(self::ENABLE_OPCODE_SAVE_COMMENT);
+            }
+            if (ini_get('zend_optimizerplus.load_comments') === "0"
+                || ini_get('opcache.load_comments') === "0"
+            ) {
+                throw new \LogicException(self::ENABLE_OPCODE_LOAD_COMMENT);
+            }
+        }
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @throws \LogicException
+     */
+    private function validateZendOpCache()
+    {
+        if (extension_loaded('Zend OPcache')) {
+            if (ini_get('opcache.save_comments') === "0") {
+                throw new \LogicException(self::ENABLE_OPCODE_SAVE_COMMENT);
+            }
+            if (ini_get('opcache.load_comments') === "0") {
+                throw new \LogicException(self::ENABLE_OPCODE_LOAD_COMMENT);
+            }
+        }
+    }
+
     public function leaveNode(Node $node)
     {
         if ($node->hasAttribute(NameResolver::TAG_NAMES_ATTRIBUTE)) {
