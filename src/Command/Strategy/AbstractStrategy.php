@@ -210,7 +210,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         );
 
         $this->writeAdapter
-            ->write($this->analyzer->getAnalysisCollection())
+            ->write($this->getAnalyzer()->getAnalysisCollection())
             ->with($this->getConfig()->getFormatter())
             ->to($this->getConfig()->getTarget());
     }
