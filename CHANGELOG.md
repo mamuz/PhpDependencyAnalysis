@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## dev-master
+
+- Add mode configuration to switch analysis between call graph (default) and inheritance graph
+- Segregate inheritance graph from analysis
+- Add validation on opcode cache configuration for DocBLock TagCollector
+- Refactor Analyze Command
+
 ## v0.0.1
 
 - Add TagCollector for PhpDocBlocks

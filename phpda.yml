@@ -1,3 +1,4 @@
+mode: 'call' # call | inheritance
 source: './src'
 filePattern: '*.php'
 ignore: 'tests'
