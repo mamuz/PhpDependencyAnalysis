@@ -5,7 +5,7 @@
 - Add mode configuration to switch analysis between call graph (default) and inheritance graph
 - Segregate inheritance graph from analysis
 - Add validation on opcode cache configuration for PhpDocBlocks TagCollector
-- Refactor Analyze Command
+- Refactor Analyze Command and Service Factories
 
 ## v0.0.1
 
