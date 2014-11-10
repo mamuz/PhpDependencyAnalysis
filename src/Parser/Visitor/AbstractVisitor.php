@@ -95,7 +95,6 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     /**
      * @param Node\Name $name
      * @param Node|null $node
-     * @return void
      */
     private function exchange(Node\Name $name, Node $node = null)
     {
@@ -119,7 +118,6 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     /**
      * @param Node\Name $name
      * @param Node|null $node
-     * @return void
      */
     protected function collect(Node\Name $name, Node $node = null)
     {
@@ -201,7 +199,6 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
 
     /**
      * @param Node\Name $name
-     * @return void
      */
     private function modify(Node\Name $name)
     {

@@ -35,7 +35,6 @@ class AdtTraverser extends \PhpParser\NodeTraverser
 
     /**
      * @param AdtCollector $adtCollector
-     * @return void
      */
     public function setAdtCollector(AdtCollector $adtCollector)
     {

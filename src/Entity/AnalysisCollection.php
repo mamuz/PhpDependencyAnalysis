@@ -72,7 +72,6 @@ class AnalysisCollection
 
     /**
      * @param Analysis $analysis
-     * @return void
      */
     public function attach(Analysis $analysis)
     {
@@ -87,7 +86,6 @@ class AnalysisCollection
 
     /**
      * @param Analysis $analysis
-     * @return void
      */
     private function addAnalysisFailure(Analysis $analysis)
     {
@@ -96,7 +94,6 @@ class AnalysisCollection
 
     /**
      * @param Adt $adt
-     * @return void
      */
     private function attachAdt(Adt $adt)
     {
@@ -118,7 +115,6 @@ class AnalysisCollection
     /**
      * @param Name[] $dependencies
      * @param Vertex $root
-     * @return void
      */
     private function createEdgesFor(array $dependencies, Vertex $root)
     {

@@ -70,7 +70,6 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
 
     /**
      * @param LoaderInterface $visitorLoader
-     * @return void
      */
     public function setVisitorLoader(LoaderInterface $visitorLoader)
     {

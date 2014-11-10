@@ -50,7 +50,6 @@ class Adt
 
     /**
      * @param Node\Name $name
-     * @return void
      */
     public function setDeclaredNamespace(Node\Name $name)
     {
@@ -99,7 +98,6 @@ class Adt
 
     /**
      * @param Node\Name $unsupportedStmt
-     * @return void
      */
     public function addUnsupportedStmt(Node\Name $unsupportedStmt)
     {
@@ -116,7 +114,6 @@ class Adt
 
     /**
      * @param Node\Name $namespacedString
-     * @return void
      */
     public function addNamespacedString(Node\Name $namespacedString)
     {

@@ -27,8 +27,5 @@ namespace PhpDA\Command\Strategy;
 
 interface StrategyInterface
 {
-    /**
-     * @return void
-     */
     public function execute();
 }

@@ -49,7 +49,6 @@ abstract class AbstractStrategy implements StrategyInterface
 
     /**
      * @param callable $graphCreationCallback
-     * @return void
      * @throws \InvalidArgumentException
      */
     public function setGraphCreationCallback($graphCreationCallback)

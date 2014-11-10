@@ -73,9 +73,6 @@ class Html extends AbstractStrategy
         return $this->template;
     }
 
-    /**
-     * @return void
-     */
     private function setDefaultTemplate()
     {
         $this->setTemplate('<html><body>' . $this->getImagePlaceholder() . '</body></html>');
