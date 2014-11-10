@@ -27,6 +27,16 @@ namespace PhpDA\Command;
 
 class Config
 {
+    const CALL_MODE = 'call';
+
+    const INHERITANCE_MODE = 'inheritance';
+
+    /** @var array */
+    private $allowedModes = array(self::CALL_MODE, self::INHERITANCE_MODE);
+
+    /** @var string */
+    private $mode = self::CALL_MODE;
+
     /** @var string */
     private $source;
 
@@ -58,6 +68,21 @@ class Config
                 $this->$property = $value;
             }
         }
+    }
+
+    /**
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    public function getMode()
+    {
+        if (!in_array($this->mode, $this->allowedModes, true)) {
+            throw new \InvalidArgumentException(
+                'Mode must be "' . self::CALL_MODE . '" or "' . self::INHERITANCE_MODE . '"'
+            );
+        }
+
+        return $this->mode;
     }
 
     /**

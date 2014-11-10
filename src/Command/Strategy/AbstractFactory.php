@@ -25,25 +25,42 @@
 
 namespace PhpDA\Command\Strategy;
 
-class Overall extends AbstractStrategy
+use PhpDA\Parser\AnalyzerFactory;
+use PhpDA\Plugin\FactoryInterface;
+use PhpDA\Plugin\Loader;
+use PhpDA\Writer\Adapter;
+use Symfony\Component\Finder\Finder;
+
+abstract class AbstractFactory implements FactoryInterface
 {
-    protected function init()
+    /**
+     * @return Finder
+     */
+    protected function createFinder()
     {
-        $this->initNodeTraverser();
+        return new Finder;
     }
 
-    private function initNodeTraverser()
+    /**
+     * @return \PhpDA\Parser\Analyzer
+     */
+    protected function createAnalyzer()
     {
-        $requiredVisitors = array(
-            'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
-            'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
-        );
+        $analyzerFactory = new AnalyzerFactory;
 
-        $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
-        $nodeTraverser->setRequiredVisitors($requiredVisitors);
-        $nodeTraverser->bindVisitors(
-            $this->getConfig()->getVisitor(),
-            $this->getConfig()->getVisitorOptions()
-        );
+        return $analyzerFactory->create();
     }
+
+    /**
+     * @return Adapter
+     */
+    protected function createWriteAdapter()
+    {
+        return new Adapter(new Loader);
+    }
+
+    /**
+     * @return StrategyInterface
+     */
+    abstract public function create();
 }

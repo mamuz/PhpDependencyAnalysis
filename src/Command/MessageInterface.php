@@ -37,6 +37,8 @@ interface MessageInterface
 
     const ARGUMENT_CONFIG = 'Path to yaml configuration file.';
 
+    const OPTION_MODE = 'Analysis mode: "call" (default) or "inheritance"';
+
     const OPTION_SOURCE = 'Directory to analyze.';
 
     const OPTION_FILE_PATTERN = 'Pattern to match files for analysis.';

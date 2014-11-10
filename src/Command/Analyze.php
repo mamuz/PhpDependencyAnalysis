@@ -68,6 +68,7 @@ class Analyze extends Command
     protected function configure()
     {
         $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, './phpda.yml');
+        $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::OPTION_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::OPTION_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::OPTION_FILE_PATTERN);
         $this->addOption('ignore', 'i', InputOption::VALUE_OPTIONAL, Message::OPTION_IGNORE);
@@ -82,7 +83,7 @@ class Analyze extends Command
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
 
-        $this->loadStrategy('Overall', array('config' => $config, 'output' => $output))->execute();
+        $this->loadStrategy($config->getMode(), array('config' => $config, 'output' => $output))->execute();
     }
 
     /**
@@ -116,7 +117,7 @@ class Analyze extends Command
      */
     private function loadStrategy($type, array $options = null)
     {
-        $fqn = 'PhpDA\\Command\\Strategy\\' . ucfirst($type);
+        $fqn = 'PhpDA\\Command\\Strategy\\' . ucfirst($type) . 'Factory';
         $strategy = $this->strategyLoader->get($fqn, $options);
 
         if (!$strategy instanceof StrategyInterface) {

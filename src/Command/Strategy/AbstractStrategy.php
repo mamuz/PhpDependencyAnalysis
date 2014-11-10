@@ -38,7 +38,7 @@ use Symfony\Component\Finder\Finder;
 /**
  * @SuppressWarnings("PMD.CouplingBetweenObjects")
  */
-abstract class AbstractStrategy implements ConfigurableInterface
+abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterface
 {
     /** @var Config */
     private $config;
@@ -140,7 +140,7 @@ abstract class AbstractStrategy implements ConfigurableInterface
         return $this->writeAdapter;
     }
 
-    protected function execute()
+    public function execute()
     {
         $this->init();
 

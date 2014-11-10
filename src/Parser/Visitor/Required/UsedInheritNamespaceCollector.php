@@ -23,20 +23,40 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Command\Strategy;
+namespace PhpDA\Parser\Visitor\Required;
 
-use PhpDA\Parser\AnalyzerFactory;
-use PhpDA\Plugin\FactoryInterface;
-use PhpDA\Plugin\Loader;
-use PhpDA\Writer\Adapter;
-use Symfony\Component\Finder\Finder;
+use PhpDA\Parser\Visitor\AbstractVisitor;
+use PhpDA\Parser\Visitor\Feature\UsedNamespaceCollectorInterface;
+use PhpParser\Node;
 
-class OverallFactory implements FactoryInterface
+class UsedInheritNamespaceCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
-    public function create()
+    public function leaveNode(Node $node)
     {
-        $analyzerFactory = new AnalyzerFactory;
+        if ($node instanceof Node\Stmt\Class_) {
+            foreach ($node->implements as $name) {
+                $this->collect($name);
+            }
+        }
 
-        return new Overall(new Finder, $analyzerFactory->create(), new Adapter(new Loader));
+        if ($node instanceof Node\Stmt\Class_
+            || $node instanceof Node\Stmt\Trait_
+            || $node instanceof Node\Stmt\Interface_
+        ) {
+            if ($extends = $node->extends) {
+                if (!is_array($extends)) {
+                    $extends = array($node->extends);
+                }
+                foreach ($extends as $name) {
+                    $this->collect($name);
+                }
+            }
+        }
+
+        if ($node instanceof Node\Stmt\TraitUse) {
+            foreach ($node->traits as $name) {
+                $this->collect($name);
+            }
+        }
     }
 }
