@@ -23,41 +23,12 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Service;
+namespace PhpDA\Command\Strategy;
 
-use PhpDA\Command\Analyze;
-use PhpDA\Command\MessageInterface as Message;
-use PhpDA\Plugin\FactoryInterface;
-use PhpDA\Plugin\Loader;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Yaml\Parser;
-
-class ApplicationFactory implements FactoryInterface
+interface StrategyInterface
 {
     /**
-     * @return Application
+     * @return void
      */
-    public function create()
-    {
-        $app = new Application(Message::NAME, Message::VERSION);
-        $app->setDefaultCommand(Message::COMMAND);
-        $app->add($this->createAnalyzeOverallCommand());
-
-        return $app;
-    }
-
-    /**
-     * @return Analyze
-     */
-    protected function createAnalyzeOverallCommand()
-    {
-        $command = new Analyze(Message::COMMAND);
-
-        $command->setHelp(Message::HELP);
-        $command->setDescription(Message::NAME . ' (' . Message::VERSION . ').');
-        $command->setConfigParser(new Parser);
-        $command->setStrategyLoader(new Loader);
-
-        return $command;
-    }
+    public function execute();
 }

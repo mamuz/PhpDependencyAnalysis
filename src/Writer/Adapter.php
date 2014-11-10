@@ -40,6 +40,9 @@ class Adapter implements AdapterInterface
     /** @var string */
     private $fqn;
 
+    /**
+     * @param LoaderInterface $loader
+     */
     public function __construct(LoaderInterface $loader)
     {
         $this->strategyLoader = $loader;

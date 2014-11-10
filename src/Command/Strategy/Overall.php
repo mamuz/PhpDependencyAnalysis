@@ -23,22 +23,20 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Service;
+namespace PhpDA\Command\Strategy;
 
-use PhpDA\Service\WriteAdapterFactory;
-
-class WriteAdapterFactoryTest extends \PHPUnit_Framework_TestCase
+class Overall extends AbstractStrategy
 {
-    /** @var WriteAdapterFactory */
-    protected $fixture;
-
-    protected function setUp()
+    protected function init()
     {
-        $this->fixture = new WriteAdapterFactory;
+        $this->configureNodeTraverser();
     }
 
-    public function testCreate()
+    private function configureNodeTraverser()
     {
-        $this->assertInstanceOf('PhpDA\Writer\Adapter', $this->fixture->create());
+        $this->getAnalyzer()->getNodeTraverser()->bindVisitors(
+            $this->getConfig()->getVisitor(),
+            $this->getConfig()->getVisitorOptions()
+        );
     }
 }

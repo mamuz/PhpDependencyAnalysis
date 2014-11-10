@@ -34,13 +34,7 @@ class ApplicationFactoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $analyzerFactory = \Mockery::mock('PhpDA\Plugin\FactoryInterface');
-        $analyzerFactory->shouldReceive('create')->andReturn(\Mockery::mock('PhpDA\Parser\AnalyzerInterface'));
-
-        $writeAdapterFactory = \Mockery::mock('PhpDA\Plugin\FactoryInterface');
-        $writeAdapterFactory->shouldReceive('create')->andReturn(\Mockery::mock('PhpDA\Writer\AdapterInterface'));
-
-        $this->fixture = new ApplicationFactory($analyzerFactory, $writeAdapterFactory);
+        $this->fixture = new ApplicationFactory;
     }
 
     public function testCreate()

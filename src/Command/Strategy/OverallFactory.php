@@ -23,19 +23,20 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Service;
+namespace PhpDA\Command\Strategy;
 
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
+use PhpDA\Service\AnalyzerFactory;
 use PhpDA\Writer\Adapter;
+use Symfony\Component\Finder\Finder;
 
-class WriteAdapterFactory implements FactoryInterface
+class OverallFactory implements FactoryInterface
 {
-    /**
-     * @return Adapter
-     */
     public function create()
     {
-        return new Adapter(new Loader);
+        $analyzerFactory = new AnalyzerFactory;
+
+        return new Overall(new Finder, $analyzerFactory->create(), new Adapter(new Loader));
     }
 }

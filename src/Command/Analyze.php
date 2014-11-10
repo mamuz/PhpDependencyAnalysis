@@ -26,15 +26,13 @@
 namespace PhpDA\Command;
 
 use PhpDA\Command\MessageInterface as Message;
-use PhpDA\Parser\AnalyzerInterface;
-use PhpDA\Writer\AdapterInterface;
+use PhpDA\Command\Strategy\StrategyInterface;
+use PhpDA\Plugin\LoaderInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -42,24 +40,17 @@ use Symfony\Component\Yaml\Parser;
  */
 class Analyze extends Command
 {
-    /** @var Config */
-    private $config;
+    /** @var string */
+    private $configFilePath;
 
     /** @var Parser */
     private $configParser;
 
-    /** @var Finder */
-    private $finder;
-
-    /** @var AnalyzerInterface */
-    private $analyzer;
-
-    /** @var AdapterInterface */
-    private $writeAdapter;
+    /** @var LoaderInterface */
+    private $strategyLoader;
 
     /**
      * @param Parser $parser
-     * @return void
      */
     public function setConfigParser(Parser $parser)
     {
@@ -67,30 +58,11 @@ class Analyze extends Command
     }
 
     /**
-     * @param Finder $finder
-     * @return void
+     * @param LoaderInterface $loader
      */
-    public function setFinder(Finder $finder)
+    public function setStrategyLoader(LoaderInterface $loader)
     {
-        $this->finder = $finder;
-    }
-
-    /**
-     * @param AdapterInterface $writeAdapter
-     * @return void
-     */
-    public function setWriteAdapter(AdapterInterface $writeAdapter)
-    {
-        $this->writeAdapter = $writeAdapter;
-    }
-
-    /**
-     * @param AnalyzerInterface $analyzer
-     * @return void
-     */
-    public function setAnalyzer(AnalyzerInterface $analyzer)
-    {
-        $this->analyzer = $analyzer;
+        $this->strategyLoader = $loader;
     }
 
     protected function configure()
@@ -105,61 +77,25 @@ class Analyze extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $configFile = $input->getArgument('config');
-        $this->bindConfigFrom($configFile, $input->getOptions());
+        $config = $this->createConfigBy($input);
 
         $output->writeln($this->getDescription() . PHP_EOL);
-        $output->writeln(Message::READ_CONFIG_FROM . realpath($configFile) . PHP_EOL);
+        $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
 
-        $count = iterator_count($this->finder);
-
-        if ($count < 1) {
-            $output->writeln(Message::NOTHING_TO_PARSE . PHP_EOL);
-            return;
-        }
-
-        $progress = new ProgressBar($output, $count);
-        $progress->setFormat(Message::PROGRESS_DISPLAY);
-        if ($count > 5000) {
-            $progress->setRedrawFrequency(100);
-        }
-        $progress->start();
-
-        foreach ($this->finder as $file) {
-            /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
-                $progress->clear();
-                $output->writeln("\x0D" . $file->getRealPath());
-                $progress->display();
-            }
-            $this->analyzer->analyze($file);
-            $progress->advance();
-        }
-
-        $progress->finish();
-
-        $output->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . realpath($this->config->getTarget()));
-        $this->writeAnalysis();
-        $output->writeln(PHP_EOL . Message::DONE . PHP_EOL);
-
-        if ($this->analyzer->getAnalysisCollection()->hasAnalysisFailures()) {
-            $failures = $this->analyzer->getAnalysisCollection()->getAnalysisFailures();
-            $output->writeln(Message::PARSE_ERRORS);
-            foreach ($failures as $realpath => $error) {
-                $output->writeln($realpath . ': ' . $error->getMessage());
-            }
-        }
+        $this->loadStrategy('Overall', array('config' => $config, 'output' => $output))->execute();
     }
 
     /**
-     * @param string $configFile
-     * @param array  $options
+     * @param InputInterface $input
      * @throws \InvalidArgumentException
-     * @return void
+     * @return Config
      */
-    private function bindConfigFrom($configFile, array $options)
+    private function createConfigBy(InputInterface $input)
     {
-        $config = $this->configParser->parse(file_get_contents($configFile));
+        $this->configFilePath = realpath($input->getArgument('config'));
+        $options = $input->getOptions();
+
+        $config = $this->configParser->parse(file_get_contents($this->configFilePath));
 
         if (!is_array($config)) {
             throw new \InvalidArgumentException('Configuration is invalid');
@@ -168,31 +104,27 @@ class Analyze extends Command
         if (isset($options['ignore'])) {
             $options['ignore'] = explode(',', $options['ignore']);
         }
-        $this->config = new Config(array_merge($config, array_filter($options)));
 
-        $this->finder
-            ->files()
-            ->name($this->config->getFilePattern())
-            ->in($this->config->getSource());
-
-        if ($ignores = $this->config->getIgnore()) {
-            $this->finder->exclude($ignores);
-        }
-
-        $this->analyzer->getNodeTraverser()->bindVisitors(
-            $this->config->getVisitor(),
-            $this->config->getVisitorOptions()
-        );
+        return new Config(array_merge($config, array_filter($options)));
     }
 
     /**
-     * @return void
+     * @param string $type
+     * @param array  $options
+     * @throws \RuntimeException
+     * @return StrategyInterface
      */
-    private function writeAnalysis()
+    private function loadStrategy($type, array $options = null)
     {
-        $this->writeAdapter
-            ->write($this->analyzer->getAnalysisCollection())
-            ->with($this->config->getFormatter())
-            ->to($this->config->getTarget());
+        $fqn = 'PhpDA\\Command\\Strategy\\' . ucfirst($type);
+        $strategy = $this->strategyLoader->get($fqn, $options);
+
+        if (!$strategy instanceof StrategyInterface) {
+            throw new \RuntimeException(
+                sprintf('Strategy \'%s\' must implement PhpDA\\Command\\Strategy\\StrategyInterface', $fqn)
+            );
+        }
+
+        return $strategy;
     }
 }
