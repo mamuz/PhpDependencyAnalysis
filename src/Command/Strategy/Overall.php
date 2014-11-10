@@ -42,7 +42,7 @@ class Overall extends AbstractStrategy
         $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
         $nodeTraverser->setRequiredVisitors($requiredVisitors);
         $nodeTraverser->bindVisitors(
-        $this->getConfig()->getVisitor(),
+            $this->getConfig()->getVisitor(),
             $this->getConfig()->getVisitorOptions()
         );
     }
