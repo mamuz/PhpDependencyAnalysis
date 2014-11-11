@@ -58,6 +58,11 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->expected, $nodeName);
     }
 
+    public function testAccessAggregationIndicator()
+    {
+        $this->assertSame('slice', $this->fixture->getAggregationIndicator());
+    }
+
     public function testUnFiltered()
     {
         $string = $this->expected = '\Foo\Bar';

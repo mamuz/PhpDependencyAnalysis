@@ -25,6 +25,8 @@
 
 namespace PhpDA\Command;
 
+use PhpDA\Parser\Filter\NodeName;
+
 class Config
 {
     const CALL_MODE = 'call';
@@ -181,9 +183,10 @@ class Config
      */
     public function hasVisitorOptionsForAggregation()
     {
+        $nameFilter = new NodeName;
         foreach ($this->getVisitorOptions() as $options) {
             foreach ($options as $name => $value) {
-                if (strpos($name, 'slice') === 0 && !empty($value)) {
+                if (strpos($name, $nameFilter->getAggregationIndicator()) === 0 && !empty($value)) {
                     return true;
                 }
             }

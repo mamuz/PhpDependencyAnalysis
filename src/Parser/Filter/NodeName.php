@@ -29,6 +29,8 @@ use PhpParser\Node;
 
 class NodeName implements NodeNameInterface
 {
+    const AGGREGATION_INDICATOR = 'slice';
+
     /** @var array */
     private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');
 
@@ -44,14 +46,22 @@ class NodeName implements NodeNameInterface
     /** @var string */
     private $excludePattern;
 
+    /**
+     * @return string
+     */
+    public function getAggregationIndicator()
+    {
+        return self::AGGREGATION_INDICATOR;
+    }
+
     public function setOptions(array $options)
     {
-        if (isset($options['sliceOffset'])) {
-            $this->sliceOffset = (int) $options['sliceOffset'];
+        if (isset($options[$this->getAggregationIndicator() . 'Offset'])) {
+            $this->sliceOffset = (int) $options[$this->getAggregationIndicator() . 'Offset'];
         }
 
-        if (isset($options['sliceLength'])) {
-            $this->sliceLength = (int) $options['sliceLength'];
+        if (isset($options[$this->getAggregationIndicator() . 'Length'])) {
+            $this->sliceLength = (int) $options[$this->getAggregationIndicator() . 'Length'];
         }
 
         if (isset($options['minDepth'])) {
