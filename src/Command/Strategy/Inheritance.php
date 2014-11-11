@@ -36,7 +36,7 @@ class Inheritance extends AbstractStrategy
     {
         $requiredVisitors = array(
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
-            'PhpDA\Parser\Visitor\Required\InheritNamespaceCollector',
+            'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
         );
 
         $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();

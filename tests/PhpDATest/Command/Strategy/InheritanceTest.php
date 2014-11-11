@@ -120,7 +120,7 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $traverser->shouldReceive('setRequiredVisitors')->once()->with(
             array(
                 'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
-                'PhpDA\Parser\Visitor\Required\InheritNamespaceCollector',
+                'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
             )
         );
         $traverser->shouldReceive('bindVisitors')->once()->with(array(), $visitorOptions);

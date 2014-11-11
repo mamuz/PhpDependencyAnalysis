@@ -31,6 +31,9 @@ class Adt
 {
     const GLOBAL_NAMESPACE = '\\';
 
+    /** @var Meta */
+    private $meta;
+
     /** @var Node\Name */
     private $declaredNamespace;
 
@@ -46,6 +49,15 @@ class Adt
     public function __construct()
     {
         $this->declaredNamespace = new Node\Name(self::GLOBAL_NAMESPACE);
+        $this->meta = new Meta;
+    }
+
+    /**
+     * @return Meta
+     */
+    public function getMeta()
+    {
+        return $this->meta;
     }
 
     /**
@@ -85,10 +97,12 @@ class Adt
      */
     public function getUsedNamespaces()
     {
+        $blacklist = array_keys($this->getMeta()->getAllNamespaces());
+        $blacklist[] = $this->getDeclaredNamespace()->toString();
+
         $usedNamespaces = array();
         foreach ($this->usedNamespaces as $namespace) {
-            /** @var Node\Name $namespace */
-            if ($namespace->toString() !== $this->getDeclaredNamespace()->toString()) {
+            if (!in_array($namespace->toString(), $blacklist)) {
                 $usedNamespaces[] = $namespace;
             }
         }

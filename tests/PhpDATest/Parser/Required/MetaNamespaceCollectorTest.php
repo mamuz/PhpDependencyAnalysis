@@ -25,25 +25,30 @@
 
 namespace PhpDATest\Parser\Visitor\Required;
 
-use PhpDA\Parser\Visitor\Required\InheritNamespaceCollector;
+use PhpDA\Parser\Visitor\Required\MetaNamespaceCollector;
 
-class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
+class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var InheritNamespaceCollector */
+    /** @var MetaNamespaceCollector */
     protected $fixture;
 
     /** @var \PhpDA\Entity\Adt | \Mockery\MockInterface */
     protected $adt;
+
+    /** @var \PhpDA\Entity\Meta | \Mockery\MockInterface */
+    protected $meta;
 
     /** @var \PhpDA\Parser\Filter\NodeNameInterface | \Mockery\MockInterface */
     protected $nodeNameFilter;
 
     protected function setUp()
     {
+        $this->meta = \Mockery::mock('PhpDA\Entity\Meta');
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->adt->shouldReceive('getMeta')->andReturn($this->meta);
         $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
 
-        $this->fixture = new InheritNamespaceCollector;
+        $this->fixture = new MetaNamespaceCollector;
         $this->fixture->setAdt($this->adt);
         $this->fixture->setNodeNameFilter($this->nodeNameFilter);
     }
@@ -60,16 +65,12 @@ class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $node->implements = array(\Mockery::mock('PhpParser\Node\Name'));
         $node->extends = array(\Mockery::mock('PhpParser\Node\Name'));
 
+        $node->shouldReceive('isAbstract')->once()->andReturn(true);
+        $node->shouldReceive('isFinal')->once()->andReturn(true);
+        $this->meta->shouldReceive('setAbstract')->once();
+        $this->meta->shouldReceive('setFinal')->once();
+        $this->meta->shouldReceive('setClass')->once();
         $this->nodeNameFilter->shouldReceive('filter')->twice()->andReturn(null);
-        $this->fixture->leaveNode($node);
-    }
-
-    public function testNotCollectingTraitByFilteredToNull()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $node->extends = \Mockery::mock('PhpParser\Node\Name');
-
-        $this->nodeNameFilter->shouldReceive('filter')->once()->andReturn(null);
         $this->fixture->leaveNode($node);
     }
 
@@ -81,6 +82,7 @@ class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
             \Mockery::mock('PhpParser\Node\Name'),
         );
 
+        $this->meta->shouldReceive('setInterface')->once();
         $this->nodeNameFilter->shouldReceive('filter')->twice()->andReturn(null);
         $this->fixture->leaveNode($node);
     }
@@ -100,27 +102,44 @@ class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingClass()
     {
         $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
-        $node->implements = array(\Mockery::mock('PhpParser\Node\Name'));
-        $node->extends = array(\Mockery::mock('PhpParser\Node\Name'));
+        $node->shouldReceive('isAbstract')->once()->andReturn(false);
+        $node->shouldReceive('isFinal')->once()->andReturn(false);
+
+        $implements = \Mockery::mock('PhpParser\Node\Name');
+        $extends = \Mockery::mock('PhpParser\Node\Name');
+        $node->implements = array($implements);
+        $node->extends = $extends;
 
         $this->nodeNameFilter->shouldReceive('filter')->twice()->andReturnUsing(
             function ($object) {
                 return $object;
             }
         );
-        $this->adt->shouldReceive('addUsedNamespace')->twice();
+        $this->meta->shouldReceive('setClass')->once();
+        $this->meta->shouldReceive('addImplementedNamespace')->once()->with($implements);
+        $this->meta->shouldReceive('addExtendedNamespace')->once()->with($extends);
+
+        $this->fixture->leaveNode($node);
+    }
+
+    public function testCollectingClassWithoutExtendsAndImplements()
+    {
+        $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
+        $node->shouldReceive('isAbstract')->once()->andReturn(false);
+        $node->shouldReceive('isFinal')->once()->andReturn(false);
+
+        $node->implements = array();
+        $node->extends = null;
+
+        $this->meta->shouldReceive('setClass')->once();
 
         $this->fixture->leaveNode($node);
     }
 
     public function testCollectingTrait()
     {
-        $name = \Mockery::mock('PhpParser\Node\Name');
         $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $node->extends = array($name);
-
-        $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn($name);
-        $this->adt->shouldReceive('addUsedNamespace')->once()->with($name);
+        $this->meta->shouldReceive('setTrait')->once();
 
         $this->fixture->leaveNode($node);
     }
@@ -132,7 +151,19 @@ class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $node->extends = array($name);
 
         $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn($name);
-        $this->adt->shouldReceive('addUsedNamespace')->once()->with($name);
+
+        $this->meta->shouldReceive('setInterface')->once();
+        $this->meta->shouldReceive('addExtendedNamespace')->once()->with($name);
+
+        $this->fixture->leaveNode($node);
+    }
+
+    public function testCollectingInterfaceWithoutExtends()
+    {
+        $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
+        $node->extends = array();
+
+        $this->meta->shouldReceive('setInterface')->once();
 
         $this->fixture->leaveNode($node);
     }
@@ -144,7 +175,7 @@ class InheritNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $node->traits = array($name);
 
         $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn($name);
-        $this->adt->shouldReceive('addUsedNamespace')->once()->with($name);
+        $this->meta->shouldReceive('addUsedTraitNamespace')->once()->with($name);
 
         $this->fixture->leaveNode($node);
     }

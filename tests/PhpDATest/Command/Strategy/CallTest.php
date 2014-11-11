@@ -123,6 +123,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $traverser->shouldReceive('setRequiredVisitors')->once()->with(
             array(
                 'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+                'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
                 'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
             )
         );

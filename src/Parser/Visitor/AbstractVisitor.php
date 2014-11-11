@@ -110,7 +110,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      * @param Node\Name $name
      * @return null|Node\Name
      */
-    private function filter(Node\Name $name)
+    protected function filter(Node\Name $name)
     {
         return $this->getNodeNameFilter()->filter($name);
     }

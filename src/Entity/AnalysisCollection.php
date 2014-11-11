@@ -101,6 +101,9 @@ class AnalysisCollection
         $this->createEdgesFor($adt->getUsedNamespaces(), $declaredNamespace);
         $this->createEdgesFor($adt->getUnsupportedStmts(), $declaredNamespace);
         $this->createEdgesFor($adt->getNamespacedStrings(), $declaredNamespace);
+        $this->createEdgesFor($adt->getMeta()->getImplementedNamespaces(), $declaredNamespace);
+        $this->createEdgesFor($adt->getMeta()->getExtendedNamespaces(), $declaredNamespace);
+        $this->createEdgesFor($adt->getMeta()->getUsedTraitNamespaces(), $declaredNamespace);
     }
 
     /**

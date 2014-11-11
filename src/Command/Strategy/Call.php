@@ -36,6 +36,7 @@ class Call extends AbstractStrategy
     {
         $requiredVisitors = array(
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+            'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
             'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
         );
 
