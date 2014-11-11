@@ -35,6 +35,12 @@ class AnalysisCollection
     /** @var Graph */
     private $graph;
 
+    /** @var boolean */
+    private $isAggregated = false;
+
+    /** @var Vertex */
+    private $adtRootVertex;
+
     /** @var Error[] */
     private $analysisFailures = array();
 
@@ -44,6 +50,19 @@ class AnalysisCollection
     public function __construct(Graph $graph)
     {
         $this->graph = $graph;
+    }
+
+    public function setAggregated()
+    {
+        $this->isAggregated = true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAggregated()
+    {
+        return $this->isAggregated;
     }
 
     /**
@@ -97,13 +116,22 @@ class AnalysisCollection
      */
     private function attachAdt(Adt $adt)
     {
-        $declaredNamespace = $this->createVertexBy($adt->getDeclaredNamespace());
-        $this->createEdgesFor($adt->getUsedNamespaces(), $declaredNamespace);
-        $this->createEdgesFor($adt->getUnsupportedStmts(), $declaredNamespace);
-        $this->createEdgesFor($adt->getNamespacedStrings(), $declaredNamespace);
-        $this->createEdgesFor($adt->getMeta()->getImplementedNamespaces(), $declaredNamespace);
-        $this->createEdgesFor($adt->getMeta()->getExtendedNamespaces(), $declaredNamespace);
-        $this->createEdgesFor($adt->getMeta()->getUsedTraitNamespaces(), $declaredNamespace);
+        $this->createAdtRootVertexBy($adt);
+
+        $this->createEdgesFor($adt->getUsedNamespaces());
+        $this->createEdgesFor($adt->getUnsupportedStmts());
+        $this->createEdgesFor($adt->getNamespacedStrings());
+        $this->createEdgesFor($adt->getMeta()->getImplementedNamespaces());
+        $this->createEdgesFor($adt->getMeta()->getExtendedNamespaces());
+        $this->createEdgesFor($adt->getMeta()->getUsedTraitNamespaces());
+    }
+
+    /**
+     * @param Adt $adt
+     */
+    private function createAdtRootVertexBy(Adt $adt)
+    {
+        $this->adtRootVertex = $this->createVertexBy($adt->getDeclaredNamespace());
     }
 
     /**
@@ -117,14 +145,13 @@ class AnalysisCollection
 
     /**
      * @param Name[] $dependencies
-     * @param Vertex $root
      */
-    private function createEdgesFor(array $dependencies, Vertex $root)
+    private function createEdgesFor(array $dependencies)
     {
         foreach ($dependencies as $edge) {
             $vertex = $this->createVertexBy($edge);
-            if (!$root->hasEdgeTo($vertex)) {
-                $root->createEdgeTo($vertex);
+            if (!$this->adtRootVertex->hasEdgeTo($vertex)) {
+                $this->adtRootVertex->createEdgeTo($vertex);
             }
         }
     }

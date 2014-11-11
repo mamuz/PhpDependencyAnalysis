@@ -46,6 +46,13 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->graph, $this->fixture->getGraph());
     }
 
+    public function testAccessAggregated()
+    {
+        $this->assertFalse($this->fixture->isAggregated());
+        $this->fixture->setAggregated();
+        $this->assertTrue($this->fixture->isAggregated());
+    }
+
     public function testAttachAnalysis()
     {
         $meta = \Mockery::mock('PhpDA\Entity\Meta');
