@@ -103,6 +103,8 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
 
         $this->config->shouldReceive('getFormatter')->once()->andReturn($formatter);
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
+        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(true);
+        $collection->shouldReceive('setAggregated')->once();
 
         $this->writer->shouldReceive('write')->once()->with($collection)->andReturnSelf();
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();

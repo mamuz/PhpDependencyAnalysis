@@ -29,9 +29,6 @@ use PhpDA\Command\Config;
 
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Config */
-    protected $fixture;
-
     public function testBasic()
     {
         $values = array(
@@ -125,5 +122,45 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $config = new Config(array('visitorOptions' => 1));
 
         $config->getVisitorOptions();
+    }
+
+    public function testHasVisitorOptionsForAggregation()
+    {
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'foo' => array('excludePattern' => 'bar'),
+                'baz' => array('minDepth' => 'bar'),
+            )
+        ));
+        $this->assertFalse($config->hasVisitorOptionsForAggregation());
+
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'foo' => array('sliceOffset' => 'bar'),
+            )
+        ));
+        $this->assertTrue($config->hasVisitorOptionsForAggregation());
+
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'foo' => array('sliceOffset' => '', 'slice' => null, 'sliceLength' => ''),
+            )
+        ));
+        $this->assertFalse($config->hasVisitorOptionsForAggregation());
+
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'baz' => array('excludePattern' => 'bar'),
+                'foo' => array('sliceLength' => 'bar'),
+            )
+        ));
+        $this->assertTrue($config->hasVisitorOptionsForAggregation());
+
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'baz' => array('excludePattern' => 'bar', 'sliceLength' => 'bar'),
+            )
+        ));
+        $this->assertTrue($config->hasVisitorOptionsForAggregation());
     }
 }

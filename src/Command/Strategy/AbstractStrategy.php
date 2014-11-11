@@ -208,8 +208,13 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $targetRealPath = realpath($this->getConfig()->getTarget());
         $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $targetRealPath);
 
+        $analysisCollection = $this->getAnalyzer()->getAnalysisCollection();
+        if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
+            $analysisCollection->setAggregated();
+        }
+
         $this->writeAdapter
-            ->write($this->getAnalyzer()->getAnalysisCollection())
+            ->write($analysisCollection)
             ->with($this->getConfig()->getFormatter())
             ->to($this->getConfig()->getTarget());
     }

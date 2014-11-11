@@ -175,4 +175,20 @@ class Config
 
         return $this->visitorOptions;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasVisitorOptionsForAggregation()
+    {
+        foreach ($this->getVisitorOptions() as $options) {
+            foreach ($options as $name => $value) {
+                if (strpos($name, 'slice') === 0 && !empty($value)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
