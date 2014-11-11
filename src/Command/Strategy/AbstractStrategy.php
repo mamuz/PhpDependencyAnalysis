@@ -30,6 +30,7 @@ use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Plugin\ConfigurableInterface;
 use PhpDA\Writer\AdapterInterface;
+use PhpDA\Writer\Layout;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -84,6 +85,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         $this->initFinder();
+        $this->initLayout();
     }
 
     private function initFinder()
@@ -98,6 +100,16 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         $this->fileCnt = $this->getFinder()->count();
+    }
+
+    private function initLayout()
+    {
+        $analysisCollection = $this->getAnalyzer()->getAnalysisCollection();
+        if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
+            $analysisCollection->setLayout(new Layout\Aggregation);
+        } else {
+            $analysisCollection->setLayout(new Layout\Standard);
+        }
     }
 
     /**
@@ -208,13 +220,8 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $targetRealPath = realpath($this->getConfig()->getTarget());
         $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $targetRealPath);
 
-        $analysisCollection = $this->getAnalyzer()->getAnalysisCollection();
-        if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
-            $analysisCollection->setAggregated();
-        }
-
         $this->writeAdapter
-            ->write($analysisCollection)
+            ->write($this->getAnalyzer()->getAnalysisCollection())
             ->with($this->getConfig()->getFormatter())
             ->to($this->getConfig()->getTarget());
     }

@@ -46,11 +46,12 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->graph, $this->fixture->getGraph());
     }
 
-    public function testAccessAggregated()
+    public function testMutateAndAccessLayout()
     {
-        $this->assertFalse($this->fixture->isAggregated());
-        $this->fixture->setAggregated();
-        $this->assertTrue($this->fixture->isAggregated());
+        $this->assertInstanceOf('PhpDA\Writer\Layout\Null', $this->fixture->getLayout());
+        $layout = \Mockery::mock('PhpDA\Writer\Layout\LayoutInterface');
+        $this->fixture->setLayout($layout);
+        $this->assertSame($layout, $this->fixture->getLayout());
     }
 
     public function testAttachAnalysis()

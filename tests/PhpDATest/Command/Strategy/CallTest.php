@@ -35,6 +35,9 @@ class CallTest extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Finder\Finder | \Mockery\MockInterface */
     protected $finder;
 
+    /** @var \PhpDA\Entity\AnalysisCollection | \Mockery\MockInterface */
+    protected $collection;
+
     /** @var \PhpDA\Parser\AnalyzerInterface | \Mockery\MockInterface */
     protected $analyzer;
 
@@ -49,6 +52,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $this->finder = \Mockery::mock('Symfony\Component\Finder\Finder');
         $this->analyzer = \Mockery::mock('PhpDA\Parser\AnalyzerInterface');
         $this->writer = \Mockery::mock('PhpDA\Writer\AdapterInterface');
@@ -56,6 +60,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config = \Mockery::mock('PhpDA\Command\Config');
 
         $this->output->shouldReceive('writeln');
+        $this->analyzer->shouldReceive('getAnalysisCollection')->andReturn($this->collection);
 
         $filePattern = '*.php';
         $source = './src';
@@ -64,11 +69,19 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFilePattern')->once()->andReturn($filePattern);
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
+        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(true);
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
+
+        $testcase = $this;
+        $this->collection->shouldReceive('setLayout')->once()->andReturnUsing(
+            function ($layout) use ($testcase) {
+                $testcase->assertInstanceOf('PhpDA\Writer\Layout\Aggregation', $layout);
+            }
+        );
 
         $this->fixture = new Call($this->finder, $this->analyzer, $this->writer);
     }
@@ -92,21 +105,17 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
         $this->fixture->setOptions(array('output' => $this->output, 'config' => $this->config));
 
-        $collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
-        $collection->shouldReceive('hasAnalysisFailures')->andReturn(true);
-        $collection->shouldReceive('getAnalysisFailures')->andReturn(array('error' => new \Exception()));
+        $this->collection->shouldReceive('hasAnalysisFailures')->andReturn(true);
+        $this->collection->shouldReceive('getAnalysisFailures')->andReturn(array('error' => new \Exception()));
         $this->analyzer->shouldReceive('analyze')->once()->with($file);
-        $this->analyzer->shouldReceive('getAnalysisCollection')->andReturn($collection);
 
         $formatter = 'format';
         $target = 'destination';
 
         $this->config->shouldReceive('getFormatter')->once()->andReturn($formatter);
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
-        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(true);
-        $collection->shouldReceive('setAggregated')->once();
 
-        $this->writer->shouldReceive('write')->once()->with($collection)->andReturnSelf();
+        $this->writer->shouldReceive('write')->once()->with($this->collection)->andReturnSelf();
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
 

@@ -27,6 +27,7 @@ namespace PhpDA\Entity;
 
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
+use PhpDA\Writer\Layout;
 use PhpParser\Error;
 use PhpParser\Node\Name;
 
@@ -35,14 +36,14 @@ class AnalysisCollection
     /** @var Graph */
     private $graph;
 
-    /** @var boolean */
-    private $isAggregated = false;
-
     /** @var Vertex */
     private $adtRootVertex;
 
     /** @var Error[] */
     private $analysisFailures = array();
+
+    /** @var Layout\LayoutInterface */
+    private $layout;
 
     /**
      * @param Graph $graph
@@ -50,19 +51,7 @@ class AnalysisCollection
     public function __construct(Graph $graph)
     {
         $this->graph = $graph;
-    }
-
-    public function setAggregated()
-    {
-        $this->isAggregated = true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAggregated()
-    {
-        return $this->isAggregated;
+        $this->setLayout(new Layout\Null);
     }
 
     /**
@@ -71,6 +60,22 @@ class AnalysisCollection
     public function getGraph()
     {
         return $this->graph;
+    }
+
+    /**
+     * @param Layout\LayoutInterface $layout
+     */
+    public function setLayout(Layout\LayoutInterface $layout)
+    {
+        $this->layout = $layout;
+    }
+
+    /**
+     * @return Layout\LayoutInterface
+     */
+    public function getLayout()
+    {
+        return $this->layout;
     }
 
     /**
