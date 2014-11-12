@@ -25,9 +25,7 @@
 
 namespace PhpDA\Command\Strategy;
 
-use PhpDA\Plugin\FactoryInterface;
-
-class CallFactory extends AbstractFactory implements FactoryInterface
+class CallFactory extends AbstractFactory
 {
     public function create()
     {
