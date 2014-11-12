@@ -2,9 +2,9 @@
 
 ## dev-master
 
+- Add Layout with switch for aggregated graph [WIP]
 - Add CONTRIBUTING.md
 - Change default configuration by adding visitorOptions for MetaNamespaceCollector
-- Add Layout switch
 - Add Meta object to Adt with corresponding collector
 - Change default configuration by adding mode config
 - Add mode configuration to switch analysis between call graph (default) and inheritance graph
