@@ -39,4 +39,4 @@ so make sure that your code is working before opening up a pull-request.
 ## Code Review
 
 Your pull-request will be under code review.
-So be sure that your code is (nearly) [SOLID](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)).
+So be sure that your code is (nearly) [SOLID](http://williamdurand.fr/2013/07/30/from-stupid-to-solid-code/).
