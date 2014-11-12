@@ -58,9 +58,4 @@ abstract class AbstractFactory implements FactoryInterface
     {
         return new Adapter(new Loader);
     }
-
-    /**
-     * @return StrategyInterface
-     */
-    abstract public function create();
 }
