@@ -19,6 +19,10 @@ Use PSR-2:
 
 * https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 
+Use PHPMD with standard ruleset:
+
+* http://phpmd.org/rules/index.html
+
 ## Unit-Tests
 
 Add a test for your pull-request.
