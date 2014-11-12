@@ -26,12 +26,11 @@
 namespace PhpDA\Command\Strategy;
 
 use PhpDA\Parser\AnalyzerFactory;
-use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpDA\Writer\Adapter;
 use Symfony\Component\Finder\Finder;
 
-abstract class AbstractFactory implements FactoryInterface
+abstract class AbstractFactory
 {
     /**
      * @return Finder
