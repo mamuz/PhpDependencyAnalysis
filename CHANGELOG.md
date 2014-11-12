@@ -3,8 +3,10 @@
 ## dev-master
 
 - Add CONTRIBUTING.md
+- Change default configuration by adding visitorOptions for MetaNamespaceCollector
 - Add Layout switch
-- Add Meta object to Adt
+- Add Meta object to Adt with corresponding collector
+- Change default configuration by adding mode config
 - Add mode configuration to switch analysis between call graph (default) and inheritance graph
 - Segregate inheritance graph from analysis
 - Add validation on opcode cache configuration for PhpDocBlocks TagCollector
