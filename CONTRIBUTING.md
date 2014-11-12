@@ -28,6 +28,7 @@ You can run the unit-tests by calling `phpunit` from the root of the project.
 ## Travis
 
 Your pull-request will run through [Travis CI](http://www.travis-ci.org)
+
 If you break the tests, your code wont be merged,
 so make sure that your code is working before opening up a pull-request.
 
