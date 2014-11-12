@@ -2,9 +2,8 @@
 
 Thank you for contributing!
 
-Before merging your pull-request here are some guidelines that you need to follow.
-These guidelines exist not to annoy you, but to keep the code base clean,
-unified and future proof.
+Here are some guidelines that you need to follow.
+These guidelines exist to keep the code base clean.
 
 ## Workflow
 
