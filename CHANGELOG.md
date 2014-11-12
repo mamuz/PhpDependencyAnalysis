@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Add CONTRIBUTING.md
 - Add Layout switch
 - Add Meta object to Adt
 - Add mode configuration to switch analysis between call graph (default) and inheritance graph
