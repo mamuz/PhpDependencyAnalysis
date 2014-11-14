@@ -2,7 +2,7 @@
 
 ## dev-master
 
-- Add Layout with switch for aggregated graph [WIP]
+- Add Layout with autoswitch for aggregated graph [WIP]
 - Add CONTRIBUTING.md
 - Change default configuration by adding visitorOptions for MetaNamespaceCollector
 - Add Meta object to Adt with corresponding collector
