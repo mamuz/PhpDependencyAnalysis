@@ -56,7 +56,7 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
 
         $argument = $definition->getArgument('config');
         $this->assertSame(Message::ARGUMENT_CONFIG, $argument->getDescription());
-        $this->assertSame('./phpda.yml', $argument->getDefault());
+        $this->assertRegExp('%src/Command/\.\./\.\./phpda\.yml\.dist$%', $argument->getDefault());
         $this->assertFalse($argument->isRequired());
         $this->assertFalse($argument->isArray());
 

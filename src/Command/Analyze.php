@@ -67,7 +67,9 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, './phpda.yml');
+        $defaultConfig = __DIR__ . '/../../phpda.yml.dist';
+
+        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, $defaultConfig);
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::OPTION_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::OPTION_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::OPTION_FILE_PATTERN);

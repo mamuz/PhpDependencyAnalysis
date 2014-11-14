@@ -3,6 +3,7 @@
 ## dev-master
 
 - Add Layout with autoswitch for aggregated graph [WIP]
+- Rename default config file by appending '.dist'
 - Add CONTRIBUTING.md
 - Change default configuration by adding visitorOptions for MetaNamespaceCollector
 - Add Meta object to Adt with corresponding collector
