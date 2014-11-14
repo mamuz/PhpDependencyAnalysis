@@ -63,7 +63,7 @@ You can copy a prepared file from the vendor directory.
 cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
 ```
 
-See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml)
+See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist)
 and read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration) for available options.
 
 ## Usage
