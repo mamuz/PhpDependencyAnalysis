@@ -27,10 +27,10 @@ namespace PhpDA\Command\Strategy;
 
 use PhpDA\Command\Config;
 use PhpDA\Command\MessageInterface as Message;
+use PhpDA\Layout;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Plugin\ConfigurableInterface;
 use PhpDA\Writer\AdapterInterface;
-use PhpDA\Writer\Layout;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;

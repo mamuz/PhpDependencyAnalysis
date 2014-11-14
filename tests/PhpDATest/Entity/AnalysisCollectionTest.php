@@ -48,14 +48,35 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessLayout()
     {
-        $this->assertInstanceOf('PhpDA\Writer\Layout\Null', $this->fixture->getLayout());
-        $layout = \Mockery::mock('PhpDA\Writer\Layout\LayoutInterface');
+        $this->assertInstanceOf('PhpDA\Layout\Null', $this->fixture->getLayout());
+        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
         $this->fixture->setLayout($layout);
         $this->assertSame($layout, $this->fixture->getLayout());
     }
 
     public function testAttachAnalysis()
     {
+        $vertexLayout = array(1, 1);
+        $vertexUnsupportedLayout = array(1, 1);
+        $vertexNamespacedStringLayout = array(1, 1);
+        $edgeLayout = array(2, 1);
+        $edgeImplementLayout = array(2, 2);
+        $edgeExtendLayout = array(2, 3);
+        $edgeTraitUseLayout = array(2, 4);
+        $edgeUnsupportedLayout = array(2, 5);
+        $edgeNamespacedStringLayout = array(2, 6);
+        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getVertex')->andReturn($vertexLayout);
+        $layout->shouldReceive('getVertexNamespacedString')->andReturn($vertexNamespacedStringLayout);
+        $layout->shouldReceive('getVertexUnsupported')->andReturn($vertexUnsupportedLayout);
+        $layout->shouldReceive('getEdge')->andReturn($edgeLayout);
+        $layout->shouldReceive('getEdgeImplement')->andReturn($edgeImplementLayout);
+        $layout->shouldReceive('getEdgeExtend')->andReturn($edgeExtendLayout);
+        $layout->shouldReceive('getEdgeTraitUse')->andReturn($edgeTraitUseLayout);
+        $layout->shouldReceive('getEdgeUnsupported')->andReturn($edgeUnsupportedLayout);
+        $layout->shouldReceive('getEdgeNamespacedString')->andReturn($edgeNamespacedStringLayout);
+        $this->fixture->setLayout($layout);
+
         $meta = \Mockery::mock('PhpDA\Entity\Meta');
 
         $implementedName = \Mockery::mock('PhpParser\Node\Name');
@@ -96,15 +117,29 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($stringName1, $stringName2));
 
         $declaredNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $declaredNameVertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $implementedNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $implementedNameVertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $extendedNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $extendedNameVertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $usedTraitNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $usedTraitNameVertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $usedName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $usedName1Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $usedName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $usedName2Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
         $unsupportedName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $unsupportedName1Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
+        $unsupportedName1Vertex->shouldReceive('setLayout')->with($vertexUnsupportedLayout)->once()->andReturnSelf();
         $unsupportedName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $unsupportedName2Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
+        $unsupportedName2Vertex->shouldReceive('setLayout')->with($vertexUnsupportedLayout)->once()->andReturnSelf();
         $stringName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $stringName1Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
+        $stringName1Vertex->shouldReceive('setLayout')->with($vertexNamespacedStringLayout)->once()->andReturnSelf();
         $stringName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $stringName2Vertex->shouldReceive('setLayout')->with($vertexLayout)->once()->andReturnSelf();
+        $stringName2Vertex->shouldReceive('setLayout')->with($vertexNamespacedStringLayout)->once()->andReturnSelf();
 
         $this->graph->shouldReceive('createVertex')->with('declaredName', true)->andReturn($declaredNameVertex);
         $this->graph->shouldReceive('createVertex')->with('implementedName', true)->andReturn($implementedNameVertex);
@@ -117,30 +152,53 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->graph->shouldReceive('createVertex')->with('stringName1', true)->andReturn($stringName1Vertex);
         $this->graph->shouldReceive('createVertex')->with('stringName2', true)->andReturn($stringName2Vertex);
 
+        $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edge->shouldReceive('setLayout')->with($edgeLayout);
+        $edgeExtend = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edgeExtend->shouldReceive('setLayout')->with($edgeExtendLayout);
+        $edgeImplement = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edgeImplement->shouldReceive('setLayout')->with($edgeImplementLayout);
+        $edgeTraitUse = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edgeTraitUse->shouldReceive('setLayout')->with($edgeTraitUseLayout);
+        $edgeUnsupported = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edgeUnsupported->shouldReceive('setLayout')->with($edgeUnsupportedLayout);
+        $edgeNamespaced = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edgeNamespaced->shouldReceive('setLayout')->with($edgeNamespacedStringLayout);
+
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($implementedNameVertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($implementedNameVertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($implementedNameVertex)->once()->andReturn(
+            $edgeImplement
+        );
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($implementedNameVertex)->andReturn(true);
 
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($extendedNameVertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($extendedNameVertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($extendedNameVertex)->once()->andReturn($edgeExtend);
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($extendedNameVertex)->andReturn(true);
 
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedTraitNameVertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($usedTraitNameVertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($usedTraitNameVertex)->once()->andReturn(
+            $edgeTraitUse
+        );
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedTraitNameVertex)->andReturn(true);
 
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedName1Vertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($usedName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($usedName1Vertex)->once()->andReturn($edge);
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($usedName2Vertex)->andReturn(true);
 
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($unsupportedName1Vertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($unsupportedName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($unsupportedName1Vertex)->once()->andReturn(
+            $edgeUnsupported
+        );
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($unsupportedName2Vertex)->andReturn(true);
 
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($stringName1Vertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName1Vertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName1Vertex)->once()->andReturn(
+            $edgeNamespaced
+        );
         $declaredNameVertex->shouldReceive('hasEdgeTo')->with($stringName2Vertex)->andReturn(false);
-        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName2Vertex)->once();
+        $declaredNameVertex->shouldReceive('createEdgeTo')->with($stringName2Vertex)->once()->andReturn(
+            $edgeNamespaced
+        );
 
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));

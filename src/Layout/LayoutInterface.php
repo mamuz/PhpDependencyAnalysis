@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer\Layout;
+namespace PhpDA\Layout;
 
 interface LayoutInterface
 {
@@ -50,37 +50,22 @@ interface LayoutInterface
     /**
      * @return array
      */
+    public function getEdgeUnsupported();
+
+    /**
+     * @return array
+     */
+    public function getEdgeNamespacedString();
+
+    /**
+     * @return array
+     */
     public function getVertex();
 
     /**
      * @return array
      */
-    public function getVertexAbstract();
-
-    /**
-     * @return array
-     */
-    public function getVertexClass();
-
-    /**
-     * @return array
-     */
-    public function getVertexFinal();
-
-    /**
-     * @return array
-     */
-    public function getVertexInterface();
-
-    /**
-     * @return array
-     */
     public function getVertexNamespacedString();
-
-    /**
-     * @return array
-     */
-    public function getVertexTrait();
 
     /**
      * @return array

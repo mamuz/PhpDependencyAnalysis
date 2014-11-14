@@ -79,7 +79,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $testcase = $this;
         $this->collection->shouldReceive('setLayout')->once()->andReturnUsing(
             function ($layout) use ($testcase) {
-                $testcase->assertInstanceOf('PhpDA\Writer\Layout\Aggregation', $layout);
+                $testcase->assertInstanceOf('PhpDA\Layout\Aggregation', $layout);
             }
         );
 

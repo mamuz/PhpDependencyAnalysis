@@ -23,8 +23,28 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer\Layout;
+namespace PhpDA\Layout;
 
-class Aggregation extends Standard
+class Standard extends AbstractLayout
 {
+    /** @var array */
+    private $edgeInherited = array(
+        'style'     => 'dashed',
+        'arrowType' => 'empty',
+    );
+
+    public function getEdgeExtend()
+    {
+        return $this->edgeInherited + $this->getEdge();
+    }
+
+    public function getEdgeImplement()
+    {
+        return $this->getEdgeExtend();
+    }
+
+    public function getEdgeTraitUse()
+    {
+        return $this->getEdgeExtend();
+    }
 }

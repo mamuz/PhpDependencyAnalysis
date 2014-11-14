@@ -97,17 +97,25 @@ class Adt
      */
     public function getUsedNamespaces()
     {
-        $blacklist = array_keys($this->getMeta()->getAllNamespaces());
-        $blacklist[] = $this->getDeclaredNamespace()->toString();
+        return $this->usedNamespaces;
+    }
 
-        $usedNamespaces = array();
-        foreach ($this->usedNamespaces as $namespace) {
-            if (!in_array($namespace->toString(), $blacklist)) {
-                $usedNamespaces[] = $namespace;
+    /**
+     * @return Node\Name[]
+     */
+    public function getCalledNamespaces()
+    {
+        $notCalledNamespaces = array_keys($this->getMeta()->getAllNamespaces());
+        $notCalledNamespaces[] = $this->getDeclaredNamespace()->toString();
+
+        $calledNamespaces = array();
+        foreach ($this->getUsedNamespaces() as $namespace) {
+            if (!in_array($namespace->toString(), $notCalledNamespaces)) {
+                $calledNamespaces[] = $namespace;
             }
         }
 
-        return $usedNamespaces;
+        return $calledNamespaces;
     }
 
     /**

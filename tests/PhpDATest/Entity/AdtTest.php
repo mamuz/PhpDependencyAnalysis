@@ -57,7 +57,7 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->fixture->hasDeclaredGlobalNamespace());
     }
 
-    public function testMutateAndAccessUsedNamespace()
+    public function testMutateAndAccessCalledNamespace()
     {
         $this->assertSame(array(), $this->fixture->getUsedNamespaces());
 
@@ -88,7 +88,21 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addUsedNamespace($extendNamespace);
         $this->fixture->addUsedNamespace($traitUseNamespace);
 
-        $this->assertSame(array($name1, $name2), $this->fixture->getUsedNamespaces());
+        $this->assertSame(array($name1, $name2), $this->fixture->getCalledNamespaces());
+    }
+
+    public function testMutateAndAccessUsedNamespaces()
+    {
+        $this->assertSame(array(), $this->fixture->getUsedNamespaces());
+
+        $name1 = \Mockery::mock('PhpParser\Node\Name');
+        $name1->shouldReceive('toString')->andReturn('1');
+        $name2 = \Mockery::mock('PhpParser\Node\Name');
+        $name2->shouldReceive('toString')->andReturn('2');
+        $this->fixture->addUsedNamespace($name1);
+        $this->fixture->addUsedNamespace($name2);
+
+        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getUsedNamespaces());
     }
 
     public function testMutateAndAccessUnsupportedStmts()

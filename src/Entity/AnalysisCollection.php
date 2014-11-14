@@ -27,7 +27,7 @@ namespace PhpDA\Entity;
 
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
-use PhpDA\Writer\Layout;
+use PhpDA\Layout;
 use PhpParser\Error;
 use PhpParser\Node\Name;
 
@@ -123,12 +123,37 @@ class AnalysisCollection
     {
         $this->createAdtRootVertexBy($adt);
 
-        $this->createEdgesFor($adt->getUsedNamespaces());
-        $this->createEdgesFor($adt->getUnsupportedStmts());
-        $this->createEdgesFor($adt->getNamespacedStrings());
-        $this->createEdgesFor($adt->getMeta()->getImplementedNamespaces());
-        $this->createEdgesFor($adt->getMeta()->getExtendedNamespaces());
-        $this->createEdgesFor($adt->getMeta()->getUsedTraitNamespaces());
+        $this->createEdgesFor(
+            $adt->getUsedNamespaces(),
+            $this->getLayout()->getEdge()
+        );
+
+        $this->createEdgesFor(
+            $adt->getMeta()->getImplementedNamespaces(),
+            $this->getLayout()->getEdgeImplement()
+        );
+
+        $this->createEdgesFor(
+            $adt->getMeta()->getExtendedNamespaces(),
+            $this->getLayout()->getEdgeExtend()
+        );
+
+        $this->createEdgesFor(
+            $adt->getMeta()->getUsedTraitNamespaces(),
+            $this->getLayout()->getEdgeTraitUse()
+        );
+
+        $this->createEdgesFor(
+            $adt->getUnsupportedStmts(),
+            $this->getLayout()->getEdgeUnsupported(),
+            $this->getLayout()->getVertexUnsupported()
+        );
+
+        $this->createEdgesFor(
+            $adt->getNamespacedStrings(),
+            $this->getLayout()->getEdgeNamespacedString(),
+            $this->getLayout()->getVertexNamespacedString()
+        );
     }
 
     /**
@@ -145,18 +170,25 @@ class AnalysisCollection
      */
     private function createVertexBy(Name $name)
     {
-        return $this->graph->createVertex($name->toString(), true);
+        return $this->graph->createVertex($name->toString(), true)->setLayout($this->getLayout()->getVertex());
     }
 
     /**
      * @param Name[] $dependencies
+     * @param array  $edgeLayout
+     * @param array  $vertexLayout
      */
-    private function createEdgesFor(array $dependencies)
+    private function createEdgesFor(array $dependencies, array $edgeLayout, array $vertexLayout = null)
     {
-        foreach ($dependencies as $edge) {
-            $vertex = $this->createVertexBy($edge);
-            if (!$this->adtRootVertex->hasEdgeTo($vertex)) {
-                $this->adtRootVertex->createEdgeTo($vertex);
+        foreach ($dependencies as $dependency) {
+            $vertex = $this->createVertexBy($dependency);
+            if (is_array($vertexLayout)) {
+                $vertex->setLayout($vertexLayout);
+            }
+            if ($this->adtRootVertex !== $vertex
+                && !$this->adtRootVertex->hasEdgeTo($vertex)
+            ) {
+                $this->adtRootVertex->createEdgeTo($vertex)->setLayout($edgeLayout);
             }
         }
     }

@@ -23,32 +23,19 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer\Layout;
+namespace PhpDA\Layout;
 
-class Standard implements LayoutInterface
+abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
     private $vertex = array(
         'fillcolor' => '#eeeeee',
-        'style'     => 'filled, rounded',
-        'shape'     => 'box',
+        'style'     => 'filled',
+        'shape'     => 'circle',
         'fontcolor' => '#314B5F',
+        'fontsize'  => 10,
+        'margin'    => 0,
     );
-
-    /** @var array */
-    private $vertexClass = array();
-
-    /** @var array */
-    private $vertexInterface = array();
-
-    /** @var array */
-    private $vertexAbstract = array();
-
-    /** @var array */
-    private $vertexFinal = array();
-
-    /** @var array */
-    private $vertexTrait = array();
 
     /** @var array */
     private $vertexUnsupported = array();
@@ -58,27 +45,26 @@ class Standard implements LayoutInterface
 
     /** @var array */
     private $edge = array(
+        'arrowsize' => 0.6,
         'fontcolor' => '#767676',
-        'fontsize'  => 10,
+        'fontsize'  => 8,
         'color'     => '#1A2833',
     );
 
     /** @var array */
-    private $edgeImplement = array(
-        'style'     => 'dashed',
-        'arrowType' => 'empty',
+    private $edgeUnsupported = array(
+        'arrowsize' => 0.6,
+        'fontcolor' => '#767676',
+        'fontsize'  => 8,
+        'color'     => '#1A2833',
     );
 
     /** @var array */
-    private $edgeExtend = array(
-        'style'     => 'solid',
-        'arrowType' => 'empty',
-    );
-
-    /** @var array */
-    private $edgeTraitUse = array(
-        'style'     => 'solid',
-        'arrowType' => 'empty',
+    private $edgeNamespacedString = array(
+        'arrowsize' => 0.6,
+        'fontcolor' => '#767676',
+        'fontsize'  => 8,
+        'color'     => '#1A2833',
     );
 
     public function getEdge()
@@ -88,17 +74,27 @@ class Standard implements LayoutInterface
 
     public function getEdgeExtend()
     {
-        return $this->edgeExtend + $this->getEdge();
+        return $this->getEdge();
     }
 
     public function getEdgeImplement()
     {
-        return $this->edgeImplement + $this->getEdge();
+        return $this->getEdge();
     }
 
     public function getEdgeTraitUse()
     {
-        return $this->edgeTraitUse + $this->getEdge();
+        return $this->getEdge();
+    }
+
+    public function getEdgeUnsupported()
+    {
+        return $this->edgeUnsupported + $this->getEdge();
+    }
+
+    public function getEdgeNamespacedString()
+    {
+        return $this->edgeNamespacedString + $this->getEdge();
     }
 
     public function getVertex()
@@ -106,34 +102,9 @@ class Standard implements LayoutInterface
         return $this->vertex;
     }
 
-    public function getVertexAbstract()
-    {
-        return $this->vertexAbstract + $this->getVertex();
-    }
-
-    public function getVertexClass()
-    {
-        return $this->vertexClass + $this->getVertex();
-    }
-
-    public function getVertexFinal()
-    {
-        return $this->vertexFinal + $this->getVertex();
-    }
-
-    public function getVertexInterface()
-    {
-        return $this->vertexInterface + $this->getVertex();
-    }
-
     public function getVertexNamespacedString()
     {
         return $this->vertexNamespacedString + $this->getVertex();
-    }
-
-    public function getVertexTrait()
-    {
-        return $this->vertexTrait + $this->getVertex();
     }
 
     public function getVertexUnsupported()
