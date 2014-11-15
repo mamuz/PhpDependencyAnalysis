@@ -71,14 +71,14 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
     public function testNotCollectingByInvalidClassName()
     {
         $node = \Mockery::mock('PhpParser\Node\Scalar\String');
-        $node->value = '?Foo';
+        $node->value = '4Foo';
         $this->fixture->leaveNode($node);
     }
 
     public function testNotCollectingByInvalidNamespaces()
     {
         $node = \Mockery::mock('PhpParser\Node\Scalar\String');
-        $node->value = 'Foo\?Bar';
+        $node->value = 'Foo\4Bar';
         $this->fixture->leaveNode($node);
     }
 
@@ -145,7 +145,7 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
         $this->fixture->leaveNode($node);
     }
 
-    public function testCollectingNonStandrdNamespacedString()
+    public function testCollectingNonStandardNamespacedString()
     {
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Scalar\String');
