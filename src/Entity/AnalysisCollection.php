@@ -146,11 +146,6 @@ class AnalysisCollection
             );
         } else {
             $this->createEdgesFor(
-                $adt->getUsedNamespaces(),
-                $this->getLayout()->getEdge()
-            );
-
-            $this->createEdgesFor(
                 $adt->getMeta()->getImplementedNamespaces(),
                 $this->getLayout()->getEdgeImplement()
             );
@@ -163,6 +158,11 @@ class AnalysisCollection
             $this->createEdgesFor(
                 $adt->getMeta()->getUsedTraitNamespaces(),
                 $this->getLayout()->getEdgeTraitUse()
+            );
+
+            $this->createEdgesFor(
+                $adt->getUsedNamespaces(),
+                $this->getLayout()->getEdge()
             );
         }
 
