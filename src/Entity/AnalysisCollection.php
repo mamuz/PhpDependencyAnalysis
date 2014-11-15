@@ -54,7 +54,7 @@ class AnalysisCollection
     public function __construct(Graph $graph)
     {
         $this->graph = $graph;
-        $this->setLayout(new Layout\Null);
+        $this->setLayout(new Layout\NullLayout);
     }
 
     /**

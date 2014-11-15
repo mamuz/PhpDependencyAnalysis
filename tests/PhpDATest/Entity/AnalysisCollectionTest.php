@@ -55,7 +55,7 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessLayout()
     {
-        $this->assertInstanceOf('PhpDA\Layout\Null', $this->fixture->getLayout());
+        $this->assertInstanceOf('PhpDA\Layout\NullLayout', $this->fixture->getLayout());
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
         $this->fixture->setLayout($layout);
         $this->assertSame($layout, $this->fixture->getLayout());

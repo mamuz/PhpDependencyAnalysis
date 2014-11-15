@@ -25,7 +25,7 @@
 
 namespace PhpDA\Layout;
 
-class Null implements LayoutInterface
+class NullLayout implements LayoutInterface
 {
     public function getEdge()
     {
