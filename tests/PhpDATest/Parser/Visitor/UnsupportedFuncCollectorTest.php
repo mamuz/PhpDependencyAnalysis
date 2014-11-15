@@ -54,6 +54,15 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
         $this->fixture->leaveNode($node);
     }
 
+    public function testNotCollectingByInvalidNodeName()
+    {
+        $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
+        $name = \Mockery::mock('PhpParser\Node');
+        $name->shouldReceive('toString')->andReturn('foo');
+        $node->name = $name;
+        $this->fixture->leaveNode($node);
+    }
+
     public function testCollectingByFilteredToNull()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
