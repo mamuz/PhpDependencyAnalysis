@@ -47,19 +47,19 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $name = $this->fixture->getDeclaredNamespace();
         $this->assertInstanceOf('PhpParser\Node\Name', $name);
         $this->assertSame('\\', $name->toString());
-        $this->assertFalse($this->fixture->hasDeclaredGlobalNamespace());
+        $this->assertTrue($this->fixture->hasDeclaredGlobalNamespace());
 
         $name = \Mockery::mock('PhpParser\Node\Name');
         $name->shouldReceive('toString')->andReturn('Foo');
         $this->fixture->setDeclaredNamespace($name);
 
         $this->assertSame($name, $this->fixture->getDeclaredNamespace());
-        $this->assertTrue($this->fixture->hasDeclaredGlobalNamespace());
+        $this->assertFalse($this->fixture->hasDeclaredGlobalNamespace());
     }
 
     public function testMutateAndAccessCalledNamespace()
     {
-        $this->assertSame(array(), $this->fixture->getUsedNamespaces());
+        $this->assertSame(array(), $this->fixture->getCalledNamespaces());
 
         $declaredNamespace = \Mockery::mock('PhpParser\Node\Name');
         $declaredNamespace->shouldReceive('toString')->andReturn('Foo\Declare');
@@ -77,6 +77,10 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $traitUseNamespace->shouldReceive('toString')->andReturn('Foo\TraitUse');
         $this->fixture->getMeta()->addUsedTraitNamespace($traitUseNamespace);
 
+        $unsupportedNamespace = \Mockery::mock('PhpParser\Node\Name');
+        $unsupportedNamespace->shouldReceive('toString')->andReturn('Foo\Unsupported');
+        $this->fixture->addUnsupportedStmt($unsupportedNamespace);
+
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
         $name2 = \Mockery::mock('PhpParser\Node\Name');
@@ -87,13 +91,18 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addUsedNamespace($implementNamespace);
         $this->fixture->addUsedNamespace($extendNamespace);
         $this->fixture->addUsedNamespace($traitUseNamespace);
+        $this->fixture->addUsedNamespace($unsupportedNamespace);
 
-        $this->assertSame(array($name1, $name2), $this->fixture->getCalledNamespaces());
+        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getCalledNamespaces());
     }
 
     public function testMutateAndAccessUsedNamespaces()
     {
         $this->assertSame(array(), $this->fixture->getUsedNamespaces());
+
+        $unsupportedNamespace = \Mockery::mock('PhpParser\Node\Name');
+        $unsupportedNamespace->shouldReceive('toString')->andReturn('Foo\Unsupported');
+        $this->fixture->addUnsupportedStmt($unsupportedNamespace);
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
@@ -101,6 +110,7 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $name2->shouldReceive('toString')->andReturn('2');
         $this->fixture->addUsedNamespace($name1);
         $this->fixture->addUsedNamespace($name2);
+        $this->fixture->addUsedNamespace($unsupportedNamespace);
 
         $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getUsedNamespaces());
     }

@@ -126,7 +126,7 @@ class UnsupportedVarCollectorTest extends \PHPUnit_Framework_TestCase
             function ($object) use ($testcase, $attributes) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), '§\\VariableCall');
+                $testcase->assertSame($object->toString(), 'dynamic varname');
                 $testcase->assertSame($object->getAttributes(), $attributes);
             }
         );

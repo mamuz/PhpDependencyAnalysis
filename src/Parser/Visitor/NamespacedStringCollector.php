@@ -30,13 +30,16 @@ use PhpParser\Node;
 
 class NamespacedStringCollector extends AbstractVisitor implements NamespacedStringCollectorInterface
 {
+    const NS = '\\';
+
     const VALID_CLASSNAME_PATTERN = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
 
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Scalar\String) {
             if ($this->match($node)) {
-                $name = new Node\Name($node->value);
+                $namespace = self::NS . $this->trimNS($node->value);
+                $name = new Node\Name($namespace);
                 $this->collect($name, $node);
             }
         }
@@ -50,15 +53,11 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
     {
         $string = $string->value;
 
-        if (!preg_match(self::VALID_CLASSNAME_PATTERN, str_replace('\\', '', $string))) {
+        if (!preg_match(self::VALID_CLASSNAME_PATTERN, str_replace(self::NS, '', $string))) {
             return false;
         }
 
-        if ($this->matchToPsrStandard($string)) {
-            return true;
-        }
-
-        return false;
+        return $this->matchToPsrStandard($string);
     }
 
     /**
@@ -67,23 +66,22 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
      */
     private function matchToPsrStandard($string)
     {
-        $normalized = ltrim($string, '\\');
+        $trimmedString = $this->trimNS($string);
 
-        if ($string[0] == '\\' && preg_match(self::VALID_CLASSNAME_PATTERN, $normalized)) {
+        if ($string[0] == self::NS && preg_match(self::VALID_CLASSNAME_PATTERN, $trimmedString)) {
             return true;
         }
 
-        return $this->matchNamespacesBy('\\', ltrim($normalized, '\\'));
+        return $this->matchNamespacesBy($trimmedString);
     }
 
     /**
-     * @param string $glue
      * @param string $string
      * @return bool
      */
-    private function matchNamespacesBy($glue, $string)
+    private function matchNamespacesBy($string)
     {
-        $namespaces = explode($glue, $string);
+        $namespaces = explode(self::NS, $string);
 
         if (count($namespaces) < 2) {
             return false;
@@ -96,5 +94,14 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
         }
 
         return true;
+    }
+
+    /**
+     * @param $string
+     * @return string
+     */
+    private function trimNS($string)
+    {
+        return ltrim($string, self::NS);
     }
 }

@@ -81,7 +81,7 @@ class Adt
      */
     public function hasDeclaredGlobalNamespace()
     {
-        return $this->getDeclaredNamespace()->toString() !== self::GLOBAL_NAMESPACE;
+        return $this->getDeclaredNamespace()->toString() === self::GLOBAL_NAMESPACE;
     }
 
     /**
@@ -97,7 +97,7 @@ class Adt
      */
     public function getUsedNamespaces()
     {
-        return $this->usedNamespaces;
+        return $this->disjoin($this->usedNamespaces, $this->getUnsupportedStmtNamespaces());
     }
 
     /**
@@ -105,17 +105,7 @@ class Adt
      */
     public function getCalledNamespaces()
     {
-        $notCalledNamespaces = array_keys($this->getMeta()->getAllNamespaces());
-        $notCalledNamespaces[] = $this->getDeclaredNamespace()->toString();
-
-        $calledNamespaces = array();
-        foreach ($this->getUsedNamespaces() as $namespace) {
-            if (!in_array($namespace->toString(), $notCalledNamespaces)) {
-                $calledNamespaces[] = $namespace;
-            }
-        }
-
-        return $calledNamespaces;
+        return $this->disjoin($this->getUsedNamespaces(), $this->getDeclaredAndMetaNamespaces());
     }
 
     /**
@@ -148,5 +138,43 @@ class Adt
     public function getNamespacedStrings()
     {
         return $this->namespacedStrings;
+    }
+
+    /**
+     * @param Node\Name[] $set
+     * @param string[]    $complement
+     * @return Node\Name[]
+     */
+    private function disjoin(array $set, array $complement)
+    {
+        $diff = array();
+
+        foreach ($set as $node) {
+            $namespace = $node->toString();
+            if (!in_array($namespace, $complement)) {
+                $diff[$namespace] = $node;
+            }
+        }
+
+        return $diff;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getUnsupportedStmtNamespaces()
+    {
+        return array_keys($this->getUnsupportedStmts());
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getDeclaredAndMetaNamespaces()
+    {
+        $namespaceStrings = array_keys($this->getMeta()->getAllNamespaces());
+        $namespaceStrings[] = $this->getDeclaredNamespace()->toString();
+
+        return $namespaceStrings;
     }
 }

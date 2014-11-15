@@ -41,7 +41,7 @@ class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredName
             /** @var Node\Stmt $node */
             $subNodes = $node->getIterator();
             if ($subNodes->offsetExists('namespacedName')) {
-                if ($this->getAdt()->hasDeclaredGlobalNamespace()) {
+                if (!$this->getAdt()->hasDeclaredGlobalNamespace()) {
                     throw new Error('DeclaredNamespace is already defined', $node->getLine());
                 }
                 $namespacedName = $subNodes->offsetGet('namespacedName');

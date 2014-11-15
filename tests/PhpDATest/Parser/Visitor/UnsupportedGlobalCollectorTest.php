@@ -76,7 +76,7 @@ class UnsupportedGlobalCollectorTest extends \PHPUnit_Framework_TestCase
             function ($object) use ($testcase, $attributes) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), '§\\global');
+                $testcase->assertSame($object->toString(), 'global');
                 $testcase->assertSame($object->getAttributes(), $attributes);
             }
         );

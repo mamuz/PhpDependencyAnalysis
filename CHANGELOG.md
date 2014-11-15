@@ -2,12 +2,16 @@
 
 ## dev-master
 
-- Add Layout with autoswitch for aggregated graph [WIP]
+- Fix detecting in IocContainerAccessorCollector
+- Fix providing UsedNamespacing in ADT entity
+- Change vertex name in UnsupportedVarCollector to 'dynamic varname'
+- Replace prefixes for UnsupportedNamespaces and NamespacedStrings with coloring
+- Add Layout with autoswitch for aggregated graph
 - Remove detetecting namespaced string for deprecated pear standard in NamespacedStringCollector
 - Rename default config file by appending '.dist'
 - Add CONTRIBUTING.md
 - Change default configuration by adding visitorOptions for MetaNamespaceCollector
-- Add Meta object to Adt with corresponding collector
+- Add Meta object to ADT entity with corresponding collector
 - Change default configuration by adding mode config
 - Add mode configuration to switch analysis between usage graph (default), call graph and inheritance graph
 - Segregate call graph from analysis

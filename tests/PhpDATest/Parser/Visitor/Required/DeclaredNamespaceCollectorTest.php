@@ -79,7 +79,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
         $iterator->shouldReceive('offsetGet')->once()->with('namespacedName')->andReturn($namespace);
         $node->shouldReceive('getIterator')->once()->andReturn($iterator);
-        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(false);
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturn(null);
         $this->fixture->leaveNode($node);
     }
@@ -136,7 +136,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
         $node->shouldReceive('getIterator')->once()->andReturn($iterator);
         $node->shouldReceive('getLine')->andReturn(12);
-        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(false);
         $this->fixture->leaveNode($node);
     }
 
@@ -173,7 +173,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
                 return $nodeName;
             }
         );
-        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(false);
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->adt->shouldReceive('setDeclaredNamespace')->once()->andReturnUsing(
             function ($nodeName) use ($namespace, $testcase) {
                 /** @var \PhpParser\Node\Name $nodeName */

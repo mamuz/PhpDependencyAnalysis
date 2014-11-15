@@ -33,7 +33,7 @@ class UnsupportedVarCollector extends AbstractVisitor implements UnsupportedName
     public function leaveNode(Node $node)
     {
         if ($this->unsupports($node)) {
-            $name = new Node\Name('VariableCall');
+            $name = new Node\Name('dynamic varname');
             $this->collect($name, $node);
         }
     }

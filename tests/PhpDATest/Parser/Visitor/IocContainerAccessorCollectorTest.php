@@ -81,8 +81,8 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testNotCollectingByMatchingMethodWithInvalidArgumentValue()
     {
-        $value = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $value->name = 123;
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value->value = 123;
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
         $arg->value = $value;
@@ -93,8 +93,8 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testNotCollectingByMatchingMethodWithEmptyArgumentValue()
     {
-        $value = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $value->name = '';
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value->value = '';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
         $arg->value = $value;
@@ -105,8 +105,8 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollectingByFilteredToNull()
     {
-        $value = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $value->name = 'Baz';
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value->value = 'Baz';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
         $arg->value = $value;
@@ -120,8 +120,8 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $testcase = $this;
         $attributes = array('foo' => 'bar');
-        $value = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $value->name = 'Baz';
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value->value = 'Baz';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $arg = \Mockery::mock('PhpParser\Node\Arg');
@@ -137,7 +137,7 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
             function ($object) use ($testcase, $attributes) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), '?\\Baz');
+                $testcase->assertSame($object->toString(), 'Baz');
                 $testcase->assertSame($object->getAttributes(), $attributes);
             }
         );

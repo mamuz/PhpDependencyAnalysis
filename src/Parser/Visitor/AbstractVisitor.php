@@ -125,7 +125,6 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
             if (!is_null($node)) {
                 $this->exchange($name, $node);
             }
-            $this->modify($name);
             $adtMutator = $this->getAdtMutator();
             $this->getAdt()->$adtMutator($name);
         }
@@ -195,23 +194,5 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     private function isNamespacedStringCollector()
     {
         return $this instanceof Feature\NamespacedStringCollectorInterface;
-    }
-
-    /**
-     * @param Node\Name $name
-     */
-    private function modify(Node\Name $name)
-    {
-        if ($this->isUnsupportedNamespaceCollector()) {
-            $prefix = '§';
-        }
-
-        if ($this->isNamespacedStringCollector()) {
-            $prefix = '?';
-        }
-
-        if (isset($prefix)) {
-            $name->prepend($prefix);
-        }
     }
 }
