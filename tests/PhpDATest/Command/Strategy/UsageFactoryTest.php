@@ -23,13 +23,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Command\Strategy;
+namespace PhpDATest\Command\Strategy;
 
-class Call extends Usage
+use PhpDA\Command\Strategy\UsageFactory;
+
+class UsageFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    protected function init()
+    /** @var UsageFactory */
+    protected $fixture;
+
+    protected function setUp()
     {
-        parent::init();
-        $this->getAnalyzer()->getAnalysisCollection()->setCallMode();
+        $this->fixture = new UsageFactory;
+    }
+
+    public function testCreate()
+    {
+        $this->assertInstanceOf('PhpDA\Command\Strategy\Usage', $this->fixture->create());
     }
 }

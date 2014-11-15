@@ -25,11 +25,10 @@
 
 namespace PhpDA\Command\Strategy;
 
-class Call extends Usage
+class UsageFactory extends AbstractFactory
 {
-    protected function init()
+    public function create()
     {
-        parent::init();
-        $this->getAnalyzer()->getAnalysisCollection()->setCallMode();
+        return new Usage($this->createFinder(), $this->createAnalyzer(), $this->createWriteAdapter());
     }
 }

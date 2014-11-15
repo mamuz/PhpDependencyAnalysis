@@ -25,11 +25,26 @@
 
 namespace PhpDA\Command\Strategy;
 
-class Call extends Usage
+class Usage extends AbstractStrategy
 {
     protected function init()
     {
-        parent::init();
-        $this->getAnalyzer()->getAnalysisCollection()->setCallMode();
+        $this->initNodeTraverser();
+    }
+
+    private function initNodeTraverser()
+    {
+        $requiredVisitors = array(
+            'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
+            'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
+            'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
+        );
+
+        $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
+        $nodeTraverser->setRequiredVisitors($requiredVisitors);
+        $nodeTraverser->bindVisitors(
+            $this->getConfig()->getVisitor(),
+            $this->getConfig()->getVisitorOptions()
+        );
     }
 }

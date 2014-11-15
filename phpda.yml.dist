@@ -1,4 +1,4 @@
-mode: 'call' # call | inheritance
+mode: 'usage' # usage | call | inheritance
 source: './src'
 filePattern: '*.php'
 ignore: 'tests'

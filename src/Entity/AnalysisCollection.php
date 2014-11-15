@@ -45,6 +45,9 @@ class AnalysisCollection
     /** @var Layout\LayoutInterface */
     private $layout;
 
+    /** @var bool */
+    private $isCallMode = false;
+
     /**
      * @param Graph $graph
      */
@@ -60,6 +63,19 @@ class AnalysisCollection
     public function getGraph()
     {
         return $this->graph;
+    }
+
+    public function setCallMode()
+    {
+        $this->isCallMode = true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCallMode()
+    {
+        return $this->isCallMode;
     }
 
     /**
@@ -123,25 +139,32 @@ class AnalysisCollection
     {
         $this->createAdtRootVertexBy($adt);
 
-        $this->createEdgesFor(
-            $adt->getUsedNamespaces(),
-            $this->getLayout()->getEdge()
-        );
+        if ($this->isCallMode()) {
+            $this->createEdgesFor(
+                $adt->getCalledNamespaces(),
+                $this->getLayout()->getEdge()
+            );
+        } else {
+            $this->createEdgesFor(
+                $adt->getUsedNamespaces(),
+                $this->getLayout()->getEdge()
+            );
 
-        $this->createEdgesFor(
-            $adt->getMeta()->getImplementedNamespaces(),
-            $this->getLayout()->getEdgeImplement()
-        );
+            $this->createEdgesFor(
+                $adt->getMeta()->getImplementedNamespaces(),
+                $this->getLayout()->getEdgeImplement()
+            );
 
-        $this->createEdgesFor(
-            $adt->getMeta()->getExtendedNamespaces(),
-            $this->getLayout()->getEdgeExtend()
-        );
+            $this->createEdgesFor(
+                $adt->getMeta()->getExtendedNamespaces(),
+                $this->getLayout()->getEdgeExtend()
+            );
 
-        $this->createEdgesFor(
-            $adt->getMeta()->getUsedTraitNamespaces(),
-            $this->getLayout()->getEdgeTraitUse()
-        );
+            $this->createEdgesFor(
+                $adt->getMeta()->getUsedTraitNamespaces(),
+                $this->getLayout()->getEdgeTraitUse()
+            );
+        }
 
         $this->createEdgesFor(
             $adt->getUnsupportedStmts(),

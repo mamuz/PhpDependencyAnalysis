@@ -37,7 +37,7 @@ interface MessageInterface
 
     const ARGUMENT_CONFIG = 'Path to yaml configuration file.';
 
-    const OPTION_MODE = 'Analysis mode: "call" (default) or "inheritance"';
+    const OPTION_MODE = 'Analysis mode: "usage" (default) or "call" or "inheritance"';
 
     const OPTION_SOURCE = 'Directory to analyze.';
 

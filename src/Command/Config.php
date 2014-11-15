@@ -29,15 +29,17 @@ use PhpDA\Parser\Filter\NodeName;
 
 class Config
 {
+    const USAGE_MODE = 'usage';
+
     const CALL_MODE = 'call';
 
     const INHERITANCE_MODE = 'inheritance';
 
     /** @var array */
-    private $allowedModes = array(self::CALL_MODE, self::INHERITANCE_MODE);
+    private $allowedModes = array(self::USAGE_MODE, self::CALL_MODE, self::INHERITANCE_MODE);
 
     /** @var string */
-    private $mode = self::CALL_MODE;
+    private $mode = self::USAGE_MODE;
 
     /** @var string */
     private $source;
@@ -80,7 +82,9 @@ class Config
     {
         if (!in_array($this->mode, $this->allowedModes, true)) {
             throw new \InvalidArgumentException(
-                'Config for mode must be "' . self::CALL_MODE . '" or "' . self::INHERITANCE_MODE . '"'
+                'Config for mode must be "' . self::USAGE_MODE
+                . '" or "' . self::CALL_MODE . '"'
+                . '" or "' . self::INHERITANCE_MODE . '"'
             );
         }
 

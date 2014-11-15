@@ -25,11 +25,11 @@
 
 namespace PhpDATest\Command\Strategy;
 
-use PhpDA\Command\Strategy\Call;
+use PhpDA\Command\Strategy\Usage;
 
-class CallTest extends \PHPUnit_Framework_TestCase
+class UsageTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Call */
+    /** @var Usage */
     protected $fixture;
 
     /** @var \Symfony\Component\Finder\Finder | \Mockery\MockInterface */
@@ -83,7 +83,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $this->fixture = new Call($this->finder, $this->analyzer, $this->writer);
+        $this->fixture = new Usage($this->finder, $this->analyzer, $this->writer);
     }
 
     public function testNothingToParse()
@@ -127,7 +127,6 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $visitor = array('foo');
         $visitorOptions = array('bar');
 
-        $this->collection->shouldReceive('setCallMode')->once();
         $this->config->shouldReceive('getVisitor')->once()->andReturn($visitor);
         $this->config->shouldReceive('getVisitorOptions')->once()->andReturn($visitorOptions);
 

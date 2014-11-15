@@ -32,7 +32,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $values = array(
-            'mode'           => 'inheritance',
+            'mode'           => 'call',
             'source'         => 'mySource',
             'ignore'         => 'myIgnore',
             'formatter'      => 'myFormatter',
@@ -57,7 +57,13 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $config->getIgnore());
         $this->assertSame(array(), $config->getVisitor());
         $this->assertSame(array(), $config->getVisitorOptions());
-        $this->assertSame('call', $config->getMode());
+        $this->assertSame('usage', $config->getMode());
+    }
+
+    public function testInheritanceMode()
+    {
+        $config = new Config(array('mode' => 'inheritance'));
+        $this->assertSame('inheritance', $config->getMode());
     }
 
     public function testInvalidMode()
