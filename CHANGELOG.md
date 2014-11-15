@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev-master
+## v0.1.0-beta
 
 - Fix detecting in IocContainerAccessorCollector
 - Fix providing UsedNamespacing in ADT entity
