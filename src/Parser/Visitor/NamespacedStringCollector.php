@@ -58,10 +58,6 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
             return true;
         }
 
-        if ($this->matchToPearStandard($string)) {
-            return true;
-        }
-
         return false;
     }
 
@@ -78,15 +74,6 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
         }
 
         return $this->matchNamespacesBy('\\', ltrim($normalized, '\\'));
-    }
-
-    /**
-     * @param string $string
-     * @return bool
-     */
-    private function matchToPearStandard($string)
-    {
-        return $this->matchNamespacesBy('_', $string);
     }
 
     /**
