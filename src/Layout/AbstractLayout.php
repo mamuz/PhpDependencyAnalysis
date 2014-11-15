@@ -38,10 +38,14 @@ abstract class AbstractLayout implements LayoutInterface
     );
 
     /** @var array */
-    private $vertexUnsupported = array();
+    private $vertexUnsupported = array(
+        'fillcolor' => '#ECB4B4',
+    );
 
     /** @var array */
-    private $vertexNamespacedString = array();
+    private $vertexNamespacedString = array(
+        'fillcolor' => '#F1EEA6',
+    );
 
     /** @var array */
     private $edge = array(
@@ -53,18 +57,12 @@ abstract class AbstractLayout implements LayoutInterface
 
     /** @var array */
     private $edgeUnsupported = array(
-        'arrowsize' => 0.6,
-        'fontcolor' => '#767676',
-        'fontsize'  => 8,
-        'color'     => '#1A2833',
+        'color' => '#ECB4B4',
     );
 
     /** @var array */
     private $edgeNamespacedString = array(
-        'arrowsize' => 0.6,
-        'fontcolor' => '#767676',
-        'fontsize'  => 8,
-        'color'     => '#1A2833',
+        'color' => '#F1EEA6',
     );
 
     public function getEdge()
