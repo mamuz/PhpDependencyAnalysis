@@ -82,4 +82,5 @@ After that open created report file with your prefered tool.
 
 ## Contributing
 
-Before opening up a pull-request please reade the [Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
+Before opening up a pull-request please read the
+[Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
