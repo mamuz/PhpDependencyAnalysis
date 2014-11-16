@@ -79,3 +79,7 @@ After that open created report file with your prefered tool.
 3. [Configuration](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
 4. [Examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples)
 5. [Plugins](https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins)
+
+## Contributing
+
+Before opening up a pull-request please reade the [Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
