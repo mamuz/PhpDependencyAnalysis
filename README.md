@@ -35,7 +35,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "0.0.*"
+        "mamuz/php-dependency-analysis": "0.1.*"
     }
 }
 ```
@@ -43,16 +43,12 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ## Features
 
 - Providing high customizing level
-- Dependency graph creation on customized levels respectively different scopes
+- Dependency graph creation on customized levels respectively different scopes and layers
+- Supports Usage-Graph, Call-Graph and Inheritance-Graph
+- Dependencies can be aggregated to a package, a module or a layer
 - Detecting cycles and violations between layers in a tiered architecture
 - Printing graphs in several formats (HTML, SVG, DOT)
-- Adding user-defined detection plugins
-- Adding user-defined output plugins for printing graphs
-- Supports collecting namespaces from [`IoC-Containers`](http://en.wikipedia.org/wiki/Inversion_of_control)
-- Supports collecting [`PHP-Superglobals`](http://php.net/manual/en/language.variables.superglobals.php) as a dependency
-- Supports collecting PHP-Statements, which cannot be resolved, like `create_function` or `eval`
-- Supports collecting namespaces, which are declared in DocBlocks
-- Supports collecting strings, which looks like a namespace
+- Extandable by adding user-defined plugins for collecting and printing of dependencies
 
 ## Configuration
 
@@ -60,7 +56,7 @@ This tool is configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
 You can copy a prepared file from the vendor directory.
 
 ```sh
-cp ./vendor/mamuz/php-dependency-analysis/phpda.yml ./myconfig.yml
+cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml
 ```
 
 See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist)
@@ -71,7 +67,7 @@ and read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnaly
 Run this command line to create a dependecy graph:
 
 ```sh
-./vendor/bin/phpda analyze /path/to/myconfig.yml
+./vendor/bin/phpda analyze ./myconfig.yml
 ```
 
 After that open created report file with your prefered tool.
