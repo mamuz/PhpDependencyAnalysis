@@ -44,7 +44,6 @@ use PhpDA\Entity\AnalysisCollection;
  */
 class Json implements StrategyInterface
 {
-
     /**
      * @param AnalysisCollection $analysisCollection
      * @return string
