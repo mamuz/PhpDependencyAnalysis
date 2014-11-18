@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## dev-master
+
+- Add simple json writer
+
 ## v0.1.0
 
 - Fix detecting in IocContainerAccessorCollector
