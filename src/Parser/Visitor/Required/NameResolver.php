@@ -49,11 +49,18 @@ class NameResolver extends PhpParserNameResolver
     {
         parent::enterNode($node);
 
-        if ($doc = $node->getDocComment()) {
-            $docBlock = new DocBlock($doc->getText());
-            if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
-                $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+        try {
+            if ($doc = $node->getDocComment()) {
+                    $docBlock = new DocBlock($doc->getText());
+
+                    if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
+                        $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+                    }
             }
+        } catch(\InvalidArgumentException $e) {
+            //The Doc Block could not be parsed. We log the problem and keep going.
+            //This can happen e.g. if in the Doc block there is an "@" with a space character directly afterwards.
+            error_log($e->getMessage()." ".$e->getTraceAsString());
         }
     }
 
