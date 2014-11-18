@@ -44,10 +44,6 @@ use PhpDA\Entity\AnalysisCollection;
  */
 class Json implements StrategyInterface
 {
-    /**
-     * @param AnalysisCollection $analysisCollection
-     * @return string
-     */
     public function filter(AnalysisCollection $analysisCollection)
     {
         $graph = $analysisCollection->getGraph();
