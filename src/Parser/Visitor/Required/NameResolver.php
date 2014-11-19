@@ -52,13 +52,12 @@ class NameResolver extends PhpParserNameResolver
 
         try {
             if ($doc = $node->getDocComment()) {
-                    $docBlock = new DocBlock($doc->getText());
-
-                    if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
-                        $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
-                    }
+                $docBlock = new DocBlock($doc->getText());
+                if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
+                    $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+                }
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new Error($e->getMessage(), $node->getLine());
         }
     }

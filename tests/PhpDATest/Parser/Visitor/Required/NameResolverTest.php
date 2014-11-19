@@ -133,7 +133,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidDocBlock()
     {
-        $docBlock = '/** @ A Whitespace after "at" causes PhpDocumentor to throw an exception. It should be converted to a PhpParser\Error */';
+        $docBlock = '/** @ A Whitespace after "at" causes PhpDocumentor to throw an exception */';
         $comment = \Mockery::mock('PhpParser\Comment\Doc');
         $comment->shouldReceive('getText')->andReturn($docBlock);
         $node = \Mockery::mock('PhpParser\Node');
