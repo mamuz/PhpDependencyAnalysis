@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## dev-master
+## v0.1.3
 
 - Fix ignoring array keyword of method arguments in NameResolver visitor
 - Fix catching phpDocParser exceptions in NameResolver visitor
-- Add simple json writer
+- Add json writer
 
 ## v0.1.0
 
