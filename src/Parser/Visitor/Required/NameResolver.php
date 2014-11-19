@@ -26,6 +26,7 @@
 namespace PhpDA\Parser\Visitor\Required;
 
 use phpDocumentor\Reflection\DocBlock;
+use PhpParser\Error;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 
@@ -49,11 +50,16 @@ class NameResolver extends PhpParserNameResolver
     {
         parent::enterNode($node);
 
-        if ($doc = $node->getDocComment()) {
-            $docBlock = new DocBlock($doc->getText());
-            if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
-                $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+        try {
+            if ($doc = $node->getDocComment()) {
+                    $docBlock = new DocBlock($doc->getText());
+
+                    if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
+                        $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
+                    }
             }
+        } catch(\Exception $e) {
+            throw new Error($e->getMessage(), $node->getLine());
         }
     }
 
