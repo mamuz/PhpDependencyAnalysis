@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Fix ignoring array keyword of method arguments in NameResolver visitor
 - Fix catching phpDocParser exceptions in NameResolver visitor
 - Add simple json writer
 
