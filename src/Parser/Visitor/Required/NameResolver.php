@@ -37,7 +37,7 @@ class NameResolver extends PhpParserNameResolver
     private $ignoredMethodArgumentTypes = array(
         'bool', 'boolean',
         'int', 'integer',
-        'string', 'binary',
+        'string', 'binary', 'array',
         'object', 'resource',
         'mixed', 'null',
         'float', 'double',
