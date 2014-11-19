@@ -127,4 +127,18 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
 
         $this->fixture->enterNode($node->shouldIgnoreMissing());
     }
+
+    /**
+     * @expectedException \PhpParser\Error
+     */
+    public function testInvalidDocBlock()
+    {
+        $docBlock = '/** @ A Whitespace after "at" causes PhpDocumentor to throw an exception. It should be converted to a PhpParser\Error */';
+        $comment = \Mockery::mock('PhpParser\Comment\Doc');
+        $comment->shouldReceive('getText')->andReturn($docBlock);
+        $node = \Mockery::mock('PhpParser\Node');
+        $node->shouldReceive('getDocComment')->once()->andReturn($comment);
+
+        $this->fixture->enterNode($node->shouldIgnoreMissing());
+    }
 }

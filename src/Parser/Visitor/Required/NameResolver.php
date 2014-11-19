@@ -26,6 +26,7 @@
 namespace PhpDA\Parser\Visitor\Required;
 
 use phpDocumentor\Reflection\DocBlock;
+use PhpParser\Error;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 
@@ -57,10 +58,8 @@ class NameResolver extends PhpParserNameResolver
                         $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
                     }
             }
-        } catch(\InvalidArgumentException $e) {
-            //The Doc Block could not be parsed. We log the problem and keep going.
-            //This can happen e.g. if in the Doc block there is an "@" with a space character directly afterwards.
-            error_log($e->getMessage()." ".$e->getTraceAsString());
+        } catch(\Exception $e) {
+            throw new Error($e->getMessage(), $node->getLine());
         }
     }
 
