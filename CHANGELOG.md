@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Fix catching phpDocParser exceptions in NameResolver visitor
 - Add simple json writer
 
 ## v0.1.0
