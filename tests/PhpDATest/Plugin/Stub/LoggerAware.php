@@ -23,14 +23,13 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Plugin;
+namespace PhpDATest\Plugin\Stub;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
-class Loader implements LoaderInterface, LoggerAwareInterface
+class LoggerAware implements LoggerAwareInterface
 {
-    /** @var LoggerInterface */
     private $logger;
 
     public function setLogger(LoggerInterface $logger)
@@ -38,33 +37,8 @@ class Loader implements LoaderInterface, LoggerAwareInterface
         $this->logger = $logger;
     }
 
-    public function get($fqn, array $options = null)
+    public function getLogger()
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqn));
-        }
-
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqn));
-            }
-        }
-
-        $plugin = new $fqn;
-
-        if ($plugin instanceof FactoryInterface) {
-            $plugin = $plugin->create();
-        }
-
-        if ($this->logger && $plugin instanceof LoggerAwareInterface) {
-            $plugin->setLogger($this->logger);
-        }
-
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
-        }
-
-        return $plugin;
+        return $this->logger;
     }
 }

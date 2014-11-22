@@ -42,6 +42,11 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('PhpParser\NodeVisitor\NameResolver', $this->fixture);
     }
 
+    public function testImplementingLoggerAwareInterface()
+    {
+        $this->assertInstanceOf('Psr\Log\LoggerAwareInterface', $this->fixture);
+    }
+
     public function testResolving()
     {
         $node = \Mockery::mock('PhpParser\Node');
@@ -128,10 +133,32 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
         $this->fixture->enterNode($node->shouldIgnoreMissing());
     }
 
-    /**
-     * @expectedException \PhpParser\Error
-     */
     public function testInvalidDocBlock()
+    {
+        $testcase = $this;
+        $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
+        $logger = \Mockery::mock('Psr\Log\LoggerInterface');
+        $logger->shouldReceive('warning')->once()->andReturnUsing(
+            function ($message, $options) use ($file, $testcase) {
+                $testcase->assertTrue(is_string($message));
+                $testcase->assertNotEmpty($message);
+                $testcase->assertSame(array($file), $options);
+            }
+        );
+
+        $this->fixture->setLogger($logger);
+        $this->fixture->setFile($file);
+
+        $docBlock = '/** @ A Whitespace after "at" causes PhpDocumentor to throw an exception */';
+        $comment = \Mockery::mock('PhpParser\Comment\Doc');
+        $comment->shouldReceive('getText')->andReturn($docBlock);
+        $node = \Mockery::mock('PhpParser\Node');
+        $node->shouldReceive('getDocComment')->once()->andReturn($comment);
+
+        $this->fixture->enterNode($node->shouldIgnoreMissing());
+    }
+
+    public function testInvalidDocBlockWithoutLoggerAndWithoutFile()
     {
         $docBlock = '/** @ A Whitespace after "at" causes PhpDocumentor to throw an exception */';
         $comment = \Mockery::mock('PhpParser\Comment\Doc');

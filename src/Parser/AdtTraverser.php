@@ -26,20 +26,46 @@
 namespace PhpDA\Parser;
 
 use PhpDA\Parser\Visitor\Required\AdtCollector;
+use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpParser\Node;
+use Symfony\Component\Finder\SplFileInfo;
 
 class AdtTraverser extends \PhpParser\NodeTraverser
 {
     /** @var AdtCollector */
     private $adtCollector;
+    /** @var NameResolver */
+    private $nameResolver;
 
     /**
      * @param AdtCollector $adtCollector
      */
-    public function setAdtCollector(AdtCollector $adtCollector)
+    public function bindAdtCollector(AdtCollector $adtCollector)
     {
         $this->adtCollector = $adtCollector;
         $this->addVisitor($adtCollector);
+    }
+
+    /**
+     * @param NameResolver $nameResolver
+     */
+    public function bindNameResolver(NameResolver $nameResolver)
+    {
+        $this->nameResolver = $nameResolver;
+        $this->addVisitor($nameResolver);
+    }
+
+    /**
+     * @param SplFileInfo $file
+     * @throws \DomainException
+     */
+    public function bindFile(SplFileInfo $file)
+    {
+        if (!$this->nameResolver instanceof NameResolver) {
+            throw new \DomainException('NameResolver has not been set');
+        }
+
+        $this->nameResolver->setFile($file);
     }
 
     /**

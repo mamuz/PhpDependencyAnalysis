@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## dev-master
+
+- Change error report accordingly to log levels
+- Change aborting to skipping in case of parse error by docBlock name resolver
+- Add logger awareness to Analyzer and to NameResolver
+- Add injecting logger feature in PluginLoader
+- Add ParserLogger
+- Add PsrLog
+
 ## v0.1.3
 
 - Fix ignoring array keyword of method arguments in NameResolver visitor

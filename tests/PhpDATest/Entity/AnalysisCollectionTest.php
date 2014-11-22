@@ -209,11 +209,7 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));
-        $analysis->shouldReceive('hasParseError')->once()->andReturn(false);
         $this->fixture->attach($analysis);
-
-        $this->assertFalse($this->fixture->hasAnalysisFailures());
-        $this->assertEmpty($this->fixture->getAnalysisFailures());
     }
 
     public function testAttachAnalysisForCallMode()
@@ -314,30 +310,6 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));
-        $analysis->shouldReceive('hasParseError')->once()->andReturn(false);
         $this->fixture->attach($analysis);
-
-        $this->assertFalse($this->fixture->hasAnalysisFailures());
-        $this->assertEmpty($this->fixture->getAnalysisFailures());
-    }
-
-    public function testAttachAnalysisWithParseError()
-    {
-        $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
-        $file->shouldReceive('getRealPath')->andReturn('foo');
-        $parseError = new \PhpParser\Error('foo');
-        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $analysis->shouldReceive('hasParseError')->once()->andReturn(true);
-        $analysis->shouldReceive('getParseError')->once()->andReturn($parseError);
-        $analysis->shouldReceive('getFile')->once()->andReturn($file);
-        $this->fixture->attach($analysis);
-
-        $this->assertTrue($this->fixture->hasAnalysisFailures());
-        $failures = $this->fixture->getAnalysisFailures();
-
-        foreach ($failures as $path => $error) {
-            $this->assertSame($parseError, $error);
-            $this->assertSame('foo', $path);
-        }
     }
 }

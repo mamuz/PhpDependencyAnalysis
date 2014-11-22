@@ -25,16 +25,12 @@
 
 namespace PhpDA\Entity;
 
-use PhpParser\Error;
 use Symfony\Component\Finder\SplFileInfo;
 
 class Analysis
 {
     /** @var SplFileInfo */
     private $file;
-
-    /** @var Error */
-    private $parseError;
 
     /** @var Adt[] */
     private $adts = array();
@@ -53,30 +49,6 @@ class Analysis
     public function getFile()
     {
         return $this->file;
-    }
-
-    /**
-     * @param Error $error
-     */
-    public function setParseError(Error $error)
-    {
-        $this->parseError = $error;
-    }
-
-    /**
-     * @return Error|null
-     */
-    public function getParseError()
-    {
-        return $this->parseError;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasParseError()
-    {
-        return $this->parseError instanceof Error;
     }
 
     /**

@@ -228,12 +228,10 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
 
     private function writeAnalysisFailures()
     {
-        if ($this->getAnalyzer()->getAnalysisCollection()->hasAnalysisFailures()) {
-            $failures = $this->getAnalyzer()->getAnalysisCollection()->getAnalysisFailures();
-            $this->getOutput()->writeln(Message::PARSE_ERRORS);
-            foreach ($failures as $realpath => $error) {
-                $this->getOutput()->writeln($realpath . ': ' . $error->getMessage());
-            }
+        $logger = $this->getAnalyzer()->getLogger();
+        if (!$logger->isEmpty()) {
+            $this->getOutput()->writeln(Message::PARSE_LOGS);
+            $this->getOutput()->writeln($logger->toString());
         }
     }
 }

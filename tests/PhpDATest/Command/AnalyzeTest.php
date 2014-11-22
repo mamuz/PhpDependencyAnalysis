@@ -106,8 +106,11 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
     public function testExecution()
     {
         $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldReceive('setStyle');
         $output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface');
         $output->shouldReceive('writeln');
+        $output->shouldReceive('getFormatter')->andReturn($formatter);
 
         $configPath = __DIR__ . '/Stub/config.txt';
         $config = array('mode' => 'call', 'source' => '.', 'ignore' => 'dir1, dir2,dir3');
@@ -141,8 +144,11 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('RuntimeException');
 
         $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldReceive('setStyle');
         $output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface');
         $output->shouldReceive('writeln');
+        $output->shouldReceive('getFormatter')->andReturn($formatter);
 
         $configPath = __DIR__ . '/Stub/config.txt';
         $config = array('mode' => 'call');
@@ -167,8 +173,11 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('InvalidArgumentException');
 
         $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldReceive('setStyle');
         $output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface');
         $output->shouldReceive('writeln');
+        $output->shouldReceive('getFormatter')->andReturn($formatter);
 
         $configPath = __DIR__ . '/Stub/config.txt';
         $input->shouldReceive('getArgument')->andReturn($configPath);

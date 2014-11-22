@@ -89,4 +89,32 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($options, $plugin->getOptions());
     }
+
+    public function testGetPluginWithLoggerAwarenessAndNotHavingLogger()
+    {
+        /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
+        $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAware');
+
+        $this->assertNull($plugin->getLogger());
+    }
+
+    public function testGetPluginWithLoggerAwareness()
+    {
+        $logger = \Mockery::mock('Psr\Log\LoggerInterface');
+        $this->fixture->setLogger($logger);
+        /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
+        $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAware');
+
+        $this->assertSame($logger, $plugin->getLogger());
+    }
+
+    public function testGetPluginWithFactoryAndLoggerAwareness()
+    {
+        $logger = \Mockery::mock('Psr\Log\LoggerInterface');
+        $this->fixture->setLogger($logger);
+        /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
+        $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAwareFactory');
+
+        $this->assertSame($logger, $plugin->getLogger());
+    }
 }

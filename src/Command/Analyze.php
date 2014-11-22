@@ -28,7 +28,9 @@ namespace PhpDA\Command;
 use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Command\Strategy\StrategyInterface;
 use PhpDA\Plugin\LoaderInterface;
+use Psr\Log\LogLevel;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -80,12 +82,33 @@ class Analyze extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->addLogLevelFormatsTo($output);
         $config = $this->createConfigBy($input);
 
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
 
         $this->loadStrategy($config->getMode(), array('config' => $config, 'output' => $output))->execute();
+    }
+
+    /**
+     * @param OutputInterface $output
+     */
+    private function addLogLevelFormatsTo(OutputInterface $output)
+    {
+        $error = new OutputFormatterStyle('white', 'red');
+        $warning = new OutputFormatterStyle('red', 'yellow');
+        $info = new OutputFormatterStyle('white', 'green');
+        $debug = new OutputFormatterStyle('magenta');
+
+        $formatter = $output->getFormatter();
+
+        $formatter->setStyle(LogLevel::EMERGENCY, $error);
+        $formatter->setStyle(LogLevel::ALERT, $error);
+        $formatter->setStyle(LogLevel::CRITICAL, $error);
+        $formatter->setStyle(LogLevel::WARNING, $warning);
+        $formatter->setStyle(LogLevel::NOTICE, $info);
+        $formatter->setStyle(LogLevel::DEBUG, $debug);
     }
 
     /**

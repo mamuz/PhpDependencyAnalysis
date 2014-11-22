@@ -47,8 +47,12 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
     protected $file;
 
+    /** @var \PhpDA\Parser\Logger | \Mockery\MockInterface */
+    protected $logger;
+
     protected function setUp()
     {
+        $this->logger = \Mockery::mock('PhpDA\Parser\Logger');
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $this->file->shouldReceive('getContents')->andReturn('foo');
         $this->parser = \Mockery::mock('PhpParser\ParserAbstract');
@@ -62,13 +66,19 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
             $this->parser,
             $this->adtTraverser,
             $this->nodeTraverser,
-            $this->collection
+            $this->collection,
+            $this->logger
         );
     }
 
     public function testAccessNodeTraverser()
     {
         $this->assertSame($this->nodeTraverser, $this->fixture->getNodeTraverser());
+    }
+
+    public function testAccessLogger()
+    {
+        $this->assertSame($this->logger, $this->fixture->getLogger());
     }
 
     public function testGetAnalysisCollection()
@@ -79,14 +89,14 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     public function testAnalyzeWithParseError()
     {
         $testcase = $this;
-        $this->parser->shouldReceive('parse')->once()->with('foo')->andThrow('PhpParser\Error');
+        $exception = new \PhpParser\Error('errormessage');
+        $this->parser->shouldReceive('parse')->once()->with('foo')->andThrow($exception);
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
             function ($analysis) use ($testcase) {
                 $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
-                /** @var \PhpDA\Entity\Analysis $analysis */
-                $testcase->assertTrue($analysis->hasParseError());
             }
         );
+        $this->logger->shouldReceive('error')->once()->with('errormessage on unknown line', array($this->file));
 
         $analysis = $this->fixture->analyze($this->file);
         $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
@@ -98,6 +108,7 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $stmts = array('foo', 'bar');
         $adts = array('baz', 'faz');
         $this->parser->shouldReceive('parse')->once()->with('foo')->andReturn($stmts);
+        $this->adtTraverser->shouldReceive('bindFile')->once()->with($this->file);
         $this->adtTraverser->shouldReceive('getAdtStmtsBy')->once()->with($stmts)->andReturn($adts);
         $this->nodeTraverser->shouldReceive('setAdt')->twice()->andReturnUsing(
             function ($adt) use ($testcase) {
@@ -109,8 +120,6 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->collection->shouldReceive('attach')->once()->andReturnUsing(
             function ($analysis) use ($testcase) {
                 $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
-                /** @var \PhpDA\Entity\Analysis $analysis */
-                $testcase->assertFalse($analysis->hasParseError());
             }
         );
 

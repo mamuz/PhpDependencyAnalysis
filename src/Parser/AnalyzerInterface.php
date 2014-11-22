@@ -44,4 +44,9 @@ interface AnalyzerInterface
      * @return NodeTraverser
      */
     public function getNodeTraverser();
+
+    /**
+     * @return Logger
+     */
+    public function getLogger();
 }

@@ -29,10 +29,25 @@ use phpDocumentor\Reflection\DocBlock;
 use PhpParser\Error;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use Symfony\Component\Finder\SplFileInfo;
 
-class NameResolver extends PhpParserNameResolver
+class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
 {
     const TAG_NAMES_ATTRIBUTE = '__tagNames';
+
+    /** @var LoggerInterface */
+    private $logger;
+
+    /** @var SplFileInfo */
+    private $file;
+
+    public function __construct()
+    {
+        $this->logger = new NullLogger;
+    }
 
     private $ignoredMethodArgumentTypes = array(
         'bool', 'boolean',
@@ -46,6 +61,19 @@ class NameResolver extends PhpParserNameResolver
         '=', '|'
     );
 
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * @param SplFileInfo $file
+     */
+    public function setFile(SplFileInfo $file)
+    {
+        $this->file = $file;
+    }
+
     public function enterNode(Node $node)
     {
         parent::enterNode($node);
@@ -58,7 +86,8 @@ class NameResolver extends PhpParserNameResolver
                 }
             }
         } catch (\Exception $e) {
-            throw new Error($e->getMessage(), $node->getLine());
+            $parseError = new Error($e->getMessage(), $node->getLine());
+            $this->logger->warning($parseError->getMessage(), array($this->file));
         }
     }
 

@@ -105,8 +105,6 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
         $this->fixture->setOptions(array('output' => $this->output, 'config' => $this->config));
 
-        $this->collection->shouldReceive('hasAnalysisFailures')->andReturn(true);
-        $this->collection->shouldReceive('getAnalysisFailures')->andReturn(array('error' => new \Exception()));
         $this->analyzer->shouldReceive('analyze')->once()->with($file);
 
         $formatter = 'format';
@@ -141,6 +139,11 @@ class CallTest extends \PHPUnit_Framework_TestCase
         );
         $traverser->shouldReceive('bindVisitors')->once()->with($visitor, $visitorOptions);
 
+        $logger = \Mockery::mock('PhpDA\Parser\Logger');
+        $logger->shouldReceive('isEmpty')->once()->andReturn(false);
+        $logger->shouldReceive('toString')->once()->andReturn('logstring');
+
         $this->analyzer->shouldReceive('getNodeTraverser')->once()->andReturn($traverser);
+        $this->analyzer->shouldReceive('getLogger')->once()->andReturn($logger);
     }
 }

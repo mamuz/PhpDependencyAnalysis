@@ -33,21 +33,36 @@ class AdtTraverserTest extends \PHPUnit_Framework_TestCase
     protected $fixture;
 
     /** @var \PhpDA\Parser\Visitor\Required\AdtCollector | \Mockery\MockInterface */
-    protected $visitor;
+    protected $adtCollector;
+
+    /** @var \PhpDA\Parser\Visitor\Required\NameResolver | \Mockery\MockInterface */
+    protected $nameResolver;
+
+    /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
+    protected $file;
 
     protected function setUp()
     {
-        $this->visitor = \Mockery::mock('PhpDA\Parser\Visitor\Required\AdtCollector');
-        $this->visitor->shouldIgnoreMissing();
+        $this->adtCollector = \Mockery::mock('PhpDA\Parser\Visitor\Required\AdtCollector');
+        $this->adtCollector->shouldIgnoreMissing();
+        $this->nameResolver = \Mockery::mock('PhpDA\Parser\Visitor\Required\NameResolver');
+        $this->nameResolver->shouldIgnoreMissing();
+        $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
+        $this->file->shouldIgnoreMissing();
+
         $this->fixture = new AdtTraverser;
     }
 
     public function testTraversing()
     {
         $stmtNode = \Mockery::mock('PhpParser\Node');
-        $this->visitor->shouldReceive('flush')->once();
-        $this->visitor->shouldReceive('getStmts')->once()->andReturn(array(array($stmtNode)));
-        $this->fixture->setAdtCollector($this->visitor);
+        $this->adtCollector->shouldReceive('flush')->once();
+        $this->adtCollector->shouldReceive('getStmts')->once()->andReturn(array(array($stmtNode)));
+        $this->fixture->bindAdtCollector($this->adtCollector);
+
+        $this->nameResolver->shouldReceive('setFile')->once()->with($this->file);
+        $this->fixture->bindNameResolver($this->nameResolver);
+        $this->fixture->bindFile($this->file);
 
         $nodes = array('foo', 'bar');
         $stmts = $this->fixture->getAdtStmtsBy($nodes);
@@ -57,5 +72,11 @@ class AdtTraverserTest extends \PHPUnit_Framework_TestCase
                 $this->assertSame($stmtNode, $node);
             }
         }
+    }
+
+    public function testThrowExceptionForBindingFileWithoutNameResolver()
+    {
+        $this->setExpectedException('DomainException');
+        $this->fixture->bindFile($this->file);
     }
 }

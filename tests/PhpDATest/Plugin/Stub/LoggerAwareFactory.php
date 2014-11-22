@@ -23,40 +23,14 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Entity;
+namespace PhpDATest\Plugin\Stub;
 
-use PhpDA\Entity\Analysis;
+use PhpDA\Plugin\FactoryInterface;
 
-class AnalysisTest extends \PHPUnit_Framework_TestCase
+class LoggerAwareFactory implements FactoryInterface
 {
-    /** @var Analysis */
-    protected $fixture;
-
-    /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
-    protected $file;
-
-    protected function setUp()
+    public function create()
     {
-        $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
-        $this->fixture = new Analysis($this->file);
-    }
-
-    public function testAccessFile()
-    {
-        $this->assertSame($this->file, $this->fixture->getFile());
-    }
-
-    public function testAdtCreation()
-    {
-        $adt1 = $this->fixture->createAdt();
-        $adt2 = $this->fixture->createAdt();
-
-        $this->assertInstanceOf('PhpDA\Entity\Adt', $adt1);
-        $this->assertNotSame($adt2, $adt1);
-        $this->assertEquals($adt2, $adt1);
-
-        $adts = $this->fixture->getAdts();
-        $this->assertSame($adts[0], $adt1);
-        $this->assertSame($adts[1], $adt2);
+        return new LoggerAware;
     }
 }

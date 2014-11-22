@@ -33,12 +33,16 @@ use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
 use PhpParser\Lexer\Emulative;
 use PhpParser\Parser;
+use Psr\Log\LoggerInterface;
 
 /**
  * @SuppressWarnings("PMD.CouplingBetweenObjects")
  */
 class AnalyzerFactory implements FactoryInterface
 {
+    /** @var LoggerInterface */
+    private $logger;
+
     /**
      * @return Analyzer
      */
@@ -48,7 +52,8 @@ class AnalyzerFactory implements FactoryInterface
             $this->createParser(),
             $this->createAdtTraverser(),
             $this->createNodeTraverser(),
-            $this->createCollection()
+            $this->createCollection(),
+            $this->getLogger()
         );
     }
 
@@ -65,9 +70,12 @@ class AnalyzerFactory implements FactoryInterface
      */
     protected function createAdtTraverser()
     {
+        $nameResolver = new NameResolver;
+        $nameResolver->setLogger($this->getLogger());
+
         $traverser = new AdtTraverser;
-        $traverser->addVisitor(new NameResolver);
-        $traverser->setAdtCollector(new AdtCollector);
+        $traverser->bindNameResolver($nameResolver);
+        $traverser->bindAdtCollector(new AdtCollector);
 
         return $traverser;
     }
@@ -77,8 +85,11 @@ class AnalyzerFactory implements FactoryInterface
      */
     protected function createNodeTraverser()
     {
+        $loader = new Loader;
+        $loader->setLogger($this->getLogger());
+
         $traverser = new NodeTraverser;
-        $traverser->setVisitorLoader(new Loader);
+        $traverser->setVisitorLoader($loader);
 
         return $traverser;
     }
@@ -89,5 +100,25 @@ class AnalyzerFactory implements FactoryInterface
     protected function createCollection()
     {
         return new AnalysisCollection(new Graph);
+    }
+
+    /**
+     * @return Logger
+     */
+    protected function getLogger()
+    {
+        if (!$this->logger instanceof LoggerInterface) {
+            $this->logger = $this->createLogger();
+        }
+
+        return $this->logger;
+    }
+
+    /**
+     * @return Logger
+     */
+    private function createLogger()
+    {
+        return new Logger;
     }
 }
