@@ -80,6 +80,11 @@ After that open created report file with your prefered tool.
 4. [Examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples)
 5. [Plugins](https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins)
 
+## [ChangeLog](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
+
+See record of changes made to this project here
+[here](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
+
 ## [Contributing](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
 
 Before opening up a pull-request please read the
