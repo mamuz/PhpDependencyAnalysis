@@ -2,7 +2,10 @@
 
 ## dev-master
 
-- Add grouping feature
+- Change default configuration by adding groupLength config
+- Add groupLength configuration to controll grouping feature
+- Improve layout
+- Add grouping feature to layout
 - Change error report accordingly to log levels
 - Change aborting to skipping in case of parse error by docBlock name resolver
 - Add logger awareness to Analyzer and to NameResolver
