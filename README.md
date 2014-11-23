@@ -82,7 +82,7 @@ After that open created report file with your prefered tool.
 
 ## [ChangeLog](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
 
-See record of changes made to this project here
+See record of changes made to this project
 [here](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
 
 ## [Contributing](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
