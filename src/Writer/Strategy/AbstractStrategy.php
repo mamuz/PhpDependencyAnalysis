@@ -25,9 +25,8 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use Fhaculty\Graph\Graph;
-use Fhaculty\Graph\GraphViz;
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Layout\GraphViz;
 
 abstract class AbstractStrategy implements StrategyInterface
 {
@@ -42,8 +41,13 @@ abstract class AbstractStrategy implements StrategyInterface
 
     public function __construct()
     {
-        $this->graphCreationCallback = function (Graph $graph) {
-            return new GraphViz($graph);
+        $this->graphCreationCallback = function (AnalysisCollection $collection) {
+
+            $graphViz = new GraphViz($collection->getGraph());
+            $graphViz->setGroups($collection->getGroups());
+            $graphViz->setGroupLayout($collection->getLayout()->getGroup());
+
+            return $graphViz;
         };
     }
 
@@ -88,7 +92,7 @@ abstract class AbstractStrategy implements StrategyInterface
     {
         $this->analysisCollection = $collection;
         $graphCreationCallback = $this->getGraphCreationCallback();
-        $this->graphViz = $graphCreationCallback($this->getAnalysisCollection()->getGraph());
+        $this->graphViz = $graphCreationCallback($this->getAnalysisCollection());
 
         if (!$this->graphViz instanceof GraphViz) {
             throw new \RuntimeException('Created GraphViz is invalid');

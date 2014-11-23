@@ -71,13 +71,16 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
         $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(false);
 
+        $this->collection->shouldReceive('setGroupLength')->once()->with(12);
+        $this->config->shouldReceive('getGroupLength')->once()->andReturn(12);
+
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
 
         $testcase = $this;
-        $this->collection->shouldReceive('setLayout')->once()->andReturnUsing(
+        $this->collection->shouldReceive('bindLayout')->once()->andReturnUsing(
             function ($layout) use ($testcase) {
                 $testcase->assertInstanceOf('PhpDA\Layout\Standard', $layout);
             }

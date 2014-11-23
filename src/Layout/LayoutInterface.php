@@ -30,6 +30,16 @@ interface LayoutInterface
     /**
      * @return array
      */
+    public function getGraph();
+
+    /**
+     * @return array
+     */
+    public function getGroup();
+
+    /**
+     * @return array
+     */
     public function getEdge();
 
     /**

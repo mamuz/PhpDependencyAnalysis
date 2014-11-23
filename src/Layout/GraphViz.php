@@ -23,39 +23,55 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Writer\Strategy;
+namespace PhpDA\Layout;
 
-use PhpDA\Entity\AnalysisCollection;
-use PhpDA\Writer\Strategy\Svg;
+use Fhaculty\Graph\GraphViz as FhacultyGraphViz;
 
-class SvgTest extends \PHPUnit_Framework_TestCase
+class GraphViz extends FhacultyGraphViz
 {
-    /** @var Svg */
-    protected $fixture;
+    /** @var array */
+    private static $groups = array();
 
-    /** @var string */
-    protected $output = 'foo';
+    /** @var array */
+    private static $groupsLayout = array();
 
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz = 'foo';
-
-    protected function setUp()
+    /**
+     * @param array $groups
+     */
+    public function setGroups(array $groups)
     {
-        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $callback = function (AnalysisCollection $collection) use ($mock) {
-            return $mock;
-        };
-        $this->fixture = new Svg;
-        $this->fixture->setGraphCreationCallback($callback);
+        self::$groups = $groups;
     }
 
-    public function testFilter()
+    /**
+     * @param array $layout
+     */
+    public function setGroupLayout(array $layout)
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
+        self::$groupsLayout = $layout;
+    }
 
-        $this->graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $this->graphViz->shouldReceive('createImageData')->once()->andReturn($this->output);
+    public static function escape($id)
+    {
+        if (is_int($id) && array_key_exists($id, self::$groups)) {
+            $id = self::$groups[$id];
+            $id = parent::escape($id);
+            return $id . self::getGroupLayoutScript();
+        }
 
-        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
+        return parent::escape($id);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getGroupLayoutScript()
+    {
+        $script = '';
+        foreach (self::$groupsLayout as $attr => $val) {
+            $script .= self::EOL . $attr . '=' . parent::escape($val) . ';';
+        }
+
+        return $script;
     }
 }

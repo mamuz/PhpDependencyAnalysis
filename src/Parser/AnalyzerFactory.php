@@ -25,8 +25,8 @@
 
 namespace PhpDA\Parser;
 
-use Fhaculty\Graph\Graph;
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Layout\Graph;
 use PhpDA\Parser\Visitor\Required\AdtCollector;
 use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpDA\Plugin\FactoryInterface;

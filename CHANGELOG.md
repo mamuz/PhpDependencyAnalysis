@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Add grouping feature
 - Change error report accordingly to log levels
 - Change aborting to skipping in case of parse error by docBlock name resolver
 - Add logger awareness to Analyzer and to NameResolver

@@ -58,9 +58,13 @@ class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $graph = \Mockery::mock('PhpDA\Layout\Graph');
+        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getGroup')->once()->andReturn(array());
         $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $analysisCollection->shouldReceive('getGraph')->once()->andReturn($graph);
+        $analysisCollection->shouldReceive('getGroups')->once()->andReturn(array());
+        $analysisCollection->shouldReceive('getLayout')->once()->andReturn($layout);
 
         $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
     }
@@ -69,9 +73,7 @@ class AbstractStrategyTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('RuntimeException');
 
-        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
-        $analysisCollection->shouldReceive('getGraph')->once()->andReturn($graph);
         $callback = function () {
         };
         $this->fixture->setGraphCreationCallback($callback);

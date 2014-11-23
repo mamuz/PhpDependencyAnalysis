@@ -25,7 +25,7 @@
 
 namespace PhpDATest\Writer\Strategy;
 
-use Fhaculty\Graph\Graph;
+use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Writer\Strategy\Html;
 
 class HtmlTest extends \PHPUnit_Framework_TestCase
@@ -36,13 +36,13 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
     /** @var string */
     protected $output = 'foo';
 
-    /** @var \Fhaculty\Graph\GraphViz | \Mockery\MockInterface */
+    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
     protected $graphViz = 'foo';
 
     protected function setUp()
     {
-        $mock = $this->graphViz = \Mockery::mock('Fhaculty\Graph\GraphViz');
-        $callback = function (Graph $graph) use ($mock) {
+        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $callback = function (AnalysisCollection $collection) use ($mock) {
             return $mock;
         };
         $this->fixture = new Html;
@@ -65,9 +65,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
-        $analysisCollection->shouldReceive('getGraph')->once()->andReturn($graph);
 
         $this->graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
         $this->graphViz->shouldReceive('createImageHtml')->once()->andReturn($this->output);

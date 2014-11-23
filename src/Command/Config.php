@@ -56,6 +56,9 @@ class Config
     /** @var string */
     private $filePattern = '*.php';
 
+    /** @var int */
+    private $groupLength = 0;
+
     /** @var array */
     private $visitor = array();
 
@@ -197,5 +200,18 @@ class Config
         }
 
         return false;
+    }
+
+    /**
+     * @return int
+     * @throws \InvalidArgumentException
+     */
+    public function getGroupLength()
+    {
+        if (!is_numeric($this->groupLength)) {
+            throw new \InvalidArgumentException('Config for groupLength must be an integer');
+        }
+
+        return (int) $this->groupLength;
     }
 }

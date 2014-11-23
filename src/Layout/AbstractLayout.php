@@ -28,10 +28,28 @@ namespace PhpDA\Layout;
 abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
+    private $graph = array(
+        'rankdir' => 'LR',
+        'ranksep' => 1,
+        'nodesep' => 0.1,
+        'label'   => 'PhpDependencyAnalyse by Marco Muths',
+    );
+
+    /** @var array */
+    private $group = array(
+        'style'     => 'rounded,filled',
+        'fontcolor' => '#888888',
+        'fontsize'  => 16,
+        'labeljust' => 'l',
+        'color'     => '#888888',
+        'fillcolor' => 'lightgrey',
+    );
+
+    /** @var array */
     private $vertex = array(
         'fillcolor' => '#eeeeee',
-        'style'     => 'filled',
-        'shape'     => 'circle',
+        'style'     => 'filled,rounded',
+        'shape'     => 'box',
         'fontcolor' => '#314B5F',
         'fontsize'  => 10,
         'margin'    => 0,
@@ -53,6 +71,7 @@ abstract class AbstractLayout implements LayoutInterface
         'fontcolor' => '#767676',
         'fontsize'  => 8,
         'color'     => '#1A2833',
+        'weight'    => 1.2,
     );
 
     /** @var array */
@@ -64,6 +83,16 @@ abstract class AbstractLayout implements LayoutInterface
     private $edgeNamespacedString = array(
         'color' => '#F1EEA6',
     );
+
+    public function getGraph()
+    {
+        return $this->graph;
+    }
+
+    public function getGroup()
+    {
+        return $this->group;
+    }
 
     public function getEdge()
     {

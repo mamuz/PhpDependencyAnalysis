@@ -32,18 +32,31 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
     /** @var AnalysisCollection */
     protected $fixture;
 
-    /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
+    /** @var \PhpDA\Layout\Graph | \Mockery\MockInterface */
     protected $graph;
 
     protected function setUp()
     {
-        $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $this->graph = \Mockery::mock('PhpDA\Layout\Graph');
+        $this->graph->shouldReceive('setLayout')->with(array());
         $this->fixture = new AnalysisCollection($this->graph);
     }
 
     public function testAccessGraph()
     {
         $this->assertSame($this->graph, $this->fixture->getGraph());
+    }
+
+    public function testAccessGroups()
+    {
+        $this->assertSame(array(), $this->fixture->getGroups());
+    }
+
+    public function testMutateAndAccessGroupLength()
+    {
+        $this->assertSame(0, $this->fixture->getGroupLength());
+        $this->fixture->setGroupLength(2);
+        $this->assertSame(2, $this->fixture->getGroupLength());
     }
 
     public function testMutateAndAccessCallMode()
@@ -53,11 +66,13 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->fixture->isCallMode());
     }
 
-    public function testMutateAndAccessLayout()
+    public function testBindAndAccessLayout()
     {
         $this->assertInstanceOf('PhpDA\Layout\NullLayout', $this->fixture->getLayout());
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
-        $this->fixture->setLayout($layout);
+        $layout->shouldReceive('getGraph')->once()->andReturn(array('graph'));
+        $this->graph->shouldReceive('setLayout')->with(array('graph'));
+        $this->fixture->bindLayout($layout);
         $this->assertSame($layout, $this->fixture->getLayout());
     }
 
@@ -73,6 +88,8 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $edgeUnsupportedLayout = array(2, 5);
         $edgeNamespacedStringLayout = array(2, 6);
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getGraph')->andReturn(array('graph'));
+        $this->graph->shouldReceive('setLayout')->once()->with(array('graph'));
         $layout->shouldReceive('getVertex')->andReturn($vertexLayout);
         $layout->shouldReceive('getVertexNamespacedString')->andReturn($vertexNamespacedStringLayout);
         $layout->shouldReceive('getVertexUnsupported')->andReturn($vertexUnsupportedLayout);
@@ -82,7 +99,7 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $layout->shouldReceive('getEdgeTraitUse')->andReturn($edgeTraitUseLayout);
         $layout->shouldReceive('getEdgeUnsupported')->andReturn($edgeUnsupportedLayout);
         $layout->shouldReceive('getEdgeNamespacedString')->andReturn($edgeNamespacedStringLayout);
-        $this->fixture->setLayout($layout);
+        $this->fixture->bindLayout($layout);
 
         $meta = \Mockery::mock('PhpDA\Entity\Meta');
 
@@ -223,13 +240,15 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $edgeUnsupportedLayout = array(2, 5);
         $edgeNamespacedStringLayout = array(2, 6);
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getGraph')->andReturn(array('graph'));
+        $this->graph->shouldReceive('setLayout')->once()->with(array('graph'));
         $layout->shouldReceive('getVertex')->andReturn($vertexLayout);
         $layout->shouldReceive('getVertexNamespacedString')->andReturn($vertexNamespacedStringLayout);
         $layout->shouldReceive('getVertexUnsupported')->andReturn($vertexUnsupportedLayout);
         $layout->shouldReceive('getEdge')->andReturn($edgeLayout);
         $layout->shouldReceive('getEdgeUnsupported')->andReturn($edgeUnsupportedLayout);
         $layout->shouldReceive('getEdgeNamespacedString')->andReturn($edgeNamespacedStringLayout);
-        $this->fixture->setLayout($layout);
+        $this->fixture->bindLayout($layout);
 
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
 
@@ -311,5 +330,70 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis->shouldReceive('getAdts')->andReturn(array($adt));
         $this->fixture->attach($analysis);
+    }
+
+    public function testAttachAnalysisWithGrouping()
+    {
+        $this->fixture->setGroupLength(2);
+        $this->fixture->setCallMode();
+
+        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getGraph')->andReturn(array('graph'));
+        $this->graph->shouldReceive('setLayout')->once()->with(array('graph'));
+        $layout->shouldReceive('getVertex')->andReturn(array());
+        $layout->shouldReceive('getEdge')->andReturn(array());
+        $layout->shouldReceive('getVertexNamespacedString')->andReturn(array());
+        $layout->shouldReceive('getVertexUnsupported')->andReturn(array());
+        $layout->shouldReceive('getEdgeUnsupported')->andReturn(array());
+        $layout->shouldReceive('getEdgeNamespacedString')->andReturn(array());
+        $this->fixture->bindLayout($layout);
+
+        $adt = \Mockery::mock('PhpDA\Entity\Adt');
+
+        $declaredName = \Mockery::mock('PhpParser\Node\Name');
+        $declaredName->parts = array('PhpParser', 'Node', 'Name');
+        $declaredName->shouldReceive('toString')->once()->andReturn('declaredName');
+        $adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declaredName);
+
+        $calledName1 = \Mockery::mock('PhpParser\Node\Name');
+        $calledName1->parts = array('PhpParser', 'Node', 'Name2');
+        $calledName1->shouldReceive('toString')->once()->andReturn('called1');
+        $calledName2 = \Mockery::mock('PhpParser\Node\Name');
+        $calledName2->parts = array('PhpParser', 'Node2', 'Name');
+        $calledName2->shouldReceive('toString')->once()->andReturn('called2');
+        $adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($calledName1, $calledName2));
+
+        $adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
+        $adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+
+        $declaredNameVertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $declaredNameVertex->shouldReceive('setLayout')->andReturnSelf();
+        $declaredNameVertex->shouldReceive('setGroup')->once()->with(-1)->andReturnSelf();
+        $declaredNameVertex->shouldReceive('hasEdgeTo')->andReturn(true);
+        $calledName1Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $calledName1Vertex->shouldReceive('setLayout')->andReturnSelf();
+        $calledName1Vertex->shouldReceive('hasEdgeTo')->andReturn(true);
+        $calledName1Vertex->shouldReceive('setGroup')->once()->with(-1)->andReturnSelf();
+        $calledName2Vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $calledName2Vertex->shouldReceive('setLayout')->andReturnSelf();
+        $calledName2Vertex->shouldReceive('hasEdgeTo')->andReturn(true);
+        $calledName2Vertex->shouldReceive('setGroup')->once()->with(-2)->andReturnSelf();
+
+        $this->graph->shouldReceive('createVertex')->with('declaredName', true)->andReturn($declaredNameVertex);
+        $this->graph->shouldReceive('createVertex')->with('called1', true)->andReturn($calledName1Vertex);
+        $this->graph->shouldReceive('createVertex')->with('called2', true)->andReturn($calledName2Vertex);
+
+        $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edge->shouldReceive('setLayout');
+
+        $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $analysis->shouldReceive('getAdts')->andReturn(array($adt));
+        $this->fixture->attach($analysis);
+
+        $expected = array(
+            -1 => 'PhpParser\\Node',
+            -2 => 'PhpParser\\Node2',
+        );
+        $this->assertSame($expected, $this->fixture->getGroups());
     }
 }

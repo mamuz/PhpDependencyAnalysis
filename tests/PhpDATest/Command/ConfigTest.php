@@ -38,6 +38,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             'formatter'      => 'myFormatter',
             'target'         => 'myTarget',
             'filePattern'    => 'myFilePattern',
+            'groupLength'    => 4,
             'visitor'        => array('foo', 'baz'),
             'visitorOptions' => array('bar'),
         );
@@ -58,6 +59,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $config->getVisitor());
         $this->assertSame(array(), $config->getVisitorOptions());
         $this->assertSame('usage', $config->getMode());
+        $this->assertSame(0, $config->getGroupLength());
     }
 
     public function testInheritanceMode()
@@ -112,6 +114,23 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $config = new Config(array('ignore' => 1));
 
         $config->getIgnore();
+    }
+
+    public function testInvalidGroupLength()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('groupLength' => 'test'));
+
+        $config->getGroupLength();
+    }
+
+    public function testNumericGroupLength()
+    {
+        $config = new Config(array('groupLength' => '4'));
+        $this->assertSame(4, $config->getGroupLength());
+
+        $config = new Config(array('groupLength' => 1.34));
+        $this->assertSame(1, $config->getGroupLength());
     }
 
     public function testInvalidVisitor()

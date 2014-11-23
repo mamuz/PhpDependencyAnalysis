@@ -25,14 +25,13 @@
 
 namespace PhpDA\Entity;
 
-use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
 use PhpDA\Layout;
 use PhpParser\Node\Name;
 
 class AnalysisCollection
 {
-    /** @var Graph */
+    /** @var Layout\Graph */
     private $graph;
 
     /** @var Vertex */
@@ -44,21 +43,32 @@ class AnalysisCollection
     /** @var bool */
     private $isCallMode = false;
 
+    /** @var array */
+    private $groups = array();
+
+    /** @var int */
+    private $groupLength = 0;
+
     /**
-     * @param Graph $graph
+     * @param Layout\Graph $graph
      */
-    public function __construct(Graph $graph)
+    public function __construct(Layout\Graph $graph)
     {
         $this->graph = $graph;
-        $this->setLayout(new Layout\NullLayout);
+        $this->bindLayout(new Layout\NullLayout);
     }
 
     /**
-     * @return Graph
+     * @return Layout\Graph
      */
     public function getGraph()
     {
         return $this->graph;
+    }
+
+    public function getGroups()
+    {
+        return $this->groups;
     }
 
     public function setCallMode()
@@ -75,11 +85,30 @@ class AnalysisCollection
     }
 
     /**
+     * @param int $groupLength
+     * @return AnalysisCollection
+     */
+    public function setGroupLength($groupLength)
+    {
+        $this->groupLength = (int) $groupLength;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGroupLength()
+    {
+        return $this->groupLength;
+    }
+
+    /**
      * @param Layout\LayoutInterface $layout
      */
-    public function setLayout(Layout\LayoutInterface $layout)
+    public function bindLayout(Layout\LayoutInterface $layout)
     {
         $this->layout = $layout;
+        $this->getGraph()->setLayout($this->layout->getGraph());
     }
 
     /**
@@ -161,7 +190,33 @@ class AnalysisCollection
      */
     private function createVertexBy(Name $name)
     {
-        return $this->graph->createVertex($name->toString(), true)->setLayout($this->getLayout()->getVertex());
+        $vertex = $this->graph->createVertex($name->toString(), true);
+
+        if ($this->getGroupLength() > 0) {
+            $vertex->setGroup($this->generateGroupIdBy($name));
+        }
+
+        $layout = $this->getLayout()->getVertex();
+        $vertex->setLayout($layout);
+
+        return $vertex;
+    }
+
+    /**
+     * @param Name $name
+     * @return int
+     */
+    private function generateGroupIdBy(Name $name)
+    {
+        $group = implode('\\', array_slice($name->parts, 0, $this->getGroupLength()));
+
+        if (!in_array($group, $this->groups)) {
+            $id = (sizeof($this->groups) + 1) * -1;
+            $this->groups[$id] = $group;
+            return $id;
+        }
+
+        return array_search($group, $this->groups);
     }
 
     /**

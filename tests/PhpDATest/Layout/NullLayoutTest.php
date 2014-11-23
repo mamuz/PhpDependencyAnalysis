@@ -37,6 +37,16 @@ class NullLayoutTest extends \PHPUnit_Framework_TestCase
         $this->fixture = new NullLayout;
     }
 
+    public function testAccessGraph()
+    {
+        $this->assertSame(array(), $this->fixture->getGraph());
+    }
+
+    public function testAccessGroup()
+    {
+        $this->assertSame(array(), $this->fixture->getGroup());
+    }
+
     public function testAccessEdge()
     {
         $this->assertSame(array(), $this->fixture->getEdge());

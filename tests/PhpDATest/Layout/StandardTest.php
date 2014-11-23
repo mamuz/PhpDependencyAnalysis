@@ -37,6 +37,16 @@ class StandardTest extends \PHPUnit_Framework_TestCase
         $this->fixture = new Standard;
     }
 
+    public function testAccessGraph()
+    {
+        $this->assertNotEmpty($this->fixture->getGraph());
+    }
+
+    public function testAccessGroup()
+    {
+        $this->assertNotEmpty($this->fixture->getGroup());
+    }
+
     public function testAccessEdge()
     {
         $this->assertNotEmpty($this->fixture->getEdge());

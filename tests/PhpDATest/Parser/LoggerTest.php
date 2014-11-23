@@ -23,39 +23,31 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Writer\Strategy;
+namespace PhpDATest\Parser;
 
-use PhpDA\Entity\AnalysisCollection;
-use PhpDA\Writer\Strategy\Svg;
+use PhpDA\Parser\Logger;
+use Psr\Log\LogLevel;
 
-class SvgTest extends \PHPUnit_Framework_TestCase
+class LoggerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Svg */
+    /** @var Logger */
     protected $fixture;
-
-    /** @var string */
-    protected $output = 'foo';
-
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz = 'foo';
 
     protected function setUp()
     {
-        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $callback = function (AnalysisCollection $collection) use ($mock) {
-            return $mock;
-        };
-        $this->fixture = new Svg;
-        $this->fixture->setGraphCreationCallback($callback);
+        $this->fixture = new Logger;
     }
 
-    public function testFilter()
+    public function testLogging()
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
+        $this->assertSame('', $this->fixture->toString());
+        $this->assertTrue($this->fixture->isEmpty());
 
-        $this->graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $this->graphViz->shouldReceive('createImageData')->once()->andReturn($this->output);
+        $this->fixture->log(LogLevel::CRITICAL, 'CRITICALfoo', array('CRITICALbar'));
+        $this->fixture->log(LogLevel::NOTICE, 'NOTICEfoo', array('NOTICEbar'));
+        $this->fixture->log(LogLevel::EMERGENCY, 'EMERGENCYfoo', array('EMERGENCYbar'));
 
-        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
+        $this->assertNotEmpty($this->fixture->toString());
+        $this->assertFalse($this->fixture->isEmpty());
     }
 }

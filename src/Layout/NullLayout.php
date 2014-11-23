@@ -27,6 +27,16 @@ namespace PhpDA\Layout;
 
 class NullLayout implements LayoutInterface
 {
+    public function getGraph()
+    {
+        return array();
+    }
+
+    public function getGroup()
+    {
+        return array();
+    }
+
     public function getEdge()
     {
         return array();

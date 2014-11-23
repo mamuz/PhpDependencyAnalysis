@@ -105,11 +105,14 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     private function initLayout()
     {
         $analysisCollection = $this->getAnalyzer()->getAnalysisCollection();
+
         if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
-            $analysisCollection->setLayout(new Layout\Aggregation);
+            $analysisCollection->bindLayout(new Layout\Aggregation);
         } else {
-            $analysisCollection->setLayout(new Layout\Standard);
+            $analysisCollection->bindLayout(new Layout\Standard);
         }
+
+        $analysisCollection->setGroupLength($this->getConfig()->getGroupLength());
     }
 
     /**
