@@ -40,7 +40,7 @@ class ApplicationFactory implements FactoryInterface
     {
         $app = new Application(Message::NAME, Message::VERSION);
         $app->setDefaultCommand(Message::COMMAND);
-        $app->add($this->createAnalyzeOverallCommand());
+        $app->add($this->createAnalyzeCommand());
 
         return $app;
     }
@@ -48,7 +48,7 @@ class ApplicationFactory implements FactoryInterface
     /**
      * @return Analyze
      */
-    protected function createAnalyzeOverallCommand()
+    protected function createAnalyzeCommand()
     {
         $command = new Analyze(Message::COMMAND);
 
