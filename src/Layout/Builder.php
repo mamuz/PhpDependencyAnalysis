@@ -63,6 +63,7 @@ class Builder implements BuilderInterface
         $this->graphViz = $graphViz;
         $this->groupGenerator = $generator;
         $this->setLayout(new NullLayout);
+        $this->setAnalysisCollection(new AnalysisCollection);
     }
 
     public function setAnalysisCollection(AnalysisCollection $collection)
