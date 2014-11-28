@@ -23,55 +23,30 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Layout;
+namespace PhpDATest\Layout;
 
-use Fhaculty\Graph\GraphViz as FhacultyGraphViz;
+use PhpDA\Layout\Graph;
 
-class GraphViz extends FhacultyGraphViz
+class GraphTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var array */
-    private static $groups = array();
+    /** @var Graph */
+    protected $fixture;
 
-    /** @var array */
-    private static $groupLayout = array();
-
-    /**
-     * @param array $groups
-     */
-    public function setGroups(array $groups)
+    protected function setUp()
     {
-        self::$groups = $groups;
+        $this->fixture = new Graph;
     }
 
-    /**
-     * @param array $layout
-     */
-    public function setGroupLayout(array $layout)
+    public function testExtendingFhacultyGraphViz()
     {
-        self::$groupLayout = $layout;
+        $this->assertInstanceOf('Fhaculty\Graph\Graph', $this->fixture);
     }
 
-    public static function escape($id)
+    public function testMutateAndAccessLayout()
     {
-        if (is_int($id) && array_key_exists($id, self::$groups)) {
-            $id = self::$groups[$id];
-            $id = parent::escape($id);
-            return $id . self::getGroupLayoutScript();
-        }
-
-        return parent::escape($id);
-    }
-
-    /**
-     * @return string
-     */
-    private static function getGroupLayoutScript()
-    {
-        $script = '';
-        foreach (self::$groupLayout as $attr => $val) {
-            $script .= self::EOL . $attr . '=' . parent::escape($val) . ';';
-        }
-
-        return $script;
+        $this->assertSame(array(), $this->fixture->getLayout());
+        $layout = array('foo', 'bar');
+        $this->fixture->setLayout($layout);
+        $this->assertSame($layout, $this->fixture->getLayout());
     }
 }

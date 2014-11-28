@@ -23,55 +23,47 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Layout;
+namespace PhpDATest\Layout;
 
-use Fhaculty\Graph\GraphViz as FhacultyGraphViz;
+use PhpDA\Layout\GraphViz;
 
-class GraphViz extends FhacultyGraphViz
+class GraphVizTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var array */
-    private static $groups = array();
+    /** @var GraphViz */
+    protected $fixture;
 
-    /** @var array */
-    private static $groupLayout = array();
+    /** @var \PhpDA\Layout\Graph | \Mockery\MockInterface */
+    protected $graph;
 
-    /**
-     * @param array $groups
-     */
-    public function setGroups(array $groups)
+    protected function setUp()
     {
-        self::$groups = $groups;
+        $this->graph = \Mockery::mock('PhpDA\Layout\Graph');
+
+        $this->fixture = new GraphViz($this->graph);
     }
 
-    /**
-     * @param array $layout
-     */
-    public function setGroupLayout(array $layout)
+    protected function tearDown()
     {
-        self::$groupLayout = $layout;
+        $this->fixture->setGroups(array());
+        $this->fixture->setGroupLayout(array());
     }
 
-    public static function escape($id)
+    public function testExtendingFhacultyGraphViz()
     {
-        if (is_int($id) && array_key_exists($id, self::$groups)) {
-            $id = self::$groups[$id];
-            $id = parent::escape($id);
-            return $id . self::getGroupLayoutScript();
-        }
-
-        return parent::escape($id);
+        $this->assertInstanceOf('Fhaculty\Graph\GraphViz', $this->fixture);
     }
 
-    /**
-     * @return string
-     */
-    private static function getGroupLayoutScript()
+    public function testGroupLayouting()
     {
-        $script = '';
-        foreach (self::$groupLayout as $attr => $val) {
-            $script .= self::EOL . $attr . '=' . parent::escape($val) . ';';
-        }
+        $this->fixture->setGroups(array(1 => 'foo', '2' => 'bar'));
+        $this->fixture->setGroupLayout(array('baz' => 'boo', 'attr' => 5));
 
-        return $script;
+        $this->assertSame(3, GraphViz::escape(3));
+        $this->assertSame('"foo"', GraphViz::escape('foo'));
+        $this->assertSame('2', GraphViz::escape('2'));
+        $this->assertSame('1', GraphViz::escape('1'));
+
+        $expected = '"foo"' . PHP_EOL . 'baz="boo";' . PHP_EOL . 'attr=5;';
+        $this->assertSame($expected, GraphViz::escape(1));
     }
 }
