@@ -25,10 +25,12 @@
 
 namespace PhpDA\Writer\Strategy;
 
-class Svg extends AbstractStrategy
+use PhpDA\Layout\GraphViz;
+
+class Svg implements StrategyInterface
 {
-    protected function createOutput()
+    public function filter(GraphViz $graphViz)
     {
-        return $this->getGraphViz()->setFormat('svg')->createImageData();
+        return $graphViz->setFormat('svg')->createImageData();
     }
 }

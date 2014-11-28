@@ -23,15 +23,36 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Writer\Strategy;
+namespace PhpDA\Layout;
 
-use PhpDA\Layout\GraphViz;
+use PhpDA\Entity\AnalysisCollection;
 
-interface StrategyInterface
+interface BuilderInterface
 {
+    public function setCallMode();
+
     /**
-     * @param GraphViz $graphViz
-     * @return string
+     * @param int $groupLength
      */
-    public function filter(GraphViz $graphViz);
+    public function setGroupLength($groupLength);
+
+    /**
+     * @param LayoutInterface $layout
+     */
+    public function setLayout(LayoutInterface $layout);
+
+    /**
+     * @param AnalysisCollection $collection
+     */
+    public function setAnalysisCollection(AnalysisCollection $collection);
+
+    /**
+     * @return BuilderInterface
+     */
+    public function create();
+
+    /**
+     * @return GraphViz
+     */
+    public function getGraphViz();
 }

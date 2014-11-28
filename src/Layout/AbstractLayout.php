@@ -39,7 +39,7 @@ abstract class AbstractLayout implements LayoutInterface
     private $group = array(
         'style'     => 'rounded,filled',
         'fontcolor' => '#888888',
-        'fontsize'  => 16,
+        'fontsize'  => 14,
         'labeljust' => 'l',
         'color'     => '#888888',
         'fillcolor' => 'lightgrey',

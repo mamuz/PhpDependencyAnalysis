@@ -25,15 +25,15 @@
 
 namespace PhpDA\Writer;
 
-use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Layout\GraphViz;
 
 interface AdapterInterface
 {
     /**
-     * @param AnalysisCollection $analysisCollection
+     * @param GraphViz $graphViz
      * @return AdapterInterface
      */
-    public function write(AnalysisCollection $analysisCollection);
+    public function write(GraphViz $graphViz);
 
     /**
      * @param string $fqn

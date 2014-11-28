@@ -25,6 +25,10 @@
 
 namespace PhpDA\Command\Strategy;
 
+use PhpDA\Layout\Builder;
+use PhpDA\Layout\Graph;
+use PhpDA\Layout\GraphViz;
+use PhpDA\Layout\Helper\GroupGenerator;
 use PhpDA\Parser\AnalyzerFactory;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
@@ -49,6 +53,14 @@ abstract class AbstractFactory implements FactoryInterface
         $analyzerFactory = new AnalyzerFactory;
 
         return $analyzerFactory->create();
+    }
+
+    /**
+     * @return Builder
+     */
+    protected function createGraphBuilder()
+    {
+        return new Builder(new GraphViz(new Graph), new GroupGenerator);
     }
 
     /**

@@ -41,9 +41,6 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Parser\NodeTraverser | \Mockery\MockInterface */
     protected $nodeTraverser;
 
-    /** @var \PhpDA\Entity\AnalysisCollection | \Mockery\MockInterface */
-    protected $collection;
-
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
     protected $file;
 
@@ -58,7 +55,6 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->parser = \Mockery::mock('PhpParser\ParserAbstract');
         $this->adtTraverser = \Mockery::mock('PhpDA\Parser\AdtTraverser');
         $this->nodeTraverser = \Mockery::mock('PhpDA\Parser\NodeTraverser');
-        $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
 
         $this->nodeTraverser->shouldReceive('setAnalysis');
 
@@ -66,7 +62,6 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
             $this->parser,
             $this->adtTraverser,
             $this->nodeTraverser,
-            $this->collection,
             $this->logger
         );
     }
@@ -81,21 +76,10 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->logger, $this->fixture->getLogger());
     }
 
-    public function testGetAnalysisCollection()
-    {
-        $this->assertSame($this->collection, $this->fixture->getAnalysisCollection());
-    }
-
     public function testAnalyzeWithParseError()
     {
-        $testcase = $this;
         $exception = new \PhpParser\Error('errormessage');
         $this->parser->shouldReceive('parse')->once()->with('foo')->andThrow($exception);
-        $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($analysis) use ($testcase) {
-                $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
-            }
-        );
         $this->logger->shouldReceive('error')->once()->with('errormessage on unknown line', array($this->file));
 
         $analysis = $this->fixture->analyze($this->file);
@@ -117,13 +101,11 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         );
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('baz'));
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('faz'));
-        $this->collection->shouldReceive('attach')->once()->andReturnUsing(
-            function ($analysis) use ($testcase) {
-                $testcase->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
-            }
-        );
 
         $analysis = $this->fixture->analyze($this->file);
         $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+
+        $collection = $this->fixture->getAnalysisCollection();
+        $this->assertSame($analysis, $collection->offsetGet('0'));
     }
 }

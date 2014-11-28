@@ -29,7 +29,7 @@ use PhpDA\Writer\Strategy\Json;
 
 class JsonTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Script */
+    /** @var Json */
     protected $fixture;
 
     /** @var string */
@@ -42,23 +42,23 @@ class JsonTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');
-        $vertex_from = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $vertexFrom = \Mockery::mock('Fhaculty\Graph\Vertex');
         //The following line is a workaround on mocking Fhaculty\Graph\Set\Vertices as the file has errors (e.g. usage
         //of a never defined constant) which break the PhpReflection classes and thus break Mockery.
-        $vertex_to_set = \Mockery::mock('vertices');
-        $vertex_to1 = \Mockery::mock('Fhaculty\Graph\Vertex');
-        $vertex_to2 = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $vertexToSet = \Mockery::mock('vertices');
+        $vertexTo1 = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $vertexTo2 = \Mockery::mock('Fhaculty\Graph\Vertex');
 
-        $analysisCollection->shouldReceive('getGraph')->once()->andReturn($graph);
-        $graph->shouldReceive('getVertices')->once()->andReturn(array($vertex_from));
-        $vertex_from->shouldReceive('getVerticesEdgeTo')->once()->andReturn($vertex_to_set);
-        $vertex_to_set->shouldReceive('getVerticesDistinct')->once()->andReturn(array($vertex_to1, $vertex_to2));
-        $vertex_from->shouldReceive('getId')->times(2)->andReturn("ClassA");
-        $vertex_to1->shouldReceive('getId')->once()->andReturn("DependencyA");
-        $vertex_to2->shouldReceive('getId')->once()->andReturn("DependencyB");
+        $graphViz->shouldReceive('getGraph')->once()->andReturn($graph);
+        $graph->shouldReceive('getVertices')->once()->andReturn(array($vertexFrom));
+        $vertexFrom->shouldReceive('getVerticesEdgeTo')->once()->andReturn($vertexToSet);
+        $vertexToSet->shouldReceive('getVerticesDistinct')->once()->andReturn(array($vertexTo1, $vertexTo2));
+        $vertexFrom->shouldReceive('getId')->times(2)->andReturn("ClassA");
+        $vertexTo1->shouldReceive('getId')->once()->andReturn("DependencyA");
+        $vertexTo2->shouldReceive('getId')->once()->andReturn("DependencyB");
 
-        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
+        $this->assertSame($this->output, $this->fixture->filter($graphViz));
     }
 }

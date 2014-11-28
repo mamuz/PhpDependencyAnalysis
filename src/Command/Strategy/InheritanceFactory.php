@@ -29,6 +29,11 @@ class InheritanceFactory extends AbstractFactory
 {
     public function create()
     {
-        return new Inheritance($this->createFinder(), $this->createAnalyzer(), $this->createWriteAdapter());
+        return new Inheritance(
+            $this->createFinder(),
+            $this->createAnalyzer(),
+            $this->createGraphBuilder(),
+            $this->createWriteAdapter()
+        );
     }
 }

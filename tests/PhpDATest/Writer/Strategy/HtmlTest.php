@@ -25,7 +25,6 @@
 
 namespace PhpDATest\Writer\Strategy;
 
-use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Writer\Strategy\Html;
 
 class HtmlTest extends \PHPUnit_Framework_TestCase
@@ -33,20 +32,9 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
     /** @var Html */
     protected $fixture;
 
-    /** @var string */
-    protected $output = 'foo';
-
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz = 'foo';
-
     protected function setUp()
     {
-        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $callback = function (AnalysisCollection $collection) use ($mock) {
-            return $mock;
-        };
         $this->fixture = new Html;
-        $this->fixture->setGraphCreationCallback($callback);
     }
 
     public function testMutateAndAccessImagePlaceholder()
@@ -65,14 +53,13 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
-
-        $this->graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $this->graphViz->shouldReceive('createImageHtml')->once()->andReturn($this->output);
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
+        $graphViz->shouldReceive('createImageHtml')->once()->andReturn('foo');
 
         $this->assertSame(
-            '<html><body>' . $this->output . '</body></html>',
-            $this->fixture->filter($analysisCollection)
+            '<html><body>foo</body></html>',
+            $this->fixture->filter($graphViz)
         );
     }
 }

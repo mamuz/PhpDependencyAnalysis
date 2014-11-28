@@ -44,6 +44,9 @@ class UsageTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Writer\AdapterInterface | \Mockery\MockInterface */
     protected $writer;
 
+    /** @var \PhpDA\Layout\BuilderInterface | \Mockery\MockInterface */
+    protected $builder;
+
     /** @var \Symfony\Component\Console\Output\OutputInterface | \Mockery\MockInterface */
     protected $output;
 
@@ -52,6 +55,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        $this->builder = \Mockery::mock('PhpDA\Layout\BuilderInterface');
         $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $this->finder = \Mockery::mock('Symfony\Component\Finder\Finder');
         $this->analyzer = \Mockery::mock('PhpDA\Parser\AnalyzerInterface');
@@ -69,24 +73,13 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFilePattern')->once()->andReturn($filePattern);
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
-        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(true);
-
-        $this->collection->shouldReceive('setGroupLength')->once()->with(12);
-        $this->config->shouldReceive('getGroupLength')->once()->andReturn(12);
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
 
-        $testcase = $this;
-        $this->collection->shouldReceive('bindLayout')->once()->andReturnUsing(
-            function ($layout) use ($testcase) {
-                $testcase->assertInstanceOf('PhpDA\Layout\Aggregation', $layout);
-            }
-        );
-
-        $this->fixture = new Usage($this->finder, $this->analyzer, $this->writer);
+        $this->fixture = new Usage($this->finder, $this->analyzer, $this->builder, $this->writer);
     }
 
     public function testNothingToParse()
@@ -98,6 +91,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
 
     public function testExecute()
     {
+        $testcase = $this;
         $this->prepareAnalyzer();
 
         $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
@@ -112,11 +106,25 @@ class UsageTest extends \PHPUnit_Framework_TestCase
 
         $formatter = 'format';
         $target = 'destination';
+        $groupLength = 12;
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
 
+        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(false);
         $this->config->shouldReceive('getFormatter')->once()->andReturn($formatter);
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
+        $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
 
-        $this->writer->shouldReceive('write')->once()->with($this->collection)->andReturnSelf();
+        $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
+        $this->builder->shouldReceive('setAnalysisCollection')->once()->with($this->collection);
+        $this->builder->shouldReceive('setLayout')->once()->andReturnUsing(
+            function ($layout) use ($testcase) {
+                $testcase->assertInstanceOf('PhpDA\Layout\Standard', $layout);
+            }
+        );
+        $this->builder->shouldReceive('create')->once()->andReturnSelf();
+        $this->builder->shouldReceive('getGraphViz')->once()->andReturn($graphViz);
+
+        $this->writer->shouldReceive('write')->once()->with($graphViz)->andReturnSelf();
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
 

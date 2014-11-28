@@ -65,7 +65,7 @@ class GraphViz extends FhacultyGraphViz
     /**
      * @return string
      */
-    public static function getGroupLayoutScript()
+    private static function getGroupLayoutScript()
     {
         $script = '';
         foreach (self::$groupsLayout as $attr => $val) {

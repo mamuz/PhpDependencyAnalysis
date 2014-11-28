@@ -60,14 +60,20 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     private $writeAdapter;
 
     /**
-     * @param Finder            $finder
-     * @param AnalyzerInterface $analyzer
-     * @param AdapterInterface  $writeAdapter
+     * @param Finder                  $finder
+     * @param AnalyzerInterface       $analyzer
+     * @param Layout\BuilderInterface $graphBuilder
+     * @param AdapterInterface        $writeAdapter
      */
-    public function __construct(Finder $finder, AnalyzerInterface $analyzer, AdapterInterface $writeAdapter)
-    {
+    public function __construct(
+        Finder $finder,
+        AnalyzerInterface $analyzer,
+        Layout\BuilderInterface $graphBuilder,
+        AdapterInterface $writeAdapter
+    ) {
         $this->finder = $finder;
         $this->analyzer = $analyzer;
+        $this->graphBuilder = $graphBuilder;
         $this->writeAdapter = $writeAdapter;
 
         $this->config = new Config(array());
@@ -85,7 +91,6 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         $this->initFinder();
-        $this->initLayout();
     }
 
     private function initFinder()
@@ -100,19 +105,6 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         $this->fileCnt = $this->getFinder()->count();
-    }
-
-    private function initLayout()
-    {
-        $analysisCollection = $this->getAnalyzer()->getAnalysisCollection();
-
-        if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
-            $analysisCollection->bindLayout(new Layout\Aggregation);
-        } else {
-            $analysisCollection->bindLayout(new Layout\Standard);
-        }
-
-        $analysisCollection->setGroupLength($this->getConfig()->getGroupLength());
     }
 
     /**
@@ -153,6 +145,14 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     protected function getWriteAdapter()
     {
         return $this->writeAdapter;
+    }
+
+    /**
+     * @return Layout\BuilderInterface
+     */
+    protected function getGraphBuilder()
+    {
+        return $this->graphBuilder;
     }
 
     public function execute()
@@ -200,7 +200,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     {
         foreach ($this->getFinder()->getIterator() as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            if ($this->outputVerbosityIsVerbosed()) {
+            if ($this->outputIsVerbosed()) {
                 $progressHelper->clear();
                 $this->getOutput()->writeln("\x0D" . $file->getRealPath());
                 $progressHelper->display();
@@ -213,7 +213,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     /**
      * @return bool
      */
-    private function outputVerbosityIsVerbosed()
+    private function outputIsVerbosed()
     {
         return OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity();
     }
@@ -224,9 +224,28 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $targetRealPath);
 
         $this->getWriteAdapter()
-            ->write($this->getAnalyzer()->getAnalysisCollection())
+            ->write($this->createGraphViz())
             ->with($this->getConfig()->getFormatter())
             ->to($this->getConfig()->getTarget());
+    }
+
+    /**
+     * @return Layout\GraphViz
+     */
+    private function createGraphViz()
+    {
+        if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
+            $layout = new Layout\Aggregation;
+        } else {
+            $layout = new Layout\Standard;
+        }
+
+        $graphBuilder = $this->getGraphBuilder();
+        $graphBuilder->setLayout($layout);
+        $graphBuilder->setGroupLength($this->getConfig()->getGroupLength());
+        $graphBuilder->setAnalysisCollection($this->getAnalyzer()->getAnalysisCollection());
+
+        return $graphBuilder->create()->getGraphViz();
     }
 
     private function writeAnalysisFailures()

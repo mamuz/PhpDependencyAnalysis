@@ -29,6 +29,11 @@ class CallFactory extends AbstractFactory
 {
     public function create()
     {
-        return new Call($this->createFinder(), $this->createAnalyzer(), $this->createWriteAdapter());
+        return new Call(
+            $this->createFinder(),
+            $this->createAnalyzer(),
+            $this->createGraphBuilder(),
+            $this->createWriteAdapter()
+        );
     }
 }

@@ -29,6 +29,11 @@ class UsageFactory extends AbstractFactory
 {
     public function create()
     {
-        return new Usage($this->createFinder(), $this->createAnalyzer(), $this->createWriteAdapter());
+        return new Usage(
+            $this->createFinder(),
+            $this->createAnalyzer(),
+            $this->createGraphBuilder(),
+            $this->createWriteAdapter()
+        );
     }
 }

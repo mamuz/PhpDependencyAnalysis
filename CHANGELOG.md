@@ -2,6 +2,11 @@
 
 ## dev-master
 
+- Regenerate examples to new graph layout
+- BC in Writer StrategyInterface
+- Create GraphBuilder
+- Refactor AnalysisCollection
+- Add DoctrineCollections
 - Change default configuration by adding groupLength config
 - Add groupLength configuration to controll grouping feature
 - Improve layout

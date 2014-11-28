@@ -25,7 +25,6 @@
 
 namespace PhpDATest\Writer\Strategy;
 
-use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Writer\Strategy\Script;
 
 class ScriptTest extends \PHPUnit_Framework_TestCase
@@ -33,27 +32,16 @@ class ScriptTest extends \PHPUnit_Framework_TestCase
     /** @var Script */
     protected $fixture;
 
-    /** @var string */
-    protected $output = 'foo';
-
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz = 'foo';
-
     protected function setUp()
     {
-        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $callback = function (AnalysisCollection $collection) use ($mock) {
-            return $mock;
-        };
         $this->fixture = new Script;
-        $this->fixture->setGraphCreationCallback($callback);
     }
 
     public function testFilter()
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
-        $this->graphViz->shouldReceive('createScript')->once()->andReturn($this->output);
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graphViz->shouldReceive('createScript')->once()->andReturn('foo');
 
-        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
+        $this->assertSame('foo', $this->fixture->filter($graphViz));
     }
 }

@@ -25,7 +25,6 @@
 
 namespace PhpDATest\Writer\Strategy;
 
-use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Writer\Strategy\Svg;
 
 class SvgTest extends \PHPUnit_Framework_TestCase
@@ -33,29 +32,18 @@ class SvgTest extends \PHPUnit_Framework_TestCase
     /** @var Svg */
     protected $fixture;
 
-    /** @var string */
-    protected $output = 'foo';
-
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz = 'foo';
-
     protected function setUp()
     {
-        $mock = $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $callback = function (AnalysisCollection $collection) use ($mock) {
-            return $mock;
-        };
         $this->fixture = new Svg;
-        $this->fixture->setGraphCreationCallback($callback);
     }
 
     public function testFilter()
     {
-        $analysisCollection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
 
-        $this->graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $this->graphViz->shouldReceive('createImageData')->once()->andReturn($this->output);
+        $graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
+        $graphViz->shouldReceive('createImageData')->once()->andReturn('foo');
 
-        $this->assertSame($this->output, $this->fixture->filter($analysisCollection));
+        $this->assertSame('foo', $this->fixture->filter($graphViz));
     }
 }

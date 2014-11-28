@@ -30,6 +30,6 @@ class Call extends Usage
     protected function init()
     {
         parent::init();
-        $this->getAnalyzer()->getAnalysisCollection()->setCallMode();
+        $this->getGraphBuilder()->setCallMode();
     }
 }

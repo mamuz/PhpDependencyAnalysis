@@ -25,7 +25,9 @@
 
 namespace PhpDA\Writer\Strategy;
 
-class Html extends AbstractStrategy
+use PhpDA\Layout\GraphViz;
+
+class Html implements StrategyInterface
 {
     /** @var string */
     private $imagePlaceholder = '{GRAPH_IMAGE}';
@@ -78,13 +80,13 @@ class Html extends AbstractStrategy
         $this->setTemplate('<html><body>' . $this->getImagePlaceholder() . '</body></html>');
     }
 
-    protected function createOutput()
+    public function filter(GraphViz $graphViz)
     {
-        $this->getGraphViz()->setFormat('svg');
+        $graphViz->setFormat('svg');
 
         return str_replace(
             $this->getImagePlaceholder(),
-            $this->getGraphViz()->createImageHtml(),
+            $graphViz->createImageHtml(),
             $this->getTemplate()
         );
     }
