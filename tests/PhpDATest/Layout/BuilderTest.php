@@ -27,9 +27,28 @@ namespace PhpDATest\Layout;
 
 use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Layout\Builder;
+use PhpParser\Node\Name;
 
 class BuilderTest extends \PHPUnit_Framework_TestCase
 {
+    const LE = '_e_';
+
+    const LEIM = '_eIm_';
+
+    const LEEX = '_eEx_';
+
+    const LETU = '_eTu_';
+
+    const LEUS = '_eUs_';
+
+    const LENS = '_eNs_';
+
+    const LV = '_v_';
+
+    const LVUS = '_vUs_';
+
+    const LVNS = '_vNs_';
+
     /** @var Builder */
     protected $fixture;
 
@@ -42,32 +61,23 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Layout\Graph | \Mockery\MockInterface */
     protected $graph;
 
-    /** @var \PhpParser\Node\Name | \Mockery\MockInterface */
-    protected $name;
+    /** @var \PhpDA\Entity\Adt | \Mockery\MockInterface */
+    protected $adt;
+
+    /** @var \Fhaculty\Graph\Vertex | \Mockery\MockInterface */
+    protected $rootVertex;
 
     protected function setUp()
     {
-        $this->name = \Mockery::mock('PhpParser\Node\Name');
         $this->groupGenerator = \Mockery::mock('PhpDA\Layout\Helper\GroupGenerator');
         $this->graph = \Mockery::mock('PhpDA\Layout\Graph');
         $this->graph->shouldReceive('setLayout')->with(array());
         $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $this->graphViz->shouldReceive('getGraph')->andReturn($this->graph);
 
+        $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
+
         $this->fixture = new Builder($this->graphViz, $this->groupGenerator);
-    }
-
-    /**
-     * @param array $parts
-     * @return \PhpParser\Node\Name | \Mockery\MockInterface
-     */
-    private function createName($parts = array())
-    {
-        $name = clone $this->name;
-        $name->shouldReceive('toString')->andReturn(implode('\\', $parts));
-        $name->parts = $parts;
-
-        return $name;
     }
 
     public function testDelegatingGroupLengthMutatorToGroupGenerator()
@@ -92,7 +102,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $layout->shouldReceive('getGraph')->once()->andReturn(array('foo'));
         $layout->shouldReceive('getGroup')->once()->andReturn(array('bar'));
 
-        $this->groupGenerator->shouldReceive('getGroups')->andReturn(array('baz'));
+        $this->groupGenerator->shouldReceive('getGroups')->once()->andReturn(array('baz'));
 
         $this->graph->shouldReceive('setLayout')->once()->with(array('foo'));
         $this->graphViz->shouldReceive('setGroups')->once()->with(array('baz'));
@@ -108,49 +118,150 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->graphViz, $this->fixture->getGraphViz());
     }
 
-    public function testDependencyCreationInCallMode()
+    private function prepareDependencyCreation()
     {
-        $this->fixture->setCallMode();
-
-        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
-        $layout->shouldReceive('getGraph')->andReturn(array());
-        $layout->shouldReceive('getGroup')->andReturn(array());
-        $layout->shouldReceive('getEdge')->andReturn(array());
-        $layout->shouldReceive('getEdgeUnsupported')->andReturn(array());
-        $layout->shouldReceive('getEdgeNamespacedString')->andReturn(array());
-        $layout->shouldReceive('getVertexUnsupported')->andReturn(array());
-        $layout->shouldReceive('getVertexNamespacedString')->andReturn(array());
-        $layout->shouldReceive('getVertex')->andReturn(array('vertex'));
-        $this->fixture->setLayout($layout);
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
         $this->graph->shouldReceive('setLayout');
         $this->graphViz->shouldReceive('setGroups');
         $this->graphViz->shouldReceive('setGroupLayout');
 
-        $declared = $this->createName(array('dec', 'name'));
-        $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
-        $adt = \Mockery::mock('PhpDA\Entity\Adt');
-        $adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
-        $this->graph->shouldReceive('createVertex')->once()->with('dec\\name', true)->andReturn($vertex);
-        $this->groupGenerator->shouldReceive('getIdFor')->once()->with($declared)->andReturn(5);
-        $vertex->shouldReceive('setGroup')->once()->with(5);
-        $vertex->shouldReceive('setLayout')->once()->with(array('vertex', 'group' => 5));
+        $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
+        $layout->shouldReceive('getGraph')->andReturn(array());
+        $layout->shouldReceive('getGroup')->andReturn(array());
 
-        $adt->shouldReceive('getImplementedNamespaces')->never();
-        $adt->shouldReceive('getExtendedNamespaces')->never();
-        $adt->shouldReceive('getUsedTraitNamespaces')->never();
-        $adt->shouldReceive('getUsedNamespaces')->never();
+        $layout->shouldReceive('getVertex')->andReturn(array(self::LV));
+        $layout->shouldReceive('getVertexUnsupported')->andReturn(array(self::LVUS));
+        $layout->shouldReceive('getVertexNamespacedString')->andReturn(array(self::LVNS));
 
-        $adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array());
-        $adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
-        $adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+        $layout->shouldReceive('getEdge')->andReturn(array(self::LE));
+        $layout->shouldReceive('getEdgeImplement')->andReturn(array(self::LEIM));
+        $layout->shouldReceive('getEdgeExtend')->andReturn(array(self::LEEX));
+        $layout->shouldReceive('getEdgeTraitUse')->andReturn(array(self::LETU));
+        $layout->shouldReceive('getEdgeUnsupported')->andReturn(array(self::LEUS));
+        $layout->shouldReceive('getEdgeNamespacedString')->andReturn(array(self::LENS));
+
+        $this->fixture->setLayout($layout);
 
         $collection = new AnalysisCollection;
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
-        $analysis->shouldReceive('getAdts')->andReturn(array($adt));
+        $analysis->shouldReceive('getAdts')->andReturn(array($this->adt));
         $collection->attach($analysis);
 
         $this->fixture->setAnalysisCollection($collection);
+    }
+
+    /**
+     * @param string                        $fqn
+     * @param Name | \Mockery\MockInterface $root
+     * @param bool                          $hasEdge
+     * @param string                        $vertexLayout
+     * @param string                        $edgeLayout
+     * @return Name | \Mockery\MockInterface
+     */
+    private function createName(
+        $fqn,
+        Name $root = null,
+        $hasEdge = false,
+        $vertexLayout = null,
+        $edgeLayout = self::LE
+    ) {
+        /** @var Name | \Mockery\MockInterface $name */
+        $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('toString')->andReturn($fqn);
+        $name->parts = explode('\\', $fqn);
+        $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $this->graph->shouldReceive('createVertex')->once()->with($fqn, true)->andReturn($vertex);
+        $this->groupGenerator->shouldReceive('getIdFor')->once()->with($name)->andReturn(5);
+        $vertex->shouldReceive('setGroup')->once()->with(5);
+        $vertex->shouldReceive('getLayout')->andReturn(array());
+        $vertex->shouldReceive('setLayout')->once()->with(array(self::LV, 'group' => 5));
+
+        if ($root) {
+            $vertex->shouldReceive('setLayout')->once()->with($vertexLayout ? array($vertexLayout) : array());
+            if ($root->parts !== $name->parts) {
+                $this->rootVertex->shouldReceive('hasEdgeTo')->once()->with($vertex)->andReturn($hasEdge);
+                if (!$hasEdge) {
+                    $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+                    $edge->shouldReceive('setLayout')->once()->with(array($edgeLayout));
+                    $this->rootVertex->shouldReceive('createEdgeTo')->once()->with($vertex)->andReturn($edge);
+                }
+            }
+        } else {
+            $this->rootVertex = $vertex;
+        }
+
+        return $name;
+    }
+
+    public function testDependencyCreationInCallMode()
+    {
+        $this->fixture->setCallMode();
+
+        $this->prepareDependencyCreation();
+
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $this->adt->shouldReceive('getImplementedNamespaces')->never();
+        $this->adt->shouldReceive('getExtendedNamespaces')->never();
+        $this->adt->shouldReceive('getUsedTraitNamespaces')->never();
+        $this->adt->shouldReceive('getUsedNamespaces')->never();
+
+        $called1 = $this->createName('Called\\Name1', $declared);
+        $called2 = $this->createName('Called\\Name2', $declared);
+
+        $uns1 = $this->createName('Uns\\Name1', $declared, false, self::LVUS, self::LEUS);
+        $uns2 = $this->createName('Uns\\Name2', $declared, false, self::LVUS, self::LEUS);
+
+        $string1 = $this->createName('String\\Name1', $declared, true, self::LVNS, self::LENS);
+        $string2 = $this->createName('String\\Name2', $declared, false, self::LVNS, self::LENS);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1, $called2));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($uns1, $uns2));
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($string1, $string2));
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationNotInCallMode()
+    {
+        $this->prepareDependencyCreation();
+
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->never();
+
+        $imp1 = $this->createName('Imp\\Name1', $declared, false, null, self::LEIM);
+        $imp2 = $this->createName('Imp\\Name2', $declared, false, null, self::LEIM);
+
+        $ext = $this->createName('Ext\\Name1', $declared, false, null, self::LEEX);
+
+        $trait1 = $this->createName('Trait\\Name1', $declared, false, null, self::LETU);
+        $trait2 = $this->createName('Trait\\Name2', $declared, false, null, self::LETU);
+
+        $used1 = $this->createName('Used\\Name1', $declared);
+        $used2 = $this->createName('Used\\Name2', $declared);
+        $used3 = $this->createName('Used\\Name2', $declared, true);
+        $used4 = $this->createName('Used\\Name2', $declared);
+
+        $uns1 = $this->createName('Uns\\Name1', $declared, true, self::LVUS, self::LEUS);
+        $uns2 = $this->createName('Uns\\Name2', $declared, false, self::LVUS, self::LEUS);
+
+        $string1 = $this->createName('String\\Name1', $declared, false, self::LVNS, self::LENS);
+        $string2 = $this->createName('String\\Name2', $declared, false, self::LVNS, self::LENS);
+
+        $meta = \Mockery::mock('PhpDa\Entity\Meta');
+        $this->adt->shouldReceive('getMeta')->andReturn($meta);
+
+        $meta->shouldReceive('getImplementedNamespaces')->once()->andReturn(array($imp1, $imp2));
+        $meta->shouldReceive('getExtendedNamespaces')->once()->andReturn(array($ext));
+        $meta->shouldReceive('getUsedTraitNamespaces')->once()->andReturn(array($trait1, $trait2));
+        $this->adt->shouldReceive('getUsedNamespaces')->once()->andReturn(array($used1, $used2, $used3, $used4));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($uns1, $uns2));
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($string1, $string2));
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
