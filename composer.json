@@ -19,7 +19,7 @@
     "prefer-stable"    : true,
     "require"          : {
         "php"                              : ">=5.3.3",
-        "psr/log"                          : "1.0.0",
+        "psr/log"                          : "1.0.*",
         "nikic/php-parser"                 : "1.0.*",
         "clue/graph"                       : "0.7.*",
         "phpdocumentor/reflection-docblock": "2.0.*",
@@ -29,7 +29,7 @@
         "symfony/finder"                   : "2.6.*"
     },
     "require-dev"      : {
-        "satooshi/php-coveralls": "0.6.1",
+        "satooshi/php-coveralls": "0.6.*",
         "phpunit/phpunit"       : "4.3.*",
         "mockery/mockery"       : "0.9.*"
     },
