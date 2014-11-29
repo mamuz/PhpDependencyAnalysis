@@ -54,7 +54,6 @@ abstract class AbstractLayout implements LayoutInterface
         'shape'     => 'box',
         'fontcolor' => '#314B5F',
         'fontsize'  => 10,
-        'margin'    => 0,
     );
 
     /** @var array */
