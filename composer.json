@@ -24,9 +24,9 @@
         "clue/graph"                       : "0.7.*",
         "phpdocumentor/reflection-docblock": "2.0.*",
         "doctrine/collections"             : "1.2.*",
-        "symfony/yaml"                     : "2.5.*",
-        "symfony/console"                  : "2.5.*",
-        "symfony/finder"                   : "2.5.*"
+        "symfony/yaml"                     : "2.6.*",
+        "symfony/console"                  : "2.6.*",
+        "symfony/finder"                   : "2.6.*"
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "0.6.*",
