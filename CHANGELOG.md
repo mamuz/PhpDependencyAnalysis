@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev-master
+## v0.2.0
 
 - Regenerate examples to new graph layout
 - BC in Writer StrategyInterface
