@@ -25,14 +25,16 @@
 
 namespace PhpDA\Layout;
 
+use PhpDA\Command\MessageInterface as Message;
+
 abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
     private $graph = array(
-        'rankdir' => 'LR',
-        'ranksep' => 1,
-        'nodesep' => 0.1,
-        'label'   => 'PhpDependencyAnalyse by Marco Muths',
+        'rankdir'  => 'LR',
+        'ranksep'  => 1,
+        'nodesep'  => 0.1,
+        'fontsize' => 8,
     );
 
     /** @var array */
@@ -83,6 +85,11 @@ abstract class AbstractLayout implements LayoutInterface
     private $edgeNamespacedString = array(
         'color' => '#F1EEA6',
     );
+
+    public function __construct()
+    {
+        $this->graph['label'] = Message::NAME . ' (' . Message::VERSION . ')';
+    }
 
     public function getGraph()
     {
