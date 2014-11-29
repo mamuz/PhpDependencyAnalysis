@@ -63,6 +63,10 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $this->output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface')->shouldIgnoreMissing();
         $this->config = \Mockery::mock('PhpDA\Command\Config');
 
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldIgnoreMissing();
+
+        $this->output->shouldReceive('getFormatter')->andReturn($formatter);
         $this->output->shouldReceive('writeln');
         $this->analyzer->shouldReceive('getAnalysisCollection')->andReturn($this->collection);
 
@@ -97,7 +101,7 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $file->shouldReceive('getRealPath')->once()->andReturn('anypath');
 
-        $this->output->shouldReceive('getVerbosity')->once()->andReturn(3);
+        $this->output->shouldReceive('getVerbosity')->andReturn(3);
         $this->finder->shouldReceive('count')->once()->andReturn(6000);
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
         $this->fixture->setOptions(array('output' => $this->output, 'config' => $this->config));
