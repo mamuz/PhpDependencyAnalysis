@@ -14,8 +14,9 @@ PhpDependencyAnalysis
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
-PHP-Projects to provide a [`dependency graph`](http://en.wikipedia.org/wiki/Dependency_graph)
-for packages or for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+PHP-Projects to provide [`dependency graphs`](http://en.wikipedia.org/wiki/Dependency_graph)
+for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+Dependencies can be aggregated to build graphs for several levels, like Package-Level or Layer-Level.
 
 Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
