@@ -8,7 +8,7 @@ These guidelines exist to keep the code base clean.
 ## Workflow
 
 1. Fork the project
-2. Create a local development Branch for the changes.
+2. Create a local development branch for the changes.
 3. Commit a change and push your local branch to your github fork.
 4. Send a pull-request for your changes to `master`.
 
@@ -18,9 +18,13 @@ Use PSR-2:
 
 * https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
 
-Use PHPMD with default ruleset:
+## License
 
-* http://phpmd.org/rules/index.html
+This Project is under [MIT License](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/LICENSE).
+Every file that contains PHP code must have a docblock at the top of the file
+that contains the [license](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/LICENSE) at a minimum.
+
+Check [this](http://choosealicense.com/licenses/mit) for more informations about MIT License.
 
 ## Unit-Tests
 
