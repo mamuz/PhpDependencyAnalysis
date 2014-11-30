@@ -23,6 +23,8 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 ![](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/packages.png)
 
+See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
+
 ## Installation
 
 For graph creation [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
