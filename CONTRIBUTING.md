@@ -20,7 +20,7 @@ Use PSR-2:
 
 ## License
 
-This Project is under [MIT License](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/LICENSE).
+This project is under [MIT License](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/LICENSE).
 Every file that contains PHP code must have a docblock at the top of the file
 that contains the [license](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/LICENSE) at a minimum.
 
