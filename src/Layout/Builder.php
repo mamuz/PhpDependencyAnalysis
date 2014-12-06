@@ -118,7 +118,9 @@ class Builder implements BuilderInterface
         foreach ($this->analysisCollection->getAll() as $analysis) {
             $this->currentAnalysisFile = $analysis->getFile();
             foreach ($analysis->getAdts() as $adt) {
-                $this->createVertexAndEdgesBy($adt);
+                if (!$adt->hasDeclaredGlobalNamespace()) {
+                    $this->createVertexAndEdgesBy($adt);
+                }
             }
         }
     }
@@ -175,11 +177,7 @@ class Builder implements BuilderInterface
      */
     private function createAdtRootVertexBy(Adt $adt)
     {
-        $name = $adt->getDeclaredNamespace();
-        $vertex = $this->createVertexBy($name);
-        $this->adtRootVertex = $vertex;
-
-        $this->adtRootVertex->location = new Location($this->currentAnalysisFile, $name->getAttributes());
+        $this->adtRootVertex = $this->createVertexBy($adt->getDeclaredNamespace());
     }
 
     /**
@@ -190,6 +188,11 @@ class Builder implements BuilderInterface
     {
         $layout = $this->layout->getVertex();
         $vertex = $this->getGraph()->createVertex($name->toString(), true);
+
+        if (!isset($vertex->locations)) {
+            $vertex->locations = array();
+        }
+        $vertex->locations[] = new Location($this->currentAnalysisFile, $name->getAttributes());
 
         if ($groupId = $this->groupGenerator->getIdFor($name)) {
             $vertex->setGroup($groupId);

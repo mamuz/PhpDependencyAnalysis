@@ -28,7 +28,7 @@ namespace PhpDA\Layout\Helper;
 use Fhaculty\Graph\Vertex;
 
 /**
- * @property \PhpDA\Entity\Location $location
+ * @property \PhpDA\Entity\Location[] $locations
  * @method \PhpDA\Layout\Helper\EdgeProxy createEdgeTo(Vertex $vertex)
  * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdges()
  * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdgesOut()

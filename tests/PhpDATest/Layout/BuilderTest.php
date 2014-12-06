@@ -172,7 +172,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     ) {
         /** @var Name | \Mockery\MockInterface $name */
         $name = \Mockery::mock('PhpParser\Node\Name');
-        $name->shouldReceive('getAttributes')->andReturn(array('startLine' => 12, 'endLine' => 14));
+        $name->shouldReceive('getAttributes')->andReturn(
+            array('startLine' => 12, 'endLine' => 14, 'fqn' => 'Foo\\Bar')
+        );
         $name->shouldReceive('toString')->andReturn($fqn);
         $name->parts = explode('\\', $fqn);
         $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
@@ -204,6 +206,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testDependencyCreationInCallMode()
     {
         $this->fixture->setCallMode();
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
 
         $this->prepareDependencyCreation();
 
@@ -234,6 +237,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDependencyCreationNotInCallMode()
     {
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
         $this->prepareDependencyCreation();
 
         $declared = $this->createName('Dec\\Name');
@@ -270,6 +274,20 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUsedNamespaces')->once()->andReturn(array($used1, $used2, $used3, $used4));
         $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($uns1, $uns2));
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($string1, $string2));
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationWhenAdtIsGlobalNamespace()
+    {
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(true);
+        $this->prepareDependencyCreation();
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->never();
+        $this->adt->shouldReceive('getCalledNamespaces')->never();
+        $this->adt->shouldReceive('getUsedNamespaces')->never();
+        $this->adt->shouldReceive('getUnsupportedStmts')->never();
+        $this->adt->shouldReceive('getNamespacedStrings')->never();
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }

@@ -102,11 +102,11 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addNamespacedString')->once()->andReturnUsing(
-            function ($object) use ($testcase, $attributes) {
+            function ($object) use ($testcase) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
                 $testcase->assertSame($object->toString(), '\\Foo\\Bar');
-                $testcase->assertSame($object->getAttributes(), $attributes);
+                $testcase->assertSame($object->getAttributes(), array('fqn' => '\\Foo\\Bar', 'foo' => 'bar'));
             }
         );
 

@@ -41,6 +41,9 @@ class Location
     /** @var boolean */
     private $isComment = false;
 
+    /** @var string */
+    private $fqn;
+
     /**
      * @param SplFileInfo $file
      * @param array       $attributes
@@ -48,13 +51,19 @@ class Location
      */
     public function __construct(SplFileInfo $file, array $attributes)
     {
-        if (!isset($attributes['startLine']) || !isset($attributes['endLine'])) {
-            throw new \InvalidArgumentException('Values for startLine and/or endLine not set in attributes');
+        if (!isset($attributes['startLine'])
+            || !isset($attributes['endLine'])
+            || !isset($attributes['fqn'])
+        ) {
+            throw new \InvalidArgumentException(
+                'Values for startLine and/or endLine and/or FQN are not set in attributes'
+            );
         }
 
         $this->file = $file;
         $this->startLine = (int) $attributes['startLine'];
         $this->endline = (int) $attributes['endLine'];
+        $this->fqn = (string) $attributes['fqn'];
 
         if (isset($attributes['isComment'])) {
             $this->isComment = (bool) $attributes['isComment'];
@@ -91,5 +100,13 @@ class Location
     public function getEndline()
     {
         return $this->endline;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFqn()
+    {
+        return $this->fqn;
     }
 }

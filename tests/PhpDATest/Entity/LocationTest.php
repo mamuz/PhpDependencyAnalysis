@@ -39,7 +39,8 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     protected $attributes = array(
         'startLine' => 30,
         'endLine'   => 40,
-        'isComment' => true
+        'isComment' => true,
+        'fqn'       => 'Foo\\Bar',
     );
 
     protected function setUp()
@@ -59,7 +60,8 @@ class LocationTest extends \PHPUnit_Framework_TestCase
 
         $attributes = array(
             'startLine' => 30,
-            'endLine'   => 40
+            'endLine'   => 40,
+            'fqn'       => 'Foo\\Bar',
         );
         $this->fixture = new Location($this->file, $attributes);
         $this->assertFalse($this->fixture->isComment());
@@ -71,17 +73,29 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->attributes['endLine'], $this->fixture->getEndLine());
     }
 
+    public function testAccessFqn()
+    {
+        $this->assertSame($this->attributes['fqn'], $this->fixture->getFqn());
+    }
+
     public function testInvalidArgumentExceptionForMissingStartline()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $attributes = array('endLine' => 40);
+        $attributes = array('endLine' => 40, 'fqn' => 'Foo\\Bar');
         $this->fixture = new Location($this->file, $attributes);
     }
 
     public function testInvalidArgumentExceptionForMissingEndline()
     {
         $this->setExpectedException('InvalidArgumentException');
-        $attributes = array('startLine' => 40);
+        $attributes = array('startLine' => 40, 'fqn' => 'Foo\\Bar');
+        $this->fixture = new Location($this->file, $attributes);
+    }
+
+    public function testInvalidArgumentExceptionForMissingFqn()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $attributes = array('startLine' => 40, 'endLine' => 40);
         $this->fixture = new Location($this->file, $attributes);
     }
 }

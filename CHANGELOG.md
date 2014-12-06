@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Fix for collecting dependencies of null filltered ADTs
 - Fix in realpath usage for message about write target
 - Add Location awareness to Verteces and Edges
 - Add Location entity

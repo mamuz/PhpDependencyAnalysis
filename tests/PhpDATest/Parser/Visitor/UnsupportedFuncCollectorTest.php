@@ -123,11 +123,11 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUnsupportedStmt')->once()->andReturnUsing(
-            function ($object) use ($testcase, $attributes, $funcName) {
+            function ($object) use ($testcase, $funcName) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
                 $testcase->assertSame($object->toString(), $funcName);
-                $testcase->assertSame($object->getAttributes(), $attributes);
+                $testcase->assertSame($object->getAttributes(), array('fqn' => $funcName, 'foo' => 'bar'));
             }
         );
 

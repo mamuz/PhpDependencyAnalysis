@@ -172,11 +172,11 @@ class SuperglobalCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUsedNamespace')->once()->andReturnUsing(
-            function ($object) use ($testcase, $var, $attributes) {
+            function ($object) use ($testcase, $var) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
                 $testcase->assertSame($object->toString(), $var);
-                $testcase->assertSame($object->getAttributes(), $attributes);
+                $testcase->assertSame($object->getAttributes(), array('fqn' => $var, 'foo' => 'bar'));
             }
         );
 

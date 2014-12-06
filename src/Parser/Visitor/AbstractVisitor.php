@@ -124,6 +124,7 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     protected function collect(Node\Name $name, Node $node = null)
     {
+        $name->setAttribute('fqn', $name->toString());
         if ($name = $this->filter($name)) {
             if (!is_null($node)) {
                 $this->exchange($name, $node);

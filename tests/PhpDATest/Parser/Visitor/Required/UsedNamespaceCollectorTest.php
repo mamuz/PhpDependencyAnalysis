@@ -57,6 +57,8 @@ class UsedNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     public function testNotCollectingByFilteredToNull()
     {
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('toString')->once()->andReturn('Baz');
+        $name->shouldReceive('setAttribute')->once()->with('fqn', 'Baz');
         $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn(null);
         $this->fixture->leaveNode($name);
     }
@@ -65,8 +67,10 @@ class UsedNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $attributes = array('foo' => 'bar');
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('toString')->once()->andReturn('Baz');
         $name->shouldReceive('getAttributes')->once()->andReturn($attributes);
         $name->shouldReceive('setAttribute')->once()->with('foo', 'bar');
+        $name->shouldReceive('setAttribute')->once()->with('fqn', 'Baz');
         $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn($name);
         $this->adt->shouldReceive('addUsedNamespace')->once()->with($name);
 
