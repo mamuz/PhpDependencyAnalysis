@@ -2,5 +2,3 @@
 composer.lock
 vendor
 vendor/*
-tmp
-tmp/*
