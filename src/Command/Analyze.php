@@ -88,7 +88,13 @@ class Analyze extends Command
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
 
-        $this->loadStrategy($config->getMode(), array('config' => $config, 'output' => $output))->execute();
+        $strategyOptions = array(
+            'config'      => $config,
+            'output'      => $output,
+            'layoutLabel' => $this->getDescription(),
+        );
+
+        $this->loadStrategy($config->getMode(), $strategyOptions)->execute();
     }
 
     /**

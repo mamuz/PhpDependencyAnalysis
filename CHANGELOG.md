@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## dev-master
+
+- Fix in realpath usage for message about write target
+- Add Location awareness to Verteces and Edges
+- Add Location entity
+- Fix lost node attributes in NodeName filtering
+- Fix lost node attributes in TagCollector
+
 ## v0.2.0
 
 - Regenerate examples to new graph layout

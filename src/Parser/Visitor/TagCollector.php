@@ -83,7 +83,8 @@ class TagCollector extends AbstractVisitor implements UsedNamespaceCollectorInte
             $tags = $node->getAttribute(NameResolver::TAG_NAMES_ATTRIBUTE);
             foreach ($tags as $tagName) {
                 $name = new Node\Name($tagName);
-                $this->collect($name);
+                $name->setAttribute('isComment', true);
+                $this->collect($name, $node);
             }
         }
     }

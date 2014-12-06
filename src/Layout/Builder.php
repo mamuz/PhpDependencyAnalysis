@@ -28,8 +28,10 @@ namespace PhpDA\Layout;
 use Fhaculty\Graph\Vertex;
 use PhpDA\Entity\Adt;
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Entity\Location;
 use PhpDA\Layout\Helper\GroupGenerator;
 use PhpParser\Node\Name;
+use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * @SuppressWarnings("PMD.CouplingBetweenObjects")
@@ -45,7 +47,7 @@ class Builder implements BuilderInterface
     /** @var AnalysisCollection */
     private $analysisCollection;
 
-    /** @var Vertex */
+    /** @var \PhpDA\Layout\Helper\VertexProxy */
     private $adtRootVertex;
 
     /** @var LayoutInterface */
@@ -53,6 +55,9 @@ class Builder implements BuilderInterface
 
     /** @var bool */
     private $isCallMode = false;
+
+    /** @var SplFileInfo */
+    private $currentAnalysisFile;
 
     /**
      * @param GraphViz       $graphViz
@@ -111,6 +116,7 @@ class Builder implements BuilderInterface
     private function createDependencies()
     {
         foreach ($this->analysisCollection->getAll() as $analysis) {
+            $this->currentAnalysisFile = $analysis->getFile();
             foreach ($analysis->getAdts() as $adt) {
                 $this->createVertexAndEdgesBy($adt);
             }
@@ -169,12 +175,16 @@ class Builder implements BuilderInterface
      */
     private function createAdtRootVertexBy(Adt $adt)
     {
-        $this->adtRootVertex = $this->createVertexBy($adt->getDeclaredNamespace());
+        $name = $adt->getDeclaredNamespace();
+        $vertex = $this->createVertexBy($name);
+        $this->adtRootVertex = $vertex;
+
+        $this->adtRootVertex->location = new Location($this->currentAnalysisFile, $name->getAttributes());
     }
 
     /**
      * @param Name $name
-     * @return Vertex
+     * @return \PhpDA\Layout\Helper\VertexProxy
      */
     private function createVertexBy(Name $name)
     {
@@ -183,7 +193,7 @@ class Builder implements BuilderInterface
 
         if ($groupId = $this->groupGenerator->getIdFor($name)) {
             $vertex->setGroup($groupId);
-            $layout['group'] = $groupId;
+            $vertex->setLayoutAttribute('group', $groupId);
         }
 
         $vertex->setLayout($layout);
@@ -209,11 +219,31 @@ class Builder implements BuilderInterface
         foreach ($dependencies as $dependency) {
             $vertex = $this->createVertexBy($dependency);
             $vertex->setLayout(array_merge($vertex->getLayout(), $vertexLayout));
-            if ($this->adtRootVertex !== $vertex
-                && !$this->adtRootVertex->hasEdgeTo($vertex)
-            ) {
-                $this->adtRootVertex->createEdgeTo($vertex)->setLayout($edgeLayout);
+            if ($this->adtRootVertex !== $vertex) {
+                $edge = $this->createEdgeToAdtRootVertexBy($vertex, $edgeLayout);
+                $location = new Location($this->currentAnalysisFile, $dependency->getAttributes());
+                $edge->locations[] = $location;
             }
         }
+    }
+
+    /**
+     * @param Vertex $vertex
+     * @param array  $edgeLayout
+     * @return \PhpDA\Layout\Helper\EdgeProxy
+     */
+    private function createEdgeToAdtRootVertexBy(Vertex $vertex, array $edgeLayout)
+    {
+        foreach ($this->adtRootVertex->getEdges() as $edge) {
+            if ($edge->isConnection($this->adtRootVertex, $vertex)) {
+                return $edge;
+            }
+        }
+
+        $edge = $this->adtRootVertex->createEdgeTo($vertex);
+        $edge->setLayout($edgeLayout);
+        $edge->locations = array();
+
+        return $edge;
     }
 }

@@ -67,6 +67,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     /** @var \Fhaculty\Graph\Vertex | \Mockery\MockInterface */
     protected $rootVertex;
 
+    /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
+    protected $file;
+
     protected function setUp()
     {
         $this->groupGenerator = \Mockery::mock('PhpDA\Layout\Helper\GroupGenerator');
@@ -143,7 +146,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setLayout($layout);
 
         $collection = new AnalysisCollection;
+        $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $analysis = \Mockery::mock('PhpDA\Entity\Analysis');
+        $analysis->shouldReceive('getFile')->andReturn($this->file);
         $analysis->shouldReceive('getAdts')->andReturn(array($this->adt));
         $collection->attach($analysis);
 
@@ -167,23 +172,26 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     ) {
         /** @var Name | \Mockery\MockInterface $name */
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('getAttributes')->andReturn(array('startLine' => 12, 'endLine' => 14));
         $name->shouldReceive('toString')->andReturn($fqn);
         $name->parts = explode('\\', $fqn);
         $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
         $this->graph->shouldReceive('createVertex')->once()->with($fqn, true)->andReturn($vertex);
         $this->groupGenerator->shouldReceive('getIdFor')->once()->with($name)->andReturn(5);
         $vertex->shouldReceive('setGroup')->once()->with(5);
+        $vertex->shouldReceive('setLayoutAttribute')->once()->with('group', 5);
         $vertex->shouldReceive('getLayout')->andReturn(array());
-        $vertex->shouldReceive('setLayout')->once()->with(array(self::LV, 'group' => 5));
+        $vertex->shouldReceive('setLayout')->once()->with(array(self::LV));
 
         if ($root) {
             $vertex->shouldReceive('setLayout')->once()->with($vertexLayout ? array($vertexLayout) : array());
             if ($root->parts !== $name->parts) {
-                $this->rootVertex->shouldReceive('hasEdgeTo')->once()->with($vertex)->andReturn($hasEdge);
+                $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+                $edge->shouldReceive('isConnection')->once()->with($this->rootVertex, $vertex)->andReturn($hasEdge);
+                $this->rootVertex->shouldReceive('getEdges')->once()->andReturn(array($edge));
                 if (!$hasEdge) {
-                    $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
-                    $edge->shouldReceive('setLayout')->once()->with(array($edgeLayout));
                     $this->rootVertex->shouldReceive('createEdgeTo')->once()->with($vertex)->andReturn($edge);
+                    $edge->shouldReceive('setLayout')->once()->with(array($edgeLayout));
                 }
             }
         } else {

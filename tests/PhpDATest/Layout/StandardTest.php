@@ -34,12 +34,13 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->fixture = new Standard;
+        $this->fixture = new Standard('foo');
     }
 
     public function testAccessGraph()
     {
         $this->assertNotEmpty($this->fixture->getGraph());
+        $this->assertSame('foo', $this->fixture->getGraph()['label']);
     }
 
     public function testAccessGroup()

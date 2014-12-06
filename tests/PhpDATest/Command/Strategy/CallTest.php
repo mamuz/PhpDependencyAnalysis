@@ -104,7 +104,9 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->output->shouldReceive('getVerbosity')->andReturn(3);
         $this->finder->shouldReceive('count')->once()->andReturn(6000);
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
-        $this->fixture->setOptions(array('output' => $this->output, 'config' => $this->config));
+        $this->fixture->setOptions(
+            array('output' => $this->output, 'config' => $this->config, 'layoutLabel' => 'FooLabel')
+        );
 
         $this->analyzer->shouldReceive('analyze')->once()->with($file);
 

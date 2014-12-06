@@ -23,39 +23,25 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Parser\Visitor;
+namespace PhpDATest\Layout\Helper;
 
-use PhpDATest\Parser\Visitor\Stub\InvalidCollector;
+use PhpDA\Layout\Helper\EdgeProxy;
 
-class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
+class EdgeProxyTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var InvalidCollector */
+    /** @var EdgeProxy */
     protected $fixture;
-
-    /** @var \PhpDA\Parser\Filter\NodeNameInterface | \Mockery\MockInterface */
-    protected $nodeNameFilter;
 
     protected function setUp()
     {
-        $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
-        $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
-
-        $this->fixture = new InvalidCollector;
-        $this->fixture->setNodeNameFilter($this->nodeNameFilter);
+        $this->fixture = new EdgeProxy(
+            \Mockery::mock('Fhaculty\Graph\Vertex'),
+            \Mockery::mock('Fhaculty\Graph\Vertex')
+        );
     }
 
-    public function testCollecting()
+    public function testExtendedFhacultyEdge()
     {
-        $attributes = array('foo' => 'bar');
-        $this->setExpectedException('RuntimeException');
-        $node = \Mockery::mock('PhpParser\Node\Name');
-        $node->shouldReceive('getAttributes')->andReturn($attributes);
-        $node->shouldReceive('setAttribute');
-        $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
-            function ($object) {
-                return $object;
-            }
-        );
-        $this->fixture->leaveNode($node);
+        $this->assertInstanceOf('Fhaculty\Graph\Edge\Directed', $this->fixture);
     }
 }

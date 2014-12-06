@@ -93,16 +93,14 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
     }
 
     /**
-     * @param Node\Name $name
-     * @param Node|null $node
+     * @param Node\Name $target
+     * @param Node      $source
      */
-    private function exchange(Node\Name $name, Node $node = null)
+    private function exchange(Node\Name $target, Node $source)
     {
-        if ($node) {
-            $attributes = $node->getAttributes();
-            foreach ($attributes as $attr => $value) {
-                $name->setAttribute($attr, $value);
-            }
+        $attributes = $source->getAttributes();
+        foreach ($attributes as $attr => $value) {
+            $target->setAttribute($attr, $value);
         }
     }
 
@@ -112,7 +110,12 @@ abstract class AbstractVisitor extends NodeVisitorAbstract implements
      */
     protected function filter(Node\Name $name)
     {
-        return $this->getNodeNameFilter()->filter($name);
+        $raw = clone $name;
+        if ($name = $this->getNodeNameFilter()->filter($name)) {
+            $this->exchange($name, $raw);
+        }
+
+        return $name;
     }
 
     /**

@@ -23,40 +23,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Command;
+namespace PhpDA\Layout\Helper;
 
-use PhpDA\Command\MessageInterface as Message;
-use PhpDA\Plugin\FactoryInterface;
-use PhpDA\Plugin\Loader;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Yaml\Parser;
+use Fhaculty\Graph\Vertex;
 
-class ApplicationFactory implements FactoryInterface
+/**
+ * @property \PhpDA\Entity\Location $location
+ * @method \PhpDA\Layout\Helper\EdgeProxy createEdgeTo(Vertex $vertex)
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdges()
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdgesOut()
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdgesIn()
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdgesTo(Vertex $vertex)
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdgesFrom(Vertex $vertex)
+ * @method \PhpDA\Layout\Helper\VertexProxy[] | \Fhaculty\Graph\Set\Vertices getVerticesEdge()
+ * @method \PhpDA\Layout\Helper\VertexProxy[] | \Fhaculty\Graph\Set\Vertices getVerticesEdgeTo()
+ * @method \PhpDA\Layout\Helper\VertexProxy[] | \Fhaculty\Graph\Set\Vertices getVerticesEdgeFrom()
+ */
+class VertexProxy extends Vertex
 {
-    /**
-     * @return Application
-     */
-    public function create()
-    {
-        $app = new Application(Message::NAME, Message::VERSION);
-        $app->setDefaultCommand(Message::COMMAND);
-        $app->add($this->createAnalyzeCommand());
-
-        return $app;
-    }
-
-    /**
-     * @return Analyze
-     */
-    protected function createAnalyzeCommand()
-    {
-        $command = new Analyze(Message::COMMAND);
-
-        $command->setHelp(Message::HELP);
-        $command->setDescription(Message::NAME . ' (' . Message::VERSION . ')');
-        $command->setConfigParser(new Parser);
-        $command->setStrategyLoader(new Loader);
-
-        return $command;
-    }
 }

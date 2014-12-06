@@ -25,8 +25,6 @@
 
 namespace PhpDA\Layout;
 
-use PhpDA\Command\MessageInterface as Message;
-
 abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
@@ -85,9 +83,9 @@ abstract class AbstractLayout implements LayoutInterface
         'color' => '#F1EEA6',
     );
 
-    public function __construct()
+    public function __construct($label)
     {
-        $this->graph['label'] = Message::NAME . ' (' . Message::VERSION . ')';
+        $this->graph['label'] = $label;
     }
 
     public function getGraph()

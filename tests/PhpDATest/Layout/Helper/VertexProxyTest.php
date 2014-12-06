@@ -23,39 +23,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Parser\Visitor;
+namespace PhpDATest\Layout\Helper;
 
-use PhpDATest\Parser\Visitor\Stub\InvalidCollector;
+use PhpDA\Layout\Helper\VertexProxy;
 
-class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
+class VertexProxyTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var InvalidCollector */
+    /** @var VertexProxy */
     protected $fixture;
-
-    /** @var \PhpDA\Parser\Filter\NodeNameInterface | \Mockery\MockInterface */
-    protected $nodeNameFilter;
 
     protected function setUp()
     {
-        $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
-        $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
-
-        $this->fixture = new InvalidCollector;
-        $this->fixture->setNodeNameFilter($this->nodeNameFilter);
+        $this->fixture = new VertexProxy(12, \Mockery::mock('Fhaculty\Graph\Graph'));
     }
 
-    public function testCollecting()
+    public function testExtendedFhacultyVertex()
     {
-        $attributes = array('foo' => 'bar');
-        $this->setExpectedException('RuntimeException');
-        $node = \Mockery::mock('PhpParser\Node\Name');
-        $node->shouldReceive('getAttributes')->andReturn($attributes);
-        $node->shouldReceive('setAttribute');
-        $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
-            function ($object) {
-                return $object;
-            }
-        );
-        $this->fixture->leaveNode($node);
+        $this->assertInstanceOf('Fhaculty\Graph\Vertex', $this->fixture);
     }
 }

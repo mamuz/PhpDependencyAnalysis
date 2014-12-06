@@ -41,6 +41,9 @@ class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Parser\Filter\NodeNameInterface | \Mockery\MockInterface */
     protected $nodeNameFilter;
 
+    /** @var array */
+    protected $attributes = array('foo' => 'bar');
+
     protected function setUp()
     {
         $this->meta = \Mockery::mock('PhpDA\Entity\Meta');
@@ -106,7 +109,11 @@ class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $node->shouldReceive('isFinal')->once()->andReturn(false);
 
         $implements = \Mockery::mock('PhpParser\Node\Name');
+        $implements->shouldReceive('getAttributes')->once()->andReturn($this->attributes);
+        $implements->shouldReceive('setAttribute')->once()->with('foo', 'bar');
         $extends = \Mockery::mock('PhpParser\Node\Name');
+        $extends->shouldReceive('getAttributes')->once()->andReturn($this->attributes);
+        $extends->shouldReceive('setAttribute')->once()->with('foo', 'bar');
         $node->implements = array($implements);
         $node->extends = $extends;
 
@@ -147,6 +154,8 @@ class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingInterface()
     {
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('getAttributes')->once()->andReturn($this->attributes);
+        $name->shouldReceive('setAttribute')->once()->with('foo', 'bar');
         $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
         $node->extends = array($name);
 
@@ -171,6 +180,8 @@ class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingTraitUse()
     {
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('getAttributes')->once()->andReturn($this->attributes);
+        $name->shouldReceive('setAttribute')->once()->with('foo', 'bar');
         $node = \Mockery::mock('PhpParser\Node\Stmt\TraitUse');
         $node->traits = array($name);
 

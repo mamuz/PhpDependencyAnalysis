@@ -27,6 +27,12 @@ namespace PhpDA\Layout;
 
 use Fhaculty\Graph\Graph as FhacultyGraph;
 
+/**
+ * @method \PhpDA\Layout\Helper\VertexProxy createVertex(int $id = null, bool $returnDuplicate = false)
+ * @method \PhpDA\Layout\Helper\VertexProxy getVertex($id)
+ * @method \PhpDA\Layout\Helper\VertexProxy[] | \Fhaculty\Graph\Set\Vertices getVertices()
+ * @method \PhpDA\Layout\Helper\EdgeProxy[] | \Fhaculty\Graph\Set\Edges getEdges()
+ */
 class Graph extends FhacultyGraph
 {
     /** @var array */

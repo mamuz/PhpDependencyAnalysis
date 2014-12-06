@@ -34,12 +34,13 @@ class AggregationTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->fixture = new Aggregation;
+        $this->fixture = new Aggregation('foo');
     }
 
     public function testAccessGraph()
     {
         $this->assertNotEmpty($this->fixture->getGraph());
+        $this->assertSame('foo', $this->fixture->getGraph()['label']);
     }
 
     public function testAccessGroup()

@@ -59,6 +59,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     /** @var AdapterInterface */
     private $writeAdapter;
 
+    /** @var string */
+    private $layoutLabel = '';
+
     /**
      * @param Finder                  $finder
      * @param AnalyzerInterface       $analyzer
@@ -88,6 +91,10 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
 
         if (isset($options['output']) && $options['output'] instanceof OutputInterface) {
             $this->output = $options['output'];
+        }
+
+        if (isset($options['layoutLabel'])) {
+            $this->layoutLabel = (string) $options['layoutLabel'];
         }
 
         $this->initFinder();
@@ -220,8 +227,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
 
     private function writeAnalysis()
     {
-        $targetRealPath = realpath($this->getConfig()->getTarget());
-        $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $targetRealPath);
+        $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $this->getConfig()->getTarget());
 
         $this->getWriteAdapter()
             ->write($this->createGraphViz())
@@ -235,9 +241,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     private function createGraphViz()
     {
         if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
-            $layout = new Layout\Aggregation;
+            $layout = new Layout\Aggregation($this->layoutLabel);
         } else {
-            $layout = new Layout\Standard;
+            $layout = new Layout\Standard($this->layoutLabel);
         }
 
         $graphBuilder = $this->getGraphBuilder();

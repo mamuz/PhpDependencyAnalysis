@@ -105,6 +105,9 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
 
     public function testExecution()
     {
+        $description = 'foo in bar with baz';
+        $this->fixture->setDescription($description);
+
         $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
         $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
         $formatter->shouldReceive('setStyle');
@@ -123,8 +126,9 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
 
         $testcase = $this;
         $this->strategyLoader->shouldReceive('get')->andReturnUsing(
-            function ($fqn, $options) use ($testcase, $output) {
+            function ($fqn, $options) use ($testcase, $output, $description) {
                 $testcase->assertSame('PhpDA\\Command\\Strategy\\InheritanceFactory', $fqn);
+                $testcase->assertSame($description, $options['layoutLabel']);
                 $testcase->assertSame($output, $options['output']);
                 /** @var Config $config */
                 $config = $options['config'];

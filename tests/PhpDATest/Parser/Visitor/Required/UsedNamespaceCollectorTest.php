@@ -63,7 +63,10 @@ class UsedNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
+        $attributes = array('foo' => 'bar');
         $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('getAttributes')->once()->andReturn($attributes);
+        $name->shouldReceive('setAttribute')->once()->with('foo', 'bar');
         $this->nodeNameFilter->shouldReceive('filter')->once()->with($name)->andReturn($name);
         $this->adt->shouldReceive('addUsedNamespace')->once()->with($name);
 
