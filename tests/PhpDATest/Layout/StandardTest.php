@@ -39,8 +39,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessGraph()
     {
-        $this->assertNotEmpty($this->fixture->getGraph());
-        $this->assertSame('foo', $this->fixture->getGraph()['label']);
+        $data = $this->fixture->getGraph();
+        $this->assertNotEmpty($data);
+        $this->assertSame('foo', $data['label']);
     }
 
     public function testAccessGroup()
