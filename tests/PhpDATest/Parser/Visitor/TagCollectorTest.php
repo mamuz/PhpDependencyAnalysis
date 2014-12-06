@@ -97,7 +97,7 @@ class TagCollectorTest extends \PHPUnit_Framework_TestCase
             function ($object) use ($testcase, $attributes) {
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $this->assertTrue($object->getAttribute('isComment'));
+                $testcase->assertTrue($object->getAttribute('isComment'));
                 $testcase->assertContains($object->toString(), array('foo', 'bar'));
                 $testcase->assertSame('bar', $object->getAttribute('foo'));
                 $testcase->assertNotEmpty($object->getAttribute('fqn'));
