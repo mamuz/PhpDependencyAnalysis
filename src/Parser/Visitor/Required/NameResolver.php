@@ -34,6 +34,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ */
 class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
 {
     const TAG_NAMES_ATTRIBUTE = '__tagNames';
@@ -44,11 +47,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     /** @var SplFileInfo */
     private $file;
 
-    public function __construct()
-    {
-        $this->logger = new NullLogger;
-    }
-
+    /** @var array */
     private $ignoredMethodArgumentTypes = array(
         'bool', 'boolean',
         'int', 'integer',
@@ -60,6 +59,11 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         'true', 'false',
         '=', '|'
     );
+
+    public function __construct()
+    {
+        $this->logger = new NullLogger;
+    }
 
     public function setLogger(LoggerInterface $logger)
     {
