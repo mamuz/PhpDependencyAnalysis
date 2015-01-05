@@ -43,7 +43,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
     public function testFilter()
     {
         $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $graph = \Mockery::mock('PhpDA\Layout\Graph');
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $vertexFrom = \Mockery::mock('Fhaculty\Graph\Vertex');
         //The following line is a workaround on mocking Fhaculty\Graph\Set\Vertices as the file has errors (e.g. usage
         //of a never defined constant) which break the PhpReflection classes and thus break Mockery.

@@ -32,12 +32,12 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
     /** @var GraphViz */
     protected $fixture;
 
-    /** @var \PhpDA\Layout\Graph | \Mockery\MockInterface */
+    /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
     protected $graph;
 
     protected function setUp()
     {
-        $this->graph = \Mockery::mock('PhpDA\Layout\Graph');
+        $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
 
         $this->fixture = new GraphViz($this->graph);
     }
@@ -50,7 +50,7 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingFhacultyGraphViz()
     {
-        $this->assertInstanceOf('Fhaculty\Graph\GraphViz', $this->fixture);
+        $this->assertInstanceOf('Graphp\GraphViz\GraphViz', $this->fixture);
     }
 
     public function testGroupLayouting()

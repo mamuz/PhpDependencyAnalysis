@@ -25,7 +25,7 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use PhpDA\Layout\Graph;
+use Fhaculty\Graph\Graph;
 use PhpDA\Layout\GraphViz;
 
 /**
@@ -61,6 +61,7 @@ class Json implements StrategyInterface
 
         $vertices = $graph->getVertices();
         foreach ($vertices as $from) {
+            /** @var \Fhaculty\Graph\Vertex $from */
             $toVertices = $from->getVerticesEdgeTo();
             foreach ($toVertices->getVerticesDistinct() as $to) {
                 /** @var \Fhaculty\Graph\Vertex $to */

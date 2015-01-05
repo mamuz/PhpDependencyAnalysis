@@ -25,6 +25,7 @@
 
 namespace PhpDA\Layout;
 
+use Fhaculty\Graph\Attribute\AttributeAware;
 use Fhaculty\Graph\Vertex;
 use PhpDA\Entity\Adt;
 use PhpDA\Entity\AnalysisCollection;
@@ -47,7 +48,7 @@ class Builder implements BuilderInterface
     /** @var AnalysisCollection */
     private $analysisCollection;
 
-    /** @var \PhpDA\Layout\Helper\VertexProxy */
+    /** @var Vertex */
     private $adtRootVertex;
 
     /** @var LayoutInterface */
@@ -106,11 +107,23 @@ class Builder implements BuilderInterface
     public function create()
     {
         $this->createDependencies();
-        $this->getGraph()->setLayout($this->layout->getGraph());
+        $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
         $this->graphViz->setGroups($this->groupGenerator->getGroups());
         $this->graphViz->setGroupLayout($this->layout->getGroup());
 
         return $this;
+    }
+
+    /**
+     * @param AttributeAware $attributeAware
+     * @param array          $layout
+     * @param string         $prefix
+     */
+    private function bindLayoutTo(AttributeAware $attributeAware, array $layout, $prefix = 'graphviz.')
+    {
+        foreach ($layout as $name => $attr) {
+            $attributeAware->setAttribute($prefix . $name, $attr);
+        }
     }
 
     private function createDependencies()
@@ -182,30 +195,27 @@ class Builder implements BuilderInterface
 
     /**
      * @param Name $name
-     * @return \PhpDA\Layout\Helper\VertexProxy
+     * @return Vertex
      */
     private function createVertexBy(Name $name)
     {
-        $layout = $this->layout->getVertex();
         $vertex = $this->getGraph()->createVertex($name->toString(), true);
 
-        if (!isset($vertex->locations)) {
-            $vertex->locations = array();
-        }
-        $vertex->locations[] = new Location($this->currentAnalysisFile, $name->getAttributes());
+        $location = new Location($this->currentAnalysisFile, $name->getAttributes());
+        $this->addLocationTo($vertex, $location);
 
         if ($groupId = $this->groupGenerator->getIdFor($name)) {
             $vertex->setGroup($groupId);
-            $vertex->setLayoutAttribute('group', $groupId);
+            $vertex->setAttribute('graphviz.group', $groupId);
         }
 
-        $vertex->setLayout($layout);
+        $this->bindLayoutTo($vertex, $this->layout->getVertex());
 
         return $vertex;
     }
 
     /**
-     * @return Graph
+     * @return \Fhaculty\Graph\Graph
      */
     private function getGraph()
     {
@@ -221,11 +231,11 @@ class Builder implements BuilderInterface
     {
         foreach ($dependencies as $dependency) {
             $vertex = $this->createVertexBy($dependency);
-            $vertex->setLayout(array_merge($vertex->getLayout(), $vertexLayout));
+            $this->bindLayoutTo($vertex, $vertexLayout);
             if ($this->adtRootVertex !== $vertex) {
                 $edge = $this->createEdgeToAdtRootVertexBy($vertex, $edgeLayout);
                 $location = new Location($this->currentAnalysisFile, $dependency->getAttributes());
-                $edge->locations[] = $location;
+                $this->addLocationTo($edge, $location);
             }
         }
     }
@@ -233,20 +243,32 @@ class Builder implements BuilderInterface
     /**
      * @param Vertex $vertex
      * @param array  $edgeLayout
-     * @return \PhpDA\Layout\Helper\EdgeProxy
+     * @return \Fhaculty\Graph\Edge\Directed
      */
     private function createEdgeToAdtRootVertexBy(Vertex $vertex, array $edgeLayout)
     {
         foreach ($this->adtRootVertex->getEdges() as $edge) {
+            /** @var \Fhaculty\Graph\Edge\Directed $edge */
             if ($edge->isConnection($this->adtRootVertex, $vertex)) {
                 return $edge;
             }
         }
 
         $edge = $this->adtRootVertex->createEdgeTo($vertex);
-        $edge->setLayout($edgeLayout);
-        $edge->locations = array();
+        $this->bindLayoutTo($edge, $edgeLayout);
 
         return $edge;
+    }
+
+    /**
+     * @param AttributeAware $attributeAware
+     * @param Location       $location
+     */
+    private function addLocationTo(AttributeAware $attributeAware, Location $location)
+    {
+        $locations = $attributeAware->getAttribute('locations', array());
+        $locations[] = $location;
+
+        $attributeAware->setAttribute('locations', $locations);
     }
 }

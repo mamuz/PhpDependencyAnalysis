@@ -58,7 +58,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
     protected $graphViz;
 
-    /** @var \PhpDA\Layout\Graph | \Mockery\MockInterface */
+    /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
     protected $graph;
 
     /** @var \PhpDA\Entity\Adt | \Mockery\MockInterface */
@@ -73,8 +73,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->groupGenerator = \Mockery::mock('PhpDA\Layout\Helper\GroupGenerator');
-        $this->graph = \Mockery::mock('PhpDA\Layout\Graph');
-        $this->graph->shouldReceive('setLayout')->with(array());
+        $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $this->graphViz->shouldReceive('getGraph')->andReturn($this->graph);
 
@@ -92,7 +91,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testFluentInterfaceForCreating()
     {
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
-        $this->graph->shouldReceive('setLayout');
         $this->graphViz->shouldReceive('setGroups');
         $this->graphViz->shouldReceive('setGroupLayout');
 
@@ -102,12 +100,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testDelegatingGraphLayoutGeneratedGroups()
     {
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
-        $layout->shouldReceive('getGraph')->once()->andReturn(array('foo'));
+        $layout->shouldReceive('getGraph')->once()->andReturn(array('bar' => 'foo'));
         $layout->shouldReceive('getGroup')->once()->andReturn(array('bar'));
 
         $this->groupGenerator->shouldReceive('getGroups')->once()->andReturn(array('baz'));
 
-        $this->graph->shouldReceive('setLayout')->once()->with(array('foo'));
+        $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.graph.bar', 'foo');
         $this->graphViz->shouldReceive('setGroups')->once()->with(array('baz'));
         $this->graphViz->shouldReceive('setGroupLayout')->once()->with(array('bar'));
 
@@ -124,7 +122,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     private function prepareDependencyCreation()
     {
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
-        $this->graph->shouldReceive('setLayout');
         $this->graphViz->shouldReceive('setGroups');
         $this->graphViz->shouldReceive('setGroupLayout');
 
@@ -159,17 +156,10 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
      * @param string                        $fqn
      * @param Name | \Mockery\MockInterface $root
      * @param bool                          $hasEdge
-     * @param string                        $vertexLayout
-     * @param string                        $edgeLayout
      * @return Name | \Mockery\MockInterface
      */
-    private function createName(
-        $fqn,
-        Name $root = null,
-        $hasEdge = false,
-        $vertexLayout = null,
-        $edgeLayout = self::LE
-    ) {
+    private function createName($fqn, Name $root = null, $hasEdge = false)
+    {
         /** @var Name | \Mockery\MockInterface $name */
         $name = \Mockery::mock('PhpParser\Node\Name');
         $name->shouldReceive('getAttributes')->andReturn(
@@ -181,19 +171,18 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->graph->shouldReceive('createVertex')->once()->with($fqn, true)->andReturn($vertex);
         $this->groupGenerator->shouldReceive('getIdFor')->once()->with($name)->andReturn(5);
         $vertex->shouldReceive('setGroup')->once()->with(5);
-        $vertex->shouldReceive('setLayoutAttribute')->once()->with('group', 5);
-        $vertex->shouldReceive('getLayout')->andReturn(array());
-        $vertex->shouldReceive('setLayout')->once()->with(array(self::LV));
+        $vertex->shouldReceive('setAttribute');
+        $vertex->shouldReceive('getAttribute');
 
         if ($root) {
-            $vertex->shouldReceive('setLayout')->once()->with($vertexLayout ? array($vertexLayout) : array());
             if ($root->parts !== $name->parts) {
                 $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+                $edge->shouldReceive('setAttribute');
+                $edge->shouldReceive('getAttribute');
                 $edge->shouldReceive('isConnection')->once()->with($this->rootVertex, $vertex)->andReturn($hasEdge);
                 $this->rootVertex->shouldReceive('getEdges')->once()->andReturn(array($edge));
                 if (!$hasEdge) {
                     $this->rootVertex->shouldReceive('createEdgeTo')->once()->with($vertex)->andReturn($edge);
-                    $edge->shouldReceive('setLayout')->once()->with(array($edgeLayout));
                 }
             }
         } else {

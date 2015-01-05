@@ -25,8 +25,8 @@
 
 namespace PhpDA\Command\Strategy;
 
+use Fhaculty\Graph\Graph;
 use PhpDA\Layout\Builder;
-use PhpDA\Layout\Graph;
 use PhpDA\Layout\GraphViz;
 use PhpDA\Layout\Helper\GroupGenerator;
 use PhpDA\Parser\AnalyzerFactory;

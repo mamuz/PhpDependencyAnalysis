@@ -25,9 +25,9 @@
 
 namespace PhpDA\Layout;
 
-use Fhaculty\Graph\GraphViz as FhacultyGraphViz;
+use Graphp\GraphViz\GraphViz as BaseGraphViz;
 
-class GraphViz extends FhacultyGraphViz
+class GraphViz extends BaseGraphViz
 {
     /** @var array */
     private static $groups = array();
