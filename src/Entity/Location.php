@@ -25,6 +25,7 @@
 
 namespace PhpDA\Entity;
 
+use PhpParser\Node\Name;
 use Symfony\Component\Finder\SplFileInfo;
 
 class Location
@@ -46,24 +47,21 @@ class Location
 
     /**
      * @param SplFileInfo $file
-     * @param array       $attributes
-     * @throws \InvalidArgumentException
+     * @param Name        $name
+     * @throws \DomainException
      */
-    public function __construct(SplFileInfo $file, array $attributes)
+    public function __construct(SplFileInfo $file, Name $name)
     {
-        if (!isset($attributes['startLine'])
-            || !isset($attributes['endLine'])
-            || !isset($attributes['fqn'])
-        ) {
-            throw new \InvalidArgumentException(
-                'Values for startLine and/or endLine and/or FQN are not set in attributes'
-            );
+        $attributes = $name->getAttributes();
+
+        if (!isset($attributes['startLine']) || !isset($attributes['endLine'])) {
+            throw new \DomainException('Values for startLine and/or endLine are not set in attributes');
         }
 
         $this->file = $file;
         $this->startLine = (int) $attributes['startLine'];
         $this->endline = (int) $attributes['endLine'];
-        $this->fqn = (string) $attributes['fqn'];
+        $this->fqn = $name->toString();
 
         if (isset($attributes['isComment'])) {
             $this->isComment = (bool) $attributes['isComment'];

@@ -58,7 +58,6 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
         $name = \Mockery::mock('PhpParser\Node');
-        $name->shouldReceive('toString')->andReturn('foo');
         $node->name = $name;
         $this->fixture->leaveNode($node);
     }
@@ -127,7 +126,6 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
                 $testcase->assertSame($object->toString(), $funcName);
-                $testcase->assertSame($object->getAttributes(), array('fqn' => $funcName, 'foo' => 'bar'));
             }
         );
 

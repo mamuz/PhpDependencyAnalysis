@@ -100,7 +100,6 @@ class TagCollectorTest extends \PHPUnit_Framework_TestCase
                 $testcase->assertTrue($object->getAttribute('isComment'));
                 $testcase->assertContains($object->toString(), array('foo', 'bar'));
                 $testcase->assertSame('bar', $object->getAttribute('foo'));
-                $testcase->assertNotEmpty($object->getAttribute('fqn'));
             }
         );
 

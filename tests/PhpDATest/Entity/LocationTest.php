@@ -36,17 +36,33 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     protected $file;
 
     /** @var array */
-    protected $attributes = array(
+    protected $defaultAttributes = array(
         'startLine' => 30,
         'endLine'   => 40,
         'isComment' => true,
-        'fqn'       => 'Foo\\Bar',
     );
 
     protected function setUp()
     {
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
-        $this->fixture = new Location($this->file, $this->attributes);
+        $this->fixture = new Location($this->file, $this->createNameMock());
+    }
+
+    /**
+     * @param array $attributes
+     * @return \PhpParser\Node\Name | \Mockery\MockInterface
+     */
+    protected function createNameMock(array $attributes = null)
+    {
+        if (is_null($attributes)) {
+            $attributes = $this->defaultAttributes;
+        }
+
+        $name = \Mockery::mock('PhpParser\Node\Name');
+        $name->shouldReceive('getAttributes')->once()->andReturn($attributes);
+        $name->shouldReceive('toString')->andReturn('Foo\\Bar');
+
+        return $name;
     }
 
     public function testAccessFile()
@@ -61,41 +77,33 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $attributes = array(
             'startLine' => 30,
             'endLine'   => 40,
-            'fqn'       => 'Foo\\Bar',
         );
-        $this->fixture = new Location($this->file, $attributes);
+        $this->fixture = new Location($this->file, $this->createNameMock($attributes));
         $this->assertFalse($this->fixture->isComment());
     }
 
     public function testAccessStartAndEndLine()
     {
-        $this->assertSame($this->attributes['startLine'], $this->fixture->getStartLine());
-        $this->assertSame($this->attributes['endLine'], $this->fixture->getEndLine());
+        $this->assertSame($this->defaultAttributes['startLine'], $this->fixture->getStartLine());
+        $this->assertSame($this->defaultAttributes['endLine'], $this->fixture->getEndLine());
     }
 
     public function testAccessFqn()
     {
-        $this->assertSame($this->attributes['fqn'], $this->fixture->getFqn());
+        $this->assertSame('Foo\\Bar', $this->fixture->getFqn());
     }
 
-    public function testInvalidArgumentExceptionForMissingStartline()
+    public function testDomainExceptionForMissingStartline()
     {
-        $this->setExpectedException('InvalidArgumentException');
-        $attributes = array('endLine' => 40, 'fqn' => 'Foo\\Bar');
-        $this->fixture = new Location($this->file, $attributes);
+        $this->setExpectedException('DomainException');
+        $attributes = array('endLine' => 40);
+        $this->fixture = new Location($this->file, $this->createNameMock($attributes));
     }
 
-    public function testInvalidArgumentExceptionForMissingEndline()
+    public function testDomainExceptionForMissingEndline()
     {
-        $this->setExpectedException('InvalidArgumentException');
-        $attributes = array('startLine' => 40, 'fqn' => 'Foo\\Bar');
-        $this->fixture = new Location($this->file, $attributes);
-    }
-
-    public function testInvalidArgumentExceptionForMissingFqn()
-    {
-        $this->setExpectedException('InvalidArgumentException');
-        $attributes = array('startLine' => 40, 'endLine' => 40);
-        $this->fixture = new Location($this->file, $attributes);
+        $this->setExpectedException('DomainException');
+        $attributes = array('startLine' => 40);
+        $this->fixture = new Location($this->file, $this->createNameMock($attributes));
     }
 }

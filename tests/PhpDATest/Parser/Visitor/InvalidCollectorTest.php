@@ -51,7 +51,6 @@ class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
         $node = \Mockery::mock('PhpParser\Node\Name');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->shouldReceive('setAttribute');
-        $node->shouldReceive('toString');
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
             function ($object) {
                 return $object;

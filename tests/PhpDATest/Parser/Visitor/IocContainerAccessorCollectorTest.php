@@ -138,7 +138,6 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
                 /** @var \PhpParser\Node\Name $object */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
                 $testcase->assertSame($object->toString(), 'Baz');
-                $testcase->assertSame($object->getAttributes(), array('fqn' => 'Baz', 'foo' => 'bar'));
             }
         );
 

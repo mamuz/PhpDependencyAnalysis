@@ -179,7 +179,6 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
                 /** @var \PhpParser\Node\Name $nodeName */
                 $testcase->assertInstanceOf('PhpParser\Node\Name', $nodeName);
                 $testcase->assertSame('bar', $nodeName->getAttribute('foo'));
-                $testcase->assertSame($namespace, $nodeName->getAttribute('fqn'));
                 $testcase->assertSame($namespace, $nodeName->toString());
             }
         );

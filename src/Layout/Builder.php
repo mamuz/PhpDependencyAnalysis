@@ -201,7 +201,7 @@ class Builder implements BuilderInterface
     {
         $vertex = $this->getGraph()->createVertex($name->toString(), true);
 
-        $location = new Location($this->currentAnalysisFile, $name->getAttributes());
+        $location = new Location($this->currentAnalysisFile, $name);
         $this->addLocationTo($vertex, $location);
 
         if ($groupId = $this->groupGenerator->getIdFor($name)) {
@@ -234,7 +234,7 @@ class Builder implements BuilderInterface
             $this->bindLayoutTo($vertex, $vertexLayout);
             if ($this->adtRootVertex !== $vertex) {
                 $edge = $this->createEdgeToAdtRootVertexBy($vertex, $edgeLayout);
-                $location = new Location($this->currentAnalysisFile, $dependency->getAttributes());
+                $location = new Location($this->currentAnalysisFile, $dependency);
                 $this->addLocationTo($edge, $location);
             }
         }
