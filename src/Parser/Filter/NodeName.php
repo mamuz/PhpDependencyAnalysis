@@ -116,7 +116,7 @@ class NodeName implements NodeNameInterface
 
     /**
      * @param Node\Name $name
-     * @return Node\Name
+     * @return Node\Name|null
      */
     private function slice(Node\Name $name)
     {
@@ -128,6 +128,10 @@ class NodeName implements NodeNameInterface
             $parts = array_slice($name->parts, (int) $this->sliceOffset);
         } else {
             $parts = array_slice($name->parts, (int) $this->sliceOffset, (int) $this->sliceLength);
+        }
+
+        if (empty($parts)) {
+            return null;
         }
 
         return new Node\Name($parts);

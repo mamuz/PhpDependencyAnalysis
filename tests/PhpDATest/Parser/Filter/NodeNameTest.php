@@ -187,4 +187,15 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->entity->shouldReceive('toString')->andReturn($string);
         $this->assertNamespaceFilter();
     }
+
+    public function testSlicingToNull()
+    {
+        $this->fixture->setOptions(array('sliceLength' => 2, 'sliceOffset' => 1));
+
+        $string = '';
+        $this->expected = null;
+        $this->entity->parts = explode('\\', $string);
+        $this->entity->shouldReceive('toString')->andReturn($string);
+        $this->assertNamespaceFilter();
+    }
 }
