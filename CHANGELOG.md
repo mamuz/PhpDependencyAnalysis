@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Add edge concentration in GraphViz
 - Fix in NodeNameFilter by return NULL instead of empty array after slicing
 - Adapt minor changes of clue/graph dependency
 - Fix for collecting dependencies of null filltered ADTs
