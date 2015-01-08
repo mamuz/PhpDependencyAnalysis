@@ -40,16 +40,8 @@ class Loader implements LoaderInterface, LoggerAwareInterface
 
     public function get($fqn, array $options = null)
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqn));
-        }
-
-        $class = new \ReflectionClass($fqn);
-        if ($constructor = $class->getConstructor()) {
-            if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqn));
-            }
-        }
+        $this->validateClassExistence($fqn);
+        $this->validateConstructorArgumentExistence($fqn);
 
         $plugin = new $fqn;
 
@@ -57,14 +49,59 @@ class Loader implements LoaderInterface, LoggerAwareInterface
             $plugin = $plugin->create();
         }
 
-        if ($this->logger && $plugin instanceof LoggerAwareInterface) {
-            $plugin->setLogger($this->logger);
-        }
+        $this->tryLoggerBinding($plugin);
 
-        if ($options && $plugin instanceof ConfigurableInterface) {
-            $plugin->setOptions($options);
+        if (is_array($options)) {
+            $this->tryConfigWith($options, $plugin);
         }
 
         return $plugin;
+    }
+
+    /**
+     * @param string $fqn
+     * @throws \RuntimeException
+     */
+    private function validateClassExistence($fqn)
+    {
+        if (!class_exists($fqn)) {
+            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqn));
+        }
+    }
+
+    /**
+     * @param string $fqn
+     * @throws \RuntimeException
+     */
+    private function validateConstructorArgumentExistence($fqn)
+    {
+        $class = new \ReflectionClass($fqn);
+
+        if ($constructor = $class->getConstructor()) {
+            if ($constructor->getNumberOfParameters()) {
+                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqn));
+            }
+        }
+    }
+
+    /**
+     * @param object $plugin
+     */
+    private function tryLoggerBinding($plugin)
+    {
+        if ($this->logger && $plugin instanceof LoggerAwareInterface) {
+            $plugin->setLogger($this->logger);
+        }
+    }
+
+    /**
+     * @param array  $options
+     * @param object $plugin
+     */
+    private function tryConfigWith(array $options, $plugin)
+    {
+        if ($plugin instanceof ConfigurableInterface) {
+            $plugin->setOptions($options);
+        }
     }
 }
