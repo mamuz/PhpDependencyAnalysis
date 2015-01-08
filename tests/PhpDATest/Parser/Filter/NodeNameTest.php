@@ -55,6 +55,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         if (!is_null($nodeName)) {
             $nodeName = $nodeName->toString();
         }
+
         $this->assertSame($this->expected, $nodeName);
     }
 
@@ -65,8 +66,9 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
 
     public function testUnFiltered()
     {
-        $string = $this->expected = '\Foo\Bar';
-        $this->entity->shouldReceive('toString')->andReturn($string);
+        $this->expected = '\Foo\Bar';
+        $this->entity->parts = explode('\\', $this->expected);
+        $this->entity->shouldReceive('toString')->andReturn($this->expected);
         $this->assertNamespaceFilter();
     }
 
@@ -151,6 +153,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
 
         $string = $this->expected = 'Bar';
         $this->createEntityMock();
+        $this->entity->parts = explode('\\', $this->expected);
         $this->entity->shouldReceive('toString')->andReturn($string);
         $this->assertNamespaceFilter();
     }

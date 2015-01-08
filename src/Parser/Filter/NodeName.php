@@ -83,7 +83,13 @@ class NodeName implements NodeNameInterface
             return null;
         }
 
-        return $this->slice($name);
+        $nameParts = $this->slice($name->parts);
+
+        if (empty($nameParts)) {
+            return null;
+        }
+
+        return new Node\Name($nameParts);
     }
 
     /**
@@ -115,25 +121,19 @@ class NodeName implements NodeNameInterface
     }
 
     /**
-     * @param Node\Name $name
-     * @return Node\Name|null
+     * @param array $nameParts
+     * @return array
      */
-    private function slice(Node\Name $name)
+    private function slice(array $nameParts)
     {
         if (is_null($this->sliceOffset) && is_null($this->sliceLength)) {
-            return $name;
+            return $nameParts;
         }
 
         if (is_null($this->sliceLength)) {
-            $parts = array_slice($name->parts, (int) $this->sliceOffset);
-        } else {
-            $parts = array_slice($name->parts, (int) $this->sliceOffset, (int) $this->sliceLength);
+            return array_slice($nameParts, (int) $this->sliceOffset);
         }
 
-        if (empty($parts)) {
-            return null;
-        }
-
-        return new Node\Name($parts);
+        return array_slice($nameParts, (int) $this->sliceOffset, (int) $this->sliceLength);
     }
 }
