@@ -32,6 +32,10 @@ use PhpParser\Node;
 
 class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredNamespaceCollectorInterface
 {
+    /**
+     * {@inheritdoc}
+     * @throws \PhpParser\Error
+     */
     public function leaveNode(Node $node)
     {
         if ($node instanceof Node\Stmt\Class_
