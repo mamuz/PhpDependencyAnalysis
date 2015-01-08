@@ -13,6 +13,7 @@ PhpDependencyAnalysis
 [![Total Downloads](https://poser.pugx.org/mamuz/php-dependency-analysis/downloads.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![Reference Status](https://www.versioneye.com/php/mamuz:php-dependency-analysis/reference_badge.svg)](https://www.versioneye.com/php/mamuz:php-dependency-analysis/references)
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mamuz/phpdependencyanalysis/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide [`dependency graphs`](http://en.wikipedia.org/wiki/Dependency_graph)
