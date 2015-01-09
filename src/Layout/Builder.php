@@ -255,7 +255,7 @@ class Builder implements BuilderInterface
     private function validateDependency(Name $dependency)
     {
         if ($this->referenceValidator) {
-            return $this->referenceValidator->isValidBetween($this->adtRootName, $dependency);
+            return $this->referenceValidator->isValidBetween(clone $this->adtRootName, clone $dependency);
         }
 
         return true;

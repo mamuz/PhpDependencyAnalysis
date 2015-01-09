@@ -286,6 +286,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDependencyCreationWithReferenceValidator()
     {
+        $testcase = $this;
         $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
         $this->fixture->setReferenceValidator($validator);
         $this->fixture->setCallMode();
@@ -303,7 +304,15 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
 
-        $validator->shouldReceive('isValidBetween')->with($declared, $called1)->andReturn(true);
+        $validator->shouldReceive('isValidBetween')->andReturnUsing(
+            function($from, $to) use ($declared, $called1, $testcase) {
+                $testcase->assertNotSame($from, $declared);
+                $testcase->assertEquals($from, $declared);
+                $testcase->assertNotSame($to, $called1);
+                $testcase->assertEquals($to, $called1);
+                return true;
+            }
+        );
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
@@ -327,7 +336,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
 
-        $validator->shouldReceive('isValidBetween')->with($declared, $called1)->andReturn(false);
+        $validator->shouldReceive('isValidBetween')->andReturn(false);
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
