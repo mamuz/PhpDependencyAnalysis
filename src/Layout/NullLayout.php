@@ -42,6 +42,11 @@ class NullLayout implements LayoutInterface
         return array();
     }
 
+    public function getEdgeInvalid()
+    {
+        return array();
+    }
+
     public function getEdgeExtend()
     {
         return array();

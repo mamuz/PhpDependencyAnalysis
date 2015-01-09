@@ -75,6 +75,11 @@ abstract class AbstractLayout implements LayoutInterface
     );
 
     /** @var array */
+    private $edgeInvalid = array(
+        'color' => '#ff0000',
+    );
+
+    /** @var array */
     private $edgeUnsupported = array(
         'color' => '#ECB4B4',
     );
@@ -102,6 +107,11 @@ abstract class AbstractLayout implements LayoutInterface
     public function getEdge()
     {
         return $this->edge;
+    }
+
+    public function getEdgeInvalid()
+    {
+        return $this->edgeInvalid;
     }
 
     public function getEdgeExtend()

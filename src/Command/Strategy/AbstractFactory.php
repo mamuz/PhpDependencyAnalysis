@@ -68,6 +68,14 @@ abstract class AbstractFactory implements FactoryInterface
      */
     protected function createWriteAdapter()
     {
-        return new Adapter(new Loader);
+        return new Adapter($this->createLoader());
+    }
+
+    /**
+     * @return Loader
+     */
+    protected function createLoader()
+    {
+        return new Loader;
     }
 }

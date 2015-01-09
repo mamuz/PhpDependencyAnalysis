@@ -30,6 +30,8 @@ use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Layout;
 use PhpDA\Parser\AnalyzerInterface;
 use PhpDA\Plugin\ConfigurableInterface;
+use PhpDA\Plugin\LoaderInterface;
+use PhpDA\Reference\ValidatorInterface;
 use PhpDA\Writer\AdapterInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\NullOutput;
@@ -59,6 +61,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     /** @var AdapterInterface */
     private $writeAdapter;
 
+    /** @var LoaderInterface */
+    private $pluginLoader;
+
     /** @var string */
     private $layoutLabel = '';
 
@@ -67,17 +72,20 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
      * @param AnalyzerInterface       $analyzer
      * @param Layout\BuilderInterface $graphBuilder
      * @param AdapterInterface        $writeAdapter
+     * @param LoaderInterface         $loader
      */
     public function __construct(
         Finder $finder,
         AnalyzerInterface $analyzer,
         Layout\BuilderInterface $graphBuilder,
-        AdapterInterface $writeAdapter
+        AdapterInterface $writeAdapter,
+        LoaderInterface $loader
     ) {
         $this->finder = $finder;
         $this->analyzer = $analyzer;
         $this->graphBuilder = $graphBuilder;
         $this->writeAdapter = $writeAdapter;
+        $this->pluginLoader = $loader;
 
         $this->config = new Config(array());
         $this->output = new NullOutput;
@@ -207,7 +215,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     {
         foreach ($this->getFinder()->getIterator() as $file) {
             /** @var \Symfony\Component\Finder\SplFileInfo $file */
-            if ($this->outputIsVerbosed()) {
+            if (OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity()) {
                 $progressHelper->clear();
                 $this->getOutput()->writeln("\x0D" . $file->getRealPath());
                 $progressHelper->display();
@@ -215,14 +223,6 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
             $this->getAnalyzer()->analyze($file);
             $progressHelper->advance();
         }
-    }
-
-    /**
-     * @return bool
-     */
-    private function outputIsVerbosed()
-    {
-        return OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity();
     }
 
     private function writeAnalysis()
@@ -251,7 +251,31 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $graphBuilder->setGroupLength($this->getConfig()->getGroupLength());
         $graphBuilder->setAnalysisCollection($this->getAnalyzer()->getAnalysisCollection());
 
+        if ($referenceValidator = $this->loadReferenceValidator()) {
+            $graphBuilder->setReferenceValidator($referenceValidator);
+        }
+
         return $graphBuilder->create()->getGraphViz();
+    }
+
+    /**
+     * @throws \RuntimeException
+     * @return ValidatorInterface|null
+     */
+    private function loadReferenceValidator()
+    {
+        $referenceValidator = null;
+
+        if ($fqn = $this->getConfig()->getReferenceValidator()) {
+            $referenceValidator = $this->pluginLoader->get($fqn);
+            if (!$referenceValidator instanceof ValidatorInterface) {
+                throw new \RuntimeException(
+                    sprintf('ReferenceValidator \'%s\' must implement PhpDA\\Reference\\ValidatorInterface', $fqn)
+                );
+            }
+        }
+
+        return $referenceValidator;
     }
 
     private function writeAnalysisFailures()

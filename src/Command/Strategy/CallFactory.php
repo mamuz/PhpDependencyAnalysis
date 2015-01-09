@@ -33,7 +33,8 @@ class CallFactory extends AbstractFactory
             $this->createFinder(),
             $this->createAnalyzer(),
             $this->createGraphBuilder(),
-            $this->createWriteAdapter()
+            $this->createWriteAdapter(),
+            $this->createLoader()
         );
     }
 }

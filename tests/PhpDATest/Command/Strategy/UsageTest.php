@@ -53,8 +53,12 @@ class UsageTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Command\Config | \Mockery\MockInterface */
     protected $config;
 
+    /** @var \PhpDA\Plugin\LoaderInterface | \Mockery\MockInterface */
+    protected $loader;
+
     protected function setUp()
     {
+        $this->loader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
         $this->builder = \Mockery::mock('PhpDA\Layout\BuilderInterface');
         $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $this->finder = \Mockery::mock('Symfony\Component\Finder\Finder');
@@ -83,7 +87,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
 
-        $this->fixture = new Usage($this->finder, $this->analyzer, $this->builder, $this->writer);
+        $this->fixture = new Usage($this->finder, $this->analyzer, $this->builder, $this->writer, $this->loader);
     }
 
     public function testNothingToParse()
@@ -117,6 +121,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFormatter')->once()->andReturn($formatter);
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
         $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
+        $this->config->shouldReceive('getReferenceValidator')->andReturnNull();
 
         $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
         $this->builder->shouldReceive('setAnalysisCollection')->once()->with($this->collection);

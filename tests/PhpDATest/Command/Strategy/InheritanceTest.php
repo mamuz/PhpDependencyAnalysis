@@ -53,8 +53,12 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Command\Config | \Mockery\MockInterface */
     protected $config;
 
+    /** @var \PhpDA\Plugin\LoaderInterface | \Mockery\MockInterface */
+    protected $loader;
+
     protected function setUp()
     {
+        $this->loader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
         $this->builder = \Mockery::mock('PhpDA\Layout\BuilderInterface');
         $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $this->finder = \Mockery::mock('Symfony\Component\Finder\Finder');
@@ -77,13 +81,14 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFilePattern')->once()->andReturn($filePattern);
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
+        $this->config->shouldReceive('getReferenceValidator')->andReturnNull();
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
 
-        $this->fixture = new Inheritance($this->finder, $this->analyzer, $this->builder, $this->writer);
+        $this->fixture = new Inheritance($this->finder, $this->analyzer, $this->builder, $this->writer, $this->loader);
     }
 
     public function testNothingToParse()

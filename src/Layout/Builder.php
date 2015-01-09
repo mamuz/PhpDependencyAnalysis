@@ -31,6 +31,7 @@ use PhpDA\Entity\Adt;
 use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Entity\Location;
 use PhpDA\Layout\Helper\GroupGenerator;
+use PhpDA\Reference\ValidatorInterface;
 use PhpParser\Node\Name;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -48,6 +49,9 @@ class Builder implements BuilderInterface
     /** @var AnalysisCollection */
     private $analysisCollection;
 
+    /** @var Name */
+    private $adtRootName;
+
     /** @var Vertex */
     private $adtRootVertex;
 
@@ -59,6 +63,9 @@ class Builder implements BuilderInterface
 
     /** @var SplFileInfo */
     private $currentAnalysisFile;
+
+    /** @var ValidatorInterface */
+    private $referenceValidator;
 
     /**
      * @param GraphViz       $graphViz
@@ -80,6 +87,11 @@ class Builder implements BuilderInterface
     public function setCallMode()
     {
         $this->isCallMode = true;
+    }
+
+    public function setReferenceValidator(ValidatorInterface $validator)
+    {
+        $this->referenceValidator = $validator;
     }
 
     /**
@@ -143,7 +155,8 @@ class Builder implements BuilderInterface
      */
     private function createVertexAndEdgesBy(Adt $adt)
     {
-        $this->createAdtRootVertexBy($adt);
+        $this->adtRootName = $adt->getDeclaredNamespace();
+        $this->adtRootVertex = $this->createVertexBy($this->adtRootName);
 
         if ($this->isCallMode) {
             $this->createEdgesFor(
@@ -186,14 +199,6 @@ class Builder implements BuilderInterface
     }
 
     /**
-     * @param Adt $adt
-     */
-    private function createAdtRootVertexBy(Adt $adt)
-    {
-        $this->adtRootVertex = $this->createVertexBy($adt->getDeclaredNamespace());
-    }
-
-    /**
      * @param Name $name
      * @return Vertex
      */
@@ -231,6 +236,9 @@ class Builder implements BuilderInterface
     {
         foreach ($dependencies as $dependency) {
             $vertex = $this->createVertexBy($dependency);
+            if (!$this->validateDependency($dependency)) {
+                $edgeLayout = array_merge($edgeLayout, $this->layout->getEdgeInvalid());
+            }
             $this->bindLayoutTo($vertex, $vertexLayout);
             if ($this->adtRootVertex !== $vertex) {
                 $edge = $this->createEdgeToAdtRootVertexBy($vertex, $edgeLayout);
@@ -238,6 +246,19 @@ class Builder implements BuilderInterface
                 $this->addLocationTo($edge, $location);
             }
         }
+    }
+
+    /**
+     * @param Name $dependency
+     * @return bool
+     */
+    private function validateDependency(Name $dependency)
+    {
+        if ($this->referenceValidator) {
+            return $this->referenceValidator->isValidBetween($this->adtRootName, $dependency);
+        }
+
+        return true;
     }
 
     /**

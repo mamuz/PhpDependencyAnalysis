@@ -93,4 +93,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertNotEmpty($this->fixture->getVertexUnsupported());
     }
+
+    public function testAccessEdgeInvalid()
+    {
+        $this->assertNotEmpty($this->fixture->getEdgeInvalid());
+    }
 }

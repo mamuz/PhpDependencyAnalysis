@@ -23,18 +23,16 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Command\Strategy;
+namespace PhpDA\Reference;
 
-class UsageFactory extends AbstractFactory
+use PhpParser\Node\Name;
+
+interface ValidatorInterface
 {
-    public function create()
-    {
-        return new Usage(
-            $this->createFinder(),
-            $this->createAnalyzer(),
-            $this->createGraphBuilder(),
-            $this->createWriteAdapter(),
-            $this->createLoader()
-        );
-    }
+    /**
+     * @param Name $from
+     * @param Name $to
+     * @return bool
+     */
+    public function isValidBetween(Name $from, Name $to);
 }

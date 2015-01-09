@@ -45,6 +45,11 @@ interface LayoutInterface
     /**
      * @return array
      */
+    public function getEdgeInvalid();
+
+    /**
+     * @return array
+     */
     public function getEdgeExtend();
 
     /**

@@ -43,6 +43,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     const LENS = '_eNs_';
 
+    const LEIV = '_eiv_';
+
     const LV = '_v_';
 
     const LVUS = '_vUs_';
@@ -139,6 +141,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $layout->shouldReceive('getEdgeTraitUse')->andReturn(array(self::LETU));
         $layout->shouldReceive('getEdgeUnsupported')->andReturn(array(self::LEUS));
         $layout->shouldReceive('getEdgeNamespacedString')->andReturn(array(self::LENS));
+        $layout->shouldReceive('getEdgeInvalid')->andReturn(array(self::LEIV));
 
         $this->fixture->setLayout($layout);
 
@@ -277,6 +280,54 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUsedNamespaces')->never();
         $this->adt->shouldReceive('getUnsupportedStmts')->never();
         $this->adt->shouldReceive('getNamespacedStrings')->never();
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationWithReferenceValidator()
+    {
+        $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $this->fixture->setReferenceValidator($validator);
+        $this->fixture->setCallMode();
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
+
+        $this->prepareDependencyCreation();
+
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $called1 = $this->createName('Called\\Name1', $declared);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+
+        $validator->shouldReceive('isValidBetween')->with($declared, $called1)->andReturn(true);
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationWithReferenceValidatorAndInvalidEdge()
+    {
+        $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $this->fixture->setReferenceValidator($validator);
+        $this->fixture->setCallMode();
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
+
+        $this->prepareDependencyCreation();
+
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $called1 = $this->createName('Called\\Name1', $declared);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+
+        $validator->shouldReceive('isValidBetween')->with($declared, $called1)->andReturn(false);
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }

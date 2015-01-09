@@ -65,6 +65,9 @@ class Config
     /** @var array */
     private $visitorOptions = array();
 
+    /** @var string|null */
+    private $referenceValidator;
+
     /**
      * @param array $config
      */
@@ -213,5 +216,18 @@ class Config
         }
 
         return (int) $this->groupLength;
+    }
+
+    /**
+     * @return string|null
+     * @throws \InvalidArgumentException
+     */
+    public function getReferenceValidator()
+    {
+        if (!is_null($this->referenceValidator) && !is_string($this->referenceValidator)) {
+            throw new \InvalidArgumentException('Config for referenceValidator must be an string');
+        }
+
+        return $this->referenceValidator;
     }
 }

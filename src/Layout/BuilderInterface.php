@@ -26,6 +26,7 @@
 namespace PhpDA\Layout;
 
 use PhpDA\Entity\AnalysisCollection;
+use PhpDA\Reference\ValidatorInterface;
 
 interface BuilderInterface
 {
@@ -45,6 +46,11 @@ interface BuilderInterface
      * @param AnalysisCollection $collection
      */
     public function setAnalysisCollection(AnalysisCollection $collection);
+
+    /**
+     * @param ValidatorInterface $validator
+     */
+    public function setReferenceValidator(ValidatorInterface $validator);
 
     /**
      * @return BuilderInterface

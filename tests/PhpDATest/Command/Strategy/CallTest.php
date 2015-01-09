@@ -53,8 +53,12 @@ class CallTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Command\Config | \Mockery\MockInterface */
     protected $config;
 
+    /** @var \PhpDA\Plugin\LoaderInterface | \Mockery\MockInterface */
+    protected $loader;
+
     protected function setUp()
     {
+        $this->loader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
         $this->builder = \Mockery::mock('PhpDA\Layout\BuilderInterface');
         $this->collection = \Mockery::mock('PhpDA\Entity\AnalysisCollection');
         $this->finder = \Mockery::mock('Symfony\Component\Finder\Finder');
@@ -77,13 +81,14 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFilePattern')->once()->andReturn($filePattern);
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
+        $this->config->shouldReceive('getReferenceValidator')->andReturn('fqn');
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
 
-        $this->fixture = new Call($this->finder, $this->analyzer, $this->builder, $this->writer);
+        $this->fixture = new Call($this->finder, $this->analyzer, $this->builder, $this->writer, $this->loader);
     }
 
     public function testNothingToParse()
@@ -120,6 +125,10 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
         $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
 
+        $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $this->loader->shouldReceive('get')->with('fqn')->andReturn($validator);
+
+        $this->builder->shouldReceive('setReferenceValidator')->once()->with($validator);
         $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
         $this->builder->shouldReceive('setAnalysisCollection')->once()->with($this->collection);
         $this->builder->shouldReceive('setLayout')->once()->andReturnUsing(
@@ -133,6 +142,39 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->writer->shouldReceive('write')->once()->with($graphViz)->andReturnSelf();
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
+
+        $this->fixture->execute();
+    }
+
+    public function testExecuteWithInvalidReferenceValidator()
+    {
+        $this->setExpectedException('RuntimeException');
+        $this->prepareAnalyzer();
+
+        $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
+        $file->shouldReceive('getRealPath')->once()->andReturn('anypath');
+
+        $this->output->shouldReceive('getVerbosity')->andReturn(3);
+        $this->finder->shouldReceive('count')->once()->andReturn(6000);
+        $this->finder->shouldReceive('getIterator')->andReturn(array($file));
+        $this->fixture->setOptions(
+            array('output' => $this->output, 'config' => $this->config, 'layoutLabel' => 'FooLabel')
+        );
+
+        $this->analyzer->shouldReceive('analyze')->once()->with($file);
+
+        $target = 'destination';
+        $groupLength = 12;
+
+        $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(true);
+        $this->config->shouldReceive('getTarget')->andReturn($target);
+        $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
+
+        $this->loader->shouldReceive('get')->with('fqn')->andReturnNull();
+
+        $this->builder->shouldReceive('setGroupLength')->once();
+        $this->builder->shouldReceive('setAnalysisCollection')->once();
+        $this->builder->shouldReceive('setLayout')->once();
 
         $this->fixture->execute();
     }
@@ -158,10 +200,10 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $traverser->shouldReceive('bindVisitors')->once()->with($visitor, $visitorOptions);
 
         $logger = \Mockery::mock('PhpDA\Parser\Logger');
-        $logger->shouldReceive('isEmpty')->once()->andReturn(false);
-        $logger->shouldReceive('toString')->once()->andReturn('logstring');
+        $logger->shouldReceive('isEmpty')->andReturn(false);
+        $logger->shouldReceive('toString')->andReturn('logstring');
 
         $this->analyzer->shouldReceive('getNodeTraverser')->once()->andReturn($traverser);
-        $this->analyzer->shouldReceive('getLogger')->once()->andReturn($logger);
+        $this->analyzer->shouldReceive('getLogger')->andReturn($logger);
     }
 }

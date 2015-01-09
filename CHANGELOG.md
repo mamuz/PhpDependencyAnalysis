@@ -2,6 +2,8 @@
 
 ## dev-master
 
+- Add ReferenceValidator Feature
+
 ## v0.2.1
 
 - Add edge concentration in GraphViz

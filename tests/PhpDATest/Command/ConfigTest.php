@@ -32,15 +32,16 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testBasic()
     {
         $values = array(
-            'mode'           => 'call',
-            'source'         => 'mySource',
-            'ignore'         => 'myIgnore',
-            'formatter'      => 'myFormatter',
-            'target'         => 'myTarget',
-            'filePattern'    => 'myFilePattern',
-            'groupLength'    => 4,
-            'visitor'        => array('foo', 'baz'),
-            'visitorOptions' => array('bar'),
+            'mode'               => 'call',
+            'source'             => 'mySource',
+            'ignore'             => 'myIgnore',
+            'formatter'          => 'myFormatter',
+            'target'             => 'myTarget',
+            'filePattern'        => 'myFilePattern',
+            'groupLength'        => 4,
+            'visitor'            => array('foo', 'baz'),
+            'visitorOptions'     => array('bar'),
+            'referenceValidator' => 'myValidator',
         );
 
         $config = new Config($values);
@@ -60,6 +61,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $config->getVisitorOptions());
         $this->assertSame('usage', $config->getMode());
         $this->assertSame(0, $config->getGroupLength());
+        $this->assertNull($config->getReferenceValidator());
     }
 
     public function testInheritanceMode()
@@ -147,6 +149,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $config = new Config(array('visitorOptions' => 1));
 
         $config->getVisitorOptions();
+    }
+
+    public function testInvalidReferenceValidator()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('referenceValidator' => 1));
+
+        $config->getReferenceValidator();
     }
 
     public function testHasVisitorOptionsForAggregation()
