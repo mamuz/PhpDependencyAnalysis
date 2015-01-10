@@ -305,7 +305,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
 
         $validator->shouldReceive('isValidBetween')->andReturnUsing(
-            function($from, $to) use ($declared, $called1, $testcase) {
+            function ($from, $to) use ($declared, $called1, $testcase) {
                 $testcase->assertNotSame($from, $declared);
                 $testcase->assertEquals($from, $declared);
                 $testcase->assertNotSame($to, $called1);
@@ -326,6 +326,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->prepareDependencyCreation();
 
+        $validatorMessages = array(1, 2);
         $declared = $this->createName('Dec\\Name');
 
         $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
@@ -337,6 +338,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
 
         $validator->shouldReceive('isValidBetween')->andReturn(false);
+        $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }

@@ -236,12 +236,11 @@ class Builder implements BuilderInterface
     {
         foreach ($dependencies as $dependency) {
             $vertex = $this->createVertexBy($dependency);
-            if (!$this->validateDependency($dependency)) {
-                $edgeLayout = array_merge($edgeLayout, $this->layout->getEdgeInvalid());
-            }
             $this->bindLayoutTo($vertex, $vertexLayout);
             if ($this->adtRootVertex !== $vertex) {
-                $edge = $this->createEdgeToAdtRootVertexBy($vertex, $edgeLayout);
+                $edge = $this->createEdgeToAdtRootVertexBy($vertex);
+                $this->bindLayoutTo($edge, $edgeLayout);
+                $this->validateDependency($dependency, $edge);
                 $location = new Location($this->currentAnalysisFile, $dependency);
                 $this->addLocationTo($edge, $location);
             }
@@ -249,24 +248,25 @@ class Builder implements BuilderInterface
     }
 
     /**
-     * @param Name $dependency
-     * @return bool
+     * @param Name           $dependency
+     * @param AttributeAware $edge
+     * @return array
      */
-    private function validateDependency(Name $dependency)
+    private function validateDependency(Name $dependency, AttributeAware $edge)
     {
-        if ($this->referenceValidator) {
-            return $this->referenceValidator->isValidBetween(clone $this->adtRootName, clone $dependency);
+        if ($this->referenceValidator
+            && !$this->referenceValidator->isValidBetween(clone $this->adtRootName, clone $dependency)
+        ) {
+            $this->bindLayoutTo($edge, $this->layout->getEdgeInvalid());
+            $edge->setAttribute('referenceValidatorMessages', $this->referenceValidator->getMessages());
         }
-
-        return true;
     }
 
     /**
      * @param Vertex $vertex
-     * @param array  $edgeLayout
      * @return \Fhaculty\Graph\Edge\Directed
      */
-    private function createEdgeToAdtRootVertexBy(Vertex $vertex, array $edgeLayout)
+    private function createEdgeToAdtRootVertexBy(Vertex $vertex)
     {
         foreach ($this->adtRootVertex->getEdges() as $edge) {
             /** @var \Fhaculty\Graph\Edge\Directed $edge */
@@ -275,10 +275,7 @@ class Builder implements BuilderInterface
             }
         }
 
-        $edge = $this->adtRootVertex->createEdgeTo($vertex);
-        $this->bindLayoutTo($edge, $edgeLayout);
-
-        return $edge;
+        return $this->adtRootVertex->createEdgeTo($vertex);
     }
 
     /**

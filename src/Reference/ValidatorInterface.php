@@ -29,10 +29,23 @@ use PhpParser\Node\Name;
 
 interface ValidatorInterface
 {
-    /**
+    /*
+     * Returns true if and only if dependency between $from and $to meets reference.
+     *
+     * If not, then this method returns false,
+     * and getMessages() will return an array of messages that explain why dependency is invalid.
+     *
      * @param Name $from
      * @param Name $to
      * @return bool
      */
     public function isValidBetween(Name $from, Name $to);
+
+    /**
+     * Returns an array of messages that explain why dependency is invalid.
+     * The array will be add as attribute to the Edge bewteen $from and $to.
+     *
+     * @return array
+     */
+    public function getMessages();
 }
