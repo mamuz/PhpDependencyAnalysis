@@ -33,7 +33,6 @@ abstract class AbstractLayout implements LayoutInterface
         'ranksep'     => 1,
         'nodesep'     => 0.1,
         'fontsize'    => 8,
-        'concentrate' => 'true',
     );
 
     /** @var array */

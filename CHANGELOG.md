@@ -2,6 +2,7 @@
 
 ## dev-master
 
+- Remove edge concentration in GraphViz to improve usability with ReferenceValidator Feature
 - Add ReferenceValidator Feature
 
 ## v0.2.1
