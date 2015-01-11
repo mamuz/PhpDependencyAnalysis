@@ -26,10 +26,12 @@
 namespace PhpDA\Layout;
 
 use Fhaculty\Graph\Attribute\AttributeAware;
+use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Vertex;
 use PhpDA\Entity\Adt;
 use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Entity\Location;
+use PhpDA\Layout\Helper\CycleDetector;
 use PhpDA\Layout\Helper\GroupGenerator;
 use PhpDA\Reference\ValidatorInterface;
 use PhpParser\Node\Name;
@@ -45,6 +47,9 @@ class Builder implements BuilderInterface
 
     /** @var GroupGenerator */
     private $groupGenerator;
+
+    /** @var CycleDetector */
+    private $cycleDetector;
 
     /** @var AnalysisCollection */
     private $analysisCollection;
@@ -70,11 +75,14 @@ class Builder implements BuilderInterface
     /**
      * @param GraphViz       $graphViz
      * @param GroupGenerator $generator
+     * @param CycleDetector  $cycleDetector
      */
-    public function __construct(GraphViz $graphViz, GroupGenerator $generator)
+    public function __construct(GraphViz $graphViz, GroupGenerator $generator, CycleDetector $cycleDetector)
     {
         $this->graphViz = $graphViz;
         $this->groupGenerator = $generator;
+        $this->cycleDetector = $cycleDetector;
+
         $this->setLayout(new NullLayout);
         $this->setAnalysisCollection(new AnalysisCollection);
     }
@@ -119,6 +127,7 @@ class Builder implements BuilderInterface
     public function create()
     {
         $this->createDependencies();
+        $this->hilightCycles();
         $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
         $this->graphViz->setGroups($this->groupGenerator->getGroups());
         $this->graphViz->setGroupLayout($this->layout->getGroup());
@@ -146,6 +155,19 @@ class Builder implements BuilderInterface
                 if (!$adt->hasDeclaredGlobalNamespace()) {
                     $this->createVertexAndEdgesBy($adt);
                 }
+            }
+        }
+    }
+
+    private function hilightCycles()
+    {
+        $cycledEdges = $this->cycleDetector->inspect($this->getGraph())->getCycledEdges();
+
+        foreach ($cycledEdges as $edge) {
+            /** @var Directed $edge */
+            $edge->setAttribute('belongsToCycle', true);
+            if (null !== $edge->getAttribute('referenceValidatorMessages')) {
+                $this->bindLayoutTo($edge, $this->layout->getEdgeCycle());
             }
         }
     }
@@ -224,7 +246,7 @@ class Builder implements BuilderInterface
      */
     private function getGraph()
     {
-        return $this->graphViz->getGraph();
+        return $this->getGraphViz()->getGraph();
     }
 
     /**

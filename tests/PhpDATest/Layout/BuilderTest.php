@@ -45,6 +45,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     const LEIV = '_eiv_';
 
+    const LEC = '_ec_';
+
     const LV = '_v_';
 
     const LVUS = '_vUs_';
@@ -56,6 +58,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     /** @var \PhpDA\Layout\Helper\GroupGenerator | \Mockery\MockInterface */
     protected $groupGenerator;
+
+    /** @var \PhpDA\Layout\Helper\CycleDetector | \Mockery\MockInterface */
+    protected $cycleDetector;
 
     /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
     protected $graphViz;
@@ -78,10 +83,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $this->graphViz->shouldReceive('getGraph')->andReturn($this->graph);
+        $this->cycleDetector = \Mockery::mock('PhpDA\Layout\Helper\CycleDetector');
+        $this->cycleDetector->shouldReceive('inspect')->with($this->graph)->andReturnSelf();
 
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
 
-        $this->fixture = new Builder($this->graphViz, $this->groupGenerator);
+        $this->fixture = new Builder($this->graphViz, $this->groupGenerator, $this->cycleDetector);
     }
 
     public function testDelegatingGroupLengthMutatorToGroupGenerator()
@@ -92,6 +99,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testFluentInterfaceForCreating()
     {
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
         $this->graphViz->shouldReceive('setGroups');
         $this->graphViz->shouldReceive('setGroupLayout');
@@ -101,6 +109,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDelegatingGraphLayoutGeneratedGroups()
     {
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
         $layout->shouldReceive('getGraph')->once()->andReturn(array('bar' => 'foo'));
         $layout->shouldReceive('getGroup')->once()->andReturn(array('bar'));
@@ -142,6 +151,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $layout->shouldReceive('getEdgeUnsupported')->andReturn(array(self::LEUS));
         $layout->shouldReceive('getEdgeNamespacedString')->andReturn(array(self::LENS));
         $layout->shouldReceive('getEdgeInvalid')->andReturn(array(self::LEIV));
+        $layout->shouldReceive('getEdgeCycle')->andReturn(array(self::LEC));
 
         $this->fixture->setLayout($layout);
 
@@ -198,6 +208,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testDependencyCreationInCallMode()
     {
         $this->fixture->setCallMode();
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
 
         $this->prepareDependencyCreation();
@@ -229,6 +240,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDependencyCreationNotInCallMode()
     {
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
         $this->prepareDependencyCreation();
 
@@ -272,6 +284,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDependencyCreationWhenAdtIsGlobalNamespace()
     {
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(true);
         $this->prepareDependencyCreation();
 
@@ -287,6 +300,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testDependencyCreationWithReferenceValidator()
     {
         $testcase = $this;
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
         $this->fixture->setReferenceValidator($validator);
         $this->fixture->setCallMode();
@@ -320,6 +334,67 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     public function testDependencyCreationWithReferenceValidatorAndInvalidEdge()
     {
         $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
+        $this->fixture->setReferenceValidator($validator);
+        $this->fixture->setCallMode();
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
+
+        $this->prepareDependencyCreation();
+
+        $validatorMessages = array(1, 2);
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $called1 = $this->createName('Called\\Name1', $declared);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+
+        $validator->shouldReceive('isValidBetween')->andReturn(false);
+        $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationWithDetectedCyleAndInvalidEdge()
+    {
+        $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edge->shouldReceive('setAttribute');
+        $edge->shouldReceive('getAttribute')->with('referenceValidatorMessages')->andReturn(null);
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array($edge));
+        $this->fixture->setReferenceValidator($validator);
+        $this->fixture->setCallMode();
+        $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
+
+        $this->prepareDependencyCreation();
+
+        $validatorMessages = array(1, 2);
+        $declared = $this->createName('Dec\\Name');
+
+        $this->adt->shouldReceive('getDeclaredNamespace')->once()->andReturn($declared);
+
+        $called1 = $this->createName('Called\\Name1', $declared);
+
+        $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1));
+        $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array());
+        $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
+
+        $validator->shouldReceive('isValidBetween')->andReturn(false);
+        $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
+
+        $this->assertSame($this->fixture, $this->fixture->create());
+    }
+
+    public function testDependencyCreationWithDetectedCyle()
+    {
+        $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
+        $edge = \Mockery::mock('Fhaculty\Graph\Edge\Directed');
+        $edge->shouldReceive('setAttribute');
+        $edge->shouldReceive('getAttribute')->with('referenceValidatorMessages')->andReturn(true);
+        $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array($edge));
         $this->fixture->setReferenceValidator($validator);
         $this->fixture->setCallMode();
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->andReturn(false);
