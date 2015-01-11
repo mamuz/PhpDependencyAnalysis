@@ -96,4 +96,9 @@ class NullLayoutTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(array(), $this->fixture->getEdgeInvalid());
     }
+
+    public function testAccessEdgeCycle()
+    {
+        $this->assertSame(array(), $this->fixture->getEdgeCycle());
+    }
 }

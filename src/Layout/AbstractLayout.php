@@ -38,38 +38,38 @@ abstract class AbstractLayout implements LayoutInterface
     /** @var array */
     private $group = array(
         'style'     => 'rounded,filled',
-        'fontcolor' => '#888888',
+        'fontcolor' => '#7f7f7f',
         'fontsize'  => 14,
         'labeljust' => 'l',
-        'color'     => '#888888',
+        'color'     => '#7f7f7f',
         'fillcolor' => 'lightgrey',
     );
 
     /** @var array */
     private $vertex = array(
-        'fillcolor' => '#eeeeee',
+        'fillcolor' => '#e5e5e5',
         'style'     => 'filled,rounded',
         'shape'     => 'box',
-        'fontcolor' => '#314B5F',
+        'fontcolor' => '#666666',
         'fontsize'  => 10,
     );
 
     /** @var array */
     private $vertexUnsupported = array(
-        'fillcolor' => '#ECB4B4',
+        'fillcolor' => '#ff0000',
     );
 
     /** @var array */
     private $vertexNamespacedString = array(
-        'fillcolor' => '#F1EEA6',
+        'fillcolor' => '#ffff00',
     );
 
     /** @var array */
     private $edge = array(
         'arrowsize' => 0.6,
-        'fontcolor' => '#767676',
+        'fontcolor' => '#666666',
         'fontsize'  => 8,
-        'color'     => '#1A2833',
+        'color'     => '#000000',
         'weight'    => 1.2,
     );
 
@@ -79,13 +79,18 @@ abstract class AbstractLayout implements LayoutInterface
     );
 
     /** @var array */
+    private $edgeCycle = array(
+        'color' => '#ff00ff',
+    );
+
+    /** @var array */
     private $edgeUnsupported = array(
-        'color' => '#ECB4B4',
+        'color' => '#ff0000',
     );
 
     /** @var array */
     private $edgeNamespacedString = array(
-        'color' => '#F1EEA6',
+        'color' => '#ffff00',
     );
 
     public function __construct($label)
@@ -111,6 +116,11 @@ abstract class AbstractLayout implements LayoutInterface
     public function getEdgeInvalid()
     {
         return $this->edgeInvalid;
+    }
+
+    public function getEdgeCycle()
+    {
+        return $this->edgeCycle;
     }
 
     public function getEdgeExtend()

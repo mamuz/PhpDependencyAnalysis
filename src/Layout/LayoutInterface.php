@@ -50,6 +50,11 @@ interface LayoutInterface
     /**
      * @return array
      */
+    public function getEdgeCycle();
+
+    /**
+     * @return array
+     */
     public function getEdgeExtend();
 
     /**

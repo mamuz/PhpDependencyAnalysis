@@ -98,4 +98,9 @@ class StandardTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertNotEmpty($this->fixture->getEdgeInvalid());
     }
+
+    public function testAccessEdgeCycle()
+    {
+        $this->assertNotEmpty($this->fixture->getEdgeCycle());
+    }
 }
