@@ -136,7 +136,7 @@ class CycleDetector
             $cycledEdges = $cycle->getEdges();
             foreach ($cycledEdges as $cycledEdge) {
                 if (!in_array($cycledEdge, $allCycleEdges)) {
-                    $allCycleEdges[] = $cycledEdge;
+                    $allCycleEdges[] = $cycledEdge->toArray();
                 }
             }
         }

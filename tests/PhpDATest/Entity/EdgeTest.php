@@ -51,4 +51,9 @@ class EdgeTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame('A -> B', $this->fixture->toString());
     }
+
+    public function testArrayRepresentation()
+    {
+        $this->assertSame(array('A', 'B'), $this->fixture->toArray());
+    }
 }

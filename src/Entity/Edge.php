@@ -66,4 +66,12 @@ class Edge
     {
         return $this->from . ' -> ' . $this->to;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array($this->from, $this->to);
+    }
 }

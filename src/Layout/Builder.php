@@ -166,7 +166,7 @@ class Builder implements BuilderInterface
         foreach ($cycledEdges as $edge) {
             /** @var Directed $edge */
             $edge->setAttribute('belongsToCycle', true);
-            if (null !== $edge->getAttribute('referenceValidatorMessages')) {
+            if (!$edge->getAttribute('referenceValidatorMessages')) {
                 $this->bindLayoutTo($edge, $this->layout->getEdgeCycle());
             }
         }
