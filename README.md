@@ -40,7 +40,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "0.2.*"
+        "mamuz/php-dependency-analysis": "0.3.*"
     }
 }
 ```
@@ -52,6 +52,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Supports Usage-Graph, Call-Graph and Inheritance-Graph
 - Dependencies can be aggregated to a package, a module or a layer
 - Detecting cycles and violations between layers in a tiered architecture
+- Validating dependency graph by a reference architecture
 - Printing graphs in several formats (HTML, SVG, DOT, JSON)
 - Extandable by adding user-defined plugins for collecting and printing of dependencies
 
