@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev-master
+## v0.3.0
 
 - Change color usage in layout to 8-bit
 - Add Cycle Hilighting feature

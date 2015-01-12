@@ -12,11 +12,11 @@
 <text text-anchor="middle" x="218" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
 <!-- PhpDA\\Writer\\AdapterInterface -->
 <g id="node1" class="node"><title>PhpDA\\Writer\\AdapterInterface</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="400,-54 262,-54 250,-42 250,-30 262,-18 400,-18 412,-30 412,-42 400,-54"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M262,-54C256,-54 250,-48 250,-42"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M250,-30C250,-24 256,-18 262,-18"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M400,-18C406,-18 412,-24 412,-30"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M412,-42C412,-48 406,-54 400,-54"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="400,-54 262,-54 250,-42 250,-30 262,-18 400,-18 412,-30 412,-42 400,-54"/>
+<path fill="#9999cc" stroke="#9999cc" d="M262,-54C256,-54 250,-48 250,-42"/>
+<path fill="#9999cc" stroke="#9999cc" d="M250,-30C250,-24 256,-18 262,-18"/>
+<path fill="#9999cc" stroke="#9999cc" d="M400,-18C406,-18 412,-24 412,-30"/>
+<path fill="#9999cc" stroke="#9999cc" d="M412,-42C412,-48 406,-54 400,-54"/>
 <polyline fill="none" stroke="black" points="400,-54 262,-54 "/>
 <path fill="none" stroke="black" d="M262,-54C256,-54 250,-48 250,-42"/>
 <polyline fill="none" stroke="black" points="250,-42 250,-30 "/>
@@ -25,15 +25,15 @@
 <path fill="none" stroke="black" d="M400,-18C406,-18 412,-24 412,-30"/>
 <polyline fill="none" stroke="black" points="412,-30 412,-42 "/>
 <path fill="none" stroke="black" d="M412,-42C412,-48 406,-54 400,-54"/>
-<text text-anchor="middle" x="331" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\AdapterInterface</text>
+<text text-anchor="middle" x="331" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\AdapterInterface</text>
 </g>
 <!-- PhpDA\\Writer\\Adapter -->
 <g id="node2" class="node"><title>PhpDA\\Writer\\Adapter</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="125,-54 29,-54 17,-42 17,-30 29,-18 125,-18 137,-30 137,-42 125,-54"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M29,-54C23,-54 17,-48 17,-42"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M17,-30C17,-24 23,-18 29,-18"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M125,-18C131,-18 137,-24 137,-30"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M137,-42C137,-48 131,-54 125,-54"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="125,-54 29,-54 17,-42 17,-30 29,-18 125,-18 137,-30 137,-42 125,-54"/>
+<path fill="#9999cc" stroke="#9999cc" d="M29,-54C23,-54 17,-48 17,-42"/>
+<path fill="#9999cc" stroke="#9999cc" d="M17,-30C17,-24 23,-18 29,-18"/>
+<path fill="#9999cc" stroke="#9999cc" d="M125,-18C131,-18 137,-24 137,-30"/>
+<path fill="#9999cc" stroke="#9999cc" d="M137,-42C137,-48 131,-54 125,-54"/>
 <polyline fill="none" stroke="black" points="125,-54 29,-54 "/>
 <path fill="none" stroke="black" d="M29,-54C23,-54 17,-48 17,-42"/>
 <polyline fill="none" stroke="black" points="17,-42 17,-30 "/>
@@ -42,20 +42,20 @@
 <path fill="none" stroke="black" d="M125,-18C131,-18 137,-24 137,-30"/>
 <polyline fill="none" stroke="black" points="137,-30 137,-42 "/>
 <path fill="none" stroke="black" d="M137,-42C137,-48 131,-54 125,-54"/>
-<text text-anchor="middle" x="77" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Adapter</text>
+<text text-anchor="middle" x="77" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Adapter</text>
 </g>
 <!-- PhpDA\\Writer\\Adapter&#45;&gt;PhpDA\\Writer\\AdapterInterface -->
 <g id="edge2" class="edge"><title>PhpDA\\Writer\\Adapter&#45;&gt;PhpDA\\Writer\\AdapterInterface</title>
-<path fill="none" stroke="#1a2833" stroke-dasharray="5,2" d="M137.194,-36C168.952,-36 208.501,-36 243.575,-36"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="243.615,-38.1001 249.615,-36 243.615,-33.9001 243.615,-38.1001"/>
+<path fill="none" stroke="#999999" stroke-dasharray="5,2" d="M137.194,-36C168.952,-36 208.501,-36 243.575,-36"/>
+<polygon fill="#999999" stroke="#999999" points="243.615,-38.1001 249.615,-36 243.615,-33.9001 243.615,-38.1001"/>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Script -->
 <g id="node3" class="node"><title>PhpDA\\Writer\\Strategy\\Script</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="142,-226 12,-226 5.68434e-14,-214 2.84217e-14,-202 12,-190 142,-190 154,-202 154,-214 142,-226"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M12,-226C6,-226 7.10543e-14,-220 5.68434e-14,-214"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M2.84217e-14,-202C1.42109e-14,-196 6,-190 12,-190"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M142,-190C148,-190 154,-196 154,-202"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M154,-214C154,-220 148,-226 142,-226"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="142,-226 12,-226 5.68434e-14,-214 2.84217e-14,-202 12,-190 142,-190 154,-202 154,-214 142,-226"/>
+<path fill="#9999cc" stroke="#9999cc" d="M12,-226C6,-226 7.10543e-14,-220 5.68434e-14,-214"/>
+<path fill="#9999cc" stroke="#9999cc" d="M2.84217e-14,-202C1.42109e-14,-196 6,-190 12,-190"/>
+<path fill="#9999cc" stroke="#9999cc" d="M142,-190C148,-190 154,-196 154,-202"/>
+<path fill="#9999cc" stroke="#9999cc" d="M154,-214C154,-220 148,-226 142,-226"/>
 <polyline fill="none" stroke="black" points="142,-226 12,-226 "/>
 <path fill="none" stroke="black" d="M12,-226C6,-226 7.10543e-14,-220 5.68434e-14,-214"/>
 <polyline fill="none" stroke="black" points="5.68434e-14,-214 2.84217e-14,-202 "/>
@@ -64,15 +64,15 @@
 <path fill="none" stroke="black" d="M142,-190C148,-190 154,-196 154,-202"/>
 <polyline fill="none" stroke="black" points="154,-202 154,-214 "/>
 <path fill="none" stroke="black" d="M154,-214C154,-220 148,-226 142,-226"/>
-<text text-anchor="middle" x="77" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Strategy\Script</text>
+<text text-anchor="middle" x="77" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Strategy\Script</text>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\StrategyInterface -->
 <g id="node4" class="node"><title>PhpDA\\Writer\\Strategy\\StrategyInterface</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="423,-161 239,-161 227,-149 227,-137 239,-125 423,-125 435,-137 435,-149 423,-161"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M239,-161C233,-161 227,-155 227,-149"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M227,-137C227,-131 233,-125 239,-125"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M423,-125C429,-125 435,-131 435,-137"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M435,-149C435,-155 429,-161 423,-161"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="423,-161 239,-161 227,-149 227,-137 239,-125 423,-125 435,-137 435,-149 423,-161"/>
+<path fill="#9999cc" stroke="#9999cc" d="M239,-161C233,-161 227,-155 227,-149"/>
+<path fill="#9999cc" stroke="#9999cc" d="M227,-137C227,-131 233,-125 239,-125"/>
+<path fill="#9999cc" stroke="#9999cc" d="M423,-125C429,-125 435,-131 435,-137"/>
+<path fill="#9999cc" stroke="#9999cc" d="M435,-149C435,-155 429,-161 423,-161"/>
 <polyline fill="none" stroke="black" points="423,-161 239,-161 "/>
 <path fill="none" stroke="black" d="M239,-161C233,-161 227,-155 227,-149"/>
 <polyline fill="none" stroke="black" points="227,-149 227,-137 "/>
@@ -81,20 +81,20 @@
 <path fill="none" stroke="black" d="M423,-125C429,-125 435,-131 435,-137"/>
 <polyline fill="none" stroke="black" points="435,-137 435,-149 "/>
 <path fill="none" stroke="black" d="M435,-149C435,-155 429,-161 423,-161"/>
-<text text-anchor="middle" x="331" y="-140.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Strategy\StrategyInterface</text>
+<text text-anchor="middle" x="331" y="-140.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Strategy\StrategyInterface</text>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Script&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface -->
 <g id="edge4" class="edge"><title>PhpDA\\Writer\\Strategy\\Script&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface</title>
-<path fill="none" stroke="#1a2833" stroke-dasharray="5,2" d="M147.416,-189.98C180.725,-181.456 220.561,-171.262 254.6,-162.551"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="255.155,-164.577 260.447,-161.055 254.114,-160.508 255.155,-164.577"/>
+<path fill="none" stroke="#999999" stroke-dasharray="5,2" d="M147.416,-189.98C180.725,-181.456 220.561,-171.262 254.6,-162.551"/>
+<polygon fill="#999999" stroke="#999999" points="255.155,-164.577 260.447,-161.055 254.114,-160.508 255.155,-164.577"/>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Svg -->
 <g id="node5" class="node"><title>PhpDA\\Writer\\Strategy\\Svg</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="137,-183 17,-183 5,-171 5,-159 17,-147 137,-147 149,-159 149,-171 137,-183"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M17,-183C11,-183 5,-177 5,-171"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M5,-159C5,-153 11,-147 17,-147"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M137,-147C143,-147 149,-153 149,-159"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M149,-171C149,-177 143,-183 137,-183"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="137,-183 17,-183 5,-171 5,-159 17,-147 137,-147 149,-159 149,-171 137,-183"/>
+<path fill="#9999cc" stroke="#9999cc" d="M17,-183C11,-183 5,-177 5,-171"/>
+<path fill="#9999cc" stroke="#9999cc" d="M5,-159C5,-153 11,-147 17,-147"/>
+<path fill="#9999cc" stroke="#9999cc" d="M137,-147C143,-147 149,-153 149,-159"/>
+<path fill="#9999cc" stroke="#9999cc" d="M149,-171C149,-177 143,-183 137,-183"/>
 <polyline fill="none" stroke="black" points="137,-183 17,-183 "/>
 <path fill="none" stroke="black" d="M17,-183C11,-183 5,-177 5,-171"/>
 <polyline fill="none" stroke="black" points="5,-171 5,-159 "/>
@@ -103,20 +103,20 @@
 <path fill="none" stroke="black" d="M137,-147C143,-147 149,-153 149,-159"/>
 <polyline fill="none" stroke="black" points="149,-159 149,-171 "/>
 <path fill="none" stroke="black" d="M149,-171C149,-177 143,-183 137,-183"/>
-<text text-anchor="middle" x="77" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Strategy\Svg</text>
+<text text-anchor="middle" x="77" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Strategy\Svg</text>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Svg&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface -->
 <g id="edge6" class="edge"><title>PhpDA\\Writer\\Strategy\\Svg&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface</title>
-<path fill="none" stroke="#1a2833" stroke-dasharray="5,2" d="M149.107,-158.755C171.281,-156.834 196.22,-154.674 220.357,-152.583"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="220.678,-154.663 226.474,-152.053 220.315,-150.479 220.678,-154.663"/>
+<path fill="none" stroke="#999999" stroke-dasharray="5,2" d="M149.107,-158.755C171.281,-156.834 196.22,-154.674 220.357,-152.583"/>
+<polygon fill="#999999" stroke="#999999" points="220.678,-154.663 226.474,-152.053 220.315,-150.479 220.678,-154.663"/>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Html -->
 <g id="node6" class="node"><title>PhpDA\\Writer\\Strategy\\Html</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="139,-140 15,-140 3,-128 3,-116 15,-104 139,-104 151,-116 151,-128 139,-140"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M15,-140C9,-140 3,-134 3,-128"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M3,-116C3,-110 9,-104 15,-104"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M139,-104C145,-104 151,-110 151,-116"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M151,-128C151,-134 145,-140 139,-140"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="139,-140 15,-140 3,-128 3,-116 15,-104 139,-104 151,-116 151,-128 139,-140"/>
+<path fill="#9999cc" stroke="#9999cc" d="M15,-140C9,-140 3,-134 3,-128"/>
+<path fill="#9999cc" stroke="#9999cc" d="M3,-116C3,-110 9,-104 15,-104"/>
+<path fill="#9999cc" stroke="#9999cc" d="M139,-104C145,-104 151,-110 151,-116"/>
+<path fill="#9999cc" stroke="#9999cc" d="M151,-128C151,-134 145,-140 139,-140"/>
 <polyline fill="none" stroke="black" points="139,-140 15,-140 "/>
 <path fill="none" stroke="black" d="M15,-140C9,-140 3,-134 3,-128"/>
 <polyline fill="none" stroke="black" points="3,-128 3,-116 "/>
@@ -125,20 +125,20 @@
 <path fill="none" stroke="black" d="M139,-104C145,-104 151,-110 151,-116"/>
 <polyline fill="none" stroke="black" points="151,-116 151,-128 "/>
 <path fill="none" stroke="black" d="M151,-128C151,-134 145,-140 139,-140"/>
-<text text-anchor="middle" x="77" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Strategy\Html</text>
+<text text-anchor="middle" x="77" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Strategy\Html</text>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Html&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface -->
 <g id="edge8" class="edge"><title>PhpDA\\Writer\\Strategy\\Html&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface</title>
-<path fill="none" stroke="#1a2833" stroke-dasharray="5,2" d="M151.835,-128.187C173.193,-129.953 196.935,-131.916 219.964,-133.82"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="219.966,-135.927 226.119,-134.329 220.312,-131.741 219.966,-135.927"/>
+<path fill="none" stroke="#999999" stroke-dasharray="5,2" d="M151.835,-128.187C173.193,-129.953 196.935,-131.916 219.964,-133.82"/>
+<polygon fill="#999999" stroke="#999999" points="219.966,-135.927 226.119,-134.329 220.312,-131.741 219.966,-135.927"/>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Json -->
 <g id="node7" class="node"><title>PhpDA\\Writer\\Strategy\\Json</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="138,-97 16,-97 4,-85 4,-73 16,-61 138,-61 150,-73 150,-85 138,-97"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M16,-97C10,-97 4,-91 4,-85"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M4,-73C4,-67 10,-61 16,-61"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M138,-61C144,-61 150,-67 150,-73"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M150,-85C150,-91 144,-97 138,-97"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="138,-97 16,-97 4,-85 4,-73 16,-61 138,-61 150,-73 150,-85 138,-97"/>
+<path fill="#9999cc" stroke="#9999cc" d="M16,-97C10,-97 4,-91 4,-85"/>
+<path fill="#9999cc" stroke="#9999cc" d="M4,-73C4,-67 10,-61 16,-61"/>
+<path fill="#9999cc" stroke="#9999cc" d="M138,-61C144,-61 150,-67 150,-73"/>
+<path fill="#9999cc" stroke="#9999cc" d="M150,-85C150,-91 144,-97 138,-97"/>
 <polyline fill="none" stroke="black" points="138,-97 16,-97 "/>
 <path fill="none" stroke="black" d="M16,-97C10,-97 4,-91 4,-85"/>
 <polyline fill="none" stroke="black" points="4,-85 4,-73 "/>
@@ -147,12 +147,12 @@
 <path fill="none" stroke="black" d="M138,-61C144,-61 150,-67 150,-73"/>
 <polyline fill="none" stroke="black" points="150,-73 150,-85 "/>
 <path fill="none" stroke="black" d="M150,-85C150,-91 144,-97 138,-97"/>
-<text text-anchor="middle" x="77" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PhpDA\Writer\Strategy\Json</text>
+<text text-anchor="middle" x="77" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PhpDA\Writer\Strategy\Json</text>
 </g>
 <!-- PhpDA\\Writer\\Strategy\\Json&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface -->
 <g id="edge10" class="edge"><title>PhpDA\\Writer\\Strategy\\Json&#45;&gt;PhpDA\\Writer\\Strategy\\StrategyInterface</title>
-<path fill="none" stroke="#1a2833" stroke-dasharray="5,2" d="M148.768,-97.0832C181.36,-105.296 219.981,-115.027 253.26,-123.412"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="253.078,-125.532 259.41,-124.961 254.105,-121.459 253.078,-125.532"/>
+<path fill="none" stroke="#999999" stroke-dasharray="5,2" d="M148.768,-97.0832C181.36,-105.296 219.981,-115.027 253.26,-123.412"/>
+<polygon fill="#999999" stroke="#999999" points="253.078,-125.532 259.41,-124.961 254.105,-121.459 253.078,-125.532"/>
 </g>
 </g>
 </svg>

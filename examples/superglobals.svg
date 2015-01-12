@@ -12,11 +12,11 @@
 <text text-anchor="middle" x="149" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\SuperGlobalAccess -->
 <g id="node1" class="node"><title>PackageX\\SuperGlobalAccess</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="146,-226 12,-226 4.73695e-14,-214 2.36848e-14,-202 12,-190 146,-190 158,-202 158,-214 146,-226"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M12,-226C6,-226 5.92119e-14,-220 4.73695e-14,-214"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M2.36848e-14,-202C1.18424e-14,-196 6,-190 12,-190"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M146,-190C152,-190 158,-196 158,-202"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M158,-214C158,-220 152,-226 146,-226"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="146,-226 12,-226 4.73695e-14,-214 2.36848e-14,-202 12,-190 146,-190 158,-202 158,-214 146,-226"/>
+<path fill="#9999cc" stroke="#9999cc" d="M12,-226C6,-226 5.92119e-14,-220 4.73695e-14,-214"/>
+<path fill="#9999cc" stroke="#9999cc" d="M2.36848e-14,-202C1.18424e-14,-196 6,-190 12,-190"/>
+<path fill="#9999cc" stroke="#9999cc" d="M146,-190C152,-190 158,-196 158,-202"/>
+<path fill="#9999cc" stroke="#9999cc" d="M158,-214C158,-220 152,-226 146,-226"/>
 <polyline fill="none" stroke="black" points="146,-226 12,-226 "/>
 <path fill="none" stroke="black" d="M12,-226C6,-226 5.92119e-14,-220 4.73695e-14,-214"/>
 <polyline fill="none" stroke="black" points="4.73695e-14,-214 2.36848e-14,-202 "/>
@@ -25,15 +25,15 @@
 <path fill="none" stroke="black" d="M146,-190C152,-190 158,-196 158,-202"/>
 <polyline fill="none" stroke="black" points="158,-202 158,-214 "/>
 <path fill="none" stroke="black" d="M158,-214C158,-220 152,-226 146,-226"/>
-<text text-anchor="middle" x="79" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageX\SuperGlobalAccess</text>
+<text text-anchor="middle" x="79" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageX\SuperGlobalAccess</text>
 </g>
 <!-- _POST -->
 <g id="node2" class="node"><title>_POST</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="279,-398 249,-398 237,-386 237,-374 249,-362 279,-362 291,-374 291,-386 279,-398"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M249,-398C243,-398 237,-392 237,-386"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M237,-374C237,-368 243,-362 249,-362"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M279,-362C285,-362 291,-368 291,-374"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M291,-386C291,-392 285,-398 279,-398"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="279,-398 249,-398 237,-386 237,-374 249,-362 279,-362 291,-374 291,-386 279,-398"/>
+<path fill="#9999cc" stroke="#9999cc" d="M249,-398C243,-398 237,-392 237,-386"/>
+<path fill="#9999cc" stroke="#9999cc" d="M237,-374C237,-368 243,-362 249,-362"/>
+<path fill="#9999cc" stroke="#9999cc" d="M279,-362C285,-362 291,-368 291,-374"/>
+<path fill="#9999cc" stroke="#9999cc" d="M291,-386C291,-392 285,-398 279,-398"/>
 <polyline fill="none" stroke="black" points="279,-398 249,-398 "/>
 <path fill="none" stroke="black" d="M249,-398C243,-398 237,-392 237,-386"/>
 <polyline fill="none" stroke="black" points="237,-386 237,-374 "/>
@@ -42,20 +42,20 @@
 <path fill="none" stroke="black" d="M279,-362C285,-362 291,-368 291,-374"/>
 <polyline fill="none" stroke="black" points="291,-374 291,-386 "/>
 <path fill="none" stroke="black" d="M291,-386C291,-392 285,-398 279,-398"/>
-<text text-anchor="middle" x="264" y="-377.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_POST</text>
+<text text-anchor="middle" x="264" y="-377.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_POST</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_POST -->
 <g id="edge2" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_POST</title>
-<path fill="none" stroke="#1a2833" d="M95.118,-226.317C121.615,-255.876 176.767,-315.112 230,-358 230.547,-358.441 231.104,-358.881 231.668,-359.32"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="230.839,-361.32 236.908,-363.212 233.343,-357.948 230.839,-361.32"/>
+<path fill="none" stroke="#999999" d="M95.118,-226.317C121.615,-255.876 176.767,-315.112 230,-358 230.547,-358.441 231.104,-358.881 231.668,-359.32"/>
+<polygon fill="#999999" stroke="#999999" points="230.839,-361.32 236.908,-363.212 233.343,-357.948 230.839,-361.32"/>
 </g>
 <!-- _GET -->
 <g id="node3" class="node"><title>_GET</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="279,-355 249,-355 237,-343 237,-331 249,-319 279,-319 291,-331 291,-343 279,-355"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M249,-355C243,-355 237,-349 237,-343"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M237,-331C237,-325 243,-319 249,-319"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M279,-319C285,-319 291,-325 291,-331"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M291,-343C291,-349 285,-355 279,-355"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="279,-355 249,-355 237,-343 237,-331 249,-319 279,-319 291,-331 291,-343 279,-355"/>
+<path fill="#9999cc" stroke="#9999cc" d="M249,-355C243,-355 237,-349 237,-343"/>
+<path fill="#9999cc" stroke="#9999cc" d="M237,-331C237,-325 243,-319 249,-319"/>
+<path fill="#9999cc" stroke="#9999cc" d="M279,-319C285,-319 291,-325 291,-331"/>
+<path fill="#9999cc" stroke="#9999cc" d="M291,-343C291,-349 285,-355 279,-355"/>
 <polyline fill="none" stroke="black" points="279,-355 249,-355 "/>
 <path fill="none" stroke="black" d="M249,-355C243,-355 237,-349 237,-343"/>
 <polyline fill="none" stroke="black" points="237,-343 237,-331 "/>
@@ -64,20 +64,20 @@
 <path fill="none" stroke="black" d="M279,-319C285,-319 291,-325 291,-331"/>
 <polyline fill="none" stroke="black" points="291,-331 291,-343 "/>
 <path fill="none" stroke="black" d="M291,-343C291,-349 285,-355 279,-355"/>
-<text text-anchor="middle" x="264" y="-334.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_GET</text>
+<text text-anchor="middle" x="264" y="-334.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_GET</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_GET -->
 <g id="edge4" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_GET</title>
-<path fill="none" stroke="#1a2833" d="M103.889,-226.123C133.637,-247.67 185.044,-284.547 230,-315 230.553,-315.375 231.112,-315.752 231.675,-316.131"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="230.679,-317.991 236.837,-319.57 233.008,-314.495 230.679,-317.991"/>
+<path fill="none" stroke="#999999" d="M103.889,-226.123C133.637,-247.67 185.044,-284.547 230,-315 230.553,-315.375 231.112,-315.752 231.675,-316.131"/>
+<polygon fill="#999999" stroke="#999999" points="230.679,-317.991 236.837,-319.57 233.008,-314.495 230.679,-317.991"/>
 </g>
 <!-- _REQUEST -->
 <g id="node4" class="node"><title>_REQUEST</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="285,-312 243,-312 231,-300 231,-288 243,-276 285,-276 297,-288 297,-300 285,-312"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M243,-312C237,-312 231,-306 231,-300"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M231,-288C231,-282 237,-276 243,-276"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M285,-276C291,-276 297,-282 297,-288"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M297,-300C297,-306 291,-312 285,-312"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="285,-312 243,-312 231,-300 231,-288 243,-276 285,-276 297,-288 297,-300 285,-312"/>
+<path fill="#9999cc" stroke="#9999cc" d="M243,-312C237,-312 231,-306 231,-300"/>
+<path fill="#9999cc" stroke="#9999cc" d="M231,-288C231,-282 237,-276 243,-276"/>
+<path fill="#9999cc" stroke="#9999cc" d="M285,-276C291,-276 297,-282 297,-288"/>
+<path fill="#9999cc" stroke="#9999cc" d="M297,-300C297,-306 291,-312 285,-312"/>
 <polyline fill="none" stroke="black" points="285,-312 243,-312 "/>
 <path fill="none" stroke="black" d="M243,-312C237,-312 231,-306 231,-300"/>
 <polyline fill="none" stroke="black" points="231,-300 231,-288 "/>
@@ -86,20 +86,20 @@
 <path fill="none" stroke="black" d="M285,-276C291,-276 297,-282 297,-288"/>
 <polyline fill="none" stroke="black" points="297,-288 297,-300 "/>
 <path fill="none" stroke="black" d="M297,-300C297,-306 291,-312 285,-312"/>
-<text text-anchor="middle" x="264" y="-291.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_REQUEST</text>
+<text text-anchor="middle" x="264" y="-291.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_REQUEST</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_REQUEST -->
 <g id="edge6" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_REQUEST</title>
-<path fill="none" stroke="#1a2833" d="M117.782,-226.028C149.102,-240.588 192.996,-260.993 224.504,-275.64"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="223.912,-277.68 230.238,-278.305 225.682,-273.872 223.912,-277.68"/>
+<path fill="none" stroke="#999999" d="M117.782,-226.028C149.102,-240.588 192.996,-260.993 224.504,-275.64"/>
+<polygon fill="#999999" stroke="#999999" points="223.912,-277.68 230.238,-278.305 225.682,-273.872 223.912,-277.68"/>
 </g>
 <!-- _COOKIE -->
 <g id="node5" class="node"><title>_COOKIE</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="281,-269 247,-269 235,-257 235,-245 247,-233 281,-233 293,-245 293,-257 281,-269"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M247,-269C241,-269 235,-263 235,-257"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M235,-245C235,-239 241,-233 247,-233"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M281,-233C287,-233 293,-239 293,-245"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M293,-257C293,-263 287,-269 281,-269"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="281,-269 247,-269 235,-257 235,-245 247,-233 281,-233 293,-245 293,-257 281,-269"/>
+<path fill="#9999cc" stroke="#9999cc" d="M247,-269C241,-269 235,-263 235,-257"/>
+<path fill="#9999cc" stroke="#9999cc" d="M235,-245C235,-239 241,-233 247,-233"/>
+<path fill="#9999cc" stroke="#9999cc" d="M281,-233C287,-233 293,-239 293,-245"/>
+<path fill="#9999cc" stroke="#9999cc" d="M293,-257C293,-263 287,-269 281,-269"/>
 <polyline fill="none" stroke="black" points="281,-269 247,-269 "/>
 <path fill="none" stroke="black" d="M247,-269C241,-269 235,-263 235,-257"/>
 <polyline fill="none" stroke="black" points="235,-257 235,-245 "/>
@@ -108,20 +108,20 @@
 <path fill="none" stroke="black" d="M281,-233C287,-233 293,-239 293,-245"/>
 <polyline fill="none" stroke="black" points="293,-245 293,-257 "/>
 <path fill="none" stroke="black" d="M293,-257C293,-263 287,-269 281,-269"/>
-<text text-anchor="middle" x="264" y="-248.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_COOKIE</text>
+<text text-anchor="middle" x="264" y="-248.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_COOKIE</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_COOKIE -->
 <g id="edge8" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_COOKIE</title>
-<path fill="none" stroke="#1a2833" d="M156.653,-226.049C181.852,-231.906 208.561,-238.114 229.033,-242.873"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="228.586,-244.925 234.906,-244.238 229.537,-240.834 228.586,-244.925"/>
+<path fill="none" stroke="#999999" d="M156.653,-226.049C181.852,-231.906 208.561,-238.114 229.033,-242.873"/>
+<polygon fill="#999999" stroke="#999999" points="228.586,-244.925 234.906,-244.238 229.537,-240.834 228.586,-244.925"/>
 </g>
 <!-- _FILES -->
 <g id="node6" class="node"><title>_FILES</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="279,-226 249,-226 237,-214 237,-202 249,-190 279,-190 291,-202 291,-214 279,-226"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M249,-226C243,-226 237,-220 237,-214"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M237,-202C237,-196 243,-190 249,-190"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M279,-190C285,-190 291,-196 291,-202"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M291,-214C291,-220 285,-226 279,-226"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="279,-226 249,-226 237,-214 237,-202 249,-190 279,-190 291,-202 291,-214 279,-226"/>
+<path fill="#9999cc" stroke="#9999cc" d="M249,-226C243,-226 237,-220 237,-214"/>
+<path fill="#9999cc" stroke="#9999cc" d="M237,-202C237,-196 243,-190 249,-190"/>
+<path fill="#9999cc" stroke="#9999cc" d="M279,-190C285,-190 291,-196 291,-202"/>
+<path fill="#9999cc" stroke="#9999cc" d="M291,-214C291,-220 285,-226 279,-226"/>
 <polyline fill="none" stroke="black" points="279,-226 249,-226 "/>
 <path fill="none" stroke="black" d="M249,-226C243,-226 237,-220 237,-214"/>
 <polyline fill="none" stroke="black" points="237,-214 237,-202 "/>
@@ -130,20 +130,20 @@
 <path fill="none" stroke="black" d="M279,-190C285,-190 291,-196 291,-202"/>
 <polyline fill="none" stroke="black" points="291,-202 291,-214 "/>
 <path fill="none" stroke="black" d="M291,-214C291,-220 285,-226 279,-226"/>
-<text text-anchor="middle" x="264" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_FILES</text>
+<text text-anchor="middle" x="264" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_FILES</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_FILES -->
 <g id="edge10" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_FILES</title>
-<path fill="none" stroke="#1a2833" d="M158.262,-208C183.68,-208 210.461,-208 230.71,-208"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="230.776,-210.1 236.776,-208 230.776,-205.9 230.776,-210.1"/>
+<path fill="none" stroke="#999999" d="M158.262,-208C183.68,-208 210.461,-208 230.71,-208"/>
+<polygon fill="#999999" stroke="#999999" points="230.776,-210.1 236.776,-208 230.776,-205.9 230.776,-210.1"/>
 </g>
 <!-- _SERVER -->
 <g id="node7" class="node"><title>_SERVER</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="281,-183 247,-183 235,-171 235,-159 247,-147 281,-147 293,-159 293,-171 281,-183"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M247,-183C241,-183 235,-177 235,-171"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M235,-159C235,-153 241,-147 247,-147"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M281,-147C287,-147 293,-153 293,-159"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M293,-171C293,-177 287,-183 281,-183"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="281,-183 247,-183 235,-171 235,-159 247,-147 281,-147 293,-159 293,-171 281,-183"/>
+<path fill="#9999cc" stroke="#9999cc" d="M247,-183C241,-183 235,-177 235,-171"/>
+<path fill="#9999cc" stroke="#9999cc" d="M235,-159C235,-153 241,-147 247,-147"/>
+<path fill="#9999cc" stroke="#9999cc" d="M281,-147C287,-147 293,-153 293,-159"/>
+<path fill="#9999cc" stroke="#9999cc" d="M293,-171C293,-177 287,-183 281,-183"/>
 <polyline fill="none" stroke="black" points="281,-183 247,-183 "/>
 <path fill="none" stroke="black" d="M247,-183C241,-183 235,-177 235,-171"/>
 <polyline fill="none" stroke="black" points="235,-171 235,-159 "/>
@@ -152,20 +152,20 @@
 <path fill="none" stroke="black" d="M281,-147C287,-147 293,-153 293,-159"/>
 <polyline fill="none" stroke="black" points="293,-159 293,-171 "/>
 <path fill="none" stroke="black" d="M293,-171C293,-177 287,-183 281,-183"/>
-<text text-anchor="middle" x="264" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_SERVER</text>
+<text text-anchor="middle" x="264" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_SERVER</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_SERVER -->
 <g id="edge12" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_SERVER</title>
-<path fill="none" stroke="#1a2833" d="M156.653,-189.951C181.672,-184.136 208.179,-177.975 228.594,-173.23"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="229.085,-175.271 234.454,-171.868 228.134,-171.181 229.085,-175.271"/>
+<path fill="none" stroke="#999999" d="M156.653,-189.951C181.672,-184.136 208.179,-177.975 228.594,-173.23"/>
+<polygon fill="#999999" stroke="#999999" points="229.085,-175.271 234.454,-171.868 228.134,-171.181 229.085,-175.271"/>
 </g>
 <!-- _ENV -->
 <g id="node8" class="node"><title>_ENV</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="279,-140 249,-140 237,-128 237,-116 249,-104 279,-104 291,-116 291,-128 279,-140"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M249,-140C243,-140 237,-134 237,-128"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M237,-116C237,-110 243,-104 249,-104"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M279,-104C285,-104 291,-110 291,-116"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M291,-128C291,-134 285,-140 279,-140"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="279,-140 249,-140 237,-128 237,-116 249,-104 279,-104 291,-116 291,-128 279,-140"/>
+<path fill="#9999cc" stroke="#9999cc" d="M249,-140C243,-140 237,-134 237,-128"/>
+<path fill="#9999cc" stroke="#9999cc" d="M237,-116C237,-110 243,-104 249,-104"/>
+<path fill="#9999cc" stroke="#9999cc" d="M279,-104C285,-104 291,-110 291,-116"/>
+<path fill="#9999cc" stroke="#9999cc" d="M291,-128C291,-134 285,-140 279,-140"/>
 <polyline fill="none" stroke="black" points="279,-140 249,-140 "/>
 <path fill="none" stroke="black" d="M249,-140C243,-140 237,-134 237,-128"/>
 <polyline fill="none" stroke="black" points="237,-128 237,-116 "/>
@@ -174,20 +174,20 @@
 <path fill="none" stroke="black" d="M279,-104C285,-104 291,-110 291,-116"/>
 <polyline fill="none" stroke="black" points="291,-116 291,-128 "/>
 <path fill="none" stroke="black" d="M291,-128C291,-134 285,-140 279,-140"/>
-<text text-anchor="middle" x="264" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_ENV</text>
+<text text-anchor="middle" x="264" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_ENV</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_ENV -->
 <g id="edge14" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_ENV</title>
-<path fill="none" stroke="#1a2833" d="M117.782,-189.972C151.396,-174.346 199.493,-151.987 231.219,-137.239"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="232.39,-139.01 236.945,-134.577 230.619,-135.202 232.39,-139.01"/>
+<path fill="none" stroke="#999999" d="M117.782,-189.972C151.396,-174.346 199.493,-151.987 231.219,-137.239"/>
+<polygon fill="#999999" stroke="#999999" points="232.39,-139.01 236.945,-134.577 230.619,-135.202 232.39,-139.01"/>
 </g>
 <!-- GLOBALS -->
 <g id="node9" class="node"><title>GLOBALS</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="283,-97 245,-97 233,-85 233,-73 245,-61 283,-61 295,-73 295,-85 283,-97"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M245,-97C239,-97 233,-91 233,-85"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M233,-73C233,-67 239,-61 245,-61"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M283,-61C289,-61 295,-67 295,-73"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M295,-85C295,-91 289,-97 283,-97"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="283,-97 245,-97 233,-85 233,-73 245,-61 283,-61 295,-73 295,-85 283,-97"/>
+<path fill="#9999cc" stroke="#9999cc" d="M245,-97C239,-97 233,-91 233,-85"/>
+<path fill="#9999cc" stroke="#9999cc" d="M233,-73C233,-67 239,-61 245,-61"/>
+<path fill="#9999cc" stroke="#9999cc" d="M283,-61C289,-61 295,-67 295,-73"/>
+<path fill="#9999cc" stroke="#9999cc" d="M295,-85C295,-91 289,-97 283,-97"/>
 <polyline fill="none" stroke="black" points="283,-97 245,-97 "/>
 <path fill="none" stroke="black" d="M245,-97C239,-97 233,-91 233,-85"/>
 <polyline fill="none" stroke="black" points="233,-85 233,-73 "/>
@@ -196,20 +196,20 @@
 <path fill="none" stroke="black" d="M283,-61C289,-61 295,-67 295,-73"/>
 <polyline fill="none" stroke="black" points="295,-73 295,-85 "/>
 <path fill="none" stroke="black" d="M295,-85C295,-91 289,-97 283,-97"/>
-<text text-anchor="middle" x="264" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">GLOBALS</text>
+<text text-anchor="middle" x="264" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">GLOBALS</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;GLOBALS -->
 <g id="edge16" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;GLOBALS</title>
-<path fill="none" stroke="#1a2833" d="M103.889,-189.877C133.637,-168.33 185.044,-131.453 230,-101 230.233,-100.842 230.467,-100.684 230.701,-100.526"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="231.919,-102.238 235.739,-97.1565 229.584,-98.7463 231.919,-102.238"/>
+<path fill="none" stroke="#999999" d="M103.889,-189.877C133.637,-168.33 185.044,-131.453 230,-101 230.233,-100.842 230.467,-100.684 230.701,-100.526"/>
+<polygon fill="#999999" stroke="#999999" points="231.919,-102.238 235.739,-97.1565 229.584,-98.7463 231.919,-102.238"/>
 </g>
 <!-- _SESSION -->
 <g id="node10" class="node"><title>_SESSION</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="284,-54 244,-54 232,-42 232,-30 244,-18 284,-18 296,-30 296,-42 284,-54"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M244,-54C238,-54 232,-48 232,-42"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M232,-30C232,-24 238,-18 244,-18"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M284,-18C290,-18 296,-24 296,-30"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M296,-42C296,-48 290,-54 284,-54"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="284,-54 244,-54 232,-42 232,-30 244,-18 284,-18 296,-30 296,-42 284,-54"/>
+<path fill="#9999cc" stroke="#9999cc" d="M244,-54C238,-54 232,-48 232,-42"/>
+<path fill="#9999cc" stroke="#9999cc" d="M232,-30C232,-24 238,-18 244,-18"/>
+<path fill="#9999cc" stroke="#9999cc" d="M284,-18C290,-18 296,-24 296,-30"/>
+<path fill="#9999cc" stroke="#9999cc" d="M296,-42C296,-48 290,-54 284,-54"/>
 <polyline fill="none" stroke="black" points="284,-54 244,-54 "/>
 <path fill="none" stroke="black" d="M244,-54C238,-54 232,-48 232,-42"/>
 <polyline fill="none" stroke="black" points="232,-42 232,-30 "/>
@@ -218,12 +218,12 @@
 <path fill="none" stroke="black" d="M284,-18C290,-18 296,-24 296,-30"/>
 <polyline fill="none" stroke="black" points="296,-30 296,-42 "/>
 <path fill="none" stroke="black" d="M296,-42C296,-48 290,-54 284,-54"/>
-<text text-anchor="middle" x="264" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">_SESSION</text>
+<text text-anchor="middle" x="264" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">_SESSION</text>
 </g>
 <!-- PackageX\\SuperGlobalAccess&#45;&gt;_SESSION -->
 <g id="edge18" class="edge"><title>PackageX\\SuperGlobalAccess&#45;&gt;_SESSION</title>
-<path fill="none" stroke="#1a2833" d="M95.118,-189.683C121.615,-160.124 176.767,-100.888 230,-58 230.103,-57.9173 230.206,-57.8346 230.309,-57.752"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="231.637,-59.3805 235.132,-54.0705 229.088,-56.042 231.637,-59.3805"/>
+<path fill="none" stroke="#999999" d="M95.118,-189.683C121.615,-160.124 176.767,-100.888 230,-58 230.103,-57.9173 230.206,-57.8346 230.309,-57.752"/>
+<polygon fill="#999999" stroke="#999999" points="231.637,-59.3805 235.132,-54.0705 229.088,-56.042 231.637,-59.3805"/>
 </g>
 </g>
 </svg>

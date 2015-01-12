@@ -12,11 +12,11 @@
 <text text-anchor="middle" x="198" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\DocBlockTag -->
 <g id="node1" class="node"><title>PackageX\\DocBlockTag</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="113,-247 13,-247 1,-235 1,-223 13,-211 113,-211 125,-223 125,-235 113,-247"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M13,-247C7,-247 1,-241 1,-235"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M1,-223C1,-217 7,-211 13,-211"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M113,-211C119,-211 125,-217 125,-223"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M125,-235C125,-241 119,-247 113,-247"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="113,-247 13,-247 1,-235 1,-223 13,-211 113,-211 125,-223 125,-235 113,-247"/>
+<path fill="#9999cc" stroke="#9999cc" d="M13,-247C7,-247 1,-241 1,-235"/>
+<path fill="#9999cc" stroke="#9999cc" d="M1,-223C1,-217 7,-211 13,-211"/>
+<path fill="#9999cc" stroke="#9999cc" d="M113,-211C119,-211 125,-217 125,-223"/>
+<path fill="#9999cc" stroke="#9999cc" d="M125,-235C125,-241 119,-247 113,-247"/>
 <polyline fill="none" stroke="black" points="113,-247 13,-247 "/>
 <path fill="none" stroke="black" d="M13,-247C7,-247 1,-241 1,-235"/>
 <polyline fill="none" stroke="black" points="1,-235 1,-223 "/>
@@ -25,15 +25,15 @@
 <path fill="none" stroke="black" d="M113,-211C119,-211 125,-217 125,-223"/>
 <polyline fill="none" stroke="black" points="125,-223 125,-235 "/>
 <path fill="none" stroke="black" d="M125,-235C125,-241 119,-247 113,-247"/>
-<text text-anchor="middle" x="63" y="-226.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageX\DocBlockTag</text>
+<text text-anchor="middle" x="63" y="-226.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageX\DocBlockTag</text>
 </g>
 <!-- PackageC\\Filter\\FilterInterface -->
 <g id="node2" class="node"><title>PackageC\\Filter\\FilterInterface</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="363,-441 231,-441 219,-429 219,-417 231,-405 363,-405 375,-417 375,-429 363,-441"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M231,-441C225,-441 219,-435 219,-429"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M219,-417C219,-411 225,-405 231,-405"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M363,-405C369,-405 375,-411 375,-417"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M375,-429C375,-435 369,-441 363,-441"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="363,-441 231,-441 219,-429 219,-417 231,-405 363,-405 375,-417 375,-429 363,-441"/>
+<path fill="#9999cc" stroke="#9999cc" d="M231,-441C225,-441 219,-435 219,-429"/>
+<path fill="#9999cc" stroke="#9999cc" d="M219,-417C219,-411 225,-405 231,-405"/>
+<path fill="#9999cc" stroke="#9999cc" d="M363,-405C369,-405 375,-411 375,-417"/>
+<path fill="#9999cc" stroke="#9999cc" d="M375,-429C375,-435 369,-441 363,-441"/>
 <polyline fill="none" stroke="black" points="363,-441 231,-441 "/>
 <path fill="none" stroke="black" d="M231,-441C225,-441 219,-435 219,-429"/>
 <polyline fill="none" stroke="black" points="219,-429 219,-417 "/>
@@ -42,20 +42,20 @@
 <path fill="none" stroke="black" d="M363,-405C369,-405 375,-411 375,-417"/>
 <polyline fill="none" stroke="black" points="375,-417 375,-429 "/>
 <path fill="none" stroke="black" d="M375,-429C375,-435 369,-441 363,-441"/>
-<text text-anchor="middle" x="297" y="-420.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageC\Filter\FilterInterface</text>
+<text text-anchor="middle" x="297" y="-420.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageC\Filter\FilterInterface</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageC\\Filter\\FilterInterface -->
 <g id="edge2" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageC\\Filter\\FilterInterface</title>
-<path fill="none" stroke="#1a2833" d="M71.8131,-247.198C90.0539,-282.81 135.523,-361.655 198,-401 202.705,-403.963 207.755,-406.529 212.994,-408.752"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="212.394,-410.774 218.746,-411.032 213.942,-406.869 212.394,-410.774"/>
+<path fill="none" stroke="#999999" d="M71.8131,-247.198C90.0539,-282.81 135.523,-361.655 198,-401 202.705,-403.963 207.755,-406.529 212.994,-408.752"/>
+<polygon fill="#999999" stroke="#999999" points="212.394,-410.774 218.746,-411.032 213.942,-406.869 212.394,-410.774"/>
 </g>
 <!-- DomainException -->
 <g id="node3" class="node"><title>DomainException</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="335,-398 259,-398 247,-386 247,-374 259,-362 335,-362 347,-374 347,-386 335,-398"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M259,-398C253,-398 247,-392 247,-386"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M247,-374C247,-368 253,-362 259,-362"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M335,-362C341,-362 347,-368 347,-374"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M347,-386C347,-392 341,-398 335,-398"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="335,-398 259,-398 247,-386 247,-374 259,-362 335,-362 347,-374 347,-386 335,-398"/>
+<path fill="#9999cc" stroke="#9999cc" d="M259,-398C253,-398 247,-392 247,-386"/>
+<path fill="#9999cc" stroke="#9999cc" d="M247,-374C247,-368 253,-362 259,-362"/>
+<path fill="#9999cc" stroke="#9999cc" d="M335,-362C341,-362 347,-368 347,-374"/>
+<path fill="#9999cc" stroke="#9999cc" d="M347,-386C347,-392 341,-398 335,-398"/>
 <polyline fill="none" stroke="black" points="335,-398 259,-398 "/>
 <path fill="none" stroke="black" d="M259,-398C253,-398 247,-392 247,-386"/>
 <polyline fill="none" stroke="black" points="247,-386 247,-374 "/>
@@ -64,20 +64,20 @@
 <path fill="none" stroke="black" d="M335,-362C341,-362 347,-368 347,-374"/>
 <polyline fill="none" stroke="black" points="347,-374 347,-386 "/>
 <path fill="none" stroke="black" d="M347,-386C347,-392 341,-398 335,-398"/>
-<text text-anchor="middle" x="297" y="-377.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">DomainException</text>
+<text text-anchor="middle" x="297" y="-377.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">DomainException</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;DomainException -->
 <g id="edge4" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;DomainException</title>
-<path fill="none" stroke="#1a2833" d="M76.5446,-247.203C98.6653,-275.548 145.389,-329.893 198,-358 210.909,-364.897 225.873,-369.634 240.196,-372.887"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="239.98,-374.989 246.287,-374.193 240.86,-370.882 239.98,-374.989"/>
+<path fill="none" stroke="#999999" d="M76.5446,-247.203C98.6653,-275.548 145.389,-329.893 198,-358 210.909,-364.897 225.873,-369.634 240.196,-372.887"/>
+<polygon fill="#999999" stroke="#999999" points="239.98,-374.989 246.287,-374.193 240.86,-370.882 239.98,-374.989"/>
 </g>
 <!-- PackageA\\Mapper\\Query -->
 <g id="node4" class="node"><title>PackageA\\Mapper\\Query</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="352,-355 242,-355 230,-343 230,-331 242,-319 352,-319 364,-331 364,-343 352,-355"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M242,-355C236,-355 230,-349 230,-343"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M230,-331C230,-325 236,-319 242,-319"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M352,-319C358,-319 364,-325 364,-331"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M364,-343C364,-349 358,-355 352,-355"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="352,-355 242,-355 230,-343 230,-331 242,-319 352,-319 364,-331 364,-343 352,-355"/>
+<path fill="#9999cc" stroke="#9999cc" d="M242,-355C236,-355 230,-349 230,-343"/>
+<path fill="#9999cc" stroke="#9999cc" d="M230,-331C230,-325 236,-319 242,-319"/>
+<path fill="#9999cc" stroke="#9999cc" d="M352,-319C358,-319 364,-325 364,-331"/>
+<path fill="#9999cc" stroke="#9999cc" d="M364,-343C364,-349 358,-355 352,-355"/>
 <polyline fill="none" stroke="black" points="352,-355 242,-355 "/>
 <path fill="none" stroke="black" d="M242,-355C236,-355 230,-349 230,-343"/>
 <polyline fill="none" stroke="black" points="230,-343 230,-331 "/>
@@ -86,20 +86,20 @@
 <path fill="none" stroke="black" d="M352,-319C358,-319 364,-325 364,-331"/>
 <polyline fill="none" stroke="black" points="364,-331 364,-343 "/>
 <path fill="none" stroke="black" d="M364,-343C364,-349 358,-355 352,-355"/>
-<text text-anchor="middle" x="297" y="-334.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageA\Mapper\Query</text>
+<text text-anchor="middle" x="297" y="-334.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageA\Mapper\Query</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageA\\Mapper\\Query -->
 <g id="edge6" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageA\\Mapper\\Query</title>
-<path fill="none" stroke="#1a2833" d="M85.9909,-247.219C111.805,-266.792 155.642,-297.443 198,-315 206.272,-318.429 215.165,-321.364 224.105,-323.865"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="223.642,-325.915 229.981,-325.447 224.734,-321.859 223.642,-325.915"/>
+<path fill="none" stroke="#999999" d="M85.9909,-247.219C111.805,-266.792 155.642,-297.443 198,-315 206.272,-318.429 215.165,-321.364 224.105,-323.865"/>
+<polygon fill="#999999" stroke="#999999" points="223.642,-325.915 229.981,-325.447 224.734,-321.859 223.642,-325.915"/>
 </g>
 <!-- PackageA\\Entity\\Package -->
 <g id="node5" class="node"><title>PackageA\\Entity\\Package</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="353,-312 241,-312 229,-300 229,-288 241,-276 353,-276 365,-288 365,-300 353,-312"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M241,-312C235,-312 229,-306 229,-300"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M229,-288C229,-282 235,-276 241,-276"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M353,-276C359,-276 365,-282 365,-288"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M365,-300C365,-306 359,-312 353,-312"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="353,-312 241,-312 229,-300 229,-288 241,-276 353,-276 365,-288 365,-300 353,-312"/>
+<path fill="#9999cc" stroke="#9999cc" d="M241,-312C235,-312 229,-306 229,-300"/>
+<path fill="#9999cc" stroke="#9999cc" d="M229,-288C229,-282 235,-276 241,-276"/>
+<path fill="#9999cc" stroke="#9999cc" d="M353,-276C359,-276 365,-282 365,-288"/>
+<path fill="#9999cc" stroke="#9999cc" d="M365,-300C365,-306 359,-312 353,-312"/>
 <polyline fill="none" stroke="black" points="353,-312 241,-312 "/>
 <path fill="none" stroke="black" d="M241,-312C235,-312 229,-306 229,-300"/>
 <polyline fill="none" stroke="black" points="229,-300 229,-288 "/>
@@ -108,20 +108,20 @@
 <path fill="none" stroke="black" d="M353,-276C359,-276 365,-282 365,-288"/>
 <polyline fill="none" stroke="black" points="365,-288 365,-300 "/>
 <path fill="none" stroke="black" d="M365,-300C365,-306 359,-312 353,-312"/>
-<text text-anchor="middle" x="297" y="-291.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageA\Entity\Package</text>
+<text text-anchor="middle" x="297" y="-291.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageA\Entity\Package</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageA\\Entity\\Package -->
 <g id="edge8" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageA\\Entity\\Package</title>
-<path fill="none" stroke="#1a2833" d="M115.893,-247.059C140.673,-255.206 170.689,-264.632 198,-272 206.08,-274.18 214.572,-276.309 223.045,-278.33"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="222.581,-280.378 228.903,-279.712 223.545,-276.29 222.581,-280.378"/>
+<path fill="none" stroke="#999999" d="M115.893,-247.059C140.673,-255.206 170.689,-264.632 198,-272 206.08,-274.18 214.572,-276.309 223.045,-278.33"/>
+<polygon fill="#999999" stroke="#999999" points="222.581,-280.378 228.903,-279.712 223.545,-276.29 222.581,-280.378"/>
 </g>
 <!-- PackageB\\Mapper\\CommandInterface -->
 <g id="node6" class="node"><title>PackageB\\Mapper\\CommandInterface</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="383,-269 211,-269 199,-257 199,-245 211,-233 383,-233 395,-245 395,-257 383,-269"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M211,-269C205,-269 199,-263 199,-257"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M199,-245C199,-239 205,-233 211,-233"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M383,-233C389,-233 395,-239 395,-245"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M395,-257C395,-263 389,-269 383,-269"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="383,-269 211,-269 199,-257 199,-245 211,-233 383,-233 395,-245 395,-257 383,-269"/>
+<path fill="#9999cc" stroke="#9999cc" d="M211,-269C205,-269 199,-263 199,-257"/>
+<path fill="#9999cc" stroke="#9999cc" d="M199,-245C199,-239 205,-233 211,-233"/>
+<path fill="#9999cc" stroke="#9999cc" d="M383,-233C389,-233 395,-239 395,-245"/>
+<path fill="#9999cc" stroke="#9999cc" d="M395,-257C395,-263 389,-269 383,-269"/>
 <polyline fill="none" stroke="black" points="383,-269 211,-269 "/>
 <path fill="none" stroke="black" d="M211,-269C205,-269 199,-263 199,-257"/>
 <polyline fill="none" stroke="black" points="199,-257 199,-245 "/>
@@ -130,20 +130,20 @@
 <path fill="none" stroke="black" d="M383,-233C389,-233 395,-239 395,-245"/>
 <polyline fill="none" stroke="black" points="395,-245 395,-257 "/>
 <path fill="none" stroke="black" d="M395,-257C395,-263 389,-269 383,-269"/>
-<text text-anchor="middle" x="297" y="-248.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageB\Mapper\CommandInterface</text>
+<text text-anchor="middle" x="297" y="-248.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageB\Mapper\CommandInterface</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageB\\Mapper\\CommandInterface -->
 <g id="edge10" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageB\\Mapper\\CommandInterface</title>
-<path fill="none" stroke="#1a2833" d="M125.708,-234.896C146.213,-236.823 169.576,-239.02 192.313,-241.158"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="192.221,-243.258 198.391,-241.729 192.614,-239.077 192.221,-243.258"/>
+<path fill="none" stroke="#999999" d="M125.708,-234.896C146.213,-236.823 169.576,-239.02 192.313,-241.158"/>
+<polygon fill="#999999" stroke="#999999" points="192.221,-243.258 198.391,-241.729 192.614,-239.077 192.221,-243.258"/>
 </g>
 <!-- PackageA\\Service\\Message -->
 <g id="node7" class="node"><title>PackageA\\Service\\Message</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="358,-226 236,-226 224,-214 224,-202 236,-190 358,-190 370,-202 370,-214 358,-226"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M236,-226C230,-226 224,-220 224,-214"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M224,-202C224,-196 230,-190 236,-190"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M358,-190C364,-190 370,-196 370,-202"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M370,-214C370,-220 364,-226 358,-226"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="358,-226 236,-226 224,-214 224,-202 236,-190 358,-190 370,-202 370,-214 358,-226"/>
+<path fill="#9999cc" stroke="#9999cc" d="M236,-226C230,-226 224,-220 224,-214"/>
+<path fill="#9999cc" stroke="#9999cc" d="M224,-202C224,-196 230,-190 236,-190"/>
+<path fill="#9999cc" stroke="#9999cc" d="M358,-190C364,-190 370,-196 370,-202"/>
+<path fill="#9999cc" stroke="#9999cc" d="M370,-214C370,-220 364,-226 358,-226"/>
 <polyline fill="none" stroke="black" points="358,-226 236,-226 "/>
 <path fill="none" stroke="black" d="M236,-226C230,-226 224,-220 224,-214"/>
 <polyline fill="none" stroke="black" points="224,-214 224,-202 "/>
@@ -152,20 +152,20 @@
 <path fill="none" stroke="black" d="M358,-190C364,-190 370,-196 370,-202"/>
 <polyline fill="none" stroke="black" points="370,-202 370,-214 "/>
 <path fill="none" stroke="black" d="M370,-214C370,-220 364,-226 358,-226"/>
-<text text-anchor="middle" x="297" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageA\Service\Message</text>
+<text text-anchor="middle" x="297" y="-205.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageA\Service\Message</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageA\\Service\\Message -->
 <g id="edge12" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageA\\Service\\Message</title>
-<path fill="none" stroke="#1a2833" d="M125.708,-223.372C153.766,-220.854 187.177,-217.856 217.009,-215.179"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="217.529,-217.241 223.317,-214.613 217.154,-213.057 217.529,-217.241"/>
+<path fill="none" stroke="#999999" d="M125.708,-223.372C153.766,-220.854 187.177,-217.856 217.009,-215.179"/>
+<polygon fill="#999999" stroke="#999999" points="217.529,-217.241 223.317,-214.613 217.154,-213.057 217.529,-217.241"/>
 </g>
 <!-- PackageB\\Service\\Message -->
 <g id="node8" class="node"><title>PackageB\\Service\\Message</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="358,-183 236,-183 224,-171 224,-159 236,-147 358,-147 370,-159 370,-171 358,-183"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M236,-183C230,-183 224,-177 224,-171"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M224,-159C224,-153 230,-147 236,-147"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M358,-147C364,-147 370,-153 370,-159"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M370,-171C370,-177 364,-183 358,-183"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="358,-183 236,-183 224,-171 224,-159 236,-147 358,-147 370,-159 370,-171 358,-183"/>
+<path fill="#9999cc" stroke="#9999cc" d="M236,-183C230,-183 224,-177 224,-171"/>
+<path fill="#9999cc" stroke="#9999cc" d="M224,-159C224,-153 230,-147 236,-147"/>
+<path fill="#9999cc" stroke="#9999cc" d="M358,-147C364,-147 370,-153 370,-159"/>
+<path fill="#9999cc" stroke="#9999cc" d="M370,-171C370,-177 364,-183 358,-183"/>
 <polyline fill="none" stroke="black" points="358,-183 236,-183 "/>
 <path fill="none" stroke="black" d="M236,-183C230,-183 224,-177 224,-171"/>
 <polyline fill="none" stroke="black" points="224,-171 224,-159 "/>
@@ -174,20 +174,20 @@
 <path fill="none" stroke="black" d="M358,-147C364,-147 370,-153 370,-159"/>
 <polyline fill="none" stroke="black" points="370,-159 370,-171 "/>
 <path fill="none" stroke="black" d="M370,-171C370,-177 364,-183 358,-183"/>
-<text text-anchor="middle" x="297" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageB\Service\Message</text>
+<text text-anchor="middle" x="297" y="-162.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageB\Service\Message</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageB\\Service\\Message -->
 <g id="edge14" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageB\\Service\\Message</title>
-<path fill="none" stroke="#1a2833" d="M117.547,-210.9C142.013,-203.074 171.315,-194.103 198,-187 204.253,-185.336 210.751,-183.696 217.294,-182.108"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="217.966,-184.106 223.31,-180.665 216.986,-180.022 217.966,-184.106"/>
+<path fill="none" stroke="#999999" d="M117.547,-210.9C142.013,-203.074 171.315,-194.103 198,-187 204.253,-185.336 210.751,-183.696 217.294,-182.108"/>
+<polygon fill="#999999" stroke="#999999" points="217.966,-184.106 223.31,-180.665 216.986,-180.022 217.966,-184.106"/>
 </g>
 <!-- Foo\\Bar -->
 <g id="node9" class="node"><title>Foo\\Bar</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="312,-140 282,-140 270,-128 270,-116 282,-104 312,-104 324,-116 324,-128 312,-140"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M282,-140C276,-140 270,-134 270,-128"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M270,-116C270,-110 276,-104 282,-104"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M312,-104C318,-104 324,-110 324,-116"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M324,-128C324,-134 318,-140 312,-140"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="312,-140 282,-140 270,-128 270,-116 282,-104 312,-104 324,-116 324,-128 312,-140"/>
+<path fill="#9999cc" stroke="#9999cc" d="M282,-140C276,-140 270,-134 270,-128"/>
+<path fill="#9999cc" stroke="#9999cc" d="M270,-116C270,-110 276,-104 282,-104"/>
+<path fill="#9999cc" stroke="#9999cc" d="M312,-104C318,-104 324,-110 324,-116"/>
+<path fill="#9999cc" stroke="#9999cc" d="M324,-128C324,-134 318,-140 312,-140"/>
 <polyline fill="none" stroke="black" points="312,-140 282,-140 "/>
 <path fill="none" stroke="black" d="M282,-140C276,-140 270,-134 270,-128"/>
 <polyline fill="none" stroke="black" points="270,-128 270,-116 "/>
@@ -196,20 +196,20 @@
 <path fill="none" stroke="black" d="M312,-104C318,-104 324,-110 324,-116"/>
 <polyline fill="none" stroke="black" points="324,-116 324,-128 "/>
 <path fill="none" stroke="black" d="M324,-128C324,-134 318,-140 312,-140"/>
-<text text-anchor="middle" x="297" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">Foo\Bar</text>
+<text text-anchor="middle" x="297" y="-119.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">Foo\Bar</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;Foo\\Bar -->
 <g id="edge16" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;Foo\\Bar</title>
-<path fill="none" stroke="#1a2833" d="M86.499,-210.653C112.404,-191.305 155.994,-161.281 198,-144 219.01,-135.356 243.992,-129.837 263.604,-126.488"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="264.191,-128.52 269.771,-125.476 263.51,-124.376 264.191,-128.52"/>
+<path fill="none" stroke="#999999" d="M86.499,-210.653C112.404,-191.305 155.994,-161.281 198,-144 219.01,-135.356 243.992,-129.837 263.604,-126.488"/>
+<polygon fill="#999999" stroke="#999999" points="264.191,-128.52 269.771,-125.476 263.51,-124.376 264.191,-128.52"/>
 </g>
 <!-- PackageX\\Constant -->
 <g id="node10" class="node"><title>PackageX\\Constant</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="339,-97 255,-97 243,-85 243,-73 255,-61 339,-61 351,-73 351,-85 339,-97"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M255,-97C249,-97 243,-91 243,-85"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M243,-73C243,-67 249,-61 255,-61"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M339,-61C345,-61 351,-67 351,-73"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M351,-85C351,-91 345,-97 339,-97"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="339,-97 255,-97 243,-85 243,-73 255,-61 339,-61 351,-73 351,-85 339,-97"/>
+<path fill="#9999cc" stroke="#9999cc" d="M255,-97C249,-97 243,-91 243,-85"/>
+<path fill="#9999cc" stroke="#9999cc" d="M243,-73C243,-67 249,-61 255,-61"/>
+<path fill="#9999cc" stroke="#9999cc" d="M339,-61C345,-61 351,-67 351,-73"/>
+<path fill="#9999cc" stroke="#9999cc" d="M351,-85C351,-91 345,-97 339,-97"/>
 <polyline fill="none" stroke="black" points="339,-97 255,-97 "/>
 <path fill="none" stroke="black" d="M255,-97C249,-97 243,-91 243,-85"/>
 <polyline fill="none" stroke="black" points="243,-85 243,-73 "/>
@@ -218,20 +218,20 @@
 <path fill="none" stroke="black" d="M339,-61C345,-61 351,-67 351,-73"/>
 <polyline fill="none" stroke="black" points="351,-73 351,-85 "/>
 <path fill="none" stroke="black" d="M351,-85C351,-91 345,-97 339,-97"/>
-<text text-anchor="middle" x="297" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">PackageX\Constant</text>
+<text text-anchor="middle" x="297" y="-76.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">PackageX\Constant</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;PackageX\\Constant -->
 <g id="edge18" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;PackageX\\Constant</title>
-<path fill="none" stroke="#1a2833" d="M76.5778,-210.941C98.7441,-182.82 145.529,-128.902 198,-101 209.796,-94.7275 223.297,-90.2406 236.455,-87.0318"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="237.095,-89.0396 242.47,-85.6456 236.151,-84.9469 237.095,-89.0396"/>
+<path fill="none" stroke="#999999" d="M76.5778,-210.941C98.7441,-182.82 145.529,-128.902 198,-101 209.796,-94.7275 223.297,-90.2406 236.455,-87.0318"/>
+<polygon fill="#999999" stroke="#999999" points="237.095,-89.0396 242.47,-85.6456 236.151,-84.9469 237.095,-89.0396"/>
 </g>
 <!-- Closure -->
 <g id="node11" class="node"><title>Closure</title>
-<polygon fill="#eeeeee" stroke="#eeeeee" points="312,-54 282,-54 270,-42 270,-30 282,-18 312,-18 324,-30 324,-42 312,-54"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M282,-54C276,-54 270,-48 270,-42"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M270,-30C270,-24 276,-18 282,-18"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M312,-18C318,-18 324,-24 324,-30"/>
-<path fill="#eeeeee" stroke="#eeeeee" d="M324,-42C324,-48 318,-54 312,-54"/>
+<polygon fill="#9999cc" stroke="#9999cc" points="312,-54 282,-54 270,-42 270,-30 282,-18 312,-18 324,-30 324,-42 312,-54"/>
+<path fill="#9999cc" stroke="#9999cc" d="M282,-54C276,-54 270,-48 270,-42"/>
+<path fill="#9999cc" stroke="#9999cc" d="M270,-30C270,-24 276,-18 282,-18"/>
+<path fill="#9999cc" stroke="#9999cc" d="M312,-18C318,-18 324,-24 324,-30"/>
+<path fill="#9999cc" stroke="#9999cc" d="M324,-42C324,-48 318,-54 312,-54"/>
 <polyline fill="none" stroke="black" points="312,-54 282,-54 "/>
 <path fill="none" stroke="black" d="M282,-54C276,-54 270,-48 270,-42"/>
 <polyline fill="none" stroke="black" points="270,-42 270,-30 "/>
@@ -240,12 +240,12 @@
 <path fill="none" stroke="black" d="M312,-18C318,-18 324,-24 324,-30"/>
 <polyline fill="none" stroke="black" points="324,-30 324,-42 "/>
 <path fill="none" stroke="black" d="M324,-42C324,-48 318,-54 312,-54"/>
-<text text-anchor="middle" x="297" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#314b5f">Closure</text>
+<text text-anchor="middle" x="297" y="-33.5" font-family="Times Roman,serif" font-size="10.00" fill="#000033">Closure</text>
 </g>
 <!-- PackageX\\DocBlockTag&#45;&gt;Closure -->
 <g id="edge20" class="edge"><title>PackageX\\DocBlockTag&#45;&gt;Closure</title>
-<path fill="none" stroke="#1a2833" d="M71.8423,-210.907C90.1351,-175.502 135.692,-97.1149 198,-58 217.73,-45.6139 243.511,-40.1544 263.818,-37.7701"/>
-<polygon fill="#1a2833" stroke="#1a2833" points="264.185,-39.8431 269.932,-37.1247 263.744,-35.6663 264.185,-39.8431"/>
+<path fill="none" stroke="#999999" d="M71.8423,-210.907C90.1351,-175.502 135.692,-97.1149 198,-58 217.73,-45.6139 243.511,-40.1544 263.818,-37.7701"/>
+<polygon fill="#999999" stroke="#999999" points="264.185,-39.8431 269.932,-37.1247 263.744,-35.6663 264.185,-39.8431"/>
 </g>
 </g>
 </svg>
