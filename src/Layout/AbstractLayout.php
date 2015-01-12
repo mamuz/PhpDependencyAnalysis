@@ -38,59 +38,59 @@ abstract class AbstractLayout implements LayoutInterface
     /** @var array */
     private $group = array(
         'style'     => 'rounded,filled',
-        'fontcolor' => '#7f7f7f',
+        'fontcolor' => '#000033',
         'fontsize'  => 14,
         'labeljust' => 'l',
-        'color'     => '#7f7f7f',
-        'fillcolor' => 'lightgrey',
+        'color'     => '#000033',
+        'fillcolor' => '#CCCCFF',
     );
 
     /** @var array */
     private $vertex = array(
-        'fillcolor' => '#e5e5e5',
+        'fillcolor' => '#9999CC',
         'style'     => 'filled,rounded',
         'shape'     => 'box',
-        'fontcolor' => '#666666',
+        'fontcolor' => '#000033',
         'fontsize'  => 10,
     );
 
     /** @var array */
     private $vertexUnsupported = array(
-        'fillcolor' => '#ff0000',
+        'fillcolor' => '#FF9999',
     );
 
     /** @var array */
     private $vertexNamespacedString = array(
-        'fillcolor' => '#ffff00',
+        'fillcolor' => '#FFCC66',
     );
 
     /** @var array */
     private $edge = array(
         'arrowsize' => 0.6,
-        'fontcolor' => '#666666',
+        'fontcolor' => '#999999',
         'fontsize'  => 8,
-        'color'     => '#000000',
+        'color'     => '#999999',
         'weight'    => 1.2,
     );
 
     /** @var array */
     private $edgeInvalid = array(
-        'color' => '#ff0000',
+        'color' => '#FF0066',
     );
 
     /** @var array */
     private $edgeCycle = array(
-        'color' => '#ff00ff',
+        'color' => '#CC0000',
     );
 
     /** @var array */
     private $edgeUnsupported = array(
-        'color' => '#ff0000',
+        'color' => '#FF9999',
     );
 
     /** @var array */
     private $edgeNamespacedString = array(
-        'color' => '#ffff00',
+        'color' => '#FFCC66',
     );
 
     public function __construct($label)

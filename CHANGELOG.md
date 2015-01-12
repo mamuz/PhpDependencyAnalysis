@@ -2,7 +2,7 @@
 
 ## dev-master
 
-- Change colors used in layout to 255 palette
+- Change color usage in layout to 8-bit
 - Add Cycle Hilighting feature
 - Remove edge concentration in GraphViz to improve usability with ReferenceValidator Feature
 - Add ReferenceValidator Feature
