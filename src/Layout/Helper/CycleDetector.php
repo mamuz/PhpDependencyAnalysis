@@ -142,8 +142,7 @@ class CycleDetector
         }
 
         return $this->graph->getEdges()->getEdgesMatch(
-            function ($edge) use ($allCycleEdges) {
-                /** @var Directed $edge */
+            function (Directed $edge) use ($allCycleEdges) {
                 $search = array(
                     $edge->getVertexStart()->getId(),
                     $edge->getVertexEnd()->getId()
