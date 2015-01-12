@@ -100,19 +100,17 @@ class CycleDetector
     {
         foreach ($dependencies as $dependency) {
             $edge = new Edge($this->path->last(), $dependency);
-            if (in_array($edge->toString(), $this->visitedEdges)) {
-                continue;
-            } else {
+            if (!in_array($edge->toString(), $this->visitedEdges)) {
                 $this->visitedEdges[] = $edge->toString();
-            }
-            $this->path->add($dependency);
-            if ($dependency == $this->path->first()) {
-                if ($this->path->count() > 1) {
-                    $this->cycles[] = new Cycle($this->path->toArray());
+                $this->path->add($dependency);
+                if ($dependency == $this->path->first()) {
+                    if ($this->path->count() > 1) {
+                        $this->cycles[] = new Cycle($this->path->toArray());
+                    }
+                    $this->path->clear();
+                } elseif (isset($this->dependencyMap[$dependency])) {
+                    $this->walk($this->dependencyMap[$dependency]);
                 }
-                $this->path->clear();
-            } elseif (isset($this->dependencyMap[$dependency])) {
-                $this->walk($this->dependencyMap[$dependency]);
             }
         }
     }
