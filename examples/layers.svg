@@ -154,8 +154,8 @@
 </g>
 <!-- PackageB\\Service&#45;&gt;PackageC\\Service -->
 <g id="edge10" class="edge"><title>PackageB\\Service&#45;&gt;PackageC\\Service</title>
-<path fill="none" stroke="#999999" d="M286.138,-171.908C315.285,-155.994 357.729,-132.82 388.401,-116.074"/>
-<polygon fill="#999999" stroke="#999999" points="389.726,-117.743 393.986,-113.025 387.713,-114.057 389.726,-117.743"/>
+<path fill="none" stroke="#ff0066" d="M286.138,-171.908C315.285,-155.994 357.729,-132.82 388.401,-116.074"/>
+<polygon fill="#ff0066" stroke="#ff0066" points="389.726,-117.743 393.986,-113.025 387.713,-114.057 389.726,-117.743"/>
 </g>
 <!-- PackageB\\Mapper&#45;&gt;PackageB\\Entity -->
 <g id="edge14" class="edge"><title>PackageB\\Mapper&#45;&gt;PackageB\\Entity</title>
@@ -208,8 +208,8 @@
 </g>
 <!-- PackageB\\Controller&#45;&gt;PackageB\\Mapper -->
 <g id="edge22" class="edge"><title>PackageB\\Controller&#45;&gt;PackageB\\Mapper</title>
-<path fill="none" stroke="#999999" d="M129.592,-178.761C152.036,-174.835 178.139,-170.929 202,-169 247.186,-165.346 258.72,-166.796 304,-169 325.553,-170.049 349.155,-172.126 369.87,-174.261"/>
-<polygon fill="#999999" stroke="#999999" points="369.729,-176.358 375.915,-174.894 370.166,-172.18 369.729,-176.358"/>
+<path fill="none" stroke="#ff0066" d="M129.592,-178.761C152.036,-174.835 178.139,-170.929 202,-169 247.186,-165.346 258.72,-166.796 304,-169 325.553,-170.049 349.155,-172.126 369.87,-174.261"/>
+<polygon fill="#ff0066" stroke="#ff0066" points="369.729,-176.358 375.915,-174.894 370.166,-172.18 369.729,-176.358"/>
 </g>
 <!-- PackageB\\Controller&#45;&gt;PackageB\\Entity -->
 <g id="edge24" class="edge"><title>PackageB\\Controller&#45;&gt;PackageB\\Entity</title>

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.3.1
+
+- Add ExampleValidator as ReferenceValidator
+
 ## v0.3.0
 
 - Change color usage in layout to 8-bit
