@@ -43,3 +43,9 @@ so make sure that your code is working before opening up a pull-request.
 
 Your pull-request will be under code review.
 So be sure that your code is (nearly) [SOLID and not STUPID](http://williamdurand.fr/2013/07/30/from-stupid-to-solid-code/).
+
+## Reporting Bugs
+
+Issues can be reported on the [issue tracker](https://github.com/mamuz/PhpDependencyAnalysis/issues).
+Please try and report any bugs with a minimal reproducible example,
+it will make things easier for other contributors and your problems will hopefully be resolved quickly.
