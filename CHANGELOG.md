@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## dev-master
+
+- Fix in CycleDetector
+
 ## v0.3.1
 
 - Add ExampleValidator as ReferenceValidator

@@ -64,7 +64,7 @@ class Edge
      */
     public function toString()
     {
-        return $this->from . ' -> ' . $this->to;
+        return $this->getFrom() . ' -> ' . $this->getTo();
     }
 
     /**
@@ -72,6 +72,6 @@ class Edge
      */
     public function toArray()
     {
-        return array($this->from, $this->to);
+        return array($this->getFrom(), $this->getTo());
     }
 }

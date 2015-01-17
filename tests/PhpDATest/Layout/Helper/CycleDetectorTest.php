@@ -25,6 +25,7 @@
 
 namespace PhpDATest\Layout\Helper;
 
+use Fhaculty\Graph\Graph;
 use PhpDA\Layout\Helper\CycleDetector;
 
 class CycleDetectorTest extends \PHPUnit_Framework_TestCase
@@ -32,55 +33,232 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
     /** @var CycleDetector */
     protected $fixture;
 
-    /** @var \PhpDA\Layout\Helper\DependencyMapGenerator | \Mockery\MockInterface */
-    protected $mapGenerator;
-
-    /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
+    /** @var Graph */
     protected $graph;
-
-    /** @var array */
-    protected $map = array(
-        'A' => array('B'),
-        'B' => array('C'),
-        'C' => array('D'),
-        'D' => array('A', 'E'),
-        'F' => array('C', 'A'),
-    );
 
     protected function setUp()
     {
-        $vertices = \Mockery::mock('Fhaculty\Graph\Set\Vertices');
-        $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
-        $vertex->shouldReceive('getId')->andReturn(1);
-        $vertex->shouldReceive('getVerticesEdge')->andReturn($vertices);
-        $vertices->shouldReceive('getMap')->andReturn(array($vertex));
-        $this->graph = \Mockery::mock('Fhaculty\Graph\Graph')->shouldIgnoreMissing();
-        $this->graph->shouldReceive('getVertices')->andReturn($vertices);
-        $this->graph->shouldReceive('createGraphCloneVertices')->andReturn($this->graph);
-
-        $this->mapGenerator = \Mockery::mock('PhpDA\Layout\Helper\DependencyMapGenerator');
-        $this->mapGenerator->shouldReceive('buildBy')->with($this->graph)->andReturn($this->map);
-
-        $this->fixture = new CycleDetector($this->mapGenerator);
+        $this->graph = new Graph;
+        $this->fixture = new CycleDetector;
     }
 
-    public function testFindCycles()
+    public function testDontFindCyles()
     {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexC);
+
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
-        foreach ($cycles as $cycle) {
-            $this->assertSame('A -> B -> C -> D -> A', $cycle->toString());
-        }
+        $this->assertEmpty($cycles);
+    }
+
+    public function testFindSimpleCyle()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexA);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(1, $cycles);
+        $this->assertSame('A -> B -> A', $cycles[0]->toString());
+    }
+
+    public function testFindDelayedCyle()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexC);
+        $vertexC->createEdgeTo($vertexB);
+        $vertexC->createEdgeTo($vertexD);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(1, $cycles);
+        $this->assertSame('B -> C -> B', $cycles[0]->toString());
+    }
+
+    public function testFindComplexCyle()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexA->createEdgeTo($vertexC);
+        $vertexB->createEdgeTo($vertexD);
+        $vertexB->createEdgeTo($vertexC);
+        $vertexD->createEdgeTo($vertexA);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(1, $cycles);
+        $this->assertSame('A -> B -> D -> A', $cycles[0]->toString());
+    }
+
+    public function testFindMultipleCyles()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexA);
+        $vertexC->createEdgeTo($vertexD);
+        $vertexD->createEdgeTo($vertexC);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(2, $cycles);
+        $this->assertSame('A -> B -> A', $cycles[0]->toString());
+        $this->assertSame('C -> D -> C', $cycles[1]->toString());
+    }
+
+    public function testFindMultipleComplexCyles()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+        $vertexF = $this->graph->createVertex('F');
+        $vertexG = $this->graph->createVertex('G');
+        $vertexH = $this->graph->createVertex('H');
+        $vertexI = $this->graph->createVertex('I');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexA->createEdgeTo($vertexC);
+        $vertexB->createEdgeTo($vertexC);
+        $vertexB->createEdgeTo($vertexD);
+        $vertexD->createEdgeTo($vertexA);
+        $vertexF->createEdgeTo($vertexG);
+        $vertexF->createEdgeTo($vertexH);
+        $vertexG->createEdgeTo($vertexH);
+        $vertexG->createEdgeTo($vertexI);
+        $vertexI->createEdgeTo($vertexF);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(2, $cycles);
+        $this->assertSame('A -> B -> D -> A', $cycles[0]->toString());
+        $this->assertSame('F -> G -> I -> F', $cycles[1]->toString());
+    }
+
+    /**
+     * @group only
+     */
+    public function testFindCyleInCycle()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+        $vertexE = $this->graph->createVertex('E');
+        $vertexF = $this->graph->createVertex('F');
+        $vertexG = $this->graph->createVertex('G');
+        $vertexH = $this->graph->createVertex('H');
+        $vertexI = $this->graph->createVertex('I');
+        $vertexJ = $this->graph->createVertex('J');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexC);
+        $vertexC->createEdgeTo($vertexD);
+        $vertexD->createEdgeTo($vertexE);
+        $vertexE->createEdgeTo($vertexF);
+        $vertexF->createEdgeTo($vertexB);
+
+        $vertexB->createEdgeTo($vertexG);
+        $vertexG->createEdgeTo($vertexH);
+        $vertexH->createEdgeTo($vertexI);
+        $vertexI->createEdgeTo($vertexJ);
+        $vertexJ->createEdgeTo($vertexF);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(2, $cycles);
+        $this->assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
+        $this->assertSame('B -> G -> H -> I -> J -> F -> B', $cycles[1]->toString());
+    }
+
+    public function testFindParallelCycles()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+        $vertexE = $this->graph->createVertex('E');
+        $vertexF = $this->graph->createVertex('F');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexC->createEdgeTo($vertexD);
+        $vertexC->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexE);
+        $vertexE->createEdgeTo($vertexC);
+        $vertexB->createEdgeTo($vertexF);
+        $vertexF->createEdgeTo($vertexC);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(2, $cycles);
+        $this->assertSame('B -> E -> C -> B', $cycles[0]->toString());
+        $this->assertSame('B -> F -> C -> B', $cycles[1]->toString());
+    }
+
+    public function testFindCycleOnCycle()
+    {
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+        $vertexE = $this->graph->createVertex('E');
+        $vertexF = $this->graph->createVertex('F');
+        $vertexG = $this->graph->createVertex('G');
+        $vertexH = $this->graph->createVertex('H');
+        $vertexI = $this->graph->createVertex('I');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexC);
+        $vertexC->createEdgeTo($vertexD);
+        $vertexD->createEdgeTo($vertexE);
+        $vertexE->createEdgeTo($vertexF);
+        $vertexF->createEdgeTo($vertexB);
+        $vertexD->createEdgeTo($vertexG);
+        $vertexG->createEdgeTo($vertexH);
+        $vertexH->createEdgeTo($vertexI);
+        $vertexI->createEdgeTo($vertexF);
+
+        $cycles = $this->fixture->inspect($this->graph)->getCycles();
+
+        $this->assertCount(2, $cycles);
+        $this->assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
+        $this->assertSame('B -> C -> D -> G -> H -> I -> F -> B', $cycles[1]->toString());
     }
 
     public function testFindCycledEdges()
     {
-        $expected = array('foo');
-        $edges = \Mockery::mock('Fhaculty\Graph\Set\Edges');
-        $edges->shouldReceive('getEdgesMatch')->andReturn($expected);
-        $this->graph->shouldReceive('getEdges')->andReturn($edges);
+        $vertexA = $this->graph->createVertex('A');
+        $vertexB = $this->graph->createVertex('B');
+        $vertexC = $this->graph->createVertex('C');
+        $vertexD = $this->graph->createVertex('D');
+        $vertexE = $this->graph->createVertex('E');
+
+        $vertexA->createEdgeTo($vertexB);
+        $vertexB->createEdgeTo($vertexA);
+        $vertexC->createEdgeTo($vertexE);
+        $vertexD->createEdgeTo($vertexE);
 
         $cycledEdges = $this->fixture->inspect($this->graph)->getCycledEdges();
 
-        $this->assertSame($expected, $cycledEdges);
+        $this->assertSame(2, $cycledEdges->count());
     }
 }

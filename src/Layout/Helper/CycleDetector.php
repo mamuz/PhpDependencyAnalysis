@@ -25,42 +25,22 @@
 
 namespace PhpDA\Layout\Helper;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Fhaculty\Graph\Algorithm\ConnectedComponents;
 use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Set\Edges;
 use PhpDA\Entity\Cycle;
-use PhpDA\Entity\Edge;
 
 class CycleDetector
 {
-    /** @var DependencyMapGenerator */
-    private $dependencyMapGenerator;
-
     /** @var Graph */
     private $graph;
 
     /** @var Graph[] */
     private $disconnections;
 
-    /** @var array */
-    private $dependencyMap = array();
-
     /** @var Cycle[] */
     private $cycles = array();
-
-    /** @var ArrayCollection */
-    private $path;
-
-    /** @var string[] */
-    private $visitedEdges = array();
-
-    public function __construct(DependencyMapGenerator $dependencyMapGenerator)
-    {
-        $this->dependencyMapGenerator = $dependencyMapGenerator;
-        $this->path = new ArrayCollection;
-    }
 
     /**
      * @param Graph $graph
@@ -84,35 +64,49 @@ class CycleDetector
     private function findInDisconnections()
     {
         foreach ($this->disconnections as $graph) {
-            $this->dependencyMap = $this->dependencyMapGenerator->buildBy($graph);
-            foreach ($this->dependencyMap as $rootFqn => $dependencies) {
-                $this->path->clear();
-                $this->path->add($rootFqn);
-                $this->walk($dependencies);
+            $edges = $graph->getEdges();
+            foreach ($edges as $edge) {
+                $this->walkOn($edge);
             }
         }
     }
 
     /**
-     * @param array $dependencies
+     * @param Directed $edge
+     * @param array    $path
      */
-    private function walk(array $dependencies)
+    private function walkOn(Directed $edge, array $path = array())
     {
-        foreach ($dependencies as $dependency) {
-            $edge = new Edge($this->path->last(), $dependency);
-            if (!in_array($edge->toString(), $this->visitedEdges)) {
-                $this->visitedEdges[] = $edge->toString();
-                $this->path->add($dependency);
-                if ($dependency == $this->path->first()) {
-                    if ($this->path->count() > 1) {
-                        $this->cycles[] = new Cycle($this->path->toArray());
-                    }
-                    $this->path->clear();
-                } elseif (isset($this->dependencyMap[$dependency])) {
-                    $this->walk($this->dependencyMap[$dependency]);
-                }
+        $vertexStart = $edge->getVertexStart()->getId();
+        if (in_array($vertexStart, $path)) {
+            $path[] = $vertexStart;
+            $path = array_slice($path, array_search($vertexStart, $path));
+            $this->addCycle($path);
+        } else {
+            $path[] = $vertexStart;
+            $edgesOut = $edge->getVertexEnd()->getEdgesOut();
+            foreach ($edgesOut as $edgeOut) {
+                $this->walkOn($edgeOut, $path);
             }
         }
+    }
+
+    /**
+     * @param array $path
+     */
+    private function addCycle(array $path)
+    {
+        foreach ($this->cycles as $cycle) {
+            $pathUnique = array_unique($path);
+            $cycleUnique = array_unique($cycle->toArray());
+            if (count($pathUnique) === count($cycleUnique)
+                && !array_diff($pathUnique, $cycleUnique)
+            ) {
+                return;
+            }
+        }
+
+        $this->cycles[] = new Cycle($path);
     }
 
     /**
