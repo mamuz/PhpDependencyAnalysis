@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.3.3
+
+- Fix in Factory for missing dependency
+
 ## v0.3.2
 
 - Fix in CycleDetector

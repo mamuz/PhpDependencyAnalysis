@@ -29,7 +29,6 @@ use Fhaculty\Graph\Graph;
 use PhpDA\Layout\Builder;
 use PhpDA\Layout\GraphViz;
 use PhpDA\Layout\Helper\CycleDetector;
-use PhpDA\Layout\Helper\DependencyMapGenerator;
 use PhpDA\Layout\Helper\GroupGenerator;
 use PhpDA\Parser\AnalyzerFactory;
 use PhpDA\Plugin\FactoryInterface;
@@ -62,7 +61,7 @@ abstract class AbstractFactory implements FactoryInterface
      */
     protected function createGraphBuilder()
     {
-        $cycleDetector = new CycleDetector(new DependencyMapGenerator);
+        $cycleDetector = new CycleDetector;
 
         return new Builder(new GraphViz(new Graph), new GroupGenerator, $cycleDetector);
     }
