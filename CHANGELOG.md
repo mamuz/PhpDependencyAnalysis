@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## dev-master
+## v0.3.2
 
 - Fix in CycleDetector
 
