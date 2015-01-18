@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="PhpDependencyAnalysis : Static code analysis to provide and verify a dependency graph against a defined architecture">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>PhpDependencyAnalysis</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mamuz/PhpDependencyAnalysis">View on GitHub</a>
+
+          <h1 id="project_title">PhpDependencyAnalysis</h1>
+          <h2 id="project_tagline">Static code analysis to provide and verify a dependency graph against a defined architecture</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mamuz/PhpDependencyAnalysis/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mamuz/PhpDependencyAnalysis/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>PhpDependencyAnalysis is an extendable static code analysis for object-oriented
+PHP-Projects to provide <a href="http://en.wikipedia.org/wiki/Dependency_graph"><code>dependency graphs</code></a>
+for abstract datatypes (Classes, Interfaces and Traits) based on <a href="http://php.net/manual/en/language.namespaces.php"><code>namespaces</code></a>.
+Dependencies can be aggregated to build graphs for several levels, like Package-Level or Layer-Level.
+Each dependency can be verified to your defined architecture.</p>
+
+<p>Read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction">Introduction-Chapter</a> for further informations.</p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<p><img src="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/packages.png" alt=""></p>
+
+<p>See more <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples">examples</a>.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Providing high customizing level</li>
+<li>Dependency graph creation on customized levels respectively different scopes and layers</li>
+<li>Supports Usage-Graph, Call-Graph and Inheritance-Graph</li>
+<li>Dependencies can be aggregated to a package, a module or a layer</li>
+<li>Detecting cycles and violations between layers in a tiered architecture</li>
+<li>Verifiying dependency graph against a user-defined reference architecture</li>
+<li>Printing graphs in several formats (HTML, SVG, DOT, JSON)</li>
+<li>Extandable by adding user-defined plugins for collecting and displaying dependencies</li>
+</ul>
+
+<h2>
+<a id="wiki" class="anchor" href="#wiki" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki">Wiki</a>
+</h2>
+
+<ol>
+<li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction">Introduction</a></li>
+<li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/2.-Requirements">Requirements</a></li>
+<li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration">Configuration</a></li>
+<li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples">Examples</a></li>
+<li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins">Plugins</a></li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">PhpDependencyAnalysis maintained by <a href="https://github.com/mamuz">mamuz</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
