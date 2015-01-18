@@ -53,9 +53,9 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Supports Usage-Graph, Call-Graph and Inheritance-Graph
 - Dependencies can be aggregated to a package, a module or a layer
 - Detecting cycles and violations between layers in a tiered architecture
-- Validating dependency graph by a reference architecture
+- Verifiying dependency graph against a user-defined reference architecture
 - Printing graphs in several formats (HTML, SVG, DOT, JSON)
-- Extandable by adding user-defined plugins for collecting and printing of dependencies
+- Extandable by adding user-defined plugins for collecting and displaying dependencies
 
 ## Configuration
 
