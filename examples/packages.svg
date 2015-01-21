@@ -46,8 +46,8 @@
 </g>
 <!-- PackageA&#45;&gt;PackageB -->
 <g id="edge2" class="edge"><title>PackageA&#45;&gt;PackageB</title>
-<path fill="none" stroke="#ff0000" stroke-width="2" d="M63.543,-77.479C82.8008,-79.603 107.597,-82.3379 128.198,-84.6101"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="127.898,-87.3939 136.157,-85.4879 128.512,-81.8277 127.898,-87.3939"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M63.543,-77.479C82.8008,-79.603 107.597,-82.3379 128.198,-84.6101"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="127.898,-87.3939 136.157,-85.4879 128.512,-81.8277 127.898,-87.3939"/>
 </g>
 <!-- Doctrine -->
 <g id="node3" class="node"><title>Doctrine</title>
@@ -122,13 +122,13 @@
 </g>
 <!-- PackageB&#45;&gt;PackageC -->
 <g id="edge8" class="edge"><title>PackageB&#45;&gt;PackageC</title>
-<path fill="none" stroke="#ff0000" stroke-width="2" d="M199.543,-76.7075C218.886,-69.1694 243.817,-59.4537 264.471,-51.4047"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="265.72,-53.9232 272.157,-48.4094 263.686,-48.7054 265.72,-53.9232"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M199.543,-76.7075C218.886,-69.1694 243.817,-59.4537 264.471,-51.4047"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="265.72,-53.9232 272.157,-48.4094 263.686,-48.7054 265.72,-53.9232"/>
 </g>
 <!-- PackageC&#45;&gt;PackageA -->
 <g id="edge14" class="edge"><title>PackageC&#45;&gt;PackageA</title>
-<path fill="none" stroke="#ff0000" stroke-width="2" d="M272.468,-40.4052C222.742,-47.3522 126.183,-60.8421 71.7689,-68.444"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="71.2698,-65.6865 63.7342,-69.5665 72.0447,-71.2326 71.2698,-65.6865"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M272.468,-40.4052C222.742,-47.3522 126.183,-60.8421 71.7689,-68.444"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="71.2698,-65.6865 63.7342,-69.5665 72.0447,-71.2326 71.2698,-65.6865"/>
 </g>
 </g>
 </svg>
