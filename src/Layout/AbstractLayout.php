@@ -29,10 +29,10 @@ abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
     private $graph = array(
-        'rankdir'     => 'LR',
-        'ranksep'     => 1,
-        'nodesep'     => 0.1,
-        'fontsize'    => 8,
+        'rankdir'  => 'LR',
+        'ranksep'  => 1,
+        'nodesep'  => 0.1,
+        'fontsize' => 8,
     );
 
     /** @var array */
@@ -75,12 +75,16 @@ abstract class AbstractLayout implements LayoutInterface
 
     /** @var array */
     private $edgeInvalid = array(
-        'color' => '#FF0066',
+        'color'     => '#FF0000',
+        'style'     => 'bold',
+        'arrowsize' => 0.8,
     );
 
     /** @var array */
     private $edgeCycle = array(
-        'color' => '#CC0000',
+        'color'     => '#FF0099',
+        'style'     => 'bold',
+        'arrowsize' => 0.8,
     );
 
     /** @var array */

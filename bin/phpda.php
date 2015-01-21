@@ -25,7 +25,7 @@
 
 set_time_limit(0);
 ini_set('memory_limit', -1);
-ini_set('xdebug.max_nesting_level', 2000);
+ini_set('xdebug.max_nesting_level', 4000);
 
 if (!(@include_once __DIR__ . '/../vendor/autoload.php')
     && !(@include_once __DIR__ . '/../../../autoload.php')

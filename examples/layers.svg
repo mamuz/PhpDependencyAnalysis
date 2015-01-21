@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 263)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-263 665,-263 665,5 -4,5"/>
-<text text-anchor="middle" x="330" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="330" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (v0.3.4)</text>
 <g id="graph2" class="cluster"><title>cluster_0</title>
 <polygon fill="#ccccff" stroke="#ccccff" points="20,-155 640,-155 652,-167 652,-239 640,-251 20,-251 8,-239 8,-167 20,-155"/>
 <path fill="#ccccff" stroke="#ccccff" d="M640,-155C646,-155 652,-161 652,-167"/>
@@ -154,8 +154,8 @@
 </g>
 <!-- PackageB\\Service&#45;&gt;PackageC\\Service -->
 <g id="edge10" class="edge"><title>PackageB\\Service&#45;&gt;PackageC\\Service</title>
-<path fill="none" stroke="#ff0066" d="M286.138,-171.908C315.285,-155.994 357.729,-132.82 388.401,-116.074"/>
-<polygon fill="#ff0066" stroke="#ff0066" points="389.726,-117.743 393.986,-113.025 387.713,-114.057 389.726,-117.743"/>
+<path fill="none" stroke="#ff0000" stroke-width="2" d="M286.138,-171.908C314.801,-156.258 356.324,-133.587 386.865,-116.913"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="388.306,-119.316 393.986,-113.025 385.622,-114.401 388.306,-119.316"/>
 </g>
 <!-- PackageB\\Mapper&#45;&gt;PackageB\\Entity -->
 <g id="edge14" class="edge"><title>PackageB\\Mapper&#45;&gt;PackageB\\Entity</title>
@@ -208,8 +208,8 @@
 </g>
 <!-- PackageB\\Controller&#45;&gt;PackageB\\Mapper -->
 <g id="edge22" class="edge"><title>PackageB\\Controller&#45;&gt;PackageB\\Mapper</title>
-<path fill="none" stroke="#ff0066" d="M129.592,-178.761C152.036,-174.835 178.139,-170.929 202,-169 247.186,-165.346 258.72,-166.796 304,-169 325.553,-170.049 349.155,-172.126 369.87,-174.261"/>
-<polygon fill="#ff0066" stroke="#ff0066" points="369.729,-176.358 375.915,-174.894 370.166,-172.18 369.729,-176.358"/>
+<path fill="none" stroke="#ff0000" stroke-width="2" d="M129.592,-178.761C152.036,-174.835 178.139,-170.929 202,-169 247.186,-165.346 258.72,-166.796 304,-169 324.813,-170.013 347.537,-171.984 367.726,-174.041"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="367.668,-176.85 375.915,-174.894 368.248,-171.28 367.668,-176.85"/>
 </g>
 <!-- PackageB\\Controller&#45;&gt;PackageB\\Entity -->
 <g id="edge24" class="edge"><title>PackageB\\Controller&#45;&gt;PackageB\\Entity</title>

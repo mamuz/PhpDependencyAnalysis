@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 374)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-374 701,-374 701,5 -4,5"/>
-<text text-anchor="middle" x="348" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="348" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (v0.3.4)</text>
 <g id="graph2" class="cluster"><title>cluster_0</title>
 <polygon fill="#ccccff" stroke="#ccccff" points="247,-284 395,-284 407,-296 407,-350 395,-362 247,-362 235,-350 235,-296 247,-284"/>
 <path fill="#ccccff" stroke="#ccccff" d="M395,-284C401,-284 407,-290 407,-296"/>
@@ -164,8 +164,8 @@
 </g>
 <!-- PackageC\\Filter\\FilterA&#45;&gt;PackageC\\Filter\\FilterB -->
 <g id="edge10" class="edge"><title>PackageC\\Filter\\FilterA&#45;&gt;PackageC\\Filter\\FilterB</title>
-<path fill="none" stroke="#cc0000" d="M321,-291.975C321,-277.44 321,-262.905 321,-248.37"/>
-<polygon fill="#cc0000" stroke="#cc0000" points="323.1,-248.141 321,-242.141 318.9,-248.141 323.1,-248.141"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M321,-291.975C321,-278.089 321,-264.203 321,-250.317"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="323.8,-250.141 321,-242.141 318.2,-250.141 323.8,-250.141"/>
 </g>
 <!-- PackageC\\Filter\\FilterB&#45;&gt;PackageC\\Filter\\FilterInterface -->
 <g id="edge20" class="edge"><title>PackageC\\Filter\\FilterB&#45;&gt;PackageC\\Filter\\FilterInterface</title>
@@ -191,8 +191,8 @@
 </g>
 <!-- PackageC\\Filter\\FilterB&#45;&gt;PackageC\\Filter\\FilterC -->
 <g id="edge22" class="edge"><title>PackageC\\Filter\\FilterB&#45;&gt;PackageC\\Filter\\FilterC</title>
-<path fill="none" stroke="#cc0000" d="M260.458,-219.129C240.154,-214.259 219.514,-205.075 207,-188 187.558,-161.473 190.194,-142.271 207,-114 217.955,-95.5722 236.516,-82.2776 255.516,-72.8462"/>
-<polygon fill="#cc0000" stroke="#cc0000" points="256.901,-74.5135 261.419,-70.0418 255.098,-70.7198 256.901,-74.5135"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M260.458,-219.129C240.154,-214.259 219.514,-205.075 207,-188 187.558,-161.473 190.194,-142.271 207,-114 217.671,-96.0487 235.561,-82.9686 254.043,-73.5857"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="255.421,-76.0303 261.419,-70.0418 252.995,-70.9827 255.421,-76.0303"/>
 </g>
 <!-- PackageC\\Filter\\FilterE -->
 <g id="node8" class="node"><title>PackageC\\Filter\\FilterE</title>
@@ -240,8 +240,8 @@
 </g>
 <!-- PackageC\\Filter\\FilterD&#45;&gt;PackageC\\Filter\\FilterA -->
 <g id="edge18" class="edge"><title>PackageC\\Filter\\FilterD&#45;&gt;PackageC\\Filter\\FilterA</title>
-<path fill="none" stroke="#cc0000" d="M261.419,-156.042C240.438,-165.582 219.088,-179.666 207,-200 190.194,-228.271 187.558,-247.473 207,-274 218.243,-289.341 236.045,-298.312 254.27,-303.508"/>
-<polygon fill="#cc0000" stroke="#cc0000" points="254.121,-305.64 260.458,-305.129 255.186,-301.577 254.121,-305.64"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M261.419,-156.042C240.438,-165.582 219.088,-179.666 207,-200 190.194,-228.271 187.558,-247.473 207,-274 217.852,-288.808 234.815,-297.68 252.37,-302.952"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="252.005,-305.753 260.458,-305.129 253.46,-300.345 252.005,-305.753"/>
 </g>
 <!-- PackageC\\Filter\\FilterD&#45;&gt;PackageC\\Filter\\FilterInterface -->
 <g id="edge16" class="edge"><title>PackageC\\Filter\\FilterD&#45;&gt;PackageC\\Filter\\FilterInterface</title>
@@ -255,8 +255,8 @@
 </g>
 <!-- PackageC\\Filter\\FilterC&#45;&gt;PackageC\\Filter\\FilterD -->
 <g id="edge26" class="edge"><title>PackageC\\Filter\\FilterC&#45;&gt;PackageC\\Filter\\FilterD</title>
-<path fill="none" stroke="#cc0000" d="M321,-70.1406C321,-84.6756 321,-99.2106 321,-113.746"/>
-<polygon fill="#cc0000" stroke="#cc0000" points="318.9,-113.975 321,-119.975 323.1,-113.975 318.9,-113.975"/>
+<path fill="none" stroke="#ff0099" stroke-width="2" d="M321,-70.1406C321,-84.0267 321,-97.9128 321,-111.799"/>
+<polygon fill="#ff0099" stroke="#ff0099" points="318.2,-111.975 321,-119.975 323.8,-111.975 318.2,-111.975"/>
 </g>
 </g>
 </svg>

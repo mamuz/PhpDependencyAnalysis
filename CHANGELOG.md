@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.3.4
+
+- Improve color accessabilty
+- Increase max_nesting_level for huge projects
+
 ## v0.3.3
 
 - Fix in Factory for missing dependency
