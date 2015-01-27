@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [v0.3.5] - UNRELEASED
+## v0.3.5 - UNRELEASED
 ### Changed
 - Normalize CHANGELOG.md
 - Travis configuration
@@ -10,24 +10,24 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Add .gitattributes
 
-## [v0.3.4] - 2015-01-21
+## v0.3.4 - 2015-01-21
 ### Changed
 - Improve color accessabilty
 - Increase max_nesting_level for huge projects
 
-## [v0.3.3] - 2015-01-17
+## v0.3.3 - 2015-01-17
 ### Fixed
 - Fix in Factory for missing dependency
 
-## [v0.3.2] - 2015-01-17
+## v0.3.2 - 2015-01-17
 ### Fixed
 - Fix in CycleDetector
 
-## [v0.3.1] - 2015-01-13
+## v0.3.1 - 2015-01-13
 ### Added
 - Add ExampleValidator as ReferenceValidator
 
-## [v0.3.0] - 2015-01-12
+## v0.3.0 - 2015-01-12
 ### Changed
 - Change color usage in layout to 8-bit
 
@@ -38,7 +38,7 @@ All notable changes to this project will be documented in this file.
 - Add Cycle Hilighting feature
 - Add ReferenceValidator Feature
 
-## [v0.2.1] - 2015-01-06
+## v0.2.1 - 2015-01-06
 ### Fixed
 - Fix in NodeNameFilter by return NULL instead of empty array after slicing
 - Fix for collecting dependencies of null filltered ADTs
@@ -54,7 +54,7 @@ All notable changes to this project will be documented in this file.
 - Add Location awareness to Verteces- and Edges-AttributeBag
 - Add Location entity
 
-## [v0.2.0] - 2014-11-30
+## v0.2.0 - 2014-11-30
 ### Changed
 - Regenerate examples to new graph layout
 - BC in Writer StrategyInterface
@@ -74,7 +74,7 @@ All notable changes to this project will be documented in this file.
 - Add ParserLogger
 - Add PsrLog
 
-## [v0.1.3] - 2014-11-19
+## v0.1.3 - 2014-11-19
 ### Fixed
 - Fix ignoring array keyword of method arguments in NameResolver visitor
 - Fix catching phpDocParser exceptions in NameResolver visitor
@@ -82,7 +82,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Add json writer
 
-## [v0.1.0] - 2014-11-16
+## v0.1.0 - 2014-11-16
 ### Fixed
 - Fix detecting in IocContainerAccessorCollector
 - Fix providing UsedNamespacing in ADT entity
@@ -107,7 +107,7 @@ All notable changes to this project will be documented in this file.
 - Add mode configuration to switch analysis between usage graph (default), call graph and inheritance graph
 - Add validation on opcode cache configuration for PhpDocBlocks TagCollector
 
-## [v0.0.1] - 2014-10-26
+## v0.0.1 - 2014-10-26
 
 ### Added
 - Add TagCollector for PhpDocBlocks
