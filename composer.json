@@ -20,7 +20,7 @@
     "require"          : {
         "php"                              : ">=5.3.3",
         "psr/log"                          : "1.0.*",
-        "nikic/php-parser"                 : "1.0.*",
+        "nikic/php-parser"                 : "1.1.*",
         "clue/graph"                       : "0.8.*",
         "graphp/graphviz"                  : "0.1.*",
         "phpdocumentor/reflection-docblock": "2.0.*",

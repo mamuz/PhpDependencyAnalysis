@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 144)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-144 341,-144 341,5 -4,5"/>
-<text text-anchor="middle" x="168" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (v0.3.4)</text>
+<text text-anchor="middle" x="168" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
 <!-- PackageA -->
 <g id="node1" class="node"><title>PackageA</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="51,-92 13,-92 1,-80 1,-68 13,-56 51,-56 63,-68 63,-80 51,-92"/>

@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Travis configuration
 - Optimze .gitignore
 - Change composer attribute type to project
+- Update phpParser to 1.1.*
 
 ### Added
 - Add .gitattributes
