@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Normalize CHANGELOG.md
 - Travis configuration
+- Optimze .gitignore
+
+### Added
+- Add .gitattributes
 
 ## [v0.3.4] - 2015-01-21
 ### Changed
