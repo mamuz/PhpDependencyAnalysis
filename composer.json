@@ -1,6 +1,6 @@
 {
     "name"             : "mamuz/php-dependency-analysis",
-    "type"             : "library",
+    "type"             : "project",
     "description"      : "Static code analysis to provide and verify a dependency graph against a defined architecture",
     "homepage"         : "https://github.com/mamuz/PhpDependencyAnalysis",
     "license"          : "MIT",
