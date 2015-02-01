@@ -25,61 +25,85 @@
 
 namespace PhpDA\Writer\Strategy;
 
+use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Graph;
+use Fhaculty\Graph\Vertex;
 
-/**
- * Gives you a json encoded file.
- * Every id of a vertex in the graph is a root identifier in the json file.
- * Every first level vertex (it has an edge TO the vertex) is in the collection to that identifier.
- * E.g.:
- *
- * {
- *   "firstThing" :
- *      [
- *          "dependencyOfFirstThing1",
- *          "dependencyOfFirstThing2"
- *      ]
- * }
- */
 class Json implements StrategyInterface
 {
+    /** @var array */
+    private $data;
+
     public function filter(Graph $graph)
     {
-        return json_encode($this->getVertexToVerticesArray($graph));
+        $this->extract($graph);
+
+        if ($json = json_encode($this->data)) {
+            return $json;
+        }
+
+        throw new \RuntimeException('Cannot create JSON');
     }
 
     /**
      * @param Graph $graph
-     * @return array
      */
-    protected function getVertexToVerticesArray(Graph $graph)
+    private function extract(Graph $graph)
     {
-        $vertexToVertices = array();
+        $this->data = array(
+            'edges'      => array(),
+            'vertices'   => array(),
+            'attributes' => $graph->getAttributeBag()->getAttributes(),
+        );
 
-        $vertices = $graph->getVertices();
-        foreach ($vertices as $from) {
-            /** @var \Fhaculty\Graph\Vertex $from */
-            $toVertices = $from->getVerticesEdgeTo();
-            foreach ($toVertices->getVerticesDistinct() as $to) {
-                /** @var \Fhaculty\Graph\Vertex $to */
-                $this->addArrayEdge($vertexToVertices, $from->getId(), $to->getId());
-            }
+        $edges = $graph->getEdges();
+        foreach ($edges as $edge) {
+            /** @var Directed $edge */
+            $this->addEdge($edge);
+            $this->addVertex($edge->getVertexStart());
+            $this->addVertex($edge->getVertexEnd());
         }
-
-        return $vertexToVertices;
     }
 
     /**
-     * @param $array array
-     * @param $from  string
-     * @param $to    string
+     * @param Directed $edge
      */
-    protected function addArrayEdge(&$array, $from, $to)
+    private function addEdge(Directed $edge)
     {
-        if (array_key_exists($from, $array)) {
-            $array[$from][] = $to;
-        } else {
-            $array[$from] = array($to);
+        $vertexStart = $edge->getVertexStart();
+        $vertexEnd = $edge->getVertexEnd();
+        $id = $vertexStart->getId() . '=>' . $vertexEnd->getId();
+
+        $this->data['edges'][$id] = array(
+            'from'              => $vertexStart->getId(),
+            'to'                => $vertexEnd->getId(),
+            'attributes'        => $edge->getAttributeBag()->getAttributes(),
+            'locations'         => array(),
+            'belongsToCycle'    => false,
+            'cycles'            => array(),
+            'invalidReference'  => false,
+            'referenceMessages' => array(),
+        );
+    }
+
+    /**
+     * @param Vertex $vertex
+     */
+    private function addVertex(Vertex $vertex)
+    {
+        $id = $vertex->getId();
+
+        if (!array_key_exists($id, $this->data['vertices'])) {
+            $this->data['vertices'][$id] = array(
+                'name'        => $id,
+                'attributes'  => $vertex->getAttributeBag()->getAttributes(),
+                'usesCount'   => $vertex->getEdgesOut()->count(),
+                'usedByCount' => $vertex->getEdgesIn()->count(),
+                'adtType'     => array(),
+                'metadata'    => array(),
+                'location'    => array(),
+                'group'       => $vertex->getGroup(),
+            );
         }
     }
 }

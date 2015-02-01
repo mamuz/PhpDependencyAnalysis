@@ -32,6 +32,7 @@ interface StrategyInterface
     /**
      * @param Graph $graph
      * @return string
+     * @throws \RuntimeException
      */
     public function filter(Graph $graph);
 }

@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Update phpParser to 1.1.*
 - Update graphviz to 0.2.*
 - BC: Move GraphViz interface from Builder to Writer
+- BC: Refactor and changing data model in Json Writer
 
 ### Added
 - Add .gitattributes
