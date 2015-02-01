@@ -26,7 +26,6 @@
 namespace PhpDA\Writer\Strategy;
 
 use Fhaculty\Graph\Graph;
-use PhpDA\Layout\GraphViz;
 
 /**
  * Gives you a json encoded file.
@@ -44,10 +43,8 @@ use PhpDA\Layout\GraphViz;
  */
 class Json implements StrategyInterface
 {
-    public function filter(GraphViz $graphViz)
+    public function filter(Graph $graph)
     {
-        $graph = $graphViz->getGraph();
-
         return json_encode($this->getVertexToVerticesArray($graph));
     }
 

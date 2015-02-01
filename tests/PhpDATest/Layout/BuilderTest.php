@@ -62,9 +62,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Layout\Helper\CycleDetector | \Mockery\MockInterface */
     protected $cycleDetector;
 
-    /** @var \PhpDA\Layout\GraphViz | \Mockery\MockInterface */
-    protected $graphViz;
-
     /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
     protected $graph;
 
@@ -81,14 +78,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->groupGenerator = \Mockery::mock('PhpDA\Layout\Helper\GroupGenerator');
         $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
-        $this->graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $this->graphViz->shouldReceive('getGraph')->andReturn($this->graph);
         $this->cycleDetector = \Mockery::mock('PhpDA\Layout\Helper\CycleDetector');
         $this->cycleDetector->shouldReceive('inspect')->with($this->graph)->andReturnSelf();
 
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
 
-        $this->fixture = new Builder($this->graphViz, $this->groupGenerator, $this->cycleDetector);
+        $this->fixture = new Builder($this->graph, $this->groupGenerator, $this->cycleDetector);
     }
 
     public function testDelegatingGroupLengthMutatorToGroupGenerator()
@@ -101,8 +96,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
-        $this->graphViz->shouldReceive('setGroups');
-        $this->graphViz->shouldReceive('setGroupLayout');
+        $this->graph->shouldReceive('setAttribute');
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
@@ -117,24 +111,23 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->groupGenerator->shouldReceive('getGroups')->once()->andReturn(array('baz'));
 
         $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.graph.bar', 'foo');
-        $this->graphViz->shouldReceive('setGroups')->once()->with(array('baz'));
-        $this->graphViz->shouldReceive('setGroupLayout')->once()->with(array('bar'));
+        $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.groups', array('baz'));
+        $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.groupLayout', array('bar'));
 
         $this->fixture->setLayout($layout);
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
 
-    public function testAccessGraphViz()
+    public function testAccessGraph()
     {
-        $this->assertSame($this->graphViz, $this->fixture->getGraphViz());
+        $this->assertSame($this->graph, $this->fixture->getGraph());
     }
 
     private function prepareDependencyCreation()
     {
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
-        $this->graphViz->shouldReceive('setGroups');
-        $this->graphViz->shouldReceive('setGroupLayout');
+        $this->graph->shouldReceive('setAttribute');
 
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
         $layout->shouldReceive('getGraph')->andReturn(array());

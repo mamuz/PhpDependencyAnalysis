@@ -25,7 +25,7 @@
 
 namespace PhpDA\Writer;
 
-use PhpDA\Layout\GraphViz;
+use Fhaculty\Graph\Graph;
 use PhpDA\Plugin\LoaderInterface;
 use PhpDA\Writer\Strategy\StrategyInterface;
 
@@ -34,8 +34,8 @@ class Adapter implements AdapterInterface
     /** @var LoaderInterface */
     private $strategyLoader;
 
-    /** @var GraphViz */
-    private $graphViz;
+    /** @var Graph */
+    private $graph;
 
     /** @var string */
     private $fqn;
@@ -48,9 +48,9 @@ class Adapter implements AdapterInterface
         $this->strategyLoader = $loader;
     }
 
-    public function write(GraphViz $graphViz)
+    public function write(Graph $graph)
     {
-        $this->graphViz = $graphViz;
+        $this->graph = $graph;
         return $this;
     }
 
@@ -71,7 +71,7 @@ class Adapter implements AdapterInterface
      */
     private function createContent()
     {
-        return $this->loadStrategy()->filter($this->graphViz);
+        return $this->loadStrategy()->filter($this->graph);
     }
 
     /**

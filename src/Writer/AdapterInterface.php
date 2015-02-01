@@ -25,15 +25,15 @@
 
 namespace PhpDA\Writer;
 
-use PhpDA\Layout\GraphViz;
+use Fhaculty\Graph\Graph;
 
 interface AdapterInterface
 {
     /**
-     * @param GraphViz $graphViz
+     * @param Graph $graph
      * @return AdapterInterface
      */
-    public function write(GraphViz $graphViz);
+    public function write(Graph $graph);
 
     /**
      * @param string $fqn

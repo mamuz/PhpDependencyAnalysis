@@ -115,7 +115,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $formatter = 'format';
         $target = 'destination';
         $groupLength = 12;
-        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
 
         $this->config->shouldReceive('hasVisitorOptionsForAggregation')->once()->andReturn(false);
         $this->config->shouldReceive('getFormatter')->once()->andReturn($formatter);
@@ -131,9 +131,9 @@ class UsageTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->builder->shouldReceive('create')->once()->andReturnSelf();
-        $this->builder->shouldReceive('getGraphViz')->once()->andReturn($graphViz);
+        $this->builder->shouldReceive('getGraph')->once()->andReturn($graph);
 
-        $this->writer->shouldReceive('write')->once()->with($graphViz)->andReturnSelf();
+        $this->writer->shouldReceive('write')->once()->with($graph)->andReturnSelf();
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
 

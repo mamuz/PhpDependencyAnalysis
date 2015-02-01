@@ -53,13 +53,18 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $graph->shouldReceive('getAttribute')->andReturn(null);
+
         $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $graphViz->shouldReceive('createImageHtml')->once()->andReturn('foo');
+        $graphViz->shouldReceive('createImageHtml')->once()->with($graph)->andReturn('foo');
+
+        $this->fixture->setGraphViz($graphViz);
 
         $this->assertSame(
             '<html><body>foo</body></html>',
-            $this->fixture->filter($graphViz)
+            $this->fixture->filter($graph)
         );
     }
 }

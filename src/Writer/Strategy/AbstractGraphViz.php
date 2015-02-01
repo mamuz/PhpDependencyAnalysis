@@ -26,66 +26,58 @@
 namespace PhpDA\Writer\Strategy;
 
 use Fhaculty\Graph\Graph;
+use PhpDA\Layout\GraphViz;
 
-class Html extends AbstractGraphViz
+abstract class AbstractGraphViz implements StrategyInterface
 {
-    /** @var string */
-    private $imagePlaceholder = '{GRAPH_IMAGE}';
+    /** @var GraphViz */
+    private $graphViz;
 
-    /** @var string */
-    private $template;
-
-    /**
-     * @param string $imagePlaceholder
-     * @return Html
-     */
-    public function setImagePlaceholder($imagePlaceholder)
+    public function __construct()
     {
-        $this->imagePlaceholder = $imagePlaceholder;
-        return $this;
+        $this->graphViz = new GraphViz;
     }
 
     /**
-     * @return string
+     * @param GraphViz $graphViz
      */
-    public function getImagePlaceholder()
+    public function setGraphViz(GraphViz $graphViz)
     {
-        return $this->imagePlaceholder;
+        $this->graphViz = $graphViz;
     }
 
     /**
-     * @param string $template
-     * @return Html
+     * @return GraphViz
      */
-    public function setTemplate($template)
+    public function getGraphViz()
     {
-        $this->template = $template;
-        return $this;
+        return $this->graphViz;
+    }
+
+    public function filter(Graph $graph)
+    {
+        $this->bindGroupAttributesBy($graph);
+
+        return $this->toString($graph);
     }
 
     /**
-     * @return string
+     * @param Graph $graph
      */
-    public function getTemplate()
+    private function bindGroupAttributesBy(Graph $graph)
     {
-        if (!is_string($this->template)) {
-            $this->setDefaultTemplate();
+        if ($groups = $graph->getAttribute('graphviz.groups')) {
+            $this->getGraphViz()->setGroups($groups);
         }
 
-        return $this->template;
+        if ($groupLayout = $graph->getAttribute('graphviz.groupLayout')) {
+            $this->getGraphViz()->setGroupLayout($groupLayout);
+        }
     }
 
-    private function setDefaultTemplate()
-    {
-        $this->setTemplate('<html><body>' . $this->getImagePlaceholder() . '</body></html>');
-    }
-
-    protected function toString(Graph $graph)
-    {
-        return str_replace(
-            $this->getImagePlaceholder(),
-            $this->getGraphViz()->setFormat('svg')->createImageHtml($graph),
-            $this->getTemplate()
-        );
-    }
+    /**
+     * @param Graph $graph
+     * @return string
+     */
+    abstract protected function toString(Graph $graph);
 }

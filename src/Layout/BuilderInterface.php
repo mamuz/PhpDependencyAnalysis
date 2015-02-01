@@ -25,6 +25,7 @@
 
 namespace PhpDA\Layout;
 
+use Fhaculty\Graph\Graph;
 use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Reference\ValidatorInterface;
 
@@ -58,7 +59,7 @@ interface BuilderInterface
     public function create();
 
     /**
-     * @return GraphViz
+     * @return Graph
      */
-    public function getGraphViz();
+    public function getGraph();
 }

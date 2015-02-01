@@ -39,11 +39,15 @@ class SvgTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $graph->shouldReceive('getAttribute')->andReturn(null);
+
         $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-
         $graphViz->shouldReceive('setFormat')->once()->with('svg')->andReturnSelf();
-        $graphViz->shouldReceive('createImageData')->once()->andReturn('foo');
+        $graphViz->shouldReceive('createImageData')->once()->with($graph)->andReturn('foo');
 
-        $this->assertSame('foo', $this->fixture->filter($graphViz));
+        $this->fixture->setGraphViz($graphViz);
+
+        $this->assertSame('foo', $this->fixture->filter($graph));
     }
 }

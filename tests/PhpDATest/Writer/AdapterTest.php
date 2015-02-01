@@ -57,23 +57,23 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('RuntimeException');
 
         $writerFqn = 'foo';
-        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $writer = \Mockery::mock('PhpDA\Writer\Strategy\LoaderInterface');
         $this->loader->shouldReceive('get')->with($writerFqn)->once()->andReturn($writer);
 
-        $this->fixture->write($graphViz)->with($writerFqn)->to($this->file);
+        $this->fixture->write($graph)->with($writerFqn)->to($this->file);
     }
 
     public function testWriteWithFluentInterface()
     {
         $writerFqn = 'foo';
         $content = 'bar';
-        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $writer = \Mockery::mock('PhpDA\Writer\Strategy\StrategyInterface');
-        $writer->shouldReceive('filter')->once()->with($graphViz)->andReturn($content);
+        $writer->shouldReceive('filter')->once()->with($graph)->andReturn($content);
         $this->loader->shouldReceive('get')->with($writerFqn)->once()->andReturn($writer);
 
-        $this->fixture->write($graphViz)->with($writerFqn)->to($this->file);
+        $this->fixture->write($graph)->with($writerFqn)->to($this->file);
         $this->assertSame($content, file_get_contents($this->file));
     }
 }

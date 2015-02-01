@@ -230,15 +230,15 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $this->getConfig()->getTarget());
 
         $this->getWriteAdapter()
-            ->write($this->createGraphViz())
+            ->write($this->createGraph())
             ->with($this->getConfig()->getFormatter())
             ->to($this->getConfig()->getTarget());
     }
 
     /**
-     * @return Layout\GraphViz
+     * @return \Fhaculty\Graph\Graph
      */
-    private function createGraphViz()
+    private function createGraph()
     {
         if ($this->getConfig()->hasVisitorOptionsForAggregation()) {
             $layout = new Layout\Aggregation($this->layoutLabel);
@@ -255,7 +255,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
             $graphBuilder->setReferenceValidator($referenceValidator);
         }
 
-        return $graphBuilder->create()->getGraphViz();
+        return $graphBuilder->create()->getGraph();
     }
 
     /**

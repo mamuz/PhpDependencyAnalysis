@@ -27,7 +27,6 @@ namespace PhpDA\Command\Strategy;
 
 use Fhaculty\Graph\Graph;
 use PhpDA\Layout\Builder;
-use PhpDA\Layout\GraphViz;
 use PhpDA\Layout\Helper\CycleDetector;
 use PhpDA\Layout\Helper\GroupGenerator;
 use PhpDA\Parser\AnalyzerFactory;
@@ -63,7 +62,7 @@ abstract class AbstractFactory implements FactoryInterface
     {
         $cycleDetector = new CycleDetector;
 
-        return new Builder(new GraphViz(new Graph), new GroupGenerator, $cycleDetector);
+        return new Builder(new Graph, new GroupGenerator, $cycleDetector);
     }
 
     /**

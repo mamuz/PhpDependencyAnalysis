@@ -25,13 +25,13 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use PhpDA\Layout\GraphViz;
+use Fhaculty\Graph\Graph;
 
 interface StrategyInterface
 {
     /**
-     * @param GraphViz $graphViz
+     * @param Graph $graph
      * @return string
      */
-    public function filter(GraphViz $graphViz);
+    public function filter(Graph $graph);
 }

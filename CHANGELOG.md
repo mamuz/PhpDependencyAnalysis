@@ -1,20 +1,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.3.5 - UNRELEASED
+## v0.4.0 - UNRELEASED
 ### Changed
 - Normalize CHANGELOG.md
 - Travis configuration
-- Optimze .gitignore
+- Optimize .gitignore
 - Change composer attribute type to project
 - Update phpParser to 1.1.*
+- Update graphviz to 0.2.*
+- BC: Move GraphViz interface from Builder to Writer
 
 ### Added
 - Add .gitattributes
+- Add AbstractGraphViz writer
 
 ## v0.3.4 - 2015-01-21
 ### Changed
-- Improve color accessabilty
+- Improve color accessability
 - Increase max_nesting_level for huge projects
 
 ## v0.3.3 - 2015-01-17

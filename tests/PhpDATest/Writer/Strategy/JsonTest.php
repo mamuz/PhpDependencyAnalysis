@@ -42,7 +42,6 @@ class JsonTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $vertexFrom = \Mockery::mock('Fhaculty\Graph\Vertex');
         //The following line is a workaround on mocking Fhaculty\Graph\Set\Vertices as the file has errors (e.g. usage
@@ -51,7 +50,6 @@ class JsonTest extends \PHPUnit_Framework_TestCase
         $vertexTo1 = \Mockery::mock('Fhaculty\Graph\Vertex');
         $vertexTo2 = \Mockery::mock('Fhaculty\Graph\Vertex');
 
-        $graphViz->shouldReceive('getGraph')->once()->andReturn($graph);
         $graph->shouldReceive('getVertices')->once()->andReturn(array($vertexFrom));
         $vertexFrom->shouldReceive('getVerticesEdgeTo')->once()->andReturn($vertexToSet);
         $vertexToSet->shouldReceive('getVerticesDistinct')->once()->andReturn(array($vertexTo1, $vertexTo2));
@@ -59,6 +57,6 @@ class JsonTest extends \PHPUnit_Framework_TestCase
         $vertexTo1->shouldReceive('getId')->once()->andReturn("DependencyA");
         $vertexTo2->shouldReceive('getId')->once()->andReturn("DependencyB");
 
-        $this->assertSame($this->output, $this->fixture->filter($graphViz));
+        $this->assertSame($this->output, $this->fixture->filter($graph));
     }
 }

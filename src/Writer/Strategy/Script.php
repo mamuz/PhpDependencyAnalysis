@@ -25,12 +25,12 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use PhpDA\Layout\GraphViz;
+use Fhaculty\Graph\Graph;
 
-class Script implements StrategyInterface
+class Script extends AbstractGraphViz
 {
-    public function filter(GraphViz $graphViz)
+    protected function toString(Graph $graph)
     {
-        return $graphViz->createScript();
+        return $this->getGraphViz()->createScript($graph);
     }
 }

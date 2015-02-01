@@ -27,6 +27,7 @@ namespace PhpDA\Layout;
 
 use Fhaculty\Graph\Attribute\AttributeAware;
 use Fhaculty\Graph\Edge\Directed;
+use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
 use PhpDA\Entity\Adt;
 use PhpDA\Entity\AnalysisCollection;
@@ -42,8 +43,8 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class Builder implements BuilderInterface
 {
-    /** @var GraphViz */
-    private $graphViz;
+    /** @var Graph */
+    private $graph;
 
     /** @var GroupGenerator */
     private $groupGenerator;
@@ -73,18 +74,26 @@ class Builder implements BuilderInterface
     private $referenceValidator;
 
     /**
-     * @param GraphViz       $graphViz
+     * @param Graph          $graph
      * @param GroupGenerator $generator
      * @param CycleDetector  $cycleDetector
      */
-    public function __construct(GraphViz $graphViz, GroupGenerator $generator, CycleDetector $cycleDetector)
+    public function __construct(Graph $graph, GroupGenerator $generator, CycleDetector $cycleDetector)
     {
-        $this->graphViz = $graphViz;
+        $this->graph = $graph;
         $this->groupGenerator = $generator;
         $this->cycleDetector = $cycleDetector;
 
         $this->setLayout(new NullLayout);
         $this->setAnalysisCollection(new AnalysisCollection);
+    }
+
+    /**
+     * @return Graph
+     */
+    public function getGraph()
+    {
+        return $this->graph;
     }
 
     public function setAnalysisCollection(AnalysisCollection $collection)
@@ -119,18 +128,13 @@ class Builder implements BuilderInterface
 
     }
 
-    public function getGraphViz()
-    {
-        return $this->graphViz;
-    }
-
     public function create()
     {
         $this->createDependencies();
         $this->hilightCycles();
         $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
-        $this->graphViz->setGroups($this->groupGenerator->getGroups());
-        $this->graphViz->setGroupLayout($this->layout->getGroup());
+        $this->getGraph()->setAttribute('graphviz.groups', $this->groupGenerator->getGroups());
+        $this->getGraph()->setAttribute('graphviz.groupLayout', $this->layout->getGroup());
 
         return $this;
     }
@@ -239,14 +243,6 @@ class Builder implements BuilderInterface
         $this->bindLayoutTo($vertex, $this->layout->getVertex());
 
         return $vertex;
-    }
-
-    /**
-     * @return \Fhaculty\Graph\Graph
-     */
-    private function getGraph()
-    {
-        return $this->getGraphViz()->getGraph();
     }
 
     /**

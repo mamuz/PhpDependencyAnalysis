@@ -39,9 +39,16 @@ class ScriptTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
-        $graphViz->shouldReceive('createScript')->once()->andReturn('foo');
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+        $graph->shouldReceive('getAttribute')->with('graphviz.groups')->andReturn(array('groups'));
+        $graph->shouldReceive('getAttribute')->with('graphviz.groupLayout')->andReturn(array('groupLayout'));
 
-        $this->assertSame('foo', $this->fixture->filter($graphViz));
+        $graphViz = \Mockery::mock('PhpDA\Layout\GraphViz');
+        $graphViz->shouldReceive('setGroups')->once()->with(array('groups'));
+        $graphViz->shouldReceive('setGroupLayout')->once()->with(array('groupLayout'));
+        $graphViz->shouldReceive('createScript')->once()->with($graph)->andReturn('foo');
+        $this->fixture->setGraphViz($graphViz);
+
+        $this->assertSame('foo', $this->fixture->filter($graph));
     }
 }
