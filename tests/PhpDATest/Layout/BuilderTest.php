@@ -82,6 +82,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->cycleDetector->shouldReceive('inspect')->with($this->graph)->andReturnSelf();
 
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->adt->shouldReceive('toArray')->andReturn(array());
 
         $this->fixture = new Builder($this->graph, $this->groupGenerator, $this->cycleDetector);
     }
