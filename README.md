@@ -5,6 +5,7 @@ PhpDependencyAnalysis
 [![Coverage Status](https://img.shields.io/coveralls/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/?branch=master)
 [![HHVM Status](https://img.shields.io/hhvm/mamuz/php-dependency-analysis.svg?style=flat-square)](http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis)
+
 [![Dependency Status](https://img.shields.io/versioneye/d/user/projects/5431680abeeeeed15600019e.svg?style=flat-square)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
 [![Latest Stable Version](https://img.shields.io/packagist/v/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![Total Downloads](https://img.shields.io/packagist/dt/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
