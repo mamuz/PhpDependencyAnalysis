@@ -3,15 +3,14 @@ PhpDependencyAnalysis
 
 [![Build Status](https://travis-ci.org/mamuz/PhpDependencyAnalysis.svg?branch=master)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
 [![Coverage Status](https://img.shields.io/coveralls/mamuz/PhpDependencyAnalysis.svg)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e/badge.svg)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
+[![Reference Status](https://www.versioneye.com/php/mamuz:php-dependency-analysis/reference_badge.svg)](https://www.versioneye.com/php/mamuz:php-dependency-analysis/references)
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/badges/quality-score.png?b=master&style=flat)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45/mini.png)](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45)
 [![HHVM Status](http://hhvm.h4cc.de/badge/mamuz/php-dependency-analysis.png)](http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis)
-[![Dependency Status](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e/badge.svg)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
-
 [![Latest Stable Version](https://poser.pugx.org/mamuz/php-dependency-analysis/v/stable.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
-[![Latest Unstable Version](https://poser.pugx.org/mamuz/php-dependency-analysis/v/unstable.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 [![Total Downloads](https://poser.pugx.org/mamuz/php-dependency-analysis/downloads.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
-[![Reference Status](https://www.versioneye.com/php/mamuz:php-dependency-analysis/reference_badge.svg)](https://www.versioneye.com/php/mamuz:php-dependency-analysis/references)
 [![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
