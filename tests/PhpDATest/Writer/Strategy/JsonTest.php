@@ -32,31 +32,30 @@ class JsonTest extends \PHPUnit_Framework_TestCase
     /** @var Json */
     protected $fixture;
 
-    /** @var string */
-    protected $output = '{"ClassA":["DependencyA","DependencyB"]}';
+    /** @var \PhpDA\Writer\Extractor\ExtractionInterface | \Mockery\MockInterface */
+    protected $extractor;
 
     protected function setUp()
     {
+        $this->extractor = \Mockery::mock('PhpDA\Writer\Extractor\ExtractionInterface');
         $this->fixture = new Json;
+    }
+
+    public function testMutateAndAccessExtractor()
+    {
+        $this->assertInstanceOf('PhpDA\Writer\Extractor\Graph', $this->fixture->getExtractor());
+
+        $this->fixture->setExtractor($this->extractor);
+        $this->assertSame($this->extractor, $this->fixture->getExtractor());
     }
 
     public function testFilter()
     {
+        $data = array('Foo' => 'Bar');
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');
-        $vertexFrom = \Mockery::mock('Fhaculty\Graph\Vertex');
-        //The following line is a workaround on mocking Fhaculty\Graph\Set\Vertices as the file has errors (e.g. usage
-        //of a never defined constant) which break the PhpReflection classes and thus break Mockery.
-        $vertexToSet = \Mockery::mock('vertices');
-        $vertexTo1 = \Mockery::mock('Fhaculty\Graph\Vertex');
-        $vertexTo2 = \Mockery::mock('Fhaculty\Graph\Vertex');
+        $this->extractor->shouldReceive('extract')->with($graph)->once()->andReturn($data);
+        $this->fixture->setExtractor($this->extractor);
 
-        $graph->shouldReceive('getVertices')->once()->andReturn(array($vertexFrom));
-        $vertexFrom->shouldReceive('getVerticesEdgeTo')->once()->andReturn($vertexToSet);
-        $vertexToSet->shouldReceive('getVerticesDistinct')->once()->andReturn(array($vertexTo1, $vertexTo2));
-        $vertexFrom->shouldReceive('getId')->times(2)->andReturn("ClassA");
-        $vertexTo1->shouldReceive('getId')->once()->andReturn("DependencyA");
-        $vertexTo2->shouldReceive('getId')->once()->andReturn("DependencyB");
-
-        $this->assertSame($this->output, $this->fixture->filter($graph));
+        $this->assertSame(json_encode($data), $this->fixture->filter($graph));
     }
 }
