@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Add .gitattributes
 - Add AbstractGraphViz writer
-- Add writer extractors
+- Add graph extractor
 
 ## v0.3.4 - 2015-01-21
 ### Changed

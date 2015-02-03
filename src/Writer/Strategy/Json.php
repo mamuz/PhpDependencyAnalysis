@@ -25,114 +25,43 @@
 
 namespace PhpDA\Writer\Strategy;
 
-use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Graph;
-use Fhaculty\Graph\Vertex;
-use PhpDA\Writer\Extractor\Edge as EdgeExtractor;
 use PhpDA\Writer\Extractor\ExtractionInterface;
-use PhpDA\Writer\Extractor\Vertex as VertexExtractor;
+use PhpDA\Writer\Extractor\Graph as GraphExtractor;
 
 class Json implements StrategyInterface
 {
-    /** @var array */
-    private $data;
-
     /** @var ExtractionInterface */
-    private $vertexExtractor;
-
-    /** @var ExtractionInterface */
-    private $edgeExtractor;
+    private $extractor;
 
     /**
-     * @param ExtractionInterface $edgeExtractor
-     * @return Json
+     * @param ExtractionInterface $extractor
      */
-    public function setEdgeExtractor(ExtractionInterface $edgeExtractor)
+    public function setExtractor(ExtractionInterface $extractor)
     {
-        $this->edgeExtractor = $edgeExtractor;
+        $this->extractor = $extractor;
     }
 
     /**
      * @return ExtractionInterface
      */
-    public function getEdgeExtractor()
+    public function getExtractor()
     {
-        if (!$this->edgeExtractor instanceof ExtractionInterface) {
-            $this->edgeExtractor = new EdgeExtractor;
+        if (!$this->extractor instanceof ExtractionInterface) {
+            $this->extractor = new GraphExtractor;
         }
 
-        return $this->edgeExtractor;
-    }
-
-    /**
-     * @param ExtractionInterface $vertexExtractor
-     */
-    public function setVertexExtractor(ExtractionInterface $vertexExtractor)
-    {
-        $this->vertexExtractor = $vertexExtractor;
-    }
-
-    /**
-     * @return ExtractionInterface
-     */
-    public function getVertexExtractor()
-    {
-        if (!$this->vertexExtractor instanceof ExtractionInterface) {
-            $this->vertexExtractor = new VertexExtractor;
-        }
-
-        return $this->vertexExtractor;
+        return $this->extractor;
     }
 
     public function filter(Graph $graph)
     {
-        $this->extract($graph);
+        $data = $this->getExtractor()->extract($graph);
 
-        if ($json = json_encode($this->data)) {
+        if ($json = json_encode($data)) {
             return $json;
         }
 
         throw new \RuntimeException('Cannot create JSON');
-    }
-
-    /**
-     * @param Graph $graph
-     */
-    private function extract(Graph $graph)
-    {
-        $this->data = array(
-            'edges'    => array(),
-            'vertices' => array(),
-            'groups'   => $graph->getAttribute('graphviz.groups', array()),
-            'label'    => $graph->getAttribute('graphviz.graph.label'),
-        );
-
-        $edges = $graph->getEdges();
-        foreach ($edges as $edge) {
-            /** @var Directed $edge */
-            $this->addEdge($edge);
-            $this->addVertex($edge->getVertexStart());
-            $this->addVertex($edge->getVertexEnd());
-        }
-    }
-
-    /**
-     * @param Directed $edge
-     */
-    private function addEdge(Directed $edge)
-    {
-        $id = $edge->getVertexStart()->getId() . '=>' . $edge->getVertexEnd()->getId();
-        $this->data['edges'][$id] = $this->getEdgeExtractor()->extract($edge);
-    }
-
-    /**
-     * @param Vertex $vertex
-     */
-    private function addVertex(Vertex $vertex)
-    {
-        $id = $vertex->getId();
-        if (!array_key_exists($id, $this->data['vertices'])) {
-            $this->data['vertices'][$id] = $this->getVertexExtractor()->extract($vertex);
-        }
     }
 }

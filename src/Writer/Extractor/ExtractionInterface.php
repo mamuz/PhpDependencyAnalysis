@@ -25,11 +25,13 @@
 
 namespace PhpDA\Writer\Extractor;
 
+use Fhaculty\Graph\Graph as FhacultyGraph;
+
 interface ExtractionInterface
 {
     /**
-     * @param object $object
+     * @param FhacultyGraph $graph
      * @return array
      */
-    public function extract($object);
+    public function extract(FhacultyGraph $graph);
 }
