@@ -2,9 +2,9 @@ mode: 'usage' # usage | call | inheritance
 source: './src'
 filePattern: '*.php'
 ignore: 'tests'
-formatter: 'PhpDA\Writer\Strategy\Json'
-target: './phpda.json'
-# referenceValidator: 'Full\Qualified\Namespace\To\ReferenceValidator'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: './phpda.svg'
+# referenceValidator: 'Fully\Qualified\Class\Name\To\ReferenceValidator'
 groupLength: 1
 visitor:
   - PhpDA\Parser\Visitor\TagCollector
