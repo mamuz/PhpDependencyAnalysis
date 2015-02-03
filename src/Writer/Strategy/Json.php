@@ -101,9 +101,10 @@ class Json implements StrategyInterface
     private function extract(Graph $graph)
     {
         $this->data = array(
-            'edges'      => array(),
-            'vertices'   => array(),
-            'attributes' => $graph->getAttributeBag()->getAttributes(),
+            'edges'    => array(),
+            'vertices' => array(),
+            'groups'   => $graph->getAttribute('graphviz.groups', array()),
+            'label'    => $graph->getAttribute('graphviz.graph.label'),
         );
 
         $edges = $graph->getEdges();
