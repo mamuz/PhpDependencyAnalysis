@@ -45,6 +45,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
+        $this->file->shouldReceive('__toString')->andReturn('filename');
         $this->fixture = new Location($this->file, $this->createNameMock());
     }
 
@@ -111,7 +112,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     {
         $data = $this->fixture->toArray();
 
-        $this->assertNotEmpty($data['file']);
+        $this->assertSame('filename', $data['file']);
         $this->assertSame(30, $data['startLine']);
         $this->assertSame(40, $data['endline']);
         $this->assertTrue($data['isComment']);
