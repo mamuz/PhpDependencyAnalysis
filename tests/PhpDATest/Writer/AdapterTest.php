@@ -45,7 +45,7 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
         $this->fixture = new Adapter($this->loader);
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         if (file_exists($this->file)) {
             unlink($this->file);
