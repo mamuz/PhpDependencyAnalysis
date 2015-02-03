@@ -26,6 +26,7 @@
 namespace PhpDATest\Entity;
 
 use PhpDA\Entity\Adt;
+use PhpParser\Node\Name;
 
 class AdtTest extends \PHPUnit_Framework_TestCase
 {
@@ -141,5 +142,34 @@ class AdtTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addNamespacedString($name2);
 
         $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getNamespacedStrings());
+    }
+
+    public function testArrayRepresentation()
+    {
+        $this->fixture->getMeta()->addImplementedNamespace(new Name('Foo\implementedNamespaces'));
+        $this->fixture->getMeta()->addExtendedNamespace(new Name('Foo\extendedNamespaces'));
+        $this->fixture->getMeta()->addUsedTraitNamespace(new Name('Foo\usedTraitNamespaces'));
+
+        $meta = array();
+        $meta['type'] = '';
+        $meta['implementedNamespaces'] = array('Foo\implementedNamespaces' => 'Foo\implementedNamespaces');
+        $meta['extendedNamespaces'] = array('Foo\extendedNamespaces' => 'Foo\extendedNamespaces');
+        $meta['usedTraitNamespaces'] = array('Foo\usedTraitNamespaces' => 'Foo\usedTraitNamespaces');
+        $meta['isAbstract'] = false;
+        $meta['isFinal'] = false;
+
+        $this->fixture->addUsedNamespace(new Name('Foo\usedNamespaces'));
+        $this->fixture->addUnsupportedStmt(new Name('Foo\unsupportedStmts'));
+        $this->fixture->addNamespacedString(new Name('Foo\namespacedStrings'));
+
+        $this->assertSame(
+            array(
+                'meta'              => $meta,
+                'usedNamespaces'    => array('Foo\usedNamespaces' => 'Foo\usedNamespaces'),
+                'unsupportedStmts'  => array('Foo\unsupportedStmts' => 'Foo\unsupportedStmts'),
+                'namespacedStrings' => array('Foo\namespacedStrings' => 'Foo\namespacedStrings'),
+            ),
+            $this->fixture->toArray()
+        );
     }
 }

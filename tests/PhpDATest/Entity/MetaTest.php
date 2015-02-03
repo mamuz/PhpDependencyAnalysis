@@ -150,4 +150,19 @@ class MetaTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($name2, $namespaces['2']);
         $this->assertSame($name3, $namespaces['3']);
     }
+
+    public function testArrayRepresentation()
+    {
+        $this->assertSame(
+            array(
+                'type'                  => '',
+                'implementedNamespaces' => array(),
+                'extendedNamespaces'    => array(),
+                'usedTraitNamespaces'   => array(),
+                'isAbstract'            => false,
+                'isFinal'               => false,
+            ),
+            $this->fixture->toArray()
+        );
+    }
 }

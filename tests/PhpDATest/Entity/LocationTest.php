@@ -106,4 +106,15 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $attributes = array('startLine' => 40);
         $this->fixture = new Location($this->file, $this->createNameMock($attributes));
     }
+
+    public function testArrayRepresentation()
+    {
+        $data = $this->fixture->toArray();
+
+        $this->assertNotEmpty($data['file']);
+        $this->assertSame(30, $data['startLine']);
+        $this->assertSame(40, $data['endline']);
+        $this->assertTrue($data['isComment']);
+        $this->assertSame('Foo\Bar', $data['fqcn']);
+    }
 }
