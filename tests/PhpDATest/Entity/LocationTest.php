@@ -112,7 +112,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     {
         $data = $this->fixture->toArray();
 
-        $this->assertSame('filename', $data['file']);
+        $this->assertArrayHasKey('file', $data);
         $this->assertSame(30, $data['startLine']);
         $this->assertSame(40, $data['endline']);
         $this->assertTrue($data['isComment']);
