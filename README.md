@@ -1,17 +1,16 @@
 PhpDependencyAnalysis
 =====================
 
-[![Build Status](https://travis-ci.org/mamuz/PhpDependencyAnalysis.svg?branch=master)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
-[![Coverage Status](https://img.shields.io/coveralls/mamuz/PhpDependencyAnalysis.svg)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e/badge.svg)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
-[![Reference Status](https://www.versioneye.com/php/mamuz:php-dependency-analysis/reference_badge.svg)](https://www.versioneye.com/php/mamuz:php-dependency-analysis/references)
+[![Build Status](https://img.shields.io/travis/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
+[![Coverage Status](https://img.shields.io/coveralls/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://coveralls.io/r/mamuz/PhpDependencyAnalysis?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/?branch=master)
+[![HHVM Status](https://img.shields.io/hhvm/mamuz/php-dependency-analysis.svg?style=flat-square)](http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis)
+[![Dependency Status](https://img.shields.io/versioneye/d/user/projects/5431680abeeeeed15600019e.svg?style=flat-square)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
+[![Latest Stable Version](https://img.shields.io/packagist/v/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
+[![Total Downloads](https://img.shields.io/packagist/dt/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
+[![License](https://img.shields.io/packagist/l/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/badges/quality-score.png?b=master&style=flat)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45/mini.png)](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45)
-[![HHVM Status](http://hhvm.h4cc.de/badge/mamuz/php-dependency-analysis.png)](http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis)
-[![Latest Stable Version](https://poser.pugx.org/mamuz/php-dependency-analysis/v/stable.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
-[![Total Downloads](https://poser.pugx.org/mamuz/php-dependency-analysis/downloads.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
-[![License](https://poser.pugx.org/mamuz/php-dependency-analysis/license.svg)](https://packagist.org/packages/mamuz/php-dependency-analysis)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45/big.png)](https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45)
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide [`dependency graphs`](http://en.wikipedia.org/wiki/Dependency_graph)
