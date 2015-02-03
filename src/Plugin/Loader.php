@@ -38,12 +38,12 @@ class Loader implements LoaderInterface, LoggerAwareInterface
         $this->logger = $logger;
     }
 
-    public function get($fqn, array $options = null)
+    public function get($fqcn, array $options = null)
     {
-        $this->validateClassExistence($fqn);
-        $this->validateConstructorArgumentExistence($fqn);
+        $this->validateClassExistence($fqcn);
+        $this->validateConstructorArgumentExistence($fqcn);
 
-        $plugin = new $fqn;
+        $plugin = new $fqcn;
 
         if ($plugin instanceof FactoryInterface) {
             $plugin = $plugin->create();
@@ -59,27 +59,27 @@ class Loader implements LoaderInterface, LoggerAwareInterface
     }
 
     /**
-     * @param string $fqn
+     * @param string $fqcn
      * @throws \RuntimeException
      */
-    private function validateClassExistence($fqn)
+    private function validateClassExistence($fqcn)
     {
-        if (!class_exists($fqn)) {
-            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqn));
+        if (!class_exists($fqcn)) {
+            throw new \RuntimeException(sprintf('Class for \'%s\' does not exist', $fqcn));
         }
     }
 
     /**
-     * @param string $fqn
+     * @param string $fqcn
      * @throws \RuntimeException
      */
-    private function validateConstructorArgumentExistence($fqn)
+    private function validateConstructorArgumentExistence($fqcn)
     {
-        $class = new \ReflectionClass($fqn);
+        $class = new \ReflectionClass($fqcn);
 
         if ($constructor = $class->getConstructor()) {
             if ($constructor->getNumberOfParameters()) {
-                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqn));
+                throw new \RuntimeException(sprintf('Class \'%s\' must be creatable without arguments', $fqcn));
             }
         }
     }

@@ -36,10 +36,10 @@ interface AdapterInterface
     public function write(Graph $graph);
 
     /**
-     * @param string $fqn
+     * @param string $fqcn
      * @return AdapterInterface
      */
-    public function with($fqn);
+    public function with($fqcn);
 
     /**
      * @param string $file

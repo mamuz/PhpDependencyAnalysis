@@ -109,9 +109,9 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
         $visitors = $this->filterVisitors($visitors);
         $options = $this->filterOptions($options);
 
-        foreach ($visitors as $fqn) {
-            $visitorOptions = isset($options[$fqn]) ? (array) $options[$fqn] : null;
-            $this->addVisitor($this->loadVisitorBy($fqn, $visitorOptions));
+        foreach ($visitors as $fqcn) {
+            $visitorOptions = isset($options[$fqcn]) ? (array) $options[$fqcn] : null;
+            $this->addVisitor($this->loadVisitorBy($fqcn, $visitorOptions));
         }
     }
 
@@ -121,16 +121,16 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
      */
     private function filterVisitors(array $visitors)
     {
-        $fqns = $this->getRequiredVisitors();
+        $fqcns = $this->getRequiredVisitors();
 
-        foreach ($visitors as $fqn) {
-            $fqn = trim($fqn, '\\');
-            if (!in_array($fqn, $fqns)) {
-                $fqns[] = $fqn;
+        foreach ($visitors as $fqcn) {
+            $fqcn = trim($fqcn, '\\');
+            if (!in_array($fqcn, $fqcns)) {
+                $fqcns[] = $fqcn;
             }
         }
 
-        return $fqns;
+        return $fqcns;
     }
 
     /**
@@ -152,18 +152,18 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
     }
 
     /**
-     * @param string     $fqn
+     * @param string     $fqcn
      * @param array|null $options
      * @throws \RuntimeException
      * @return NodeVisitor
      */
-    private function loadVisitorBy($fqn, array $options = null)
+    private function loadVisitorBy($fqcn, array $options = null)
     {
-        $visitor = $this->getVisitorLoader()->get($fqn, $options);
+        $visitor = $this->getVisitorLoader()->get($fqcn, $options);
 
         if (!$visitor instanceof NodeVisitor) {
             throw new \RuntimeException(
-                sprintf('Visitor \'%s\' must be an instance of PhpParser\\NodeVisitor', $fqn)
+                sprintf('Visitor \'%s\' must be an instance of PhpParser\\NodeVisitor', $fqcn)
             );
         }
 

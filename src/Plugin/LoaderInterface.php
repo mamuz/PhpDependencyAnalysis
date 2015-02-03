@@ -28,10 +28,10 @@ namespace PhpDA\Plugin;
 interface LoaderInterface
 {
     /**
-     * @param string     $fqn
+     * @param string     $fqcn
      * @param array|null $options
      * @throws \RuntimeException
      * @return object
      */
-    public function get($fqn, array $options = null);
+    public function get($fqcn, array $options = null);
 }

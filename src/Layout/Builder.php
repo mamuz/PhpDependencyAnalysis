@@ -183,6 +183,9 @@ class Builder implements BuilderInterface
     {
         $this->adtRootName = $adt->getDeclaredNamespace();
         $this->adtRootVertex = $this->createVertexBy($this->adtRootName);
+        $location = new Location($this->currentAnalysisFile, $this->adtRootName);
+        $this->addLocationTo($this->adtRootVertex, $location);
+        $this->adtRootVertex->setAttribute('adt', $adt->toArray());
 
         if ($this->isCallMode) {
             $this->createEdgesFor(
@@ -231,9 +234,6 @@ class Builder implements BuilderInterface
     private function createVertexBy(Name $name)
     {
         $vertex = $this->getGraph()->createVertex($name->toString(), true);
-
-        $location = new Location($this->currentAnalysisFile, $name);
-        $this->addLocationTo($vertex, $location);
 
         if ($groupId = $this->groupGenerator->getIdFor($name)) {
             $vertex->setGroup($groupId);

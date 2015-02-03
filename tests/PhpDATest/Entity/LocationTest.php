@@ -88,9 +88,9 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->defaultAttributes['endLine'], $this->fixture->getEndLine());
     }
 
-    public function testAccessFqn()
+    public function testAccessFqcn()
     {
-        $this->assertSame('Foo\\Bar', $this->fixture->getFqn());
+        $this->assertSame('Foo\\Bar', $this->fixture->getFqcn());
     }
 
     public function testDomainExceptionForMissingStartline()

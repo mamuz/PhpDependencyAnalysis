@@ -46,8 +46,8 @@ class DocBlockTag
      */
     function bar($adapter)
     {
-        /** @var Package $fqn */
-        $fqn = $this->getFoo();
+        /** @var Package $fqcn */
+        $fqcn = $this->getFoo();
         /** @var \PackageB\Mapper\CommandInterface $adapter */
         return $adapter->create();
     }

@@ -51,18 +51,18 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPluginWithClassConstructorWithoutParams()
     {
-        $fqn = 'PhpDATest\Plugin\Stub\Constructer';
-        $plugin = $this->fixture->get($fqn);
+        $fqcn = 'PhpDATest\Plugin\Stub\Constructer';
+        $plugin = $this->fixture->get($fqcn);
 
-        $this->assertInstanceOf($fqn, $plugin);
+        $this->assertInstanceOf($fqcn, $plugin);
     }
 
     public function testGetPluginWithoutConstructor()
     {
-        $fqn = 'PhpDATest\Plugin\Stub\WithoutConstructer';
-        $plugin = $this->fixture->get($fqn);
+        $fqcn = 'PhpDATest\Plugin\Stub\WithoutConstructer';
+        $plugin = $this->fixture->get($fqcn);
 
-        $this->assertInstanceOf($fqn, $plugin);
+        $this->assertInstanceOf($fqcn, $plugin);
     }
 
     public function testGetPluginWithFactory()

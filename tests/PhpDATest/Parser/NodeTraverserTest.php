@@ -48,8 +48,8 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
     {
         $this->visitor = \Mockery::mock('PhpParser\NodeVisitor');
         $this->visitorLoader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
-        foreach ($this->requiredVisitors as $fqn) {
-            $this->visitorLoader->shouldReceive('get')->with($fqn, null)->andReturn($this->visitor);
+        foreach ($this->requiredVisitors as $fqcn) {
+            $this->visitorLoader->shouldReceive('get')->with($fqcn, null)->andReturn($this->visitor);
         }
 
         $this->fixture = new NodeTraverser;

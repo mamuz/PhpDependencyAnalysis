@@ -23,31 +23,13 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Entity;
+namespace PhpDA\Writer\Extractor;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
-class Cycle extends ArrayCollection
+interface ExtractionInterface
 {
-    public function toString()
-    {
-        return implode(' -> ', $this->toArray());
-    }
-
     /**
-     * @return Edge[]
+     * @param object $object
+     * @return array
      */
-    public function getEdges()
-    {
-        $edges = array();
-        $paths = $this->toArray();
-
-        foreach ($paths as $index => $fqcn) {
-            if (isset($paths[$index + 1])) {
-                $edges[] = new Edge($fqcn, $paths[$index + 1]);
-            }
-        }
-
-        return $edges;
-    }
+    public function extract($object);
 }

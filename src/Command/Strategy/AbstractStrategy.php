@@ -266,11 +266,11 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     {
         $referenceValidator = null;
 
-        if ($fqn = $this->getConfig()->getReferenceValidator()) {
-            $referenceValidator = $this->pluginLoader->get($fqn);
+        if ($fqcn = $this->getConfig()->getReferenceValidator()) {
+            $referenceValidator = $this->pluginLoader->get($fqcn);
             if (!$referenceValidator instanceof ValidatorInterface) {
                 throw new \RuntimeException(
-                    sprintf('ReferenceValidator \'%s\' must implement PhpDA\\Reference\\ValidatorInterface', $fqn)
+                    sprintf('ReferenceValidator \'%s\' must implement PhpDA\\Reference\\ValidatorInterface', $fqcn)
                 );
             }
         }

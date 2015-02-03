@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Update graphviz to 0.2.*
 - BC: Move GraphViz interface from Builder to Writer
 - BC: Refactor and changing data model in Json Writer
+- BC: Rename fqcn accessor and mutator from fqn to fqcn in Location entity
 
 ### Added
 - Add .gitattributes

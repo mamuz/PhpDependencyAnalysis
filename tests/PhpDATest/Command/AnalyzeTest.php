@@ -126,8 +126,8 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
 
         $testcase = $this;
         $this->strategyLoader->shouldReceive('get')->andReturnUsing(
-            function ($fqn, $options) use ($testcase, $output, $description) {
-                $testcase->assertSame('PhpDA\\Command\\Strategy\\InheritanceFactory', $fqn);
+            function ($fqcn, $options) use ($testcase, $output, $description) {
+                $testcase->assertSame('PhpDA\\Command\\Strategy\\InheritanceFactory', $fqcn);
                 $testcase->assertSame($description, $options['layoutLabel']);
                 $testcase->assertSame($output, $options['output']);
                 /** @var Config $config */

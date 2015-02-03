@@ -159,22 +159,22 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string                        $fqn
+     * @param string                        $fqcn
      * @param Name | \Mockery\MockInterface $root
      * @param bool                          $hasEdge
      * @return Name | \Mockery\MockInterface
      */
-    private function createName($fqn, Name $root = null, $hasEdge = false)
+    private function createName($fqcn, Name $root = null, $hasEdge = false)
     {
         /** @var Name | \Mockery\MockInterface $name */
         $name = \Mockery::mock('PhpParser\Node\Name');
         $name->shouldReceive('getAttributes')->andReturn(
-            array('startLine' => 12, 'endLine' => 14, 'fqn' => 'Foo\\Bar')
+            array('startLine' => 12, 'endLine' => 14, 'fqcn' => 'Foo\\Bar')
         );
-        $name->shouldReceive('toString')->andReturn($fqn);
-        $name->parts = explode('\\', $fqn);
+        $name->shouldReceive('toString')->andReturn($fqcn);
+        $name->parts = explode('\\', $fqcn);
         $vertex = \Mockery::mock('Fhaculty\Graph\Vertex');
-        $this->graph->shouldReceive('createVertex')->once()->with($fqn, true)->andReturn($vertex);
+        $this->graph->shouldReceive('createVertex')->once()->with($fqcn, true)->andReturn($vertex);
         $this->groupGenerator->shouldReceive('getIdFor')->once()->with($name)->andReturn(5);
         $vertex->shouldReceive('setGroup')->once()->with(5);
         $vertex->shouldReceive('setAttribute');

@@ -38,7 +38,7 @@ class Adapter implements AdapterInterface
     private $graph;
 
     /** @var string */
-    private $fqn;
+    private $fqcn;
 
     /**
      * @param LoaderInterface $loader
@@ -54,9 +54,9 @@ class Adapter implements AdapterInterface
         return $this;
     }
 
-    public function with($fqn)
+    public function with($fqcn)
     {
-        $this->fqn = $fqn;
+        $this->fqcn = $fqcn;
         return $this;
     }
 
@@ -80,11 +80,11 @@ class Adapter implements AdapterInterface
      */
     private function loadStrategy()
     {
-        $strategy = $this->strategyLoader->get($this->fqn);
+        $strategy = $this->strategyLoader->get($this->fqcn);
 
         if (!$strategy instanceof StrategyInterface) {
             throw new \RuntimeException(
-                sprintf('Strategy \'%s\' must implement PhpDA\\Writer\\Strategy\\StrategyInterface', $this->fqn)
+                sprintf('Strategy \'%s\' must implement PhpDA\\Writer\\Strategy\\StrategyInterface', $this->fqcn)
             );
         }
 

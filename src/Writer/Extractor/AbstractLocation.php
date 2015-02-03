@@ -23,31 +23,21 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Entity;
+namespace PhpDA\Writer\Extractor;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
-class Cycle extends ArrayCollection
+abstract class AbstractLocation implements ExtractionInterface
 {
-    public function toString()
-    {
-        return implode(' -> ', $this->toArray());
-    }
-
     /**
-     * @return Edge[]
+     * @param \PhpDA\Entity\Location[] $locations
+     * @return array
      */
-    public function getEdges()
+    protected function extractLocations(array $locations)
     {
-        $edges = array();
-        $paths = $this->toArray();
-
-        foreach ($paths as $index => $fqcn) {
-            if (isset($paths[$index + 1])) {
-                $edges[] = new Edge($fqcn, $paths[$index + 1]);
-            }
+        $data = array();
+        foreach ($locations as $location) {
+            $data[] = $location->toArray();
         }
 
-        return $edges;
+        return $data;
     }
 }

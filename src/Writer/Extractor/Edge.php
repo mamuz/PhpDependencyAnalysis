@@ -23,31 +23,22 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Entity;
+namespace PhpDA\Writer\Extractor;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
-class Cycle extends ArrayCollection
+class Edge extends AbstractLocation
 {
-    public function toString()
-    {
-        return implode(' -> ', $this->toArray());
-    }
-
     /**
-     * @return Edge[]
+     * {@inheritdoc}
+     * @param \Fhaculty\Graph\Edge\Directed $edge
      */
-    public function getEdges()
+    public function extract($edge)
     {
-        $edges = array();
-        $paths = $this->toArray();
-
-        foreach ($paths as $index => $fqcn) {
-            if (isset($paths[$index + 1])) {
-                $edges[] = new Edge($fqcn, $paths[$index + 1]);
-            }
-        }
-
-        return $edges;
+        return array(
+            'from'                       => $edge->getVertexStart()->getId(),
+            'to'                         => $edge->getVertexEnd()->getId(),
+            'locations'                  => $this->extractLocations($edge->getAttribute('locations', array())),
+            'belongsToCycle'             => $edge->getAttribute('belongsToCycle', false),
+            'referenceValidatorMessages' => $edge->getAttribute('referenceValidatorMessages'),
+        );
     }
 }

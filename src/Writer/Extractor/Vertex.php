@@ -23,31 +23,24 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Entity;
+namespace PhpDA\Writer\Extractor;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
-class Cycle extends ArrayCollection
+class Vertex extends AbstractLocation
 {
-    public function toString()
-    {
-        return implode(' -> ', $this->toArray());
-    }
-
     /**
-     * @return Edge[]
+     * {@inheritdoc}
+     * @param \Fhaculty\Graph\Vertex $vertex
      */
-    public function getEdges()
+    public function extract($vertex)
     {
-        $edges = array();
-        $paths = $this->toArray();
+        $locations = $this->extractLocations($vertex->getAttribute('locations', array()));
 
-        foreach ($paths as $index => $fqcn) {
-            if (isset($paths[$index + 1])) {
-                $edges[] = new Edge($fqcn, $paths[$index + 1]);
-            }
-        }
-
-        return $edges;
+        return array(
+            'name'        => $vertex->getId(),
+            'usedByCount' => $vertex->getEdgesIn()->count(),
+            'adt'         => $vertex->getAttribute('adt', array()),
+            'location'    => array_shift($locations),
+            'group'       => $vertex->getGroup(),
+        );
     }
 }

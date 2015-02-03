@@ -177,4 +177,35 @@ class Adt
 
         return $namespaceStrings;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $meta = $this->getMeta()->toArray();
+        $meta['implementedNamespaces'] = $this->stringify($meta['implementedNamespaces']);
+        $meta['extendedNamespaces'] = $this->stringify($meta['extendedNamespaces']);
+        $meta['usedTraitNamespaces'] = $this->stringify($meta['usedTraitNamespaces']);
+
+        return array(
+            'meta'              => $meta,
+            'usedNamespaces'    => $this->stringify($this->getUsedNamespaces()),
+            'unsupportedStmts'  => $this->stringify($this->getUnsupportedStmts()),
+            'namespacedStrings' => $this->stringify($this->getNamespacedStrings()),
+        );
+    }
+
+    /**
+     * @param Node\Name[] $names
+     * @return array
+     */
+    private function stringify(array $names)
+    {
+        foreach ($names as $key => $name) {
+            $names[$key] = $name->toString();
+        }
+
+        return $names;
+    }
 }

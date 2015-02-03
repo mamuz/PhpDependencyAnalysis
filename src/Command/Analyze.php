@@ -148,12 +148,12 @@ class Analyze extends Command
      */
     private function loadStrategy($type, array $options = null)
     {
-        $fqn = 'PhpDA\\Command\\Strategy\\' . ucfirst($type) . 'Factory';
-        $strategy = $this->strategyLoader->get($fqn, $options);
+        $fqcn = 'PhpDA\\Command\\Strategy\\' . ucfirst($type) . 'Factory';
+        $strategy = $this->strategyLoader->get($fqcn, $options);
 
         if (!$strategy instanceof StrategyInterface) {
             throw new \RuntimeException(
-                sprintf('Strategy \'%s\' must implement PhpDA\\Command\\Strategy\\StrategyInterface', $fqn)
+                sprintf('Strategy \'%s\' must implement PhpDA\\Command\\Strategy\\StrategyInterface', $fqcn)
             );
         }
 

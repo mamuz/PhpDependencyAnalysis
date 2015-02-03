@@ -81,7 +81,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getFilePattern')->once()->andReturn($filePattern);
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
-        $this->config->shouldReceive('getReferenceValidator')->andReturn('fqn');
+        $this->config->shouldReceive('getReferenceValidator')->andReturn('fqcn');
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
@@ -126,7 +126,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
 
         $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
-        $this->loader->shouldReceive('get')->with('fqn')->andReturn($validator);
+        $this->loader->shouldReceive('get')->with('fqcn')->andReturn($validator);
 
         $this->builder->shouldReceive('setReferenceValidator')->once()->with($validator);
         $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
@@ -170,7 +170,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getTarget')->andReturn($target);
         $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
 
-        $this->loader->shouldReceive('get')->with('fqn')->andReturnNull();
+        $this->loader->shouldReceive('get')->with('fqcn')->andReturnNull();
 
         $this->builder->shouldReceive('setGroupLength')->once();
         $this->builder->shouldReceive('setAnalysisCollection')->once();

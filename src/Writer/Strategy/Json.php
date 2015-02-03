@@ -28,11 +28,61 @@ namespace PhpDA\Writer\Strategy;
 use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
+use PhpDA\Writer\Extractor\Edge as EdgeExtractor;
+use PhpDA\Writer\Extractor\ExtractionInterface;
+use PhpDA\Writer\Extractor\Vertex as VertexExtractor;
 
 class Json implements StrategyInterface
 {
     /** @var array */
     private $data;
+
+    /** @var ExtractionInterface */
+    private $vertexExtractor;
+
+    /** @var ExtractionInterface */
+    private $edgeExtractor;
+
+    /**
+     * @param ExtractionInterface $edgeExtractor
+     * @return Json
+     */
+    public function setEdgeExtractor(ExtractionInterface $edgeExtractor)
+    {
+        $this->edgeExtractor = $edgeExtractor;
+    }
+
+    /**
+     * @return ExtractionInterface
+     */
+    public function getEdgeExtractor()
+    {
+        if (!$this->edgeExtractor instanceof ExtractionInterface) {
+            $this->edgeExtractor = new EdgeExtractor;
+        }
+
+        return $this->edgeExtractor;
+    }
+
+    /**
+     * @param ExtractionInterface $vertexExtractor
+     */
+    public function setVertexExtractor(ExtractionInterface $vertexExtractor)
+    {
+        $this->vertexExtractor = $vertexExtractor;
+    }
+
+    /**
+     * @return ExtractionInterface
+     */
+    public function getVertexExtractor()
+    {
+        if (!$this->vertexExtractor instanceof ExtractionInterface) {
+            $this->vertexExtractor = new VertexExtractor;
+        }
+
+        return $this->vertexExtractor;
+    }
 
     public function filter(Graph $graph)
     {
@@ -70,20 +120,8 @@ class Json implements StrategyInterface
      */
     private function addEdge(Directed $edge)
     {
-        $vertexStart = $edge->getVertexStart();
-        $vertexEnd = $edge->getVertexEnd();
-        $id = $vertexStart->getId() . '=>' . $vertexEnd->getId();
-
-        $this->data['edges'][$id] = array(
-            'from'              => $vertexStart->getId(),
-            'to'                => $vertexEnd->getId(),
-            'attributes'        => $edge->getAttributeBag()->getAttributes(),
-            'locations'         => array(),
-            'belongsToCycle'    => false,
-            'cycles'            => array(),
-            'invalidReference'  => false,
-            'referenceMessages' => array(),
-        );
+        $id = $edge->getVertexStart()->getId() . '=>' . $edge->getVertexEnd()->getId();
+        $this->data['edges'][$id] = $this->getEdgeExtractor()->extract($edge);
     }
 
     /**
@@ -92,18 +130,8 @@ class Json implements StrategyInterface
     private function addVertex(Vertex $vertex)
     {
         $id = $vertex->getId();
-
         if (!array_key_exists($id, $this->data['vertices'])) {
-            $this->data['vertices'][$id] = array(
-                'name'        => $id,
-                'attributes'  => $vertex->getAttributeBag()->getAttributes(),
-                'usesCount'   => $vertex->getEdgesOut()->count(),
-                'usedByCount' => $vertex->getEdgesIn()->count(),
-                'adtType'     => array(),
-                'metadata'    => array(),
-                'location'    => array(),
-                'group'       => $vertex->getGroup(),
-            );
+            $this->data['vertices'][$id] = $this->getVertexExtractor()->extract($vertex);
         }
     }
 }

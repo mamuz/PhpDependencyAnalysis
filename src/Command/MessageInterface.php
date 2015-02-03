@@ -45,7 +45,7 @@ interface MessageInterface
 
     const OPTION_IGNORE = 'Exclude directories from source for analysis.';
 
-    const OPTION_FORMATTER = 'Formatter as FQN for creating dependency graph.';
+    const OPTION_FORMATTER = 'Formatter as FQCN for creating dependency graph.';
 
     const OPTION_TARGET = 'Filepath for writing created dependency graph.';
 
