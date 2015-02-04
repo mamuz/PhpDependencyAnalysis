@@ -65,6 +65,7 @@ class GraphTest extends \PHPUnit_Framework_TestCase
                     'group'       => 'group',
                 ),
             ),
+            'cycles'   => array('cycle'),
             'groups'   => array('groups'),
             'label'    => 'label',
         );
@@ -96,10 +97,14 @@ class GraphTest extends \PHPUnit_Framework_TestCase
         $edge->shouldReceive('getAttribute')->with('belongsToCycle', false)->andReturn(true);
         $edge->shouldReceive('getAttribute')->with('referenceValidatorMessages')->andReturn(array('referenceMessages'));
 
+        $cycle = \Mockery::mock('PhpDA\Entity\Cycle');
+        $cycle->shouldReceive('toArray')->andReturn('cycle');
+
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');
 
         $graph->shouldReceive('getAttribute')->with('graphviz.groups', array())->andReturn($expected['groups']);
         $graph->shouldReceive('getAttribute')->with('graphviz.graph.label')->andReturn($expected['label']);
+        $graph->shouldReceive('getAttribute')->with('cycles', array())->andReturn(array($cycle));
 
         $graph->shouldReceive('getEdges')->once()->andReturn(array($edge));
 

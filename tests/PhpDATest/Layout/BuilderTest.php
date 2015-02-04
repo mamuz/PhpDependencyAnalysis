@@ -80,6 +80,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
         $this->cycleDetector = \Mockery::mock('PhpDA\Layout\Helper\CycleDetector');
         $this->cycleDetector->shouldReceive('inspect')->with($this->graph)->andReturnSelf();
+        $this->cycleDetector->shouldReceive('getCycles')->andReturn(array());
+        $this->graph->shouldReceive('setAttribute')->with('cycles', array());
 
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->adt->shouldReceive('toArray')->andReturn(array());

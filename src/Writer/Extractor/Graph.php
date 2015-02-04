@@ -39,6 +39,7 @@ class Graph implements ExtractionInterface
         $this->data = array(
             'edges'    => array(),
             'vertices' => array(),
+            'cycles'   => $this->extractEntities($graph->getAttribute('cycles', array())),
             'groups'   => $graph->getAttribute('graphviz.groups', array()),
             'label'    => $graph->getAttribute('graphviz.graph.label'),
         );
@@ -83,7 +84,7 @@ class Graph implements ExtractionInterface
         return array(
             'from'                       => $edge->getVertexStart()->getId(),
             'to'                         => $edge->getVertexEnd()->getId(),
-            'locations'                  => $this->extractLocations($edge->getAttribute('locations', array())),
+            'locations'                  => $this->extractEntities($edge->getAttribute('locations', array())),
             'belongsToCycle'             => $edge->getAttribute('belongsToCycle', false),
             'referenceValidatorMessages' => $edge->getAttribute('referenceValidatorMessages'),
         );
@@ -95,7 +96,7 @@ class Graph implements ExtractionInterface
      */
     private function extractVertex(Vertex $vertex)
     {
-        $locations = $this->extractLocations($vertex->getAttribute('locations', array()));
+        $locations = $this->extractEntities($vertex->getAttribute('locations', array()));
 
         return array(
             'name'        => $vertex->getId(),
@@ -107,14 +108,14 @@ class Graph implements ExtractionInterface
     }
 
     /**
-     * @param \PhpDA\Entity\Location[] $locations
+     * @param \PhpDA\Entity\Location[] | \PhpDA\Entity\Cycle[] $entities
      * @return array
      */
-    private function extractLocations(array $locations)
+    private function extractEntities(array $entities)
     {
         $data = array();
-        foreach ($locations as $location) {
-            $data[] = $location->toArray();
+        foreach ($entities as $entity) {
+            $data[] = $entity->toArray();
         }
 
         return $data;

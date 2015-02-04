@@ -131,7 +131,7 @@ class Builder implements BuilderInterface
     public function create()
     {
         $this->createDependencies();
-        $this->hilightCycles();
+        $this->detectCycles();
         $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
         $this->getGraph()->setAttribute('graphviz.groups', $this->groupGenerator->getGroups());
         $this->getGraph()->setAttribute('graphviz.groupLayout', $this->layout->getGroup());
@@ -163,7 +163,7 @@ class Builder implements BuilderInterface
         }
     }
 
-    private function hilightCycles()
+    private function detectCycles()
     {
         $cycledEdges = $this->cycleDetector->inspect($this->getGraph())->getCycledEdges();
 
@@ -174,6 +174,8 @@ class Builder implements BuilderInterface
                 $this->bindLayoutTo($edge, $this->layout->getEdgeCycle());
             }
         }
+
+        $this->getGraph()->setAttribute('cycles', $this->cycleDetector->getCycles());
     }
 
     /**
