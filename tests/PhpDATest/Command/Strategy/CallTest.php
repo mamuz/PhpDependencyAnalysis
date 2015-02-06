@@ -67,12 +67,19 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface')->shouldIgnoreMissing();
         $this->config = \Mockery::mock('PhpDA\Command\Config');
 
+        $logger = \Mockery::mock('PhpDA\Parser\Logger');
+        $logger->shouldReceive('getEntries')->andReturn(array('logger'));
+        $logger->shouldReceive('isEmpty')->andReturn(false);
+        $logger->shouldReceive('toString')->andReturn('logstring');
+
         $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
         $formatter->shouldIgnoreMissing();
 
         $this->output->shouldReceive('getFormatter')->andReturn($formatter);
         $this->output->shouldReceive('writeln');
         $this->analyzer->shouldReceive('getAnalysisCollection')->andReturn($this->collection);
+        $this->analyzer->shouldReceive('getLogger')->andReturn($logger);
+        $this->builder->shouldReceive('setLogEntries')->with(array('logger'));
 
         $filePattern = '*.php';
         $source = './src';
@@ -199,11 +206,6 @@ class CallTest extends \PHPUnit_Framework_TestCase
         );
         $traverser->shouldReceive('bindVisitors')->once()->with($visitor, $visitorOptions);
 
-        $logger = \Mockery::mock('PhpDA\Parser\Logger');
-        $logger->shouldReceive('isEmpty')->andReturn(false);
-        $logger->shouldReceive('toString')->andReturn('logstring');
-
         $this->analyzer->shouldReceive('getNodeTraverser')->once()->andReturn($traverser);
-        $this->analyzer->shouldReceive('getLogger')->andReturn($logger);
     }
 }

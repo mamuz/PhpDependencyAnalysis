@@ -39,7 +39,7 @@ use PhpParser\Node\Name;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ * @SuppressWarnings("PMD")
  */
 class Builder implements BuilderInterface
 {
@@ -48,6 +48,9 @@ class Builder implements BuilderInterface
 
     /** @var GroupGenerator */
     private $groupGenerator;
+
+    /** @var array */
+    private $logEntries = array();
 
     /** @var CycleDetector */
     private $cycleDetector;
@@ -96,6 +99,11 @@ class Builder implements BuilderInterface
         return $this->graph;
     }
 
+    public function setLogEntries(array $entries)
+    {
+        $this->logEntries = $entries;
+    }
+
     public function setAnalysisCollection(AnalysisCollection $collection)
     {
         $this->analysisCollection = $collection;
@@ -135,6 +143,7 @@ class Builder implements BuilderInterface
         $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
         $this->getGraph()->setAttribute('graphviz.groups', $this->groupGenerator->getGroups());
         $this->getGraph()->setAttribute('graphviz.groupLayout', $this->layout->getGroup());
+        $this->getGraph()->setAttribute('logEntries', $this->logEntries);
 
         return $this;
     }

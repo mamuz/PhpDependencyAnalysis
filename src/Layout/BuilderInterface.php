@@ -34,6 +34,11 @@ interface BuilderInterface
     public function setCallMode();
 
     /**
+     * @param array $entries
+     */
+    public function setLogEntries(array $entries);
+
+    /**
      * @param int $groupLength
      */
     public function setGroupLength($groupLength);

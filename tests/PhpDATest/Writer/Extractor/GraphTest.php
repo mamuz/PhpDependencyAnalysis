@@ -57,7 +57,7 @@ class GraphTest extends \PHPUnit_Framework_TestCase
                     'location'    => 'location',
                     'group'       => 'group',
                 ),
-                'end' => array(
+                'end'   => array(
                     'name'        => 'end',
                     'usedByCount' => 2,
                     'adt'         => array('adt'),
@@ -67,6 +67,7 @@ class GraphTest extends \PHPUnit_Framework_TestCase
             ),
             'cycles'   => array('cycle'),
             'groups'   => array('groups'),
+            'log'      => array('logentries'),
             'label'    => 'label',
         );
 
@@ -105,6 +106,7 @@ class GraphTest extends \PHPUnit_Framework_TestCase
         $graph->shouldReceive('getAttribute')->with('graphviz.groups', array())->andReturn($expected['groups']);
         $graph->shouldReceive('getAttribute')->with('graphviz.graph.label')->andReturn($expected['label']);
         $graph->shouldReceive('getAttribute')->with('cycles', array())->andReturn(array($cycle));
+        $graph->shouldReceive('getAttribute')->with('logEntries', array())->andReturn(array('logentries'));
 
         $graph->shouldReceive('getEdges')->once()->andReturn(array($edge));
 

@@ -35,6 +35,9 @@ use PhpDA\Plugin\Loader;
 use PhpDA\Writer\Adapter;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * @SuppressWarnings("PMD.CouplingBetweenObjects")
+ */
 abstract class AbstractFactory implements FactoryInterface
 {
     /**

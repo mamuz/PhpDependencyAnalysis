@@ -41,6 +41,7 @@ class Graph implements ExtractionInterface
             'vertices' => array(),
             'cycles'   => $this->extractEntities($graph->getAttribute('cycles', array())),
             'groups'   => $graph->getAttribute('graphviz.groups', array()),
+            'log'      => $graph->getAttribute('logEntries', array()),
             'label'    => $graph->getAttribute('graphviz.graph.label'),
         );
 

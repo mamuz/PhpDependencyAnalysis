@@ -247,6 +247,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         $graphBuilder = $this->getGraphBuilder();
+        $graphBuilder->setLogEntries($this->getAnalyzer()->getLogger()->getEntries());
         $graphBuilder->setLayout($layout);
         $graphBuilder->setGroupLength($this->getConfig()->getGroupLength());
         $graphBuilder->setAnalysisCollection($this->getAnalyzer()->getAnalysisCollection());

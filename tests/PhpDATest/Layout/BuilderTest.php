@@ -104,7 +104,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->fixture, $this->fixture->create());
     }
 
-    public function testDelegatingGraphLayoutGeneratedGroups()
+    public function testDelegatingLogEntriesAndGraphLayoutGeneratedGroups()
     {
         $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $layout = \Mockery::mock('PhpDA\Layout\LayoutInterface');
@@ -116,8 +116,10 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.graph.bar', 'foo');
         $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.groups', array('baz'));
         $this->graph->shouldReceive('setAttribute')->once()->with('graphviz.groupLayout', array('bar'));
+        $this->graph->shouldReceive('setAttribute')->once()->with('logEntries', array('baz'));
 
         $this->fixture->setLayout($layout);
+        $this->fixture->setLogEntries(array('baz'));
 
         $this->assertSame($this->fixture, $this->fixture->create());
     }
