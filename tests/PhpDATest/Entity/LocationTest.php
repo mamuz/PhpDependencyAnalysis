@@ -61,7 +61,6 @@ class LocationTest extends \PHPUnit_Framework_TestCase
 
         $name = \Mockery::mock('PhpParser\Node\Name');
         $name->shouldReceive('getAttributes')->once()->andReturn($attributes);
-        $name->shouldReceive('toString')->andReturn('Foo\\Bar');
 
         return $name;
     }
@@ -89,11 +88,6 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->defaultAttributes['endLine'], $this->fixture->getEndLine());
     }
 
-    public function testAccessFqcn()
-    {
-        $this->assertSame('Foo\\Bar', $this->fixture->getFqcn());
-    }
-
     public function testDomainExceptionForMissingStartline()
     {
         $this->setExpectedException('DomainException');
@@ -116,6 +110,5 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(30, $data['startLine']);
         $this->assertSame(40, $data['endline']);
         $this->assertTrue($data['isComment']);
-        $this->assertSame('Foo\Bar', $data['fqcn']);
     }
 }

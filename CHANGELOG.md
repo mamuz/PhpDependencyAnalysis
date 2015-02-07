@@ -12,12 +12,15 @@ All notable changes to this project will be documented in this file.
 - BC: Move GraphViz interface from Builder to Writer
 - BC: Refactor and changing data model in Json Writer
 - BC: Rename fqcn accessor and mutator from fqn to fqcn in Location entity
-- BC: Add logEntries mutator to BuilderInterface
 
 ### Added
 - Add .gitattributes
 - Add AbstractGraphViz writer
 - Add graph extractor
+- BC: Add logEntries mutator to BuilderInterface
+
+### Removed
+- BC: Removed fqcn awareness in location entity
 
 ## v0.3.4 - 2015-01-21
 ### Changed

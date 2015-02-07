@@ -42,9 +42,6 @@ class Location
     /** @var boolean */
     private $isComment = false;
 
-    /** @var string */
-    private $fqcn;
-
     /**
      * @param SplFileInfo $file
      * @param Name        $name
@@ -61,7 +58,6 @@ class Location
         $this->file = $file;
         $this->startLine = (int) $attributes['startLine'];
         $this->endline = (int) $attributes['endLine'];
-        $this->fqcn = $name->toString();
 
         if (isset($attributes['isComment'])) {
             $this->isComment = (bool) $attributes['isComment'];
@@ -98,14 +94,6 @@ class Location
     public function getEndline()
     {
         return $this->endline;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFqcn()
-    {
-        return $this->fqcn;
     }
 
     /**
