@@ -50,15 +50,15 @@ class GraphTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             'vertices' => array(
-                'start' => array(
-                    'name'        => 'start',
+                'end'   => array(
+                    'name'        => 'end',
                     'usedByCount' => 2,
                     'adt'         => array('adt'),
                     'location'    => 'location',
                     'group'       => 'group',
                 ),
-                'end'   => array(
-                    'name'        => 'end',
+                'start' => array(
+                    'name'        => 'start',
                     'usedByCount' => 2,
                     'adt'         => array('adt'),
                     'location'    => 'location',

@@ -53,6 +53,9 @@ class Graph implements ExtractionInterface
             $this->addVertex($edge->getVertexEnd());
         }
 
+        ksort($this->data['edges']);
+        ksort($this->data['vertices']);
+
         return $this->data;
     }
 
