@@ -31,7 +31,7 @@
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "0.6.*",
-        "phpunit/phpunit"       : "4.4.*",
+        "phpunit/phpunit"       : "4.5.*",
         "mockery/mockery"       : "0.9.*"
     },
     "autoload"         : {
