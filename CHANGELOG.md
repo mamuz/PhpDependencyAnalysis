@@ -1,7 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.4.0 - UNRELEASED
+## v0.4.1 - UNRELEASED
+
+## v0.4.0 - 2015-02-08
 ### Changed
 - Normalize CHANGELOG.md
 - Travis configuration
@@ -9,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Change composer attribute type to project
 - Update phpParser to 1.1.*
 - Update graphviz to 0.2.*
+- Update phpunit to 4.5.*
 - BC: Move GraphViz interface from Builder to Writer
 - BC: Refactor and changing data model in Json Writer
 - BC: Rename fqcn accessor and mutator from fqn to fqcn in Location entity
