@@ -56,35 +56,35 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollectingByFilteredToNull()
     {
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $this->nodeNameFilter->shouldReceive('filter')->andReturn(null);
         $this->fixture->leaveNode($node);
     }
 
     public function testNotCollectingByClassNameWithoutParentNamespace()
     {
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->value = 'Foo';
         $this->fixture->leaveNode($node);
     }
 
     public function testNotCollectingByInvalidClassName()
     {
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->value = '4Foo';
         $this->fixture->leaveNode($node);
     }
 
     public function testNotCollectingByInvalidNamespaces()
     {
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->value = 'Foo\4Bar';
         $this->fixture->leaveNode($node);
     }
 
     public function testNotCollectingByInvalidNamespaceSeparator()
     {
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->value = 'Foo_Bar';
         $this->fixture->leaveNode($node);
     }
@@ -93,7 +93,7 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $testcase = $this;
         $attributes = array('foo' => 'bar');
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->value = 'Foo\Bar';
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
@@ -115,7 +115,7 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingSmallNamespacedString()
     {
         $attributes = array('foo' => 'bar');
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->value = '\Foo';
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
@@ -131,7 +131,7 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingLongNamespacedString()
     {
         $attributes = array('foo' => 'bar');
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->value = 'Foo\Bar\Baz\Taz';
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
@@ -147,7 +147,7 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollectingNonStandardNamespacedString()
     {
         $attributes = array('foo' => 'bar');
-        $node = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->value = '\_\bar34\_Baz\Taz';
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
