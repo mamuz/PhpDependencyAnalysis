@@ -1,7 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.4.1 - UNRELEASED
+## v0.4.2 - UNRELEASED
+
+## v0.4.1 - 2015-03-28
 ### Changed
 - Update clue/graph to 0.9.*
 - Update phpParser to 1.2.*
