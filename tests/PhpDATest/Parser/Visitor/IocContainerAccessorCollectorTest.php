@@ -81,7 +81,7 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testNotCollectingByMatchingMethodWithInvalidArgumentValue()
     {
-        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $value->value = 123;
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
@@ -93,7 +93,7 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testNotCollectingByMatchingMethodWithEmptyArgumentValue()
     {
-        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $value->value = '';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
@@ -105,7 +105,7 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollectingByFilteredToNull()
     {
-        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $value->value = 'Baz';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $arg = \Mockery::mock('PhpParser\Node\Arg');
@@ -120,7 +120,7 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $testcase = $this;
         $attributes = array('foo' => 'bar');
-        $value = \Mockery::mock('PhpParser\Node\Scalar\String');
+        $value = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $value->value = 'Baz';
         $node = \Mockery::mock('PhpParser\Node\Expr\MethodCall');
         $node->shouldReceive('getAttributes')->andReturn($attributes);

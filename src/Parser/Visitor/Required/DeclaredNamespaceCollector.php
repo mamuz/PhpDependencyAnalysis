@@ -38,19 +38,11 @@ class DeclaredNamespaceCollector extends AbstractVisitor implements DeclaredName
      */
     public function leaveNode(Node $node)
     {
-        if ($node instanceof Node\Stmt\Class_
-            || $node instanceof Node\Stmt\Trait_
-            || $node instanceof Node\Stmt\Interface_
-        ) {
-            /** @var Node\Stmt $node */
-            $subNodes = $node->getIterator();
-            if ($subNodes->offsetExists('namespacedName')) {
-                if (!$this->getAdt()->hasDeclaredGlobalNamespace()) {
-                    throw new Error('DeclaredNamespace is already defined', $node->getLine());
-                }
-                $namespacedName = $subNodes->offsetGet('namespacedName');
-                $this->collect(new Node\Name($namespacedName), $node);
+        if ($node instanceof Node\Stmt\ClassLike) {
+            if (!$this->getAdt()->hasDeclaredGlobalNamespace()) {
+                throw new Error('DeclaredNamespace is already defined', $node->getLine());
             }
+            $this->collect(new Node\Name($node->namespacedName), $node);
         }
     }
 }

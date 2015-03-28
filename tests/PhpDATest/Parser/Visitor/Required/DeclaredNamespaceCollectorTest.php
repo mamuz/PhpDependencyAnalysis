@@ -54,120 +54,33 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $this->fixture->leaveNode($name);
     }
 
-    public function testNotCollectingByFilteredToNullForClassNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    public function testNotCollectingByFilteredToNullForTraitNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    public function testNotCollectingByFilteredToNullForInterfaceNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    protected function assertFilteredToNullBy(\Mockery\MockInterface $node)
+    public function testNotCollectingByFilteredToNull()
     {
         $namespace = 'Foo\Bar';
-        $iterator = \Mockery::mock('ArrayIterator');
-        $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
-        $iterator->shouldReceive('offsetGet')->once()->with('namespacedName')->andReturn($namespace);
-        $node->shouldReceive('getIterator')->once()->andReturn($iterator);
+        $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->namespacedName = $namespace;
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturn(null);
         $this->fixture->leaveNode($node);
     }
 
-    public function testNotCollectingByOffsetNotExistByForClassNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    public function testNotCollectingByOffsetNotExistByForTraitNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    public function testNotCollectingByOffsetNotExistByForInterfaceNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
-        $this->assertFilteredToNullBy($node);
-    }
-
-    protected function assertOffsetNotExistBy(\Mockery\MockInterface $node)
-    {
-        $iterator = \Mockery::mock('ArrayIterator');
-        $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(false);
-        $node->shouldReceive('getIterator')->once()->andReturn($iterator);
-        $this->fixture->leaveNode($node);
-    }
-
-
-    public function testHavingNamespaceExceptionForClassNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
-        $this->assertExceptionBy($node);
-    }
-
-    public function testHavingNamespaceExceptionForTraitNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $this->assertExceptionBy($node);
-    }
-
-    public function testHavingNamespaceExceptionForInterfaceNode()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
-        $this->assertExceptionBy($node);
-    }
-
-    protected function assertExceptionBy(\Mockery\MockInterface $node)
+    public function testHavingNamespaceException()
     {
         $this->setExpectedException('PhpParser\Error');
-        $iterator = \Mockery::mock('ArrayIterator');
-        $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
-        $node->shouldReceive('getIterator')->once()->andReturn($iterator);
+        $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
         $node->shouldReceive('getLine')->andReturn(12);
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(false);
         $this->fixture->leaveNode($node);
     }
 
-    public function testCollectingClass()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Class_');
-        $this->assertCollectingBy($node);
-    }
-
-    public function testCollectingTrait()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Trait_');
-        $this->assertCollectingBy($node);
-    }
-
-    public function testCollectingInterface()
-    {
-        $node = \Mockery::mock('PhpParser\Node\Stmt\Interface_');
-        $this->assertCollectingBy($node);
-    }
-
-    protected function assertCollectingBy(\Mockery\MockInterface $node)
+    public function testCollecting()
     {
         $testcase = $this;
         $namespace = 'Foo\Bar';
-        $iterator = \Mockery::mock('ArrayIterator');
-        $iterator->shouldReceive('offsetExists')->once()->with('namespacedName')->andReturn(true);
-        $iterator->shouldReceive('offsetGet')->once()->with('namespacedName')->andReturn($namespace);
         $attributes = array('foo' => 'bar');
+        $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->namespacedName = $namespace;
         $node->shouldReceive('getAttributes')->once()->andReturn($attributes);
-        $node->shouldReceive('getIterator')->once()->andReturn($iterator);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
             function ($nodeName) {
                 return $nodeName;
@@ -182,7 +95,6 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
                 $testcase->assertSame($namespace, $nodeName->toString());
             }
         );
-
         $this->fixture->leaveNode($node);
     }
 }

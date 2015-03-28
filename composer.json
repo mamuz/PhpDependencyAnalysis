@@ -4,7 +4,9 @@
     "description"      : "Static code analysis to provide and verify a dependency graph against a defined architecture",
     "homepage"         : "https://github.com/mamuz/PhpDependencyAnalysis",
     "license"          : "MIT",
-    "keywords"         : ["code", "php", "dependency", "analysis", "graph", "namespace", "cycles", "reference", "architecture"],
+    "keywords"         : [
+        "code", "php", "dependency", "analysis", "graph", "namespace", "cycles", "reference", "architecture"
+    ],
     "authors"          : [
         {
             "name" : "Marco Muths",
@@ -20,8 +22,9 @@
     "require"          : {
         "php"                              : ">=5.3.3",
         "psr/log"                          : "1.0.*",
-        "nikic/php-parser"                 : "1.1.*",
-        "clue/graph"                       : "0.8.*",
+        "nikic/php-parser"                 : "1.2.*",
+        "clue/graph"                       : "0.9.*",
+        "graphp/algorithms"                : "0.8.*",
         "graphp/graphviz"                  : "0.2.*",
         "phpdocumentor/reflection-docblock": "2.0.*",
         "doctrine/collections"             : "1.2.*",

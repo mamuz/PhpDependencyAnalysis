@@ -38,7 +38,7 @@ class IocContainerAccessorCollector extends AbstractVisitor implements Namespace
         ) {
             /** @var Node\Arg $arg */
             $arg = array_shift($node->args);
-            if ($arg->value instanceof Node\Scalar\String
+            if ($arg->value instanceof Node\Scalar\String_
                 && is_string($arg->value->value)
                 && !empty($arg->value->value)
             ) {

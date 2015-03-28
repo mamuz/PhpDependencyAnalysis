@@ -36,7 +36,7 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
 
     public function leaveNode(Node $node)
     {
-        if ($node instanceof Node\Scalar\String) {
+        if ($node instanceof Node\Scalar\String_) {
             if ($this->match($node)) {
                 $namespace = self::NS . $this->trimNS($node->value);
                 $name = new Node\Name($namespace);
@@ -46,10 +46,10 @@ class NamespacedStringCollector extends AbstractVisitor implements NamespacedStr
     }
 
     /**
-     * @param Node\Scalar\String $string
+     * @param Node\Scalar\String_ $string
      * @return bool
      */
-    private function match(Node\Scalar\String $string)
+    private function match(Node\Scalar\String_ $string)
     {
         $string = $string->value;
 

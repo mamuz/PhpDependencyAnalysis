@@ -25,10 +25,10 @@
 
 namespace PhpDA\Layout\Helper;
 
-use Fhaculty\Graph\Algorithm\ConnectedComponents;
 use Fhaculty\Graph\Edge\Directed;
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Set\Edges;
+use Graphp\Algorithms\ConnectedComponents;
 use PhpDA\Entity\Cycle;
 
 class CycleDetector

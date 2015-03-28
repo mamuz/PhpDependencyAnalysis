@@ -53,6 +53,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Verifiying dependency graph against a user-defined reference architecture
 - Printing graphs in several formats (HTML, SVG, DOT, JSON)
 - Extandable by adding user-defined plugins for collecting and displaying dependencies
+- Compatible to PHP7 Features, like [`Return Type Declarations`](https://wiki.php.net/rfc/return_types)
 
 ## Configuration
 

@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## v0.4.1 - UNRELEASED
+### Changed
+- Update clue/graph to 0.9.*
+- Update phpParser to 1.2.*
+- Adapt NamespacedStringCollector and IocContainerAccessorCollector to use new Node\Scalar\String_ object
+- Simplify DeclaredNamespaceCollector by using new ClassLike object
+
+### Added
+- Add php7 to travis config
+- Add graphp/algorithms 0.8.0
 
 ## v0.4.0 - 2015-02-08
 ### Changed
