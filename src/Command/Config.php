@@ -130,7 +130,7 @@ class Config
     public function getSource()
     {
         if (!is_string($this->source)) {
-            throw new \InvalidArgumentException('Config for string must be a string');
+            throw new \InvalidArgumentException('Config for source must be a string');
         }
 
         return $this->source;
