@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Typo for InvalidArgumentException in Config
 
+### Changed
+- Update phpunit/phpunit to 4.6.*
+
 ## v0.4.1 - 2015-03-28
 ### Changed
 - Update clue/graph to 0.9.*
