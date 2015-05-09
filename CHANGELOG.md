@@ -1,22 +1,30 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.4.2 - UNRELEASED
+## v0.4.3 - UNRELEASED
+Nothing yet.
+
+## v0.4.2 - 2015-05-10
 ### Fixed
 - Typo for InvalidArgumentException in Config
 
 ### Changed
+- Update nikic/php-parser to 1.3.*
 - Update phpunit/phpunit to 4.6.*
+
+### Added
+- Add php7 Anonymous Classes support
 
 ## v0.4.1 - 2015-03-28
 ### Changed
 - Update clue/graph to 0.9.*
-- Update phpParser to 1.2.*
+- Update nikic/php-parser to 1.2.*
 - Adapt NamespacedStringCollector and IocContainerAccessorCollector to use new Node\Scalar\String_ object
 - Simplify DeclaredNamespaceCollector by using new ClassLike object
 
 ### Added
 - Add php7 to travis config
+- Add php7 Return Type Declarations support
 - Add graphp/algorithms 0.8.0
 
 ## v0.4.0 - 2015-02-08

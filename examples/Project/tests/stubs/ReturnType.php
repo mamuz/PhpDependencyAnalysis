@@ -2,7 +2,7 @@
 
 namespace PackageX;
 
-class ReturnValue
+class ReturnType
 {
     public function foo() : MyObject
     {

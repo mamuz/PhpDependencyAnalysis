@@ -58,6 +58,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $namespace = 'Foo\Bar';
         $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->name = $namespace;
         $node->namespacedName = $namespace;
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturn(null);
@@ -68,6 +69,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('PhpParser\Error');
         $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->name = true;
         $node->shouldReceive('getLine')->andReturn(12);
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(false);
         $this->fixture->leaveNode($node);
@@ -79,6 +81,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         $namespace = 'Foo\Bar';
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->name = $namespace;
         $node->namespacedName = $namespace;
         $node->shouldReceive('getAttributes')->once()->andReturn($attributes);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
@@ -95,6 +98,13 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
                 $testcase->assertSame($namespace, $nodeName->toString());
             }
         );
+        $this->fixture->leaveNode($node);
+    }
+
+    public function testNotCollectingAnonymousClass()
+    {
+        $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
+        $node->name = null;
         $this->fixture->leaveNode($node);
     }
 }
