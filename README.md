@@ -40,7 +40,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "0.4.*"
+        "mamuz/php-dependency-analysis": "0.5.*"
     }
 }
 ```

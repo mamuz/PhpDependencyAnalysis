@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.5.0 - UNRELEASED
+## v0.5.1 - UNRELEASED
+Nothing yet.
+
+## v0.5.0 - 2015-05-16
 ### Added
 - [#4: Return proper Status Code after running command](https://github.com/mamuz/PhpDependencyAnalysis/issues/4)
 
