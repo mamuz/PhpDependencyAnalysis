@@ -96,3 +96,7 @@ See record of changes made to this project
 
 Before opening up a pull-request please read the
 [Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
+
+## Alternatives
+
+Check the ressources in [Code Analysis Section at Awesome PHP](https://github.com/ziadoz/awesome-php#code-analysis)
