@@ -46,6 +46,9 @@ class Builder implements BuilderInterface
     /** @var Graph */
     private $graph;
 
+    /** @var boolean */
+    private $graphHasViolations = false;
+
     /** @var GroupGenerator */
     private $groupGenerator;
 
@@ -97,6 +100,11 @@ class Builder implements BuilderInterface
     public function getGraph()
     {
         return $this->graph;
+    }
+
+    public function hasViolations()
+    {
+        return $this->graphHasViolations;
     }
 
     public function setLogEntries(array $entries)
@@ -182,6 +190,7 @@ class Builder implements BuilderInterface
             if (!$edge->getAttribute('referenceValidatorMessages')) {
                 $this->bindLayoutTo($edge, $this->layout->getEdgeCycle());
             }
+            $this->graphHasViolations = true;
         }
 
         $this->getGraph()->setAttribute('cycles', $this->cycleDetector->getCycles());
@@ -286,6 +295,7 @@ class Builder implements BuilderInterface
         if ($this->referenceValidator
             && !$this->referenceValidator->isValidBetween(clone $this->adtRootName, clone $dependency)
         ) {
+            $this->graphHasViolations = true;
             $this->bindLayoutTo($edge, $this->layout->getEdgeInvalid());
             $edge->setAttribute('referenceValidatorMessages', $this->referenceValidator->getMessages());
         }

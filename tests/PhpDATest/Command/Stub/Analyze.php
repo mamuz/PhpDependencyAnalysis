@@ -32,6 +32,6 @@ class Analyze extends \PhpDA\Command\Analyze
 {
     public function callExecute(InputInterface $input, OutputInterface $output)
     {
-        $this->execute($input, $output);
+        return $this->execute($input, $output);
     }
 }

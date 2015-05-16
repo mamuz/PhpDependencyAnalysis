@@ -27,5 +27,8 @@ namespace PhpDA\Command\Strategy;
 
 interface StrategyInterface
 {
+    /**
+     * @return boolean
+     */
     public function execute();
 }

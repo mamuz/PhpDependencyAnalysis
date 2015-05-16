@@ -174,7 +174,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     {
         if ($this->fileCnt < 1) {
             $this->getOutput()->writeln(Message::NOTHING_TO_PARSE . PHP_EOL);
-            return;
+            return true;
         }
 
         $this->init();
@@ -189,6 +189,8 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $this->getOutput()->writeln(PHP_EOL . Message::DONE . PHP_EOL);
 
         $this->writeAnalysisFailures();
+
+        return $this->getAnalyzer()->getLogger()->isEmpty() && !$this->getGraphBuilder()->hasViolations();
     }
 
     abstract protected function init();

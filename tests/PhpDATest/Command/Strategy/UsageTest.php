@@ -132,6 +132,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
 
         $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
         $this->builder->shouldReceive('setAnalysisCollection')->once()->with($this->collection);
+        $this->builder->shouldReceive('hasViolations')->once()->andReturn(true);
         $this->builder->shouldReceive('setLayout')->once()->andReturnUsing(
             function ($layout) use ($testcase) {
                 $testcase->assertInstanceOf('PhpDA\Layout\Standard', $layout);
@@ -144,7 +145,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
 
-        $this->fixture->execute();
+        $this->assertFalse($this->fixture->execute());
     }
 
     private function prepareAnalyzer()

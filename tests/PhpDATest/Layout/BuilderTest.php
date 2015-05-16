@@ -327,6 +327,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame($this->fixture, $this->fixture->create());
+        $this->assertFalse($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithReferenceValidatorAndInvalidEdge()
@@ -354,6 +355,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
         $this->assertSame($this->fixture, $this->fixture->create());
+        $this->assertTrue($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithDetectedCyleAndInvalidEdge()
@@ -384,6 +386,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
         $this->assertSame($this->fixture, $this->fixture->create());
+        $this->assertTrue($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithDetectedCyle()
@@ -414,5 +417,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
         $this->assertSame($this->fixture, $this->fixture->create());
+        $this->assertTrue($this->fixture->hasViolations());
     }
 }

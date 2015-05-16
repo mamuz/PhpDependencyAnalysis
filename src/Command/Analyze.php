@@ -42,6 +42,8 @@ use Symfony\Component\Yaml\Parser;
  */
 class Analyze extends Command
 {
+    const EXIT_SUCCESS = 0, EXIT_VIOLATION = 1;
+
     /** @var string */
     private $configFilePath;
 
@@ -94,7 +96,11 @@ class Analyze extends Command
             'layoutLabel' => $this->getDescription(),
         );
 
-        $this->loadStrategy($config->getMode(), $strategyOptions)->execute();
+        if ($this->loadStrategy($config->getMode(), $strategyOptions)->execute()) {
+            return self::EXIT_SUCCESS;
+        } else {
+            return self::EXIT_VIOLATION;
+        }
     }
 
     /**

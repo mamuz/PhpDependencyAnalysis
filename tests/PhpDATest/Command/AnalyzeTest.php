@@ -135,12 +135,52 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
                 $testcase->assertSame('.', $config->getSource());
                 $testcase->assertSame(array('dir1', 'dir2', 'dir3'), $config->getIgnore());
                 $strategy = \Mockery::mock('PhpDA\Command\Strategy\StrategyInterface');
-                $strategy->shouldReceive('execute')->once();
+                $strategy->shouldReceive('execute')->once()->andReturn(true);
                 return $strategy;
             }
         );
 
-        $this->fixture->callExecute($input, $output);
+        $this->assertSame(0, $this->fixture->callExecute($input, $output));
+    }
+
+    public function testExecutionWithViolation()
+    {
+        $description = 'foo in bar with baz';
+        $this->fixture->setDescription($description);
+
+        $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldReceive('setStyle');
+        $output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface');
+        $output->shouldReceive('writeln');
+        $output->shouldReceive('getFormatter')->andReturn($formatter);
+
+        $configPath = __DIR__ . '/Stub/config.txt';
+        $config = array('mode' => 'call', 'source' => '.', 'ignore' => 'dir1, dir2,dir3');
+        $options = array('mode' => 'inheritance', 'source' => '.');
+
+        $input->shouldReceive('getArgument')->with('config')->once()->andReturn($configPath);
+        $input->shouldReceive('getOptions')->once()->andReturn($options);
+
+        $this->configParser->shouldReceive('parse')->once()->with("stub\n")->andReturn($config);
+
+        $testcase = $this;
+        $this->strategyLoader->shouldReceive('get')->andReturnUsing(
+            function ($fqcn, $options) use ($testcase, $output, $description) {
+                $testcase->assertSame('PhpDA\\Command\\Strategy\\InheritanceFactory', $fqcn);
+                $testcase->assertSame($description, $options['layoutLabel']);
+                $testcase->assertSame($output, $options['output']);
+                /** @var Config $config */
+                $config = $options['config'];
+                $testcase->assertSame('.', $config->getSource());
+                $testcase->assertSame(array('dir1', 'dir2', 'dir3'), $config->getIgnore());
+                $strategy = \Mockery::mock('PhpDA\Command\Strategy\StrategyInterface');
+                $strategy->shouldReceive('execute')->once()->andReturn(false);
+                return $strategy;
+            }
+        );
+
+        $this->assertSame(1, $this->fixture->callExecute($input, $output));
     }
 
     public function testExecutionWithInvalidStrategy()

@@ -67,4 +67,9 @@ interface BuilderInterface
      * @return Graph
      */
     public function getGraph();
+
+    /**
+     * @return boolean
+     */
+    public function hasViolations();
 }

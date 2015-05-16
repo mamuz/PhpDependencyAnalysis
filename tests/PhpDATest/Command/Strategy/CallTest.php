@@ -102,7 +102,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
     {
         $this->finder->shouldReceive('count')->once()->andReturn(0);
         $this->fixture->setOptions(array('output' => $this->output, 'config' => $this->config));
-        $this->fixture->execute();
+        $this->assertTrue($this->fixture->execute());
     }
 
     public function testExecute()
@@ -150,7 +150,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->writer->shouldReceive('with')->once()->with($formatter)->andReturnSelf();
         $this->writer->shouldReceive('to')->once()->with($target)->andReturnSelf();
 
-        $this->fixture->execute();
+        $this->assertFalse($this->fixture->execute());
     }
 
     public function testExecuteWithInvalidReferenceValidator()
