@@ -29,7 +29,7 @@ interface MessageInterface
 {
     const VERSION = 'dev-master';
 
-    const NAME = 'PhpDependencyAnalyse by Marco Muths';
+    const NAME = 'PhpDependencyAnalysis by Marco Muths';
 
     const COMMAND = 'analyze';
 
