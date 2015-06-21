@@ -19,16 +19,6 @@ tools:
     php_loc:
         enabled: true
         excluded_dirs: [vendor, examples, tests]
-    php_cpd:
-        enabled: true
-        excluded_dirs: [vendor, examples, tests]
-    php_mess_detector:
-        enabled: true
-        filter:
-            paths: ['src/*']
-    php_pdepend:
-        enabled: true
-        excluded_dirs: [vendor, examples, tests]
     php_hhvm:
         enabled: true
         filter:
