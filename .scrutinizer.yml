@@ -18,25 +18,10 @@ tools:
             paths: [src, tests]
     php_loc:
         enabled: true
-        excluded_dirs: [vendor, examples, tests, vendor]
+        excluded_dirs: [vendor, examples, tests]
     php_code_similarity_analyzer:
         enabled: false
     php_cpd:
         enabled: true
-        excluded_dirs: [vendor, examples, tests, vendor]
-    php_mess_detector:
-        enabled: true
-        filter:
-            paths: [src/*]
-    php_pdepend:
-        enabled: true
-        excluded_dirs: [vendor, examples, tests, vendor]
-    php_analyzer:
-        enabled: true
-        filter:
-            paths: [src/*]
-    php_hhvm:
-        enabled: true
-        filter:
-            paths: [src/*, tests/*]
-    sensiolabs_security_checker: true
+        excluded_dirs: [vendor, examples, tests]
+
