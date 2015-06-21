@@ -97,7 +97,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
 
     /**
      * @param DocBlock\Tag[] $docTags
-     * @return array()
+     * @return array
      */
     private function collectTagNamesBy(array $docTags)
     {

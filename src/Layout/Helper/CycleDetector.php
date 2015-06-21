@@ -122,7 +122,7 @@ class CycleDetector
      */
     public function getCycledEdges()
     {
-        $allCycleEdges[] = array();
+        $allCycleEdges = array();
 
         foreach ($this->getCycles() as $cycle) {
             $cycledEdges = $cycle->getEdges();

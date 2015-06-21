@@ -75,7 +75,7 @@ class AdtTraverser extends \PhpParser\NodeTraverser
     public function getAdtStmtsBy(array $nodes)
     {
         $this->adtCollector->flush();
-        parent::traverse($nodes);
+        $this->traverse($nodes);
 
         return $this->adtCollector->getStmts();
     }

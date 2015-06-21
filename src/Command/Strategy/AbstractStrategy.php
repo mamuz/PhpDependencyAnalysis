@@ -61,6 +61,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     /** @var AdapterInterface */
     private $writeAdapter;
 
+    /** @var Layout\BuilderInterface */
+    private $graphBuilder;
+
     /** @var LoaderInterface */
     private $pluginLoader;
 

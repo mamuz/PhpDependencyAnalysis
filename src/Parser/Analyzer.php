@@ -49,10 +49,10 @@ class Analyzer implements AnalyzerInterface
     private $collection;
 
     /**
-     * @param ParserAbstract     $parser
-     * @param AdtTraverser       $adtTraverser
-     * @param NodeTraverser      $nodeTraverser
-     * @param Logger             $logger
+     * @param ParserAbstract $parser
+     * @param AdtTraverser   $adtTraverser
+     * @param NodeTraverser  $nodeTraverser
+     * @param Logger         $logger
      */
     public function __construct(
         ParserAbstract $parser,
@@ -83,12 +83,13 @@ class Analyzer implements AnalyzerInterface
         $analysis = new Analysis($file);
 
         try {
-            $stmts = $this->parser->parse($file->getContents());
-            $this->adtTraverser->bindFile($file);
-            $adtStmts = $this->adtTraverser->getAdtStmtsBy($stmts);
-            foreach ($adtStmts as $node) {
-                $this->nodeTraverser->setAdt($analysis->createAdt());
-                $this->nodeTraverser->traverse(array($node));
+            if ($stmts = $this->parser->parse($file->getContents())) {
+                $this->adtTraverser->bindFile($file);
+                $adtStmts = $this->adtTraverser->getAdtStmtsBy($stmts);
+                foreach ($adtStmts as $node) {
+                    $this->nodeTraverser->setAdt($analysis->createAdt());
+                    $this->nodeTraverser->traverse(array($node));
+                }
             }
         } catch (Error $error) {
             $this->logger->error($error->getMessage(), array($file));
