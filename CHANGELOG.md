@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.5.2 - UNRELEASED
+## v0.5.3 - UNRELEASED
+Nothing yet.
+
+## v0.5.2 - 2015-06-21
 ### Changed
 - Composer version constraints for graphp dependencies
 
