@@ -19,6 +19,8 @@ tools:
     php_loc:
         enabled: true
         excluded_dirs: [vendor, examples, tests, vendor]
+    php_code_similarity_analyzer:
+        enabled: false
     php_cpd:
         enabled: true
         excluded_dirs: [vendor, examples, tests, vendor]
