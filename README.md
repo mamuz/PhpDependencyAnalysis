@@ -3,7 +3,7 @@ PhpDependencyAnalysis
 
 [![Author](http://img.shields.io/badge/author-@mamuz_de-blue.svg?style=flat-square)](https://twitter.com/mamuz_de)
 [![Build Status](https://img.shields.io/travis/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
-[![Coverage Status](https://img.shields.io/scrutinizer/coveralls/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/code-structure)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis)
 [![HHVM Status](https://img.shields.io/hhvm/mamuz/php-dependency-analysis.svg?style=flat-square)](http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis)
 [![Dependency Status](https://img.shields.io/versioneye/d/user/projects/5431680abeeeeed15600019e.svg?style=flat-square)](https://www.versioneye.com/user/projects/5431680abeeeeed15600019e)
