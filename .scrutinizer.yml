@@ -1,0 +1,40 @@
+filter:
+    paths: [src/*]
+    excluded_paths: [bin/*, tests/*, examples/*, vendor/*]
+
+checks:
+    php:
+        code_rating: true
+
+tools:
+    external_code_coverage:
+        timeout: 1200
+        runs: 3
+    php_code_coverage: true
+    php_code_sniffer:
+        config:
+            standard: PSR2
+        filter:
+            paths: [src, tests]
+    php_loc:
+        enabled: true
+        excluded_dirs: [vendor, examples, tests, vendor]
+    php_cpd:
+        enabled: true
+        excluded_dirs: [vendor, examples, tests, vendor]
+    php_mess_detector:
+        enabled: true
+        filter:
+            paths: [src/*]
+    php_pdepend:
+        enabled: true
+        excluded_dirs: [vendor, examples, tests, vendor]
+    php_analyzer:
+        enabled: true
+        filter:
+            paths: [src/*]
+    php_hhvm:
+        enabled: true
+        filter:
+            paths: [src/*, tests/*]
+    sensiolabs_security_checker: true
