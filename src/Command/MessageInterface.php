@@ -27,7 +27,7 @@ namespace PhpDA\Command;
 
 interface MessageInterface
 {
-    const VERSION = 'dev-master';
+    const VERSION = 'v0.5.2';
 
     const NAME = 'PhpDependencyAnalysis by Marco Muths';
 
