@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## v0.5.2 - UNRELEASED
-Nothing yet.
+### Changed
+- Composer version constraints for graphp dependencies
+
+### Fixed
+- Typo in SVG footer
 
 ## v0.5.1 - 2015-06-04
 ### Changed
