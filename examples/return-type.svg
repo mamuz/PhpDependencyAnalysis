@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 58)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-58 305,-58 305,5 -4,5"/>
-<text text-anchor="middle" x="150" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="150" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\ReturnType -->
 <g id="node1" class="node"><title>PackageX\\ReturnType</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="105,-54 13,-54 1,-42 1,-30 13,-18 105,-18 117,-30 117,-42 105,-54"/>

@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 617)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-617 363,-617 363,5 -4,5"/>
-<text text-anchor="middle" x="179" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="179" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\UnsupportedStmt -->
 <g id="node1" class="node"><title>PackageX\\UnsupportedStmt</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="140,-226 12,-226 4.73695e-14,-214 2.36848e-14,-202 12,-190 140,-190 152,-202 152,-214 140,-226"/>

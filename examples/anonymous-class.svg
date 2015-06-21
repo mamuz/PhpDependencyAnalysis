@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 187)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-187 347,-187 347,5 -4,5"/>
-<text text-anchor="middle" x="171" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="171" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\AnonymousClass -->
 <g id="node1" class="node"><title>PackageX\\AnonymousClass</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="136,-118 12,-118 4.73695e-14,-106 2.36848e-14,-94 12,-82 136,-82 148,-94 148,-106 136,-118"/>

@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 402)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-402 303,-402 303,5 -4,5"/>
-<text text-anchor="middle" x="149" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="149" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\SuperGlobalAccess -->
 <g id="node1" class="node"><title>PackageX\\SuperGlobalAccess</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="146,-226 12,-226 4.73695e-14,-214 2.36848e-14,-202 12,-190 146,-190 158,-202 158,-214 146,-226"/>

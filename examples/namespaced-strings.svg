@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 187)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-187 307,-187 307,5 -4,5"/>
-<text text-anchor="middle" x="151" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="151" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PackageX\\NamespacedString -->
 <g id="node1" class="node"><title>PackageX\\NamespacedString</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="146,-118 12,-118 4.73695e-14,-106 2.36848e-14,-94 12,-82 146,-82 158,-94 158,-106 146,-118"/>

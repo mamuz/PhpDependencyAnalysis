@@ -9,7 +9,7 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 359)">
 <title>G</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-359 421,-359 421,5 -4,5"/>
-<text text-anchor="middle" x="208" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalyse by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="208" y="-6.8" font-family="Times Roman,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
 <!-- PhpDA\\Plugin\\ConfigurableInterface -->
 <g id="node1" class="node"><title>PhpDA\\Plugin\\ConfigurableInterface</title>
 <polygon fill="#9999cc" stroke="#9999cc" points="403,-312 243,-312 231,-300 231,-288 243,-276 403,-276 415,-288 415,-300 403,-312"/>
