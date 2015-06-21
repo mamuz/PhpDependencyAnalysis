@@ -33,7 +33,6 @@
         "symfony/finder"                   : "~2.5"
     },
     "require-dev"      : {
-        "satooshi/php-coveralls": "~0.6",
         "phpunit/phpunit"       : "~4.0",
         "mockery/mockery"       : "~0.9.2"
     },
