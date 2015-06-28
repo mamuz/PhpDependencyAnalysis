@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.5.4 - UNRELEASED
+## v0.5.3 - UNRELEASED
 ### Fixed
 - Add missing ErrorHandler
 
