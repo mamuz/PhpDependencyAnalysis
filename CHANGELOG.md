@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.5.3 - UNRELEASED
 ### Fixed
 - Add missing ErrorHandler
+- Remove unneeded OpCodeCache Validator in TagCollector
 
 ## v0.5.2 - 2015-06-21
 ### Changed
