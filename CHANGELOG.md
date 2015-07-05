@@ -1,7 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.5.3 - UNRELEASED
+## v0.5.4 - UNRELEASED
+Nothing yet.
+
+## v0.5.3 - 2015-07-05
+### Changed
+- Exit status code is 2 for found violations, 1 for thrown exceptions and 0 for successful execution without violations
+
 ### Fixed
 - Add missing ErrorHandler
 - Remove unneeded OpCodeCache Validator in TagCollector
