@@ -180,7 +180,7 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $this->assertSame(1, $this->fixture->callExecute($input, $output));
+        $this->assertSame(2, $this->fixture->callExecute($input, $output));
     }
 
     public function testExecutionWithInvalidStrategy()

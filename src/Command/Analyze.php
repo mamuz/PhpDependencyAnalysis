@@ -42,7 +42,7 @@ use Symfony\Component\Yaml\Parser;
  */
 class Analyze extends Command
 {
-    const EXIT_SUCCESS = 0, EXIT_VIOLATION = 1;
+    const EXIT_SUCCESS = 0, EXIT_VIOLATION = 2;
 
     /** @var string */
     private $configFilePath;
