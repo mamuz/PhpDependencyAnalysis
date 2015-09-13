@@ -89,11 +89,16 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
         $this->config->shouldReceive('getReferenceValidator')->andReturn('fqcn');
+        $this->config->shouldReceive('getNamespaceFilter')->andReturn('namespacefilter');
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();
         $this->finder->shouldReceive('in')->once()->with($source)->andReturnSelf();
         $this->finder->shouldReceive('exclude')->once()->with($ignores)->andReturnSelf();
+
+        $filter = \Mockery::mock('PhpDA\Parser\Filter\NamespaceFilterInterface');
+        $this->loader->shouldReceive('get')->with('namespacefilter')->andReturn($filter);
+        $this->config->shouldReceive('setGlobalVisitorOption')->with('namespaceFilter', $filter);
 
         $this->fixture = new Call($this->finder, $this->analyzer, $this->builder, $this->writer, $this->loader);
     }

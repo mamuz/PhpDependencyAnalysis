@@ -129,6 +129,7 @@ class UsageTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getTarget')->twice()->andReturn($target);
         $this->config->shouldReceive('getGroupLength')->once()->andReturn($groupLength);
         $this->config->shouldReceive('getReferenceValidator')->andReturnNull();
+        $this->config->shouldReceive('getNamespaceFilter')->andReturnNull();
 
         $this->builder->shouldReceive('setGroupLength')->once()->with($groupLength);
         $this->builder->shouldReceive('setAnalysisCollection')->once()->with($this->collection);

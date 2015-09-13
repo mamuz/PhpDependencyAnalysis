@@ -46,6 +46,9 @@ class NodeName implements NodeNameInterface
     /** @var string */
     private $excludePattern;
 
+    /** @var NameSpaceFilterInterface | null */
+    private $namespaceFilter;
+
     /**
      * @return string
      */
@@ -71,6 +74,10 @@ class NodeName implements NodeNameInterface
         if (isset($options['excludePattern'])) {
             $this->excludePattern = (string) $options['excludePattern'];
         }
+
+        if (isset($options['namespaceFilter'])) {
+            $this->namespaceFilter = $options['namespaceFilter'];
+        }
     }
 
     public function filter(Node\Name $name)
@@ -83,7 +90,13 @@ class NodeName implements NodeNameInterface
             return null;
         }
 
-        $nameParts = $this->slice($name->parts);
+        $nameParts = $name->parts;
+
+        if ($this->namespaceFilter) {
+            $nameParts = $this->namespaceFilter->filter($nameParts);
+        }
+
+        $nameParts = $this->slice($nameParts);
 
         if (empty($nameParts)) {
             return null;

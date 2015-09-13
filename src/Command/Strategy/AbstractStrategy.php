@@ -29,6 +29,7 @@ use PhpDA\Command\Config;
 use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Layout;
 use PhpDA\Parser\AnalyzerInterface;
+use PhpDA\Parser\Filter\NamespaceFilterInterface;
 use PhpDA\Plugin\ConfigurableInterface;
 use PhpDA\Plugin\LoaderInterface;
 use PhpDA\Reference\ValidatorInterface;
@@ -180,6 +181,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
             return true;
         }
 
+        $this->bindNamespaceFilterToVisitorOptions();
         $this->init();
 
         $progressHelper = $this->createProgressHelper();
@@ -282,6 +284,25 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         }
 
         return $referenceValidator;
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    private function bindNamespaceFilterToVisitorOptions()
+    {
+        if ($fqcn = $this->getConfig()->getNamespaceFilter()) {
+            $namespaceFilter = $this->pluginLoader->get($fqcn);
+            if (!$namespaceFilter instanceof NamespaceFilterInterface) {
+                throw new \RuntimeException(
+                    sprintf(
+                        'NamespaceFilter \'%s\' must implement PhpDA\\Parser\\Filter\\NamespaceFilterInterface',
+                        $fqcn
+                    )
+                );
+            }
+            $this->getConfig()->setGlobalVisitorOption('namespaceFilter', $namespaceFilter);
+        }
     }
 
     private function writeAnalysisFailures()

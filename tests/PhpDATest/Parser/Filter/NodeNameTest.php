@@ -201,4 +201,17 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->entity->shouldReceive('toString')->andReturn($string);
         $this->assertNamespaceFilter();
     }
+
+    public function testFilteringNamespace()
+    {
+        $filter = \Mockery::mock('PhpDA\Parser\Filter\NamespaceFilterInterface');
+        $this->fixture->setOptions(array('namespaceFilter' => $filter));
+
+        $string = 'Foo\Bar\Baz';
+        $this->expected = 'Baz\Foo';
+        $this->entity->parts = explode('\\', $string);
+        $this->entity->shouldReceive('toString')->andReturn('Baz\Foo');
+        $filter->shouldReceive('filter')->with($this->entity->parts)->andReturn(array('Baz', 'Foo'));
+        $this->assertNamespaceFilter();
+    }
 }

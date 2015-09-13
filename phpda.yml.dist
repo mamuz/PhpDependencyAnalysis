@@ -4,6 +4,7 @@ filePattern: '*.php'
 ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
 target: './phpda.svg'
+# namespaceFilter: 'Fully\Qualified\Class\Name\To\NamespaceFilter'
 # referenceValidator: 'Fully\Qualified\Class\Name\To\ReferenceValidator'
 groupLength: 1
 visitor:

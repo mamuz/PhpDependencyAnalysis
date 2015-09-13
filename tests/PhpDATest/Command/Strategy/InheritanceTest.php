@@ -88,6 +88,7 @@ class InheritanceTest extends \PHPUnit_Framework_TestCase
         $this->config->shouldReceive('getSource')->once()->andReturn($source);
         $this->config->shouldReceive('getIgnore')->once()->andReturn($ignores);
         $this->config->shouldReceive('getReferenceValidator')->andReturnNull();
+        $this->config->shouldReceive('getNamespaceFilter')->andReturnNull();
 
         $this->finder->shouldReceive('files')->once()->andReturnSelf();
         $this->finder->shouldReceive('name')->once()->with($filePattern)->andReturnSelf();

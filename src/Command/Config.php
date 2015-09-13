@@ -68,6 +68,9 @@ class Config
     /** @var string|null */
     private $referenceValidator;
 
+    /** @var string|null */
+    private $namespaceFilter;
+
     /**
      * @param array $config
      */
@@ -189,6 +192,18 @@ class Config
     }
 
     /**
+     * @param string $name
+     * @param mixed  $option
+     */
+    public function setGlobalVisitorOption($name, $option)
+    {
+        foreach ($this->visitorOptions as $visitor => $options) {
+            $options[$name] = $option;
+            $this->visitorOptions[$visitor] = $options;
+        }
+    }
+
+    /**
      * @return bool
      */
     public function hasVisitorOptionsForAggregation()
@@ -215,7 +230,7 @@ class Config
             throw new \InvalidArgumentException('Config for groupLength must be an integer');
         }
 
-        return (int) $this->groupLength;
+        return (int)$this->groupLength;
     }
 
     /**
@@ -229,5 +244,18 @@ class Config
         }
 
         return $this->referenceValidator;
+    }
+
+    /**
+     * @return string|null
+     * @throws \InvalidArgumentException
+     */
+    public function getNamespaceFilter()
+    {
+        if (!is_null($this->namespaceFilter) && !is_string($this->namespaceFilter)) {
+            throw new \InvalidArgumentException('Config for namespaceFilter must be an string');
+        }
+
+        return $this->namespaceFilter;
     }
 }

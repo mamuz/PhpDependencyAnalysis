@@ -42,6 +42,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             'visitor'            => array('foo', 'baz'),
             'visitorOptions'     => array('bar'),
             'referenceValidator' => 'myValidator',
+            'namespaceFilter'    => 'myFilter',
         );
 
         $config = new Config($values);
@@ -62,6 +63,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('usage', $config->getMode());
         $this->assertSame(0, $config->getGroupLength());
         $this->assertNull($config->getReferenceValidator());
+        $this->assertNull($config->getNamespaceFilter());
     }
 
     public function testInheritanceMode()
@@ -159,27 +161,35 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $config->getReferenceValidator();
     }
 
+    public function testInvalidNamespaceFilter()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('namespaceFilter' => 1));
+
+        $config->getNamespaceFilter();
+    }
+
     public function testHasVisitorOptionsForAggregation()
     {
         $config = new Config(array(
             'visitorOptions' => array(
                 'foo' => array('excludePattern' => 'bar'),
                 'baz' => array('minDepth' => 'bar'),
-            )
+            ),
         ));
         $this->assertFalse($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'foo' => array('sliceOffset' => 'bar'),
-            )
+            ),
         ));
         $this->assertTrue($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'foo' => array('sliceOffset' => '', 'slice' => null, 'sliceLength' => ''),
-            )
+            ),
         ));
         $this->assertFalse($config->hasVisitorOptionsForAggregation());
 
@@ -187,15 +197,31 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             'visitorOptions' => array(
                 'baz' => array('excludePattern' => 'bar'),
                 'foo' => array('sliceLength' => 'bar'),
-            )
+            ),
         ));
         $this->assertTrue($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'baz' => array('excludePattern' => 'bar', 'sliceLength' => 'bar'),
-            )
+            ),
         ));
         $this->assertTrue($config->hasVisitorOptionsForAggregation());
+    }
+
+    public function testSetGlobalVisitorOption()
+    {
+        $config = new Config(array(
+            'visitorOptions' => array(
+                'baz' => array('excludePattern' => 'bar'),
+                'foo' => array('sliceLength' => 'bar'),
+            ),
+        ));
+
+        $config->setGlobalVisitorOption('namespaceFilter', 'filter');
+        $options = $config->getVisitorOptions();
+
+        $this->assertSame(array('excludePattern' => 'bar', 'namespaceFilter' => 'filter'), $options['baz']);
+        $this->assertSame(array('sliceLength' => 'bar', 'namespaceFilter' => 'filter'), $options['foo']);
     }
 }

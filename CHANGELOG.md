@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.5.4 - UNRELEASED
-Nothing yet.
+## v0.6.0 - UNRELEASED
+### Added
+- FQCN filter
 
 ## v0.5.3 - 2015-07-05
 ### Changed
