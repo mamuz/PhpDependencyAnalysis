@@ -40,7 +40,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "0.5.*"
+        "mamuz/php-dependency-analysis": "0.*"
     }
 }
 ```
@@ -53,6 +53,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 - Dependencies can be aggregated to a package, a module or a layer
 - Detecting cycles and violations between layers in a tiered architecture
 - Verifiying dependency graph against a user-defined reference architecture
+- Collected Namespaces of dependencies are modifiable to meet custom use cases
 - Printing graphs in several formats (HTML, SVG, DOT, JSON)
 - Extandable by adding user-defined plugins for collecting and displaying dependencies
 - Compatible to PHP7 Features, like [`Return Type Declarations`](https://wiki.php.net/rfc/return_types) and [`Anonymous Classes`](https://wiki.php.net/rfc/anonymous_classes)
