@@ -19,16 +19,29 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="phpdependencyanalysis" class="anchor" href="#phpdependencyanalysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>PhpDependencyAnalysis</h1>
-
-<p>PhpDependencyAnalysis is an extendable static code analysis for object-oriented
+      <p>PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide <a href="http://en.wikipedia.org/wiki/Dependency_graph"><code>dependency graphs</code></a>
 for abstract datatypes (Classes, Interfaces and Traits) based on <a href="http://php.net/manual/en/language.namespaces.php"><code>namespaces</code></a>.
 Dependencies can be aggregated to build graphs for several levels, like Package-Level or Layer-Level.
 Each dependency can be verified to your defined architecture.</p>
 
 <p>Read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction">Introduction-Chapter</a> for further informations.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>For graph creation <a href="http://www.graphviz.org/"><code>GraphViz</code></a> is required on your machine, which is
+an open source graph visualization software and available for the most platforms.</p>
+
+<p>After installing <a href="http://www.graphviz.org/"><code>GraphViz</code></a> the recommended way to install
+<a href="https://packagist.org/packages/mamuz/php-dependency-analysis"><code>mamuz/php-dependency-analysis</code></a> is through
+<a href="http://getcomposer.org/">composer</a> by adding dependency to your <code>composer.json</code>:</p>
+
+<div class="highlight highlight-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>require-dev<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>mamuz/php-dependency-analysis<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0.*<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -48,6 +61,26 @@ Each dependency can be verified to your defined architecture.</p>
 </ul>
 
 <h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>This tool is configurable by a <a href="http://en.wikipedia.org/wiki/YAML"><code>YAML</code></a> file.
+You can copy a prepared file from the vendor directory.</p>
+
+<div class="highlight highlight-sh"><pre>cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml</pre></div>
+
+<p>See <a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist">prepared configuration</a>
+and read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration">Configuration-Chapter</a> for available options.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Run this command line to create a dependecy graph:</p>
+
+<div class="highlight highlight-sh"><pre>./vendor/bin/phpda analyze ./myconfig.yml</pre></div>
+
+<p>After that open created report file with your prefered tool.</p>
+
+<h2>
 <a id="wiki" class="anchor" href="#wiki" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki">Wiki</a>
 </h2>
 
@@ -58,6 +91,25 @@ Each dependency can be verified to your defined architecture.</p>
 <li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples">Examples</a></li>
 <li><a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins">Plugins</a></li>
 </ol>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md">Changelog</a>
+</h2>
+
+<p>See record of changes made to this project
+<a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md">here</a></p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md">Contributing</a>
+</h2>
+
+<p>Before opening up a pull-request please read the
+<a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md">Contributing-Guideline</a></p>
+
+<h2>
+<a id="alternatives" class="anchor" href="#alternatives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternatives</h2>
+
+<p>Check the resources in <a href="https://github.com/ziadoz/awesome-php#code-analysis">Code Analysis Section at Awesome PHP</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/mamuz/PhpDependencyAnalysis">PhpDependencyAnalysis</a> is maintained by <a href="https://github.com/mamuz">mamuz</a>.</span>
