@@ -75,7 +75,9 @@ class NodeName implements NodeNameInterface
             $this->excludePattern = (string) $options['excludePattern'];
         }
 
-        if (isset($options['namespaceFilter'])) {
+        if (isset($options['namespaceFilter'])
+            && $options['namespaceFilter'] instanceof NamespaceFilterInterface
+        ) {
             $this->namespaceFilter = $options['namespaceFilter'];
         }
     }
