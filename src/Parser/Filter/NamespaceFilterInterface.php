@@ -25,8 +25,6 @@
 
 namespace PhpDA\Parser\Filter;
 
-use PhpParser\Node;
-
 interface NamespaceFilterInterface
 {
     /**
