@@ -19,13 +19,36 @@
     </section>
 
     <section class="main-content">
-      <p>PhpDependencyAnalysis is an extendable static code analysis for object-oriented
+      <h1>
+<a id="phpdependencyanalysis" class="anchor" href="#phpdependencyanalysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>PhpDependencyAnalysis</h1>
+
+<p><a href="https://twitter.com/mamuz_de"><img src="http://img.shields.io/badge/author-@mamuz_de-blue.svg?style=flat-square" alt="Author"></a>
+<a href="https://travis-ci.org/mamuz/PhpDependencyAnalysis"><img src="https://img.shields.io/travis/mamuz/PhpDependencyAnalysis.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square" alt="Coverage Status"></a>
+<a href="https://scrutinizer-ci.com/g/mamuz/PhpDependencyAnalysis"><img src="https://img.shields.io/scrutinizer/g/mamuz/PhpDependencyAnalysis.svg?style=flat-square" alt="Quality Score"></a>
+<a href="http://hhvm.h4cc.de/package/mamuz/php-dependency-analysis"><img src="https://img.shields.io/hhvm/mamuz/php-dependency-analysis.svg?style=flat-square" alt="HHVM Status"></a>
+<a href="https://www.versioneye.com/user/projects/5431680abeeeeed15600019e"><img src="https://img.shields.io/versioneye/d/user/projects/5431680abeeeeed15600019e.svg?style=flat-square" alt="Dependency Status"></a></p>
+
+<p><a href="https://packagist.org/packages/mamuz/php-dependency-analysis"><img src="https://img.shields.io/packagist/v/mamuz/php-dependency-analysis.svg?style=flat-square" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/mamuz/php-dependency-analysis"><img src="https://img.shields.io/packagist/dt/mamuz/php-dependency-analysis.svg?style=flat-square" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/mamuz/php-dependency-analysis"><img src="https://img.shields.io/packagist/l/mamuz/php-dependency-analysis.svg?style=flat-square" alt="License"></a></p>
+
+<p><a href="https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45"><img src="https://insight.sensiolabs.com/projects/5dad5765-c411-41a5-9d3c-f1cf3d40ed45/big.png" alt="SensioLabsInsight"></a></p>
+
+<p>PhpDependencyAnalysis is an extendable static code analysis for object-oriented
 PHP-Projects to provide <a href="http://en.wikipedia.org/wiki/Dependency_graph"><code>dependency graphs</code></a>
 for abstract datatypes (Classes, Interfaces and Traits) based on <a href="http://php.net/manual/en/language.namespaces.php"><code>namespaces</code></a>.
 Dependencies can be aggregated to build graphs for several levels, like Package-Level or Layer-Level.
 Each dependency can be verified to your defined architecture.</p>
 
 <p>Read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction">Introduction-Chapter</a> for further informations.</p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<p><img src="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/examples/packages.png" alt=""></p>
+
+<p>See more <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples">examples</a>.</p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -37,7 +60,7 @@ an open source graph visualization software and available for the most platforms
 <a href="https://packagist.org/packages/mamuz/php-dependency-analysis"><code>mamuz/php-dependency-analysis</code></a> is through
 <a href="http://getcomposer.org/">composer</a> by adding dependency to your <code>composer.json</code>:</p>
 
-<div class="highlight highlight-json"><pre>{
+<div class="highlight highlight-source-json"><pre>{
     <span class="pl-s"><span class="pl-pds">"</span>require-dev<span class="pl-pds">"</span></span>: {
         <span class="pl-s"><span class="pl-pds">"</span>mamuz/php-dependency-analysis<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0.*<span class="pl-pds">"</span></span>
     }
@@ -66,7 +89,7 @@ an open source graph visualization software and available for the most platforms
 <p>This tool is configurable by a <a href="http://en.wikipedia.org/wiki/YAML"><code>YAML</code></a> file.
 You can copy a prepared file from the vendor directory.</p>
 
-<div class="highlight highlight-sh"><pre>cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml</pre></div>
+<div class="highlight highlight-source-shell"><pre>cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml</pre></div>
 
 <p>See <a href="https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist">prepared configuration</a>
 and read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration">Configuration-Chapter</a> for available options.</p>
@@ -76,7 +99,7 @@ and read the <a href="https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Con
 
 <p>Run this command line to create a dependecy graph:</p>
 
-<div class="highlight highlight-sh"><pre>./vendor/bin/phpda analyze ./myconfig.yml</pre></div>
+<div class="highlight highlight-source-shell"><pre>./vendor/bin/phpda analyze ./myconfig.yml</pre></div>
 
 <p>After that open created report file with your prefered tool.</p>
 
