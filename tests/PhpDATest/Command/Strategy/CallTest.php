@@ -26,6 +26,7 @@
 namespace PhpDATest\Command\Strategy;
 
 use PhpDA\Command\Strategy\Call;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class CallTest extends \PHPUnit_Framework_TestCase
 {
@@ -118,7 +119,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $file->shouldReceive('getRealPath')->once()->andReturn('anypath');
 
-        $this->output->shouldReceive('getVerbosity')->andReturn(3);
+        $this->output->shouldReceive('getVerbosity')->andReturn(OutputInterface::VERBOSITY_VERBOSE);
         $this->finder->shouldReceive('count')->once()->andReturn(6000);
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
         $this->fixture->setOptions(
@@ -166,7 +167,7 @@ class CallTest extends \PHPUnit_Framework_TestCase
         $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $file->shouldReceive('getRealPath')->once()->andReturn('anypath');
 
-        $this->output->shouldReceive('getVerbosity')->andReturn(3);
+        $this->output->shouldReceive('getVerbosity')->andReturn(OutputInterface::VERBOSITY_VERBOSE);
         $this->finder->shouldReceive('count')->once()->andReturn(6000);
         $this->finder->shouldReceive('getIterator')->andReturn(array($file));
         $this->fixture->setOptions(
