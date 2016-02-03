@@ -1,8 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.6.1 - UNRELEASED
+## v0.6.2 - UNRELEASED
 Nothing yet.
+
+## v0.6.1 - 2016-02-03
+### Fixed
+- [#5: Support Symfony3](https://github.com/mamuz/PhpDependencyAnalysis/issues/5)
 
 ## v0.6.0 - 2015-09-13
 ### Added
