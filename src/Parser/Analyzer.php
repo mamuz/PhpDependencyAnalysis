@@ -28,12 +28,12 @@ namespace PhpDA\Parser;
 use PhpDA\Entity\Analysis;
 use PhpDA\Entity\AnalysisCollection;
 use PhpParser\Error;
-use PhpParser\ParserAbstract;
+use PhpParser\Parser;
 use Symfony\Component\Finder\SplFileInfo;
 
 class Analyzer implements AnalyzerInterface
 {
-    /** @var ParserAbstract */
+    /** @var Parser */
     private $parser;
 
     /** @var AdtTraverser */
@@ -49,13 +49,13 @@ class Analyzer implements AnalyzerInterface
     private $collection;
 
     /**
-     * @param ParserAbstract $parser
-     * @param AdtTraverser   $adtTraverser
-     * @param NodeTraverser  $nodeTraverser
-     * @param Logger         $logger
+     * @param Parser        $parser
+     * @param AdtTraverser  $adtTraverser
+     * @param NodeTraverser $nodeTraverser
+     * @param Logger        $logger
      */
     public function __construct(
-        ParserAbstract $parser,
+        Parser $parser,
         AdtTraverser $adtTraverser,
         NodeTraverser $nodeTraverser,
         Logger $logger

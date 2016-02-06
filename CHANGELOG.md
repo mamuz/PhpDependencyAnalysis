@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.6.2 - UNRELEASED
-Nothing yet.
+## v1.0.0 - UNRELEASED
+### Changed
+- Remove support for PHP5.3
 
 ## v0.6.1 - 2016-02-03
 ### Fixed

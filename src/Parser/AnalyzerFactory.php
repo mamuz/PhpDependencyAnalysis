@@ -29,8 +29,7 @@ use PhpDA\Parser\Visitor\Required\AdtCollector;
 use PhpDA\Parser\Visitor\Required\NameResolver;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
-use PhpParser\Lexer\Emulative;
-use PhpParser\Parser;
+use PhpParser\ParserFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -55,11 +54,12 @@ class AnalyzerFactory implements FactoryInterface
     }
 
     /**
-     * @return Parser
+     * @return \PhpParser\Parser
      */
     protected function createParser()
     {
-        return new Parser(new Emulative);
+        $factory = new ParserFactory();
+        return $factory->create(ParserFactory::PREFER_PHP7);
     }
 
     /**

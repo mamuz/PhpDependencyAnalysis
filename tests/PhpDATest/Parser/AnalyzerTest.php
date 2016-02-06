@@ -32,7 +32,7 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     /** @var Analyzer */
     protected $fixture;
 
-    /** @var \PhpParser\ParserAbstract | \Mockery\MockInterface */
+    /** @var \PhpParser\Parser | \Mockery\MockInterface */
     protected $parser;
 
     /** @var \PhpDA\Parser\AdtTraverser | \Mockery\MockInterface */
@@ -52,7 +52,7 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->logger = \Mockery::mock('PhpDA\Parser\Logger');
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $this->file->shouldReceive('getContents')->andReturn('foo');
-        $this->parser = \Mockery::mock('PhpParser\ParserAbstract');
+        $this->parser = \Mockery::mock('PhpParser\Parser');
         $this->adtTraverser = \Mockery::mock('PhpDA\Parser\AdtTraverser');
         $this->nodeTraverser = \Mockery::mock('PhpDA\Parser\NodeTraverser');
 
