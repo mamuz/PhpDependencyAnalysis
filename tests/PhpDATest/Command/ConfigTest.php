@@ -72,6 +72,12 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('inheritance', $config->getMode());
     }
 
+    public function testInvalidSetting()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        new Config(array('foo' => 1));
+    }
+
     public function testInvalidMode()
     {
         $this->setExpectedException('InvalidArgumentException');
