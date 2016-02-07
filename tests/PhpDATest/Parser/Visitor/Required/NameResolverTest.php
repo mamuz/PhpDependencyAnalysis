@@ -104,7 +104,6 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
                 "PhpDaTest\\Stub\\FooBarProperty"  => "PhpDaTest\\Stub\\FooBarProperty",
                 "PhpDaTest\\Stub\\FooBarProperty2" => "PhpDaTest\\Stub\\FooBarProperty2",
                 "Foo"                              => "Foo",
-               // "Baz"                              => "Baz", @todo
                 "TimeDate"                         => "TimeDate",
                 "DateTime"                         => "DateTime",
                 "MyObject"                         => "MyObject",

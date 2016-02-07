@@ -27,6 +27,7 @@ namespace PhpDA\Parser\Visitor\Required;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
+use phpDocumentor\Reflection\Types\Compound;
 use phpDocumentor\Reflection\Types\Context;
 use phpDocumentor\Reflection\Types\Object_;
 use PhpParser\Error;
@@ -64,15 +65,15 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     );
 
     /** @var array */
-    private $invalidMethodArgumentTypes = array(
-        'bool', 'boolean',
-        'int', 'integer',
+    private $invalidTypes = array(
+        'bool', 'boolean', 'void',
+        'int', 'integer', 'scalar',
         'string', 'binary', 'array',
-        'object', 'resource',
+        'object', 'resource', 'callable',
         'mixed', 'null',
-        'float', 'double',
+        'float', 'double', '$this',
         'this', 'self', 'parent', 'static',
-        'true', 'false',
+        'true', 'false', 'object',
     );
 
     public function __construct()
@@ -102,9 +103,9 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $type |= $use->type;
 
         if (isset($this->aliases[$type][$aliasName])) {
-            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][$aliasName];
+            $this->namespaceAliases[$aliasName] = (string)$this->aliases[$type][$aliasName];
         } elseif (isset($this->aliases[$type][strtolower($aliasName)])) {
-            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][strtolower($aliasName)];
+            $this->namespaceAliases[$aliasName] = (string)$this->aliases[$type][strtolower($aliasName)];
         }
     }
 
@@ -116,7 +117,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
             if ($doc = $node->getDocComment()) {
                 $docBlock = $this->docBlockFactory->create(
                     str_replace('[]', '', $doc->getText()),
-                    new Context((string) $this->namespace, (array) $this->namespaceAliases)
+                    new Context((string)$this->namespace, (array)$this->namespaceAliases)
                 );
                 if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
                     $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
@@ -142,23 +143,44 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
                 if ($tag instanceof DocBlock\Tags\Method) {
                     $types[] = $tag->getReturnType();
                     foreach ($tag->getArguments() as $arg) {
-                        if (!in_array(trim($arg['type'], '\\'), $this->invalidMethodArgumentTypes)) {
-                            $types[] = $arg['type'];
-                        }
+                        $types[] = $arg['type'];
                     }
                 } elseif (is_callable(array($tag, 'getType'))) {
                     /** @var DocBlock\Tags\Param $tag */
                     $types[] = $tag->getType();
                 }
+
                 foreach ($types as $type) {
                     if ($type instanceof Object_) {
-                        $type = trim($type, '\\');
-                        if ('object' !== $type) {
-                            $tagNames[$type] = $type;
+                        $tagNames = $this->align($type, $tagNames);
+                    } elseif ($type instanceof Compound) {
+                        $tries = 0;
+                        while ($tries < 100) {
+                            if ($singleType = $type->get($tries)) {
+                                $tagNames = $this->align($singleType, $tagNames);
+                            } else {
+                                break;
+                            }
+                            $tries++;
                         }
                     }
                 }
             }
+        }
+
+        return $tagNames;
+    }
+
+    /**
+     * @param string $type
+     * @param array  $tagNames
+     * @return array
+     */
+    private function align($type, array $tagNames)
+    {
+        $type = trim($type, '\\');
+        if (!in_array($type, $this->invalidTypes)) {
+            $tagNames[$type] = $type;
         }
 
         return $tagNames;
