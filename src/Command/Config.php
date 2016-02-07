@@ -79,7 +79,7 @@ class Config
         foreach ($config as $property => $value) {
             if (!property_exists($this, $property)) {
                 throw new \InvalidArgumentException(
-                    'Invalid configuration setting: '.$property
+                    'Invalid configuration setting: ' . $property
                 );
             }
             $this->$property = $value;

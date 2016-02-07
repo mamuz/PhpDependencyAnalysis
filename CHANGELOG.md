@@ -1,8 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.0.1 - UNRELEASED
+## v1.1.1 - UNRELEASED
 Nothing yet.
+
+## v1.1.0 - 2016-02-07
+### Changed
+- [Invalid config settings should throw an exception](https://github.com/mamuz/PhpDependencyAnalysis/pull/11)
 
 ## v1.0.0 - 2016-02-07
 ### Changed
