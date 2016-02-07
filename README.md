@@ -40,10 +40,15 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ```json
 {
     "require-dev": {
-        "mamuz/php-dependency-analysis": "0.*"
+        "mamuz/php-dependency-analysis": "1.*"
     }
 }
 ```
+
+### PHP-Version
+
+To run the newest version of this tool, it requires PHP >= 5.5. 
+For running on machines with PHP < 5.5 have a look to 0.* releases.
 
 ## Features
 

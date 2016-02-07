@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.0.0 - UNRELEASED
+## v1.0.1 - UNRELEASED
+Nothing yet.
+
+## v1.0.0 - 2016-02-07
 ### Changed
 - Remove support for running on PHP5.3 and PHP5.4 machines
 - [#10: Not conpatible with nikic/php-parser v2.0.0](https://github.com/mamuz/PhpDependencyAnalysis/issues/10)
