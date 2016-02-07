@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v1.0.0 - UNRELEASED
 ### Changed
-- Remove support for PHP5.3 and PHP5.4
+- Remove support for running on PHP5.3 and PHP5.4 machines
 - Bump phpParser and docblockParser to new major
 
 ## v0.6.1 - 2016-02-03
