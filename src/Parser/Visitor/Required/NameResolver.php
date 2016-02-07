@@ -137,7 +137,6 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $tagNames = array();
 
         foreach ($docTags as $tag) {
-            var_dump($tag->render());
             if (in_array($tag->getName(), $this->validTags)) {
                 $types = array();
                 if ($tag instanceof DocBlock\Tags\Method) {
