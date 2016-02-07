@@ -115,7 +115,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         try {
             if ($doc = $node->getDocComment()) {
                 $docBlock = $this->docBlockFactory->create(
-                    str_replace('[]', '', $doc->getText()),
+                    str_replace('[]', '', $doc->getReformattedText()),
                     new Context((string) $this->namespace, (array) $this->namespaceAliases)
                 );
                 if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
@@ -137,6 +137,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $tagNames = array();
 
         foreach ($docTags as $tag) {
+            var_dump($tag->render());
             if (in_array($tag->getName(), $this->validTags)) {
                 $types = array();
                 if ($tag instanceof DocBlock\Tags\Method) {
@@ -153,7 +154,9 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
                 foreach ($types as $type) {
                     if ($type instanceof Object_) {
                         $type = trim($type, '\\');
-                        $tagNames[$type] = $type;
+                        if ('object' !== $type) {
+                            $tagNames[$type] = $type;
+                        }
                     }
                 }
             }
