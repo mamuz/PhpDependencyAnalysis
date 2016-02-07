@@ -26,8 +26,13 @@
 namespace PhpDA\Parser\Visitor\Required;
 
 use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
+use phpDocumentor\Reflection\Types\Context;
+use phpDocumentor\Reflection\Types\Object_;
 use PhpParser\Error;
 use PhpParser\Node;
+use PhpParser\Node\Name;
+use PhpParser\Node\Stmt;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -48,7 +53,18 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     private $file;
 
     /** @var array */
-    private $ignoredMethodArgumentTypes = array(
+    private $namespaceAliases;
+
+    /** @var array */
+    private $validTags = array(
+        'method', 'param',
+        'return', 'property-read',
+        'property', 'property-write',
+        'throws', 'var',
+    );
+
+    /** @var array */
+    private $invalidMethodArgumentTypes = array(
         'bool', 'boolean',
         'int', 'integer',
         'string', 'binary', 'array',
@@ -57,12 +73,12 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         'float', 'double',
         'this', 'self', 'parent', 'static',
         'true', 'false',
-        '=', '|'
     );
 
     public function __construct()
     {
         $this->logger = new NullLogger;
+        $this->docBlockFactory = DocBlockFactory::createInstance();
     }
 
     public function setLogger(LoggerInterface $logger)
@@ -78,13 +94,30 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $this->file = $file;
     }
 
+    protected function addAlias(Stmt\UseUse $use, $type, Name $prefix = null)
+    {
+        parent::addAlias($use, $type, $prefix);
+
+        $aliasName = $use->alias;
+        $type |= $use->type;
+
+        if (isset($this->aliases[$type][$aliasName])) {
+            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][$aliasName];
+        } elseif (isset($this->aliases[$type][strtolower($aliasName)])) {
+            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][strtolower($aliasName)];
+        }
+    }
+
     public function enterNode(Node $node)
     {
         parent::enterNode($node);
 
         try {
             if ($doc = $node->getDocComment()) {
-                $docBlock = new DocBlock($doc->getText());
+                $docBlock = $this->docBlockFactory->create(
+                    str_replace('[]', '', $doc->getText()),
+                    new Context((string) $this->namespace, (array) $this->namespaceAliases)
+                );
                 if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
                     $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
                 }
@@ -102,64 +135,30 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     private function collectTagNamesBy(array $docTags)
     {
         $tagNames = array();
+
         foreach ($docTags as $tag) {
-            if ($tag instanceof DocBlock\Tag\ReturnTag) {
-                $types = $tag->getTypes();
-                if ($tag instanceof DocBlock\Tag\MethodTag) {
-                    $types = array_merge($types, $this->getTypesBy($tag));
+            if (in_array($tag->getName(), $this->validTags)) {
+                $types = array();
+                if ($tag instanceof DocBlock\Tags\Method) {
+                    $types[] = $tag->getReturnType();
+                    foreach ($tag->getArguments() as $arg) {
+                        if (!in_array(trim($arg['type'], '\\'), $this->invalidMethodArgumentTypes)) {
+                            $types[] = $arg['type'];
+                        }
+                    }
+                } elseif (is_callable(array($tag, 'getType'))) {
+                    /** @var DocBlock\Tags\Param $tag */
+                    $types[] = $tag->getType();
                 }
                 foreach ($types as $type) {
-                    if ($resolvedString = $this->resolve($type, $tag)) {
-                        $tagNames[$resolvedString] = $resolvedString;
+                    if ($type instanceof Object_) {
+                        $type = trim($type, '\\');
+                        $tagNames[$type] = $type;
                     }
                 }
             }
         }
 
         return $tagNames;
-    }
-
-    /**
-     * @param DocBlock\Tag\MethodTag $tag
-     * @return array
-     */
-    private function getTypesBy(DocBlock\Tag\MethodTag $tag)
-    {
-        $types = array();
-        $args = $tag->getArguments();
-
-        foreach ($args as $strings) {
-            if (count($strings) > 1) {
-                foreach ($strings as $string) {
-                    $string = trim($string);
-                    if (strpos($string, '$') === false
-                        && !in_array(strtolower($string), $this->ignoredMethodArgumentTypes)
-                    ) {
-                        $types[] = '\\' . trim($string, '\\');
-                    }
-                }
-            }
-        }
-
-        return $types;
-    }
-
-    /**
-     * @param string       $type
-     * @param DocBlock\Tag $tag
-     * @return string|null
-     */
-    private function resolve($type, DocBlock\Tag $tag)
-    {
-        if (strpos($type, '\\') === 0) {
-            $type = rtrim($type, '[]');
-            $tagName = new Node\Name(trim($type, '\\'));
-            if (strpos($tag->getContent(), $type) === false) {
-                $tagName = $this->resolveClassName($tagName);
-            }
-            return $tagName->toString();
-        }
-
-        return null;
     }
 }
