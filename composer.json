@@ -24,7 +24,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.5",
     "psr/log": "~1.0",
     "nikic/php-parser": "~2.0",
     "clue/graph": "~0.8",
