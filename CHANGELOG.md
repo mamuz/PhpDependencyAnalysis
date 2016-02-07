@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 ## v1.0.0 - UNRELEASED
 ### Changed
 - Remove support for running on PHP5.3 and PHP5.4 machines
-- Bump phpParser and docblockParser to new major
+- [#10: Not conpatible with nikic/php-parser v2.0.0](https://github.com/mamuz/PhpDependencyAnalysis/issues/10)
+- Bump docblockParser to new major
 
 ## v0.6.1 - 2016-02-03
 ### Fixed
