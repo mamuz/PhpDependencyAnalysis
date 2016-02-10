@@ -230,4 +230,40 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
 
         $this->fixture->callExecute($input, $output);
     }
+
+    /**
+     * @dataProvider symfonyOptions
+     */
+    public function testExecutionWorksWithSymfonyOptions($options)
+    {
+        $input = \Mockery::mock('Symfony\Component\Console\Input\InputInterface');
+        $formatter = \Mockery::mock('Symfony\Component\Console\Formatter\OutputFormatterInterface');
+        $formatter->shouldReceive('setStyle');
+        $output = \Mockery::mock('Symfony\Component\Console\Output\OutputInterface');
+        $output->shouldReceive('writeln');
+        $output->shouldReceive('getFormatter')->andReturn($formatter);
+
+        $configPath = __DIR__ . '/Stub/config.txt';
+
+        $input->shouldReceive('getArgument')->with('config')->once()->andReturn($configPath);
+        $input->shouldReceive('getOptions')->once()->andReturn($options);
+
+        $this->configParser->shouldReceive('parse')->once()->with("stub\n")->andReturn(array());
+        $strategy = \Mockery::mock('PhpDA\Command\Strategy\StrategyInterface');
+        $strategy->shouldReceive('execute')->once()->andReturn(true);
+        $this->strategyLoader->shouldReceive('get')->andReturn($strategy);
+
+        $this->assertSame(0, $this->fixture->callExecute($input, $output));
+    }
+
+    public function symfonyOptions()
+    {
+        return array(
+            array('verbose mode' => array('verbose' => true)),
+            array('ansi mode' => array('ansi' => true)),
+            array('no-ansi mode' => array('no-ansi' => true)),
+            array('no-interaction mode' => array('no-interaction' => true)),
+            array('quiet mode' => array('quiet' => true)),
+        );
+    }
 }
