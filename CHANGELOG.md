@@ -2,7 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.1.1 - UNRELEASED
-Nothing yet.
+### Fixed
+- [Bug "Invalid configuration setting: verbose"](https://github.com/mamuz/PhpDependencyAnalysis/issues/14)
 
 ## v1.1.0 - 2016-02-07
 ### Changed
