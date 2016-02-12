@@ -137,6 +137,8 @@ class Analyze extends Command
             throw new \InvalidArgumentException('Configuration is invalid');
         }
 
+        $config['source'] = !isset($config['source']) ?: $this->generateAbsolutePathFrom($config['source']);
+        $config['target'] = !isset($config['target']) ?: $this->generateAbsolutePathFrom($config['target']);
         $config = array_merge($config, array_filter($input->getOptions()));
 
         if (isset($config['ignore']) && !is_array($config['ignore'])) {
@@ -146,6 +148,30 @@ class Analyze extends Command
         return new Config($config);
     }
 
+    /**
+     * From phpunit https://goo.gl/t6PuXz
+     * @param string $path
+     * @return bool
+     */
+    public function generateAbsolutePathFrom($path)
+    {
+        $path = trim($path);
+        if ($path[0] === '/') {
+            return $path;
+        }
+        if (defined('PHP_WINDOWS_VERSION_BUILD') &&
+            ($path[0] === '\\' ||
+            (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))) {
+            return $path;
+        }
+        if (strpos($path, '://') !== false) {
+            return $path;
+        }
+        $file = dirname($this->configFilePath) . DIRECTORY_SEPARATOR . $path;
+
+        return $file;
+    }
+    
     /**
      * @param string $type
      * @param array  $options
