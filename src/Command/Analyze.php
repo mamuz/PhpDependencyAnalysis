@@ -149,7 +149,7 @@ class Analyze extends Command
     }
 
     /**
-     * From phpunit https://goo.gl/t6PuXz
+     * @link https://goo.gl/t6PuXz from phpunit
      * @param string $path
      * @return bool
      */
@@ -160,8 +160,8 @@ class Analyze extends Command
             return $path;
         }
         if (defined('PHP_WINDOWS_VERSION_BUILD') &&
-            ($path[0] === '\\' ||
-            (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))) {
+            ($path[0] === '\\' || (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))
+        ) {
             return $path;
         }
         if (strpos($path, '://') !== false) {
@@ -171,7 +171,7 @@ class Analyze extends Command
 
         return $file;
     }
-    
+
     /**
      * @param string $type
      * @param array  $options
