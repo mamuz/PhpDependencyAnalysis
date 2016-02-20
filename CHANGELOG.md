@@ -1,7 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.2.0 - UNRELEASED
+## v1.2.1 - UNRELEASED
+Nothing yet.
+
+## v1.2.0 - 2016-02-20
+### Added
+- Code of Conduct for contributer
+
 ### Changed
 - [Allow to use relative path in the config yaml](https://github.com/mamuz/PhpDependencyAnalysis/pull/13)
 
