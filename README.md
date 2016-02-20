@@ -93,6 +93,10 @@ After that open created report file with your prefered tool.
 4. [Examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples)
 5. [Plugins](https://github.com/mamuz/PhpDependencyAnalysis/wiki/5.-Plugins)
 
+## [Code of Conduct](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CODE_OF_CONDUCT.md)
+
+As contributor you maintainer of this project you have to respect the [Code of Coduct](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CODE_OF_CONDUCT.md)
+
 ## [Changelog](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
 
 See record of changes made to this project
