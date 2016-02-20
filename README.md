@@ -95,7 +95,7 @@ After that open created report file with your prefered tool.
 
 ## [Code of Conduct](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CODE_OF_CONDUCT.md)
 
-As contributors and maintainers of this project of this project you have to respect the [Code of Coduct](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CODE_OF_CONDUCT.md)
+As contributors and maintainers of this project you have to respect the [Code of Coduct](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CODE_OF_CONDUCT.md)
 
 ## [Changelog](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
 
