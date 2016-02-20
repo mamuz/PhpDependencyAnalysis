@@ -156,7 +156,7 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
         $output->shouldReceive('getFormatter')->andReturn($formatter);
 
         $configPath = __DIR__ . '/Stub/config.txt';
-        $config = array('mode' => 'call', 'source' => '.', 'ignore' => 'dir1, dir2,dir3');
+        $config = array('mode' => 'call', 'source' => '\foo', 'ignore' => 'dir1, dir2,dir3', 'target' => 'baz');
         $options = array('mode' => 'inheritance', 'source' => '.');
 
         $input->shouldReceive('getArgument')->with('config')->once()->andReturn($configPath);
@@ -172,6 +172,7 @@ class AnalyzeTest extends \PHPUnit_Framework_TestCase
                 $testcase->assertSame($output, $options['output']);
                 /** @var Config $config */
                 $config = $options['config'];
+                $testcase->assertSame(__DIR__ . '/Stub/baz', $config->getTarget());
                 $testcase->assertSame('.', $config->getSource());
                 $testcase->assertSame(array('dir1', 'dir2', 'dir3'), $config->getIgnore());
                 $strategy = \Mockery::mock('PhpDA\Command\Strategy\StrategyInterface');
