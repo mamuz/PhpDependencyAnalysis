@@ -1,0 +1,27 @@
+{
+  "chmod": "0755",
+  "directories": ["src"],
+  "files": [
+    "LICENSE",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "bin/phpda.php"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "test",
+        "tests",
+        "Tests"
+      ],
+      "in": "vendor"
+    }
+  ],
+  "main": "bin/phpda",
+  "output": "phpda.phar",
+  "stub": true,
+  "web": false
+}
