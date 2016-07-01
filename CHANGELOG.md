@@ -2,7 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.2.1 - UNRELEASED
-Nothing yet.
+### Added
+- Support for building phar
 
 ## v1.2.0 - 2016-02-20
 ### Added
