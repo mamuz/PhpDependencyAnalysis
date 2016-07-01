@@ -1,2 +1,4 @@
 composer.lock
 vendor
+.idea
+phpda.phar

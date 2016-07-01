@@ -21,6 +21,10 @@
     "issues": "https://github.com/mamuz/PhpDependencyAnalysis/issues",
     "source": "https://github.com/mamuz/PhpDependencyAnalysis"
   },
+  "scripts": {
+    "test": "phpunit",
+    "build": "box build -v"
+  },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
