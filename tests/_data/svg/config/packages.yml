@@ -1,0 +1,14 @@
+mode: 'usage'
+source: '../../Project'
+filePattern: '*.php'
+ignore: 'tests'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/packages.svg'
+visitor:
+  - PhpDA\Parser\Visitor\TagCollector
+  - PhpDA\Parser\Visitor\SuperglobalCollector
+visitorOptions:
+  PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector: {minDepth: 2, sliceLength: 1}
+  PhpDA\Parser\Visitor\Required\MetaNamespaceCollector: {minDepth: 2, sliceLength: 1}
+  PhpDA\Parser\Visitor\Required\UsedNamespaceCollector: {minDepth: 2, sliceLength: 1}
+  PhpDA\Parser\Visitor\TagCollector: {minDepth: 2, sliceLength: 1}

@@ -1,0 +1,7 @@
+mode: 'usage'
+source: '../../Project/tests/stubs'
+filePattern: 'SuperGlobalAccess.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/superglobals.svg'
+visitor:
+  - PhpDA\Parser\Visitor\SuperglobalCollector

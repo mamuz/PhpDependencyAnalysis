@@ -1,0 +1,9 @@
+mode: 'call'
+source: '../../../../src/Plugin'
+filePattern: '*.php'
+ignore: 'tests'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/call.svg'
+visitor:
+  - PhpDA\Parser\Visitor\TagCollector
+  - PhpDA\Parser\Visitor\SuperglobalCollector
