@@ -4,6 +4,8 @@
 $I = new FunctionalTester($scenario);
 $I->wantTo('perform analysis and see svg results');
 
+@mkdir(codecept_output_dir() . 'svg');
+
 $configFolder = codecept_data_dir('svg' . DIRECTORY_SEPARATOR . 'config');
 $expectationFolder = codecept_data_dir('svg' . DIRECTORY_SEPARATOR . 'expectation');
 $outputFolder = codecept_output_dir('svg');
