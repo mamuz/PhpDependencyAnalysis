@@ -2,3 +2,4 @@ composer.lock
 vendor
 .idea
 phpda.phar
+tests/_output/*

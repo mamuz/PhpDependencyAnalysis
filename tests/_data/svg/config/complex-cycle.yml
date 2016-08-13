@@ -1,0 +1,6 @@
+mode: 'usage'
+source: '../../Project/PackageC/Filter'
+filePattern: '*.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/complex-cycle.svg'
+groupLength: 3

@@ -1,0 +1,10 @@
+mode: 'usage'
+source: '../../Project/tests/stubs'
+filePattern: 'UnsupportedStatement.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/unsupported-stmt.svg'
+visitor:
+  - PhpDA\Parser\Visitor\UnsupportedEvalCollector
+  - PhpDA\Parser\Visitor\UnsupportedFuncCollector
+  - PhpDA\Parser\Visitor\UnsupportedVarCollector
+  - PhpDA\Parser\Visitor\UnsupportedGlobalCollector
