@@ -1,0 +1,8 @@
+mode: 'usage'
+source: '../../Project/tests/stubs'
+filePattern: 'NamespacedString.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/namespaced-strings.svg'
+visitor:
+  - PhpDA\Parser\Visitor\NamespacedStringCollector
+  - PhpDA\Parser\Visitor\IocContainerAccessorCollector

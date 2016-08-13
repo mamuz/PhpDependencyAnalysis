@@ -1,0 +1,7 @@
+mode: 'usage'
+source: '../../Project/tests/stubs'
+filePattern: 'DocBlockTag.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/docblock.svg'
+visitor:
+  - PhpDA\Parser\Visitor\TagCollector

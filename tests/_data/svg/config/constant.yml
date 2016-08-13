@@ -1,0 +1,5 @@
+mode: 'usage'
+source: '../../Project/tests/stubs'
+filePattern: 'Constant.php'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: '../../../_output/svg/constant.svg'
