@@ -14,11 +14,14 @@ array_map('unlink', glob($outputFolder . DIRECTORY_SEPARATOR . '*.svg'));
 
 $dir = new \DirectoryIterator($configFolder);
 foreach ($dir as $fileinfo) {
-    if (is_file($fileinfo->getRealPath())) {
+    if (!$fileinfo->isDot()) {
         exec('./bin/phpda analyze ' . $fileinfo->getRealPath(), $output);
-        $result = sha1_file($outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
-        $expectation = sha1_file($expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
-        if ($expectation !== $result) {
+        $resultFile = $outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
+        $expectationFile = $expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
+        while(!file_exists($resultFile)) {
+            usleep(10);
+        }
+        if (sha1_file($expectationFile) !== sha1_file($resultFile)) {
             throw new \Exception($fileinfo->getBasename('yml') . ' not working');
         }
     }
