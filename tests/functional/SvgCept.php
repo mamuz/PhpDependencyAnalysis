@@ -22,9 +22,9 @@ foreach ($dir as $fileinfo) {
             usleep(10);
         }
         if (sha1_file($expectationFile) !== sha1_file($resultFile)) {
+            echo PHP_EOL . file_get_contents($expectationFile) . PHP_EOL;
+            echo PHP_EOL . file_get_contents($resultFile) . PHP_EOL;
             throw new \Exception($fileinfo->getBasename() . ' not working');
-        }else {
-            echo PHP_EOL . $fileinfo->getBasename() . ' works' . PHP_EOL;
         }
     }
 }
