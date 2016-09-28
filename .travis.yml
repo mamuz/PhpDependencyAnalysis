@@ -7,7 +7,10 @@ php:
   - nightly
   - hhvm
 
-sudo: false
+sudo: required
+
+services:
+  - docker
 
 env:
   - COMPOSER_OPTS=""
@@ -20,6 +23,7 @@ matrix:
 
 before_install:
   - composer install --prefer-source
+  - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; docker build -t mamuz/phpda .; fi
 
 install:
   - travis_retry composer update $COMPOSER_OPTS
@@ -30,6 +34,7 @@ before_script:
 script:
   - if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then ./vendor/bin/phpunit; fi
   - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/phpunit --coverage-text --coverage-clover coverage.xml; fi
+  - if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then docker run --rm -it mamuz/phalcon-application ./vendor/bin/codecept run; fi
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

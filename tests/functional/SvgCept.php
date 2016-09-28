@@ -19,7 +19,7 @@ foreach ($dir as $fileinfo) {
         $result = sha1_file($outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
         $expectation = sha1_file($expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
         if ($expectation !== $result) {
-            //throw new \Exception($fileinfo->getBasename('yml') . ' not working');
+            throw new \Exception($fileinfo->getBasename('yml') . ' not working');
         }
     }
 }
