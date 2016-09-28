@@ -14,7 +14,7 @@ array_map('unlink', glob($outputFolder . DIRECTORY_SEPARATOR . '*.svg'));
 
 $dir = new \DirectoryIterator($configFolder);
 foreach ($dir as $fileinfo) {
-    if (!$fileinfo->isDot()) {
+    if (!$fileinfo->isDot() && $fileinfo->getBasename() !== 'packages.yml') {
         exec('./bin/phpda analyze ' . $fileinfo->getRealPath(), $output);
         $resultFile = $outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
         $expectationFile = $expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
