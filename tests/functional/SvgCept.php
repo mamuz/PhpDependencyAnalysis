@@ -22,7 +22,9 @@ foreach ($dir as $fileinfo) {
             usleep(10);
         }
         if (sha1_file($expectationFile) !== sha1_file($resultFile)) {
-            throw new \Exception($fileinfo->getBasename('yml') . ' not working');
+            throw new \Exception($fileinfo->getBasename() . ' not working');
+        }else {
+            echo PHP_EOL . $fileinfo->getBasename() . ' works' . PHP_EOL;
         }
     }
 }
