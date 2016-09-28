@@ -18,12 +18,7 @@ foreach ($dir as $fileinfo) {
         exec('./bin/phpda analyze ' . $fileinfo->getRealPath(), $output);
         $resultFile = $outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
         $expectationFile = $expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
-        while(!file_exists($resultFile)) {
-            usleep(10);
-        }
-        if (sha1_file($expectationFile) !== sha1_file($resultFile)) {
-            echo PHP_EOL . file_get_contents($expectationFile) . PHP_EOL;
-            echo PHP_EOL . file_get_contents($resultFile) . PHP_EOL;
+        if (md5($expectationFile) !== md5($resultFile)) {
             throw new \Exception($fileinfo->getBasename() . ' not working');
         }
     }
