@@ -14,7 +14,7 @@ array_map('unlink', glob($outputFolder . DIRECTORY_SEPARATOR . '*.svg'));
 
 $dir = new \DirectoryIterator($configFolder);
 foreach ($dir as $fileinfo) {
-    if (!$fileinfo->isDot()) {
+    if (is_file($fileinfo->getRealPath())) {
         exec('./bin/phpda analyze ' . $fileinfo->getRealPath(), $output);
         $result = sha1_file($outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
         $expectation = sha1_file($expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg');
