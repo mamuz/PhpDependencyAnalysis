@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v1.2.1 - UNRELEASED
 ### Added
 - Support for building phar
+- Add E2E tests with codeception and docker
 
 ## v1.2.0 - 2016-02-20
 ### Added
