@@ -14,12 +14,24 @@ array_map('unlink', glob($outputFolder . DIRECTORY_SEPARATOR . '*.svg'));
 
 $dir = new \DirectoryIterator($configFolder);
 foreach ($dir as $fileinfo) {
-    if (!$fileinfo->isDot() && $fileinfo->getBasename() !== 'packages.yml') {
+    if (!$fileinfo->isDot()) {
+
         exec('./bin/phpda analyze ' . $fileinfo->getRealPath(), $output);
-        $resultFile = $outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
+
         $expectationFile = $expectationFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
-        if (md5($expectationFile) !== md5($resultFile)) {
-            throw new \Exception($fileinfo->getBasename() . ' not working');
+        $expectationXml = simplexml_load_file($expectationFile);
+        $expectationXml->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
+        $expected = array_map('strval', $expectationXml->xpath('/svg:svg/svg:g[1]/svg:g/svg:title'));
+        sort($expected);
+
+        $resultFile = $outputFolder . DIRECTORY_SEPARATOR . $fileinfo->getBasename('yml') . 'svg';
+        $resultXml = simplexml_load_file($resultFile);
+        $resultXml->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
+        $result = array_map('strval', $resultXml->xpath('/svg:svg/svg:g[1]/svg:g/svg:title'));
+        sort($result);
+
+        if ($result !== $expected) {
+            throw new \Exception($fileinfo->getBasename() . ' is not valid');
         }
     }
 }
