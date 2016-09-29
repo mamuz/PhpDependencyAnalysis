@@ -1,6 +1,6 @@
 FROM diegomarangoni/hhvm:src-cli
 
-ARG COMPOSER_OPTS=""
+ARG COMPOSER_OPTS
 
 RUN apt-get update && apt-get install -y curl graphviz
 
