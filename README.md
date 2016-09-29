@@ -25,6 +25,7 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 ### Example
 
 ![](./tests/_data/svg/expectation/packages.svg)
+<img src="./tests/_data/svg/expectation/packages.svg">
 
 See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
 
