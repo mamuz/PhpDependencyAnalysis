@@ -8,6 +8,6 @@ COPY . /phpda
 WORKDIR /phpda
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
- && composer install $COMPOSER_OPTS
+ && composer update $COMPOSER_OPTS
 
 CMD [""]
