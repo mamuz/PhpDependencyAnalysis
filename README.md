@@ -30,14 +30,10 @@ an open source graph visualization software and available for the most platforms
 
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
 [`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is through
-[composer](http://getcomposer.org/) by adding dependency to your `composer.json`:
+[composer](http://getcomposer.org/):
 
-```json
-{
-    "require-dev": {
-        "mamuz/php-dependency-analysis": "1.*"
-    }
-}
+```sh
+$ composer require mamuz/phalcon-application
 ```
 
 ### PHP-Version
