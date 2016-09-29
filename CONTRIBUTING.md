@@ -26,11 +26,14 @@ that contains the [license](https://github.com/mamuz/PhpDependencyAnalysis/blob/
 
 Check [this](http://choosealicense.com/licenses/mit) for more informations about MIT License.
 
-## Unit-Tests
+## Tests
 
-Add a test for your pull-request.
+Add a functional and/or an unit test for your pull-request.
 
-You can run the unit-tests by calling `phpunit` from the root of the project.
+You can run tests on provisioned docker images which requires [Docker](https://docs.docker.com).
+Create the image with `make build` and run tests with `make test`.
+
+In alternative you can run the test with `./vendor/bin/codecept run` on your host.
 
 ## Travis
 

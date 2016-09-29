@@ -54,7 +54,7 @@ This tool is configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
 You can copy a prepared file from the vendor directory.
 
 ```sh
-cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml
+$ cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml
 ```
 
 See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist)
@@ -65,7 +65,7 @@ and read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnaly
 Run this command line to create a dependecy graph:
 
 ```sh
-./vendor/bin/phpda analyze ./myconfig.yml
+$ ./vendor/bin/phpda analyze ./myconfig.yml
 ```
 
 After that open created report file with your prefered tool.
