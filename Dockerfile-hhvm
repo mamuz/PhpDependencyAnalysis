@@ -1,0 +1,13 @@
+FROM diegomarangoni/hhvm:src-cli
+
+ARG COMPOSER_OPTS=""
+
+RUN apt-get update && apt-get install -y curl graphviz
+
+COPY . /phpda
+WORKDIR /phpda
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+ && composer install $COMPOSER_OPTS
+
+CMD [""]

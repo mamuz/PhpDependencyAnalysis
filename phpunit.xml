@@ -3,15 +3,10 @@
 <phpunit bootstrap="./tests/unit/_bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="PhpDa Testsuite">
-        <directory>./tests/unit</directory>
+            <directory>./tests/unit</directory>
         </testsuite>
     </testsuites>
     <listeners>
         <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
     </listeners>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
 </phpunit>

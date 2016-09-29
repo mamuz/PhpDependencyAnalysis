@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.2.1 - UNRELEASED
+## v1.3.0 - UNRELEASED
+### Changed
+- Remove support for PHP5.5
+
 ### Added
 - Support for building phar
 - E2E tests with codeception and docker
