@@ -1,6 +1,6 @@
 FROM alpine:3.3
 
-ARG COMPOSER_OPTS=""
+ARG COMPOSER_OPTS
 
 RUN apk add --no-cache curl git graphviz php-cli php-json php-phar php-openssl php-curl php-dom php-ctype
 
