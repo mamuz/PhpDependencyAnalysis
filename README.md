@@ -35,11 +35,6 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 $ composer require mamuz/phalcon-application
 ```
 
-### PHP-Version
-
-To run the newest version of this tool, it requires PHP >= 5.5. 
-For running on machines with PHP < 5.5 have a look to 0.* releases.
-
 ## Features
 
 - Providing high customizing level
