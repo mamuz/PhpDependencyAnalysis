@@ -24,7 +24,7 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 ### Example
 
-![](./tree/master/tests/_data/svg/expectation/packages.svg)
+![](./tests/_data/svg/expectation/packages.svg)
 
 See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
 
