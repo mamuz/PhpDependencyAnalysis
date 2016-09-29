@@ -15,9 +15,9 @@ cp-artifacts:
 clean:
 	-@docker rm -fv $(NAME)-php56
 	-@docker rm -fv $(NAME)-php70
+	-@docker rm -fv $(NAME)-hhvm
 	-@docker rmi -f $(NAME)-php56
 	-@docker rmi -f $(NAME)-php70
-	-@docker rmi -f $(NAME)-hhvm
 	-@docker rmi -f $(NAME)-hhvm
 	-@rm -rf vendor
 
