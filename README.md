@@ -32,7 +32,7 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 [composer](http://getcomposer.org/):
 
 ```sh
-$ composer require mamuz/phalcon-application
+$ composer require mamuz/php-dependency-analysis
 ```
 
 ## Features
