@@ -25,8 +25,10 @@
 
 namespace PhpDA\Parser;
 
+use PhpDA\Entity\JsonSerializableFileInfo;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use Symfony\Component\Finder\SplFileInfo;
 
 class Logger extends AbstractLogger
 {
@@ -91,9 +93,23 @@ class Logger extends AbstractLogger
             $this->entries[$level] = array();
         }
 
+        array_walk_recursive($context, array($this, 'wrapSPLFileInfo'));
+
         $this->entries[$level][] = array(
             'message' => $message,
             'context' => $context,
         );
+    }
+
+    /**
+     * items of type SplFileInfo will be wrapped with JsonSerializableFileInfo to be serializable
+     *
+     * @param mixed $item
+     */
+    private function wrapSPLFileInfo(&$item)
+    {
+        if ($item instanceof SplFileInfo) {
+            $item = new JsonSerializableFileInfo($item);
+        }
     }
 }

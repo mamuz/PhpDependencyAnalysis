@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 Marco Muths
+ * Copyright (c) 2016 Christian A. Wolf
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,13 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Parser;
+namespace PhpDATest\Entity;
 
-use PhpDA\Parser\Logger;
-use Psr\Log\LogLevel;
+use PhpDA\Entity\JsonSerializableFileInfo;
 
-class LoggerTest extends \PHPUnit_Framework_TestCase
+class JsonSerializableFileInfoTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Logger */
+    /** @var JsonSerializableFileInfo */
     protected $fixture;
 
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
@@ -39,33 +38,22 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
-        $this->fixture = new Logger;
-    }
-
-    public function testLogging()
-    {
-        $this->assertSame('', $this->fixture->toString());
-        $this->assertTrue($this->fixture->isEmpty());
-
-        $this->fixture->log(LogLevel::CRITICAL, 'CRITICALfoo', array('CRITICALbar'));
-        $this->fixture->log(LogLevel::NOTICE, 'NOTICEfoo', array('NOTICEbar'));
-        $this->fixture->log(LogLevel::EMERGENCY, 'EMERGENCYfoo', array('EMERGENCYbar'));
-
-        $this->assertNotEmpty($this->fixture->toString());
-        $this->assertFalse($this->fixture->isEmpty());
-    }
-
-    public function testLoggingWithWrapping()
-    {
         $this->file->shouldReceive('__toString')->andReturn('filename');
+        $this->file->shouldReceive('getPathname')->andReturn('pathname');
+        $this->file->shouldReceive('getRelativePath')->andReturn('relative/path');
+        $this->fixture = new JsonSerializableFileInfo($this->file);
+    }
 
-        $this->assertSame('', $this->fixture->toString());
-        $this->assertTrue($this->fixture->isEmpty());
+    public function testIsWrapper()
+    {
+        $this->assertSame('pathname', $this->fixture->getFile()->getPathname());
+        $this->assertSame('relative/path', $this->fixture->getFile()->getRelativePath());
+    }
 
-        $this->fixture->log(LogLevel::CRITICAL, 'CRITICALfoo', array($this->file));
-        $this->fixture->log(LogLevel::NOTICE, 'NOTICEfoo', array('NOTICEbar' => $this->file));
-
-        $this->assertNotEmpty($this->fixture->toString());
-        $this->assertFalse($this->fixture->isEmpty());
+    public function testIsSerializable()
+    {
+        $this->assertInstanceOf('\JsonSerializable', $this->fixture);
+        $this->assertSame('filename', $this->fixture->jsonSerialize());
+        $this->assertSame('filename', $this->fixture->__toString());
     }
 }
