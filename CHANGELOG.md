@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.3.0 - UNRELEASED
+### Fixed
+- [Context of warnings is empty in JSON result](https://github.com/mamuz/PhpDependencyAnalysis/pull/26)
+
 ### Changed
 - Remove support for PHP5.5
 
