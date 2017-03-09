@@ -57,6 +57,11 @@
   "bin": [
     "bin/phpda"
   ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.3-dev"
+    }
+  },
   "scripts": {
     "test": "phpunit",
     "build": "box build -v"
