@@ -28,7 +28,7 @@ class SvgCest
     /**
      * @param FunctionalTester $tester
      */
-    public function requestDefaultActionInDefaultController(FunctionalTester $tester)
+    public function createGraphForAllUseCases(FunctionalTester $tester)
     {
         $tester->wantTo('perform analysis and see svg results');
 
