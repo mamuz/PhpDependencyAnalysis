@@ -45,6 +45,9 @@ class Analyze extends Command
     const EXIT_SUCCESS = 0, EXIT_VIOLATION = 2;
 
     /** @var string */
+    private $defaultConfigFilePath = __DIR__ . '/../../phpda.yml.dist';
+
+    /** @var string */
     private $configFilePath;
 
     /** @var Parser */
@@ -71,9 +74,7 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $defaultConfig = __DIR__ . '/../../phpda.yml.dist';
-
-        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, $defaultConfig);
+        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, $this->defaultConfigFilePath);
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::OPTION_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::OPTION_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::OPTION_FILE_PATTERN);
@@ -90,11 +91,11 @@ class Analyze extends Command
         $output->writeln($this->getDescription() . PHP_EOL);
         $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
 
-        $strategyOptions = array(
+        $strategyOptions = [
             'config'      => $config,
             'output'      => $output,
             'layoutLabel' => $this->getDescription(),
-        );
+        ];
 
         if ($this->loadStrategy($config->getMode(), $strategyOptions)->execute()) {
             return self::EXIT_SUCCESS;
@@ -130,7 +131,16 @@ class Analyze extends Command
      */
     private function createConfigBy(InputInterface $input)
     {
-        $this->configFilePath = realpath($input->getArgument('config'));
+        $this->configFilePath = trim($input->getArgument('config'));
+
+        if (strpos($this->configFilePath, 'phar://') === false) {
+            $this->configFilePath = realpath($this->configFilePath);
+        }
+
+        if (!is_readable($this->configFilePath)) {
+            throw new \InvalidArgumentException('Configfile "' . $input->getArgument('config') . '" is not readable');
+        }
+
         $config = $this->configParser->parse(file_get_contents($this->configFilePath));
 
         if (!is_array($config)) {
@@ -139,6 +149,7 @@ class Analyze extends Command
 
         $config['source'] = !isset($config['source']) ?: $this->generateAbsolutePathFrom($config['source']);
         $config['target'] = !isset($config['target']) ?: $this->generateAbsolutePathFrom($config['target']);
+
         $config = array_merge($config, array_filter($input->getOptions()));
 
         if (isset($config['ignore']) && !is_array($config['ignore'])) {
@@ -156,20 +167,26 @@ class Analyze extends Command
     public function generateAbsolutePathFrom($path)
     {
         $path = trim($path);
+
         if ($path[0] === '/') {
             return $path;
         }
-        if (defined('PHP_WINDOWS_VERSION_BUILD') &&
-            ($path[0] === '\\' || (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))
+
+        if (defined('PHP_WINDOWS_VERSION_BUILD')
+            && ($path[0] === '\\' || (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))
         ) {
             return $path;
         }
+
         if (strpos($path, '://') !== false) {
             return $path;
         }
-        $file = dirname($this->configFilePath) . DIRECTORY_SEPARATOR . $path;
 
-        return $file;
+        if ($this->configFilePath == $this->defaultConfigFilePath) {
+            return getcwd() . DIRECTORY_SEPARATOR . $path;
+        }
+
+        return dirname($this->configFilePath) . DIRECTORY_SEPARATOR . $path;
     }
 
     /**

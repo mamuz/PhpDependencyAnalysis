@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v1.3.0 - UNRELEASED
 ### Fixed
 - [Context of warnings is empty in JSON result](https://github.com/mamuz/PhpDependencyAnalysis/pull/26)
+- Using cwd in case of default config in order to be compatible with phar and saving outputs
 
 ### Changed
 - Remove support for PHP5.5
