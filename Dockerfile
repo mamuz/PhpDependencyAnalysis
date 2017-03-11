@@ -1,8 +1,8 @@
-FROM diegomarangoni/hhvm:cli
+FROM php:7.1-alpine
 
 ARG COMPOSER_OPTS
 
-RUN apt-get update && apt-get install -y curl graphviz
+RUN apk --no-cache add curl git openssl graphviz
 
 COPY . /app
 WORKDIR /app
