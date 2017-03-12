@@ -7,8 +7,7 @@
 /.scrutinizer.yml export-ignore
 /phpunit.xml export-ignore
 /codeception.yml export-ignore
-/box.json export-ignore
-/manifest.json export-ignore
+/box.json.dist export-ignore
 /Dockerfile* export-ignore
-/Makefile* export-ignore
+/Makefile export-ignore
 /CODE_OF_CONDUCT.md export-ignore
