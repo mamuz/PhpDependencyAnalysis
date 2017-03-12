@@ -87,10 +87,10 @@ As contributors and maintainers of this project you have to respect the [Code of
 See record of changes made to this project
 [here](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CHANGELOG.md)
 
-## [Contributing](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
+## [Contributing](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/.github/CONTRIBUTING.md)
 
 Before opening up a pull-request please read the
-[Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/CONTRIBUTING.md)
+[Contributing-Guideline](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/.github/CONTRIBUTING.md)
 
 ## Alternatives
 
