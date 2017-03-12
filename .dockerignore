@@ -10,6 +10,7 @@ Thumbs.db
 .travis
 .git*
 .*.yml
+composer.lock
 CODE_OF_CONDUCT.md
 phpda
 phpda.pubkey
