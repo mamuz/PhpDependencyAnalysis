@@ -34,8 +34,10 @@ if (!(@include_once __DIR__ . '/../vendor/autoload.php')
 }
 
 set_error_handler(
-    function ($code, $message, $file, $line) {
-        throw new \ErrorException($message, $code, 1, $file, $line);
+    function ($severity, $message, $file, $line) {
+        if (error_reporting() & $severity) {
+            throw new \ErrorException($message, $severity, 1, $file, $line);
+        }
     }
 );
 
