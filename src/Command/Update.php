@@ -33,9 +33,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Update extends Command
 {
-    const PHAR_FILE = 'http://mamuz.github.io/PhpDependencyAnalysis/phpda';
-    const VERSION_FILE = 'http://mamuz.github.io/PhpDependencyAnalysis/phpda.version';
-
     protected function configure()
     {
         $this->addOption('rollback', 'r', InputOption::VALUE_NONE, MessageInterface::OPTION_ROLLBACK);
@@ -44,14 +41,16 @@ class Update extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $updater = new Updater;
-        $updater->getStrategy()->setPharUrl(self::PHAR_FILE);
-        $updater->getStrategy()->setVersionUrl(self::VERSION_FILE);
+        $updater->setStrategy(Updater::STRATEGY_GITHUB);
+        $updater->getStrategy()->setPackageName('mamuz/php-dependency-analysis');
+        $updater->getStrategy()->setPharName('phpda');
+        $updater->getStrategy()->setCurrentLocalVersion(MessageInterface::VERSION);
 
         if ($input->getOption('rollback')) {
             $updater->rollback();
             $output->writeln(MessageInterface::ROLLBACK_SUCCESS . PHP_EOL);
         } elseif ($result = $updater->update()) {
-            $output->writeln(MessageInterface::UPDATE_SUCCESS . PHP_EOL);
+            $output->writeln(MessageInterface::UPDATE_SUCCESS . $updater->getNewVersion() . PHP_EOL);
         } else {
             $output->writeln(MessageInterface::UPDATE_NOT_NEEDED . PHP_EOL);
         }

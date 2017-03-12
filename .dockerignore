@@ -7,13 +7,11 @@ Desktop.ini
 Thumbs.db
 .Spotlight-V100
 .Trashes
-.travis
 .git*
 .*.yml
 composer.lock
 CODE_OF_CONDUCT.md
 phpda
 phpda.pubkey
-phpda.version
 app/vendor/**/test
 app/vendor/**/tests

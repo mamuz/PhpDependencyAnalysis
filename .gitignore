@@ -1,7 +1,4 @@
 composer.lock
 vendor
 tests/_output/*
-.travis/phar-private.pem
-phpda
-phpda.pubkey
-phpda.version
+phar-private.pem

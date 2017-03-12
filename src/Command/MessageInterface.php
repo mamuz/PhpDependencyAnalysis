@@ -63,7 +63,7 @@ interface MessageInterface
 
     const UPDATE_PHRASE = 'Update itself to the latest version';
 
-    const UPDATE_SUCCESS = 'Update done';
+    const UPDATE_SUCCESS = 'Update done. New Version is ';
 
     const UPDATE_NOT_NEEDED = 'Phpda is already the latest version';
 
