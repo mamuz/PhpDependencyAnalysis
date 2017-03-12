@@ -11,7 +11,5 @@ Thumbs.db
 .*.yml
 composer.lock
 CODE_OF_CONDUCT.md
-phpda
-phpda.pubkey
 app/vendor/**/test
 app/vendor/**/tests

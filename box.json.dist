@@ -15,6 +15,6 @@
   "intercept": true,
   "key": ".travis/phar-private.pem",
   "main": "bin/phpda.php",
-  "output": "phpda.phar",
+  "output": "bin/phpda.phar",
   "stub": true
 }

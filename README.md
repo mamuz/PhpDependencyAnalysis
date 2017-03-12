@@ -28,11 +28,20 @@ For graph creation [`GraphViz`](http://www.graphviz.org/) is required on your ma
 an open source graph visualization software and available for the most platforms.
 
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
-[`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is through
-[composer](http://getcomposer.org/):
+[`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is..
+
+### As a Phar
 
 ```sh
-$ composer require mamuz/php-dependency-analysis
+wget https://github.com/mamuz/PhpDependencyAnalysis/bin/phpda.phar
+chmod +x phpda.phar
+mv phpda.phar /usr/local/bin/phpda
+```
+
+### As a Composer Dependency
+
+```sh
+$ composer require --dev mamuz/php-dependency-analysis
 ```
 
 ## Features
