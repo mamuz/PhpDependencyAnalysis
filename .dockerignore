@@ -10,6 +10,5 @@ Thumbs.db
 .git*
 .*.yml
 composer.lock
-CODE_OF_CONDUCT.md
 app/vendor/**/test
 app/vendor/**/tests
