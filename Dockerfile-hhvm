@@ -2,12 +2,11 @@ FROM diegomarangoni/hhvm:cli
 
 ARG COMPOSER_OPTS
 
-RUN apt-get update && apt-get install -y curl graphviz
+RUN apt-get update && apt-get install -y curl wget graphviz
 
 COPY . /app
 WORKDIR /app
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer update $COMPOSER_OPTS
+RUN /app/bin/install-composer.sh && composer update $COMPOSER_OPTS
 
 CMD [""]

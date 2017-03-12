@@ -7,7 +7,6 @@ RUN apk --no-cache add curl git openssl graphviz
 COPY . /app
 WORKDIR /app
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer update $COMPOSER_OPTS
+RUN /app/bin/install-composer.sh && composer update $COMPOSER_OPTS
 
 CMD [""]
