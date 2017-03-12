@@ -84,7 +84,7 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         Layout\BuilderInterface $graphBuilder,
         AdapterInterface $writeAdapter,
         LoaderInterface $loader
-    ){
+    ) {
         $this->finder = $finder;
         $this->analyzer = $analyzer;
         $this->graphBuilder = $graphBuilder;

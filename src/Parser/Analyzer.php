@@ -59,7 +59,7 @@ class Analyzer implements AnalyzerInterface
         AdtTraverser $adtTraverser,
         NodeTraverser $nodeTraverser,
         Logger $logger
-    ){
+    ) {
         $this->parser = $parser;
         $this->adtTraverser = $adtTraverser;
         $this->nodeTraverser = $nodeTraverser;
