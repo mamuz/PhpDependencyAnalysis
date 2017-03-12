@@ -31,9 +31,15 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ### As a Phar
 
 ```sh
-wget https://github.com/mamuz/PhpDependencyAnalysis/download/phpda.phar
-chmod +x phpda.phar
-mv phpda.phar /usr/local/bin/phpda
+$ wget https://github.com/mamuz/PhpDependencyAnalysis/download/phpda.phar
+$ chmod +x phpda.phar
+$ mv phpda.phar /usr/local/bin/phpda
+```
+
+#### Update
+
+```sh
+$ phpda update
 ```
 
 ### As a Composer Dependency
