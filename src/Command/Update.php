@@ -52,6 +52,8 @@ class Update extends Command
             $output->writeln(MessageInterface::ROLLBACK_SUCCESS . PHP_EOL);
         } elseif ($result = $updater->update()) {
             $output->writeln(MessageInterface::UPDATE_SUCCESS . PHP_EOL);
+        } else {
+            $output->writeln(MessageInterface::UPDATE_NOT_NEEDED . PHP_EOL);
         }
     }
 }

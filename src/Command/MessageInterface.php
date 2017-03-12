@@ -65,6 +65,8 @@ interface MessageInterface
 
     const UPDATE_SUCCESS = 'Update done';
 
+    const UPDATE_NOT_NEEDED = 'Phpda is already the latest version';
+
     const ROLLBACK_SUCCESS = 'Rollback to the last version done';
 
     const OPTION_ROLLBACK = 'Rollback to the last version you had installed"';
