@@ -29,3 +29,6 @@ test:
 	docker run --rm -it -v $(shell pwd):/app $(NAME)-php70 composer test
 	-docker run --rm -it -v $(shell pwd):/app $(NAME)-hhvm hhvm ./vendor/bin/codecept run
 	docker run --rm -it -v $(shell pwd):/app $(NAME) composer test
+
+phar:
+	docker run --rm -it -v $(shell pwd):/app $(NAME) composer build

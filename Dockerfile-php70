@@ -8,5 +8,3 @@ COPY . /app
 WORKDIR /app
 
 RUN /app/bin/install-composer.sh && composer update $COMPOSER_OPTS
-
-CMD [""]
