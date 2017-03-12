@@ -1,6 +1,6 @@
 My Environment (version of the project, operating system, or hardware)
 
-```json
+```
 ...replace me...
 ```
 
