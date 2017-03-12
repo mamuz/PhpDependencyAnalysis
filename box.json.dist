@@ -13,7 +13,7 @@
   ],
   "git-version": "package_version",
   "intercept": true,
-  "key": ".travis/phar-private.pem",
+  "key": "phar-private.pem",
   "main": "bin/phpda.php",
   "output": "bin/phpda.phar",
   "stub": true
