@@ -6,6 +6,5 @@
 /codeception.yml export-ignore
 /box.json.dist export-ignore
 /build export-ignore
-/download/*.pubkey export-ignore
 /tests export-ignore
 /Makefile export-ignore
