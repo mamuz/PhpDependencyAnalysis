@@ -41,6 +41,7 @@ class ApplicationFactory implements FactoryInterface
         $app = new Application(Message::NAME, Message::VERSION);
         $app->setDefaultCommand(Message::COMMAND);
         $app->add($this->createAnalyzeCommand());
+        $app->add($this->createUpdateCommand());
 
         return $app;
     }
@@ -56,6 +57,19 @@ class ApplicationFactory implements FactoryInterface
         $command->setDescription(Message::NAME . ' (' . Message::VERSION . ')');
         $command->setConfigParser(new Parser);
         $command->setStrategyLoader(new Loader);
+
+        return $command;
+    }
+
+    /**
+     * @return Update
+     */
+    protected function createUpdateCommand()
+    {
+        $command = new Update(Message::UPDATE);
+        
+        $command->setDescription(MessageInterface::UPDATE_PHRASE);
+        $command->setHelp(Message::HELP);
 
         return $command;
     }

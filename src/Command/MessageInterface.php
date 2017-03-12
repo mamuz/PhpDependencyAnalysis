@@ -27,7 +27,7 @@ namespace PhpDA\Command;
 
 interface MessageInterface
 {
-    const VERSION = 'dev-master';
+    const VERSION = '@package_version@';
 
     const NAME = 'PhpDependencyAnalysis by Marco Muths';
 
@@ -58,6 +58,16 @@ interface MessageInterface
     const PARSE_LOGS = 'Logs:';
 
     const NOTHING_TO_PARSE = '<error>No files found!</error>';
+
+    const UPDATE = 'update';
+
+    const UPDATE_PHRASE = 'Update itself to the latest version';
+
+    const UPDATE_SUCCESS = 'Update done';
+
+    const ROLLBACK_SUCCESS = 'Rollback to the last version done';
+
+    const OPTION_ROLLBACK = 'Rollback to the last version you had installed"';
 
     const DONE = 'Done.';
 }
