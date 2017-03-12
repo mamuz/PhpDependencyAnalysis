@@ -11,7 +11,8 @@ All notable changes to this project will be documented in this file.
 - Remove support for PHP5.5
 
 ### Added
-- Phar support with update routine
+- [Add support to build phar](https://github.com/mamuz/PhpDependencyAnalysis/pull/25)
+- [Add a PHAR with selfupdate](https://github.com/mamuz/PhpDependencyAnalysis/pull/23)
 - E2E tests with codeception and docker
 - Issue template for github
 

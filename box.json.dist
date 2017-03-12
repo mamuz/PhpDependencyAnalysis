@@ -15,6 +15,6 @@
   "intercept": true,
   "key": "phar-private.pem",
   "main": "bin/phpda.php",
-  "output": "bin/phpda.phar",
+  "output": "download/phpda.phar",
   "stub": true
 }

@@ -31,7 +31,7 @@ Check [this](http://choosealicense.com/licenses/mit) for more informations about
 Add a functional and/or an unit test for your pull-request.
 
 You can run tests on provisioned docker images which requires [Docker](https://docs.docker.com).
-Create the image with `make build` and run tests with `make test`.
+Create the image with `make image` and run tests with `make test`.
 
 In alternative you can run the test with `./vendor/bin/codecept run` on your host.
 
@@ -50,5 +50,3 @@ So be sure that your code is (nearly) [SOLID and not STUPID](http://williamduran
 ## Reporting Bugs
 
 Issues can be reported on the [issue tracker](https://github.com/mamuz/PhpDependencyAnalysis/issues).
-Please try and report any bugs with a minimal reproducible example,
-it will make things easier for other contributors and your problems will hopefully be resolved quickly.
