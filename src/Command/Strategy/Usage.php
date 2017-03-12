@@ -34,11 +34,11 @@ class Usage extends AbstractStrategy
 
     private function initNodeTraverser()
     {
-        $requiredVisitors = array(
+        $requiredVisitors = [
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
             'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
             'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
-        );
+        ];
 
         $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
         $nodeTraverser->setRequiredVisitors($requiredVisitors);

@@ -33,7 +33,7 @@ class Analysis
     private $file;
 
     /** @var Adt[] */
-    private $adts = array();
+    private $adts = [];
 
     /**
      * @param SplFileInfo $file

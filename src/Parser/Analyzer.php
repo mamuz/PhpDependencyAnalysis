@@ -59,7 +59,7 @@ class Analyzer implements AnalyzerInterface
         AdtTraverser $adtTraverser,
         NodeTraverser $nodeTraverser,
         Logger $logger
-    ) {
+    ){
         $this->parser = $parser;
         $this->adtTraverser = $adtTraverser;
         $this->nodeTraverser = $nodeTraverser;
@@ -88,11 +88,11 @@ class Analyzer implements AnalyzerInterface
                 $adtStmts = $this->adtTraverser->getAdtStmtsBy($stmts);
                 foreach ($adtStmts as $node) {
                     $this->nodeTraverser->setAdt($analysis->createAdt());
-                    $this->nodeTraverser->traverse(array($node));
+                    $this->nodeTraverser->traverse([$node]);
                 }
             }
         } catch (Error $error) {
-            $this->logger->error($error->getMessage(), array($file));
+            $this->logger->error($error->getMessage(), [$file]);
         }
 
         $this->getAnalysisCollection()->attach($analysis);

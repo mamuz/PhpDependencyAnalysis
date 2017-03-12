@@ -28,10 +28,10 @@ namespace PhpDA\Layout;
 class Standard extends AbstractLayout
 {
     /** @var array */
-    private $edgeInherited = array(
+    private $edgeInherited = [
         'style'     => 'dashed',
         'arrowType' => 'empty',
-    );
+    ];
 
     public function getEdgeExtend()
     {

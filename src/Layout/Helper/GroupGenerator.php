@@ -30,7 +30,7 @@ use PhpParser\Node\Name;
 class GroupGenerator
 {
     /** @var array */
-    private $groups = array();
+    private $groups = [];
 
     /** @var int */
     private $groupLength = 0;

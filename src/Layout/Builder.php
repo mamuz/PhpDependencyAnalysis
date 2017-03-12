@@ -53,7 +53,7 @@ class Builder implements BuilderInterface
     private $groupGenerator;
 
     /** @var array */
-    private $logEntries = array();
+    private $logEntries = [];
 
     /** @var CycleDetector */
     private $cycleDetector;
@@ -141,7 +141,6 @@ class Builder implements BuilderInterface
     public function setLayout(LayoutInterface $layout)
     {
         $this->layout = $layout;
-
     }
 
     public function create()
@@ -270,7 +269,7 @@ class Builder implements BuilderInterface
      * @param array  $edgeLayout
      * @param array  $vertexLayout
      */
-    private function createEdgesFor(array $dependencies, array $edgeLayout, array $vertexLayout = array())
+    private function createEdgesFor(array $dependencies, array $edgeLayout, array $vertexLayout = [])
     {
         foreach ($dependencies as $dependency) {
             $vertex = $this->createVertexBy($dependency);
@@ -323,7 +322,7 @@ class Builder implements BuilderInterface
      */
     private function addLocationTo(AttributeAware $attributeAware, Location $location)
     {
-        $locations = $attributeAware->getAttribute('locations', array());
+        $locations = $attributeAware->getAttribute('locations', []);
         $locations[] = $location;
 
         $attributeAware->setAttribute('locations', $locations);

@@ -57,15 +57,15 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     private $namespaceAliases;
 
     /** @var array */
-    private $validTags = array(
+    private $validTags = [
         'method', 'param',
         'return', 'property-read',
         'property', 'property-write',
         'throws', 'var',
-    );
+    ];
 
     /** @var array */
-    private $invalidTypes = array(
+    private $invalidTypes = [
         'bool', 'boolean', 'void',
         'int', 'integer', 'scalar',
         'string', 'binary', 'array',
@@ -74,7 +74,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         'float', 'double', '$this',
         'this', 'self', 'parent', 'static',
         'true', 'false', 'object',
-    );
+    ];
 
     public function __construct()
     {
@@ -103,9 +103,9 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $type |= $use->type;
 
         if (isset($this->aliases[$type][$aliasName])) {
-            $this->namespaceAliases[$aliasName] = (string)$this->aliases[$type][$aliasName];
+            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][$aliasName];
         } elseif (isset($this->aliases[$type][strtolower($aliasName)])) {
-            $this->namespaceAliases[$aliasName] = (string)$this->aliases[$type][strtolower($aliasName)];
+            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][strtolower($aliasName)];
         }
     }
 
@@ -117,7 +117,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
             if ($doc = $node->getDocComment()) {
                 $docBlock = $this->docBlockFactory->create(
                     str_replace('[]', '', $doc->getText()),
-                    new Context((string)$this->namespace, (array)$this->namespaceAliases)
+                    new Context((string) $this->namespace, (array) $this->namespaceAliases)
                 );
                 if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
                     $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
@@ -125,7 +125,7 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
             }
         } catch (\Exception $e) {
             $parseError = new Error($e->getMessage(), $node->getLine());
-            $this->logger->warning($parseError->getMessage(), array($this->file));
+            $this->logger->warning($parseError->getMessage(), [$this->file]);
         }
     }
 
@@ -135,17 +135,17 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
      */
     private function collectTagNamesBy(array $docTags)
     {
-        $tagNames = array();
+        $tagNames = [];
 
         foreach ($docTags as $tag) {
             if (in_array($tag->getName(), $this->validTags)) {
-                $types = array();
+                $types = [];
                 if ($tag instanceof DocBlock\Tags\Method) {
                     $types[] = $tag->getReturnType();
                     foreach ($tag->getArguments() as $arg) {
                         $types[] = $arg['type'];
                     }
-                } elseif (is_callable(array($tag, 'getType'))) {
+                } elseif (is_callable([$tag, 'getType'])) {
                     /** @var DocBlock\Tags\Param $tag */
                     $types[] = $tag->getType();
                 }

@@ -40,7 +40,7 @@ class CycleDetector
     private $disconnections;
 
     /** @var Cycle[] */
-    private $cycles = array();
+    private $cycles = [];
 
     /**
      * @param Graph $graph
@@ -75,7 +75,7 @@ class CycleDetector
      * @param Directed $edge
      * @param array    $path
      */
-    private function walkOn(Directed $edge, array $path = array())
+    private function walkOn(Directed $edge, array $path = [])
     {
         $vertexStart = $edge->getVertexStart()->getId();
         if (in_array($vertexStart, $path)) {
@@ -122,7 +122,7 @@ class CycleDetector
      */
     public function getCycledEdges()
     {
-        $allCycleEdges = array();
+        $allCycleEdges = [];
 
         foreach ($this->getCycles() as $cycle) {
             $cycledEdges = $cycle->getEdges();
@@ -134,11 +134,11 @@ class CycleDetector
         }
 
         return $this->graph->getEdges()->getEdgesMatch(
-            function (Directed $edge) use ($allCycleEdges) {
-                $search = array(
+            function(Directed $edge) use ($allCycleEdges){
+                $search = [
                     $edge->getVertexStart()->getId(),
-                    $edge->getVertexEnd()->getId()
-                );
+                    $edge->getVertexEnd()->getId(),
+                ];
                 return in_array($search, $allCycleEdges);
             }
         );

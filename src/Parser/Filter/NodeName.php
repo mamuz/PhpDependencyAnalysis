@@ -32,7 +32,7 @@ class NodeName implements NodeNameInterface
     const AGGREGATION_INDICATOR = 'slice';
 
     /** @var array */
-    private $ignoredNamespaces = array('self', 'parent', 'static', 'null', 'true', 'false');
+    private $ignoredNamespaces = ['self', 'parent', 'static', 'null', 'true', 'false'];
 
     /** @var int|null */
     private $sliceOffset;

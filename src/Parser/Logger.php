@@ -33,7 +33,7 @@ use Symfony\Component\Finder\SplFileInfo;
 class Logger extends AbstractLogger
 {
     /** @var array */
-    private $entries = array();
+    private $entries = [];
 
     /**
      * @return array
@@ -87,18 +87,18 @@ class Logger extends AbstractLogger
         return ucfirst($level);
     }
 
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         if (!isset($this->entries[$level])) {
-            $this->entries[$level] = array();
+            $this->entries[$level] = [];
         }
 
-        array_walk_recursive($context, array($this, 'wrapSPLFileInfo'));
+        array_walk_recursive($context, [$this, 'wrapSPLFileInfo']);
 
-        $this->entries[$level][] = array(
+        $this->entries[$level][] = [
             'message' => $message,
             'context' => $context,
-        );
+        ];
     }
 
     /**

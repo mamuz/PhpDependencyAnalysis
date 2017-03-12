@@ -34,6 +34,7 @@ class AdtTraverser extends \PhpParser\NodeTraverser
 {
     /** @var AdtCollector */
     private $adtCollector;
+
     /** @var NameResolver */
     private $nameResolver;
 

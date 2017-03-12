@@ -31,7 +31,7 @@ use PhpParser\Node;
 class UnsupportedFuncCollector extends AbstractVisitor implements UnsupportedNamespaceCollectorInterface
 {
     /** @var array */
-    private $unsupportedFuncs = array(
+    private $unsupportedFuncs = [
         'call_user_func',
         'call_user_func_array',
         'call_user_method',
@@ -39,7 +39,7 @@ class UnsupportedFuncCollector extends AbstractVisitor implements UnsupportedNam
         'forward_static_call',
         'forward_static_call_array',
         'create_function',
-    );
+    ];
 
     public function leaveNode(Node $node)
     {

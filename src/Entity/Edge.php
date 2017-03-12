@@ -72,6 +72,6 @@ class Edge
      */
     public function toArray()
     {
-        return array($this->getFrom(), $this->getTo());
+        return [$this->getFrom(), $this->getTo()];
     }
 }

@@ -28,74 +28,74 @@ namespace PhpDA\Layout;
 abstract class AbstractLayout implements LayoutInterface
 {
     /** @var array */
-    private $graph = array(
+    private $graph = [
         'rankdir'  => 'LR',
         'ranksep'  => 1,
         'nodesep'  => 0.1,
         'fontsize' => 8,
-    );
+    ];
 
     /** @var array */
-    private $group = array(
+    private $group = [
         'style'     => 'rounded,filled',
         'fontcolor' => '#000033',
         'fontsize'  => 14,
         'labeljust' => 'l',
         'color'     => '#000033',
         'fillcolor' => '#CCCCFF',
-    );
+    ];
 
     /** @var array */
-    private $vertex = array(
+    private $vertex = [
         'fillcolor' => '#9999CC',
         'style'     => 'filled,rounded',
         'shape'     => 'box',
         'fontcolor' => '#000033',
         'fontsize'  => 10,
-    );
+    ];
 
     /** @var array */
-    private $vertexUnsupported = array(
+    private $vertexUnsupported = [
         'fillcolor' => '#FF9999',
-    );
+    ];
 
     /** @var array */
-    private $vertexNamespacedString = array(
+    private $vertexNamespacedString = [
         'fillcolor' => '#FFCC66',
-    );
+    ];
 
     /** @var array */
-    private $edge = array(
+    private $edge = [
         'arrowsize' => 0.6,
         'fontcolor' => '#999999',
         'fontsize'  => 8,
         'color'     => '#999999',
         'weight'    => 1.2,
-    );
+    ];
 
     /** @var array */
-    private $edgeInvalid = array(
+    private $edgeInvalid = [
         'color'     => '#FF0000',
         'style'     => 'bold',
         'arrowsize' => 0.8,
-    );
+    ];
 
     /** @var array */
-    private $edgeCycle = array(
+    private $edgeCycle = [
         'color'     => '#FF0099',
         'style'     => 'bold',
         'arrowsize' => 0.8,
-    );
+    ];
 
     /** @var array */
-    private $edgeUnsupported = array(
+    private $edgeUnsupported = [
         'color' => '#FF9999',
-    );
+    ];
 
     /** @var array */
-    private $edgeNamespacedString = array(
+    private $edgeNamespacedString = [
         'color' => '#FFCC66',
-    );
+    ];
 
     public function __construct($label)
     {

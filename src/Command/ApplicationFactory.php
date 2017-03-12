@@ -67,7 +67,7 @@ class ApplicationFactory implements FactoryInterface
     protected function createUpdateCommand()
     {
         $command = new Update(Message::UPDATE);
-        
+
         $command->setDescription(MessageInterface::UPDATE_PHRASE);
         $command->setHelp(Message::HELP);
 

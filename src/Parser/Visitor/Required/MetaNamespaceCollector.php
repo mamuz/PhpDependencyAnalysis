@@ -105,7 +105,7 @@ class MetaNamespaceCollector extends AbstractVisitor
         }
 
         if (!is_array($extends)) {
-            $extends = array($extends);
+            $extends = [$extends];
         }
 
         foreach ($extends as $name) {

@@ -39,13 +39,13 @@ class Meta
     private $type = '';
 
     /** @var Node\Name */
-    private $implementedNamespaces = array();
+    private $implementedNamespaces = [];
 
     /** @var Node\Name */
-    private $extendedNamespaces = array();
+    private $extendedNamespaces = [];
 
     /** @var Node\Name */
-    private $usedTraitNamespaces = array();
+    private $usedTraitNamespaces = [];
 
     /** @var boolean */
     private $isAbstract = false;
@@ -157,8 +157,8 @@ class Meta
     public function getAllNamespaces()
     {
         return $this->getUsedTraitNamespaces()
-            + $this->getExtendedNamespaces()
-            + $this->getImplementedNamespaces();
+               + $this->getExtendedNamespaces()
+               + $this->getImplementedNamespaces();
     }
 
     /**

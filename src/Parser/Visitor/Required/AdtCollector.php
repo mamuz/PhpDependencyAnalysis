@@ -31,7 +31,7 @@ use PhpParser\NodeVisitorAbstract;
 class AdtCollector extends NodeVisitorAbstract
 {
     /** @var Node\Stmt[] */
-    private $stmts = array();
+    private $stmts = [];
 
     public function leaveNode(Node $node)
     {
@@ -53,6 +53,6 @@ class AdtCollector extends NodeVisitorAbstract
 
     public function flush()
     {
-        $this->stmts = array();
+        $this->stmts = [];
     }
 }

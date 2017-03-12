@@ -39,7 +39,7 @@ class Cycle extends ArrayCollection
      */
     public function getEdges()
     {
-        $edges = array();
+        $edges = [];
         $paths = $this->toArray();
 
         foreach ($paths as $index => $fqcn) {

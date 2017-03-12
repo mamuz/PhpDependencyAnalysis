@@ -34,16 +34,13 @@ class Inheritance extends AbstractStrategy
 
     private function initNodeTraverser()
     {
-        $requiredVisitors = array(
+        $requiredVisitors = [
             'PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector',
             'PhpDA\Parser\Visitor\Required\MetaNamespaceCollector',
-        );
+        ];
 
         $nodeTraverser = $this->getAnalyzer()->getNodeTraverser();
         $nodeTraverser->setRequiredVisitors($requiredVisitors);
-        $nodeTraverser->bindVisitors(
-            array(),
-            $this->getConfig()->getVisitorOptions()
-        );
+        $nodeTraverser->bindVisitors([], $this->getConfig()->getVisitorOptions());
     }
 }

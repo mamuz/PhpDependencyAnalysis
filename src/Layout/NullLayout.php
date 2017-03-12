@@ -29,66 +29,66 @@ class NullLayout implements LayoutInterface
 {
     public function getGraph()
     {
-        return array();
+        return [];
     }
 
     public function getGroup()
     {
-        return array();
+        return [];
     }
 
     public function getEdge()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeInvalid()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeCycle()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeExtend()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeImplement()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeTraitUse()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeUnsupported()
     {
-        return array();
+        return [];
     }
 
     public function getEdgeNamespacedString()
     {
-        return array();
+        return [];
     }
 
     public function getVertex()
     {
-        return array();
+        return [];
     }
 
     public function getVertexNamespacedString()
     {
-        return array();
+        return [];
     }
 
     public function getVertexUnsupported()
     {
-        return array();
+        return [];
     }
 }

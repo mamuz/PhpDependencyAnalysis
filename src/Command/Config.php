@@ -36,7 +36,7 @@ class Config
     const INHERITANCE_MODE = 'inheritance';
 
     /** @var array */
-    private $allowedModes = array(self::USAGE_MODE, self::CALL_MODE, self::INHERITANCE_MODE);
+    private $allowedModes = [self::USAGE_MODE, self::CALL_MODE, self::INHERITANCE_MODE];
 
     /** @var string */
     private $mode = self::USAGE_MODE;
@@ -45,7 +45,7 @@ class Config
     private $source;
 
     /** @var string|array */
-    private $ignore = array();
+    private $ignore = [];
 
     /** @var string */
     private $formatter;
@@ -60,10 +60,10 @@ class Config
     private $groupLength = 0;
 
     /** @var array */
-    private $visitor = array();
+    private $visitor = [];
 
     /** @var array */
-    private $visitorOptions = array();
+    private $visitorOptions = [];
 
     /** @var string|null */
     private $referenceValidator;
@@ -230,7 +230,7 @@ class Config
             throw new \InvalidArgumentException('Config for groupLength must be an integer');
         }
 
-        return (int)$this->groupLength;
+        return (int) $this->groupLength;
     }
 
     /**

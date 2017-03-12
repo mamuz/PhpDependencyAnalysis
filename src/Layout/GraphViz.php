@@ -30,10 +30,10 @@ use Graphp\GraphViz\GraphViz as BaseGraphViz;
 class GraphViz extends BaseGraphViz
 {
     /** @var array */
-    private static $groups = array();
+    private static $groups = [];
 
     /** @var array */
-    private static $groupLayout = array();
+    private static $groupLayout = [];
 
     /**
      * @param array $groups

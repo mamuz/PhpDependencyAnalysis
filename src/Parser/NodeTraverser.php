@@ -36,7 +36,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
     private $adt;
 
     /** @var array */
-    private $requiredVisitors = array();
+    private $requiredVisitors = [];
 
     /** @var LoaderInterface */
     private $visitorLoader;
@@ -140,7 +140,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
     private function filterOptions(array $options = null)
     {
         if (is_array($options)) {
-            $filtered = array();
+            $filtered = [];
             foreach ($options as $key => $value) {
                 $key = trim($key, '\\');
                 $filtered[$key] = $value;

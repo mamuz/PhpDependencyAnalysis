@@ -84,14 +84,14 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         Layout\BuilderInterface $graphBuilder,
         AdapterInterface $writeAdapter,
         LoaderInterface $loader
-    ) {
+    ){
         $this->finder = $finder;
         $this->analyzer = $analyzer;
         $this->graphBuilder = $graphBuilder;
         $this->writeAdapter = $writeAdapter;
         $this->pluginLoader = $loader;
 
-        $this->config = new Config(array());
+        $this->config = new Config([]);
         $this->output = new NullOutput;
     }
 
@@ -115,9 +115,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
     private function initFinder()
     {
         $this->getFinder()
-            ->files()
-            ->name($this->getConfig()->getFilePattern())
-            ->in($this->getConfig()->getSource());
+             ->files()
+             ->name($this->getConfig()->getFilePattern())
+             ->in($this->getConfig()->getSource());
 
         if ($ignores = $this->getConfig()->getIgnore()) {
             $this->getFinder()->exclude($ignores);
@@ -237,9 +237,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $this->getConfig()->getTarget());
 
         $this->getWriteAdapter()
-            ->write($this->createGraph())
-            ->with($this->getConfig()->getFormatter())
-            ->to($this->getConfig()->getTarget());
+             ->write($this->createGraph())
+             ->with($this->getConfig()->getFormatter())
+             ->to($this->getConfig()->getTarget());
     }
 
     /**

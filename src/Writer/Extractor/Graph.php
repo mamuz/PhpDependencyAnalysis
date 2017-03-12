@@ -36,14 +36,14 @@ class Graph implements ExtractionInterface
 
     public function extract(FhacultyGraph $graph)
     {
-        $this->data = array(
-            'edges'    => array(),
-            'vertices' => array(),
-            'cycles'   => $this->extractEntities($graph->getAttribute('cycles', array())),
-            'groups'   => $graph->getAttribute('graphviz.groups', array()),
-            'log'      => $graph->getAttribute('logEntries', array()),
+        $this->data = [
+            'edges'    => [],
+            'vertices' => [],
+            'cycles'   => $this->extractEntities($graph->getAttribute('cycles', [])),
+            'groups'   => $graph->getAttribute('graphviz.groups', []),
+            'log'      => $graph->getAttribute('logEntries', []),
             'label'    => $graph->getAttribute('graphviz.graph.label'),
-        );
+        ];
 
         $edges = $graph->getEdges();
         foreach ($edges as $edge) {
@@ -85,13 +85,13 @@ class Graph implements ExtractionInterface
      */
     private function extractEdge(Directed $edge)
     {
-        return array(
+        return [
             'from'                       => $edge->getVertexStart()->getId(),
             'to'                         => $edge->getVertexEnd()->getId(),
-            'locations'                  => $this->extractEntities($edge->getAttribute('locations', array())),
+            'locations'                  => $this->extractEntities($edge->getAttribute('locations', [])),
             'belongsToCycle'             => $edge->getAttribute('belongsToCycle', false),
             'referenceValidatorMessages' => $edge->getAttribute('referenceValidatorMessages'),
-        );
+        ];
     }
 
     /**
@@ -100,15 +100,15 @@ class Graph implements ExtractionInterface
      */
     private function extractVertex(Vertex $vertex)
     {
-        $locations = $this->extractEntities($vertex->getAttribute('locations', array()));
+        $locations = $this->extractEntities($vertex->getAttribute('locations', []));
 
-        return array(
+        return [
             'name'        => $vertex->getId(),
             'usedByCount' => $vertex->getEdgesIn()->count(),
-            'adt'         => $vertex->getAttribute('adt', array()),
+            'adt'         => $vertex->getAttribute('adt', []),
             'location'    => array_shift($locations),
             'group'       => $vertex->getGroup(),
-        );
+        ];
     }
 
     /**
@@ -117,7 +117,7 @@ class Graph implements ExtractionInterface
      */
     private function extractEntities(array $entities)
     {
-        $data = array();
+        $data = [];
         foreach ($entities as $entity) {
             $data[] = $entity->toArray();
         }

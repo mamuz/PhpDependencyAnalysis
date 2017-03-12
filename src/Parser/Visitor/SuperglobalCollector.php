@@ -31,7 +31,7 @@ use PhpParser\Node;
 class SuperglobalCollector extends AbstractVisitor implements UsedNamespaceCollectorInterface
 {
     /** @var array */
-    private $vars = array(
+    private $vars = [
         'GLOBALS',
         '_SERVER',
         '_GET',
@@ -41,7 +41,7 @@ class SuperglobalCollector extends AbstractVisitor implements UsedNamespaceColle
         '_SESSION',
         '_REQUEST',
         '_ENV',
-    );
+    ];
 
     public function leaveNode(Node $node)
     {

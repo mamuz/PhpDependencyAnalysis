@@ -37,25 +37,25 @@ class ExampleValidator implements ValidatorInterface
     const LAYER_VIOLATION = 'Violation of reference between layers';
 
     /** @var array */
-    private $messages = array();
+    private $messages = [];
 
     /** @var array */
-    private $packageReferences = array(
-        'PackageA' => array('Zend', 'Doctrine', 'PackageB'),
-        'PackageB' => array('Zend', 'Doctrine', 'PackageA'),
-        'PackageC' => array('Zend', 'Doctrine', 'PackageA'),
-    );
+    private $packageReferences = [
+        'PackageA' => ['Zend', 'Doctrine', 'PackageB'],
+        'PackageB' => ['Zend', 'Doctrine', 'PackageA'],
+        'PackageC' => ['Zend', 'Doctrine', 'PackageA'],
+    ];
 
     /** @var array */
-    private $layerReferences = array(
-        'Controller' => array('Mvc', 'Http', 'Service', 'Entity'),
-        'Service'    => array('Service', 'Mapper', 'Entity'),
-        'Mapper'     => array('ORM', 'Entity'),
-    );
+    private $layerReferences = [
+        'Controller' => ['Mvc', 'Http', 'Service', 'Entity'],
+        'Service'    => ['Service', 'Mapper', 'Entity'],
+        'Mapper'     => ['ORM', 'Entity'],
+    ];
 
     public function isValidBetween(Name $from, Name $to)
     {
-        $this->messages = array();
+        $this->messages = [];
 
         if ($this->isViolation($from->parts[0], $to->parts[0], $this->packageReferences)) {
             $this->messages[] = self::PACKAGE_VIOLATION;

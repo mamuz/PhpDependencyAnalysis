@@ -38,13 +38,13 @@ class Adt
     private $declaredNamespace;
 
     /** @var Node\Name[] */
-    private $usedNamespaces = array();
+    private $usedNamespaces = [];
 
     /** @var Node\Name[] */
-    private $unsupportedStmts = array();
+    private $unsupportedStmts = [];
 
     /** @var Node\Name[] */
-    private $namespacedStrings = array();
+    private $namespacedStrings = [];
 
     public function __construct()
     {
@@ -147,7 +147,7 @@ class Adt
      */
     private function disjoin(array $set, array $complement)
     {
-        $diff = array();
+        $diff = [];
 
         foreach ($set as $node) {
             $namespace = $node->toString();
@@ -188,12 +188,12 @@ class Adt
         $meta['extendedNamespaces'] = $this->stringify($meta['extendedNamespaces']);
         $meta['usedTraitNamespaces'] = $this->stringify($meta['usedTraitNamespaces']);
 
-        return array(
+        return [
             'meta'              => $meta,
             'usedNamespaces'    => $this->stringify($this->getUsedNamespaces()),
             'unsupportedStmts'  => $this->stringify($this->getUnsupportedStmts()),
             'namespacedStrings' => $this->stringify($this->getNamespacedStrings()),
-        );
+        ];
     }
 
     /**
