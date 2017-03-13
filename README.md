@@ -31,9 +31,20 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ### As a Phar
 
 ```sh
-$ curl -sSL  https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda > /usr/local/bin/phpda
-$ chmod +x /usr/local/bin/phpda
+$ curl -sSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
+$ curl -sSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda
+$ chmod +x phpda
 ```
+
+The three lines above will, in order:
+
+- Download the public key to the current directory
+- Download the phar file to the current directory
+- Make the phar file executable
+
+The phar file is securely signed with OpenSSL. To be able to execute the phar file,
+the public key must be named as the phar file, with `.pubkey` added, 
+and must be placed in the same directory.
 
 #### Update
 
