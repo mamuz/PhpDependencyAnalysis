@@ -11,7 +11,7 @@ clean:
 	-docker rmi -f $(NAME)-php70
 	-docker rmi -f $(NAME)-hhvm
 	-docker rmi -f $(NAME)-php71
-	-rm -rf vendor
+	-rm -rf ./vendor
 
 image:
 	docker build -t $(NAME)-php56 -f ./build/Dockerfile-php56 .
