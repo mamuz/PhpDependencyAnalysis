@@ -43,7 +43,7 @@ class Update extends Command
         $updater = new Updater;
         $updater->setStrategy(Updater::STRATEGY_GITHUB);
         $updater->getStrategy()->setPackageName('mamuz/php-dependency-analysis');
-        $updater->getStrategy()->setPharName('download/phpda.phar');
+        $updater->getStrategy()->setPharName('download/phpda');
         $updater->getStrategy()->setCurrentLocalVersion(MessageInterface::VERSION);
 
         if ($input->getOption('rollback')) {

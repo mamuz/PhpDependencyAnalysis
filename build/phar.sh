@@ -2,5 +2,7 @@
 
 composer install --no-dev
 ~/.composer/vendor/bin/box build -vv
-chmod +x ./download/phpda.phar
+mv ./download/phpda.phar ./download/phpda
+mv ./download/phpda.phar.pubkey ./download/phpda.pubkey
+chmod +x ./download/phpda
 composer install
