@@ -31,8 +31,8 @@ After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to i
 ### As a Phar
 
 ```sh
-$ curl -sSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
-$ curl -sSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda
+$ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
+$ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda
 $ chmod +x phpda
 ```
 
