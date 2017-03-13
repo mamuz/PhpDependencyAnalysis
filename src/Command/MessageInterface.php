@@ -27,31 +27,39 @@ namespace PhpDA\Command;
 
 interface MessageInterface
 {
-    const VERSION = '@package_version@';
-
     const NAME = 'PhpDependencyAnalysis by Marco Muths';
 
-    const COMMAND = 'analyze';
+    const CMD_ANALYZE = 'analyze';
 
-    const HELP = 'Please visit <info>https://github.com/mamuz/PhpDependencyAnalysis</info> for detailed informations.';
+    const CMD_ANALYZE_HELP = "Perform a dependency analysis and output the result.\n\nphpda analyze myconfig.yml\n\nPlease visit <info>https://github.com/mamuz/PhpDependencyAnalysis</info> for more informations.";
 
-    const ARGUMENT_CONFIG = 'Path to yaml configuration file.';
+    const CMD_ANALYZE_DESCR = 'Analyze source directory based on configuration';
 
-    const OPTION_MODE = 'Analysis mode: "usage" (default) or "call" or "inheritance"';
+    const CMD_ANALYZE_ARG_CONFIG = 'Path to yaml configuration file.';
 
-    const OPTION_SOURCE = 'Directory to analyze.';
+    const CMD_ANALYZE_OPT_MODE = 'Analysis mode: "usage" (default) or "call" or "inheritance"';
 
-    const OPTION_FILE_PATTERN = 'Pattern to match files for analysis.';
+    const CMD_ANALYZE_OPT_SOURCE = 'Directory to analyze.';
 
-    const OPTION_IGNORE = 'Exclude directories from source for analysis.';
+    const CMD_ANALYZE_OPT_FILE_PATTERN = 'Pattern to match files for analysis.';
 
-    const OPTION_FORMATTER = 'Formatter as FQCN for creating dependency graph.';
+    const CMD_ANALYZE_OPT_IGNORE = 'Exclude directories from source for analysis.';
 
-    const OPTION_TARGET = 'Filepath for writing created dependency graph.';
+    const CMD_ANALYZE_OPT_FORMATTER = 'Formatter as FQCN for creating dependency graph.';
 
-    const READ_CONFIG_FROM = 'Configuration read from ';
+    const CMD_ANALYZE_OPT_TARGET = 'Filepath for writing created dependency graph.';
 
-    const WRITE_GRAPH_TO = 'Write dependency graph to ';
+    const CMD_UPDATE = 'update';
+
+    const CMD_UPDATE_DESCR = 'Update to latest version';
+
+    const CMD_UPDATE_HELP = "The update command checks github.com for newer version and if found, installs the latest.\n\nphpda update";
+
+    const CMD_UPDATE_OPT_ROLLBACK = 'Revert to an older installation';
+
+    const READ_CONFIG_FROM = 'Configuration read from %s';
+
+    const WRITE_GRAPH_TO = 'Write dependency graph to %s';
 
     const PROGRESS_DISPLAY = '%current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% Memory: %memory:6s%';
 
@@ -59,17 +67,11 @@ interface MessageInterface
 
     const NOTHING_TO_PARSE = '<error>No files found!</error>';
 
-    const UPDATE = 'update';
+    const UPDATE_SUCCESS = '<fg=green>Update done. Installed new Version is %s</>';
 
-    const UPDATE_PHRASE = 'Update itself to the latest version';
+    const UPDATE_NOT_NEEDED = '<info>Current installation is already the latest version</info>';
 
-    const UPDATE_SUCCESS = 'Update done. New Version is ';
+    const ROLLBACK_SUCCESS = '<fg=green>Rollback to the last version done</>';
 
-    const UPDATE_NOT_NEEDED = 'Phpda is already the latest version';
-
-    const ROLLBACK_SUCCESS = 'Rollback to the last version done';
-
-    const OPTION_ROLLBACK = 'Rollback to the last version you had installed"';
-
-    const DONE = 'Done.';
+    const DONE = '<fg=green>Done</>';
 }

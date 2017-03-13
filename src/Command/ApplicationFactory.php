@@ -38,8 +38,8 @@ class ApplicationFactory implements FactoryInterface
      */
     public function create()
     {
-        $app = new Application(Message::NAME, Message::VERSION);
-        $app->setDefaultCommand(Message::COMMAND);
+        $app = new Application(Message::NAME, Version::read());
+        $app->setDefaultCommand(Message::CMD_ANALYZE);
         $app->add($this->createAnalyzeCommand());
         $app->add($this->createUpdateCommand());
 
@@ -51,10 +51,10 @@ class ApplicationFactory implements FactoryInterface
      */
     protected function createAnalyzeCommand()
     {
-        $command = new Analyze(Message::COMMAND);
+        $command = new Analyze(Message::CMD_ANALYZE);
 
-        $command->setHelp(Message::HELP);
-        $command->setDescription(Message::NAME . ' (' . Message::VERSION . ')');
+        $command->setHelp(Message::CMD_ANALYZE_HELP);
+        $command->setDescription(Message::CMD_ANALYZE_DESCR);
         $command->setConfigParser(new Parser);
         $command->setStrategyLoader(new Loader);
 
@@ -66,10 +66,10 @@ class ApplicationFactory implements FactoryInterface
      */
     protected function createUpdateCommand()
     {
-        $command = new Update(Message::UPDATE);
+        $command = new Update(Message::CMD_UPDATE);
 
-        $command->setDescription(MessageInterface::UPDATE_PHRASE);
-        $command->setHelp(Message::HELP);
+        $command->setDescription(MessageInterface::CMD_UPDATE_DESCR);
+        $command->setHelp(Message::CMD_UPDATE_HELP);
 
         return $command;
     }

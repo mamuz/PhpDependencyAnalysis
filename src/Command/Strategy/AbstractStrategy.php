@@ -234,7 +234,9 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
 
     private function writeAnalysis()
     {
-        $this->getOutput()->writeln(PHP_EOL . PHP_EOL . Message::WRITE_GRAPH_TO . $this->getConfig()->getTarget());
+        $this->getOutput()->writeln(
+            PHP_EOL . PHP_EOL . sprintf(Message::WRITE_GRAPH_TO, $this->getConfig()->getTarget())
+        );
 
         $this->getWriteAdapter()
              ->write($this->createGraph())

@@ -35,7 +35,7 @@ class Update extends Command
 {
     protected function configure()
     {
-        $this->addOption('rollback', 'r', InputOption::VALUE_NONE, MessageInterface::OPTION_ROLLBACK);
+        $this->addOption('rollback', 'r', InputOption::VALUE_NONE, MessageInterface::CMD_UPDATE_OPT_ROLLBACK);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -44,7 +44,7 @@ class Update extends Command
         $updater->setStrategy(Updater::STRATEGY_GITHUB);
         $updater->getStrategy()->setPackageName('mamuz/php-dependency-analysis');
         $updater->getStrategy()->setPharName('download/phpda');
-        $updater->getStrategy()->setCurrentLocalVersion(MessageInterface::VERSION);
+        $updater->getStrategy()->setCurrentLocalVersion(Version::read());
 
         if ($input->getOption('rollback')) {
             $updater->rollback();

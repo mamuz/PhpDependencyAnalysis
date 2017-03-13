@@ -74,27 +74,28 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->addArgument('config', InputArgument::OPTIONAL, Message::ARGUMENT_CONFIG, $this->defaultConfigFilePath);
-        $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::OPTION_MODE);
-        $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::OPTION_SOURCE);
-        $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::OPTION_FILE_PATTERN);
-        $this->addOption('ignore', 'i', InputOption::VALUE_OPTIONAL, Message::OPTION_IGNORE);
-        $this->addOption('formatter', 'f', InputOption::VALUE_OPTIONAL, Message::OPTION_FORMATTER);
-        $this->addOption('target', 't', InputOption::VALUE_OPTIONAL, Message::OPTION_TARGET);
+        $this->addArgument('config', InputArgument::OPTIONAL, Message::CMD_ANALYZE_ARG_CONFIG, $this->defaultConfigFilePath);
+        $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
+        $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_SOURCE);
+        $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_FILE_PATTERN);
+        $this->addOption('ignore', 'i', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_IGNORE);
+        $this->addOption('formatter', 'f', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_FORMATTER);
+        $this->addOption('target', 't', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_TARGET);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->addLogLevelFormatsTo($output);
         $config = $this->createConfigBy($input);
+        $label = Message::NAME . ' (' . Version::read() . ')';
 
-        $output->writeln($this->getDescription() . PHP_EOL);
-        $output->writeln(Message::READ_CONFIG_FROM . $this->configFilePath . PHP_EOL);
+        $output->writeln($label . PHP_EOL);
+        $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);
 
         $strategyOptions = [
             'config'      => $config,
             'output'      => $output,
-            'layoutLabel' => $this->getDescription(),
+            'layoutLabel' => $label,
         ];
 
         if ($this->loadStrategy($config->getMode(), $strategyOptions)->execute()) {
