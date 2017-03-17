@@ -7,10 +7,10 @@
 [![License](https://img.shields.io/packagist/l/mamuz/php-dependency-analysis.svg?style=flat-square)](https://packagist.org/packages/mamuz/php-dependency-analysis)
 
 PhpDependencyAnalysis is an extendable static code analysis for object-oriented
-PHP-Projects to provide [`dependency graphs`](http://en.wikipedia.org/wiki/Dependency_graph)
-for abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
+PHP-Projects to generate [`dependency graphs`](http://en.wikipedia.org/wiki/Dependency_graph)
+from abstract datatypes (Classes, Interfaces and Traits) based on [`namespaces`](http://php.net/manual/en/language.namespaces.php).
 Dependencies can be aggregated to build graphs for several levels, like Package-Level or Layer-Level.
-Each dependency can be verified to your defined architecture.
+Each dependency can be verified to a defined architecture.
 
 Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/1.-Introduction) for further informations.
 
@@ -28,7 +28,7 @@ an open source graph visualization software and available for the most platforms
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
 [`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is..
 
-### As a Phar
+### As a Phar (currently dev-master only)
 
 ```sh
 $ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
@@ -44,9 +44,11 @@ The three lines above will, in order:
 
 The phar file is securely signed with OpenSSL. To be able to execute the phar file,
 the public key must be named as the phar file, with `.pubkey` added, 
-and must be placed in the same directory.
+and must be placed in the same directory. That means don't change the name and location of the publiy key.
 
 #### Update
+
+Use the provided update command to get the latest version.
 
 ```sh
 $ phpda update
@@ -60,38 +62,52 @@ $ composer require --dev mamuz/php-dependency-analysis
 
 ## Features
 
-- Providing high customizing level
-- Dependency graph creation on customized levels respectively different scopes and layers
+- High customizing level
+- Graph creation on customized levels respectively different scopes and layers
 - Supports Usage-Graph, Call-Graph and Inheritance-Graph
-- Dependencies can be aggregated to a package, a module or a layer
+- Dependencies can be aggregated such as to a package, a module or a layer
 - Detecting cycles and violations between layers in a tiered architecture
 - Verifiying dependency graph against a user-defined reference architecture
-- Collected Namespaces of dependencies are modifiable to meet custom use cases
+- Collected namespaces of dependencies are modifiable to meet custom use cases
 - Printing graphs in several formats (HTML, SVG, DOT, JSON)
-- Extandable by adding user-defined plugins for collecting and displaying dependencies
+- Extandable by adding user-defined plugins for collecting and displaying
 - Compatible to PHP7 Features, like [`Return Type Declarations`](https://wiki.php.net/rfc/return_types) and [`Anonymous Classes`](https://wiki.php.net/rfc/anonymous_classes)
-
-## Configuration
-
-This tool is configurable by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
-You can copy a prepared file from the vendor directory.
-
-```sh
-$ cp ./vendor/mamuz/php-dependency-analysis/phpda.yml.dist ./myconfig.yml
-```
-
-See [prepared configuration](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist)
-and read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration) for available options.
 
 ## Usage
 
-Run this command line to create a dependecy graph:
+Phpda can run out of the box by using a prepared [`configuration`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist).
+As you can see configuration is defined by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
 
-```sh
-$ ./vendor/bin/phpda analyze ./myconfig.yml
+To provide your own configuration create a yml file, e.g. located in `./myconfig.yml`: 
+
+```yml
+mode: 'usage'
+source: './src'
+filePattern: '*.php'
+ignore: 'tests'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: './phpda.svg'
+groupLength: 1
+visitor:
+  - PhpDA\Parser\Visitor\TagCollector
+  - PhpDA\Parser\Visitor\SuperglobalCollector
+visitorOptions:
+  PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\Required\MetaNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\Required\UsedNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\TagCollector: {minDepth: 2, sliceLength: 2}
 ```
 
-After that open created report file with your prefered tool.
+Perform an analysis with that configuration:
+
+```sh
+$ phpda analyze ./myconfig.yml
+```
+
+After that open the graph file `./phpda.svg` with your prefered tool.
+
+Read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
+to get knowledge about all available options.
 
 ## [Wiki](https://github.com/mamuz/PhpDependencyAnalysis/wiki)
 
