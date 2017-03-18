@@ -12,3 +12,4 @@ Thumbs.db
 composer.lock
 app/vendor/**/test
 app/vendor/**/tests
+tests/_output/*

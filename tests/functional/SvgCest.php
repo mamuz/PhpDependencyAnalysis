@@ -11,6 +11,9 @@ class SvgCest
     /** @var \DirectoryIterator */
     private $dir;
 
+    /** @var array */
+    private $resultsWithViolations = ['total', 'packages', 'layers', 'complex-cycle'];
+
     public function _before()
     {
         @mkdir(codecept_output_dir() . 'svg');
@@ -28,37 +31,27 @@ class SvgCest
     /**
      * @param FunctionalTester $tester
      */
-    public function createGraphForAllUseCases(FunctionalTester $tester)
+    public function testGraphCreationForAllUseCases(FunctionalTester $tester)
     {
-        $tester->wantTo('perform analysis and see svg results');
-
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
-                exec('./bin/phpda -q analyze ' . $file->getRealPath(), $output);
+                exec('./bin/phpda -q analyze ' . $file->getRealPath(), $output, $return);
 
                 $svgFilename = DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'svg';
-                $expected = $this->readGraphNodeTitlesFrom($this->expectationFolder . $svgFilename);
-                $result = $this->readGraphNodeTitlesFrom($this->outputFolder . $svgFilename);
+                $expected = $tester->readGraphNodeTitlesFrom($this->expectationFolder . $svgFilename);
+                $result = $tester->readGraphNodeTitlesFrom($this->outputFolder . $svgFilename);
 
                 $tester->assertNotEmpty($expected, $file->getBasename());
                 $tester->assertNotEmpty($result, $file->getBasename());
                 $tester->assertSame($expected, $result, $file->getBasename());
+
+                if (in_array($file->getBasename('.yml'), $this->resultsWithViolations)) {
+                    $tester->assertSame(2, $return);
+                } else {
+                    $tester->assertSame(0, $return);
+                }
             }
         }
-    }
-
-    /**
-     * @param string $filepath
-     * @return array
-     */
-    private function readGraphNodeTitlesFrom($filepath)
-    {
-        $xml = simplexml_load_file($filepath);
-        $xml->registerXPathNamespace('svg', 'http://www.w3.org/2000/svg');
-        $titles = array_map('strval', $xml->xpath('/svg:svg/svg:g[1]/svg:g/svg:title'));
-        sort($titles);
-
-        return $titles;
     }
 }
