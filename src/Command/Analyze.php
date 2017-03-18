@@ -74,7 +74,12 @@ class Analyze extends Command
 
     protected function configure()
     {
-        $this->addArgument('config', InputArgument::OPTIONAL, Message::CMD_ANALYZE_ARG_CONFIG, $this->defaultConfigFilePath);
+        $this->addArgument(
+            'config',
+            InputArgument::OPTIONAL,
+            Message::CMD_ANALYZE_ARG_CONFIG,
+            $this->defaultConfigFilePath
+        );
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_FILE_PATTERN);
@@ -93,8 +98,8 @@ class Analyze extends Command
         $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);
 
         $strategyOptions = [
-            'config'      => $config,
-            'output'      => $output,
+            'config' => $config,
+            'output' => $output,
             'layoutLabel' => $label,
         ];
 
