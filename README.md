@@ -1,4 +1,5 @@
-#PhpDependencyAnalysis
+PhpDependencyAnalysis
+=====================
 
 [![Author](http://img.shields.io/badge/author-@mamuz_de-blue.svg?style=flat-square)](https://twitter.com/mamuz_de)
 [![Build Status](https://img.shields.io/travis/mamuz/PhpDependencyAnalysis.svg?style=flat-square)](https://travis-ci.org/mamuz/PhpDependencyAnalysis)
