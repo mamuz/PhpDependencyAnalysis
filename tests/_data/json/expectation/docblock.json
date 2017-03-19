@@ -1,0 +1,255 @@
+{
+    "edges": {
+        "PackageX\\DocBlockTag=>Closure": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "Closure",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 18,
+                    "endline": 54,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>DomainException": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "DomainException",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 26,
+                    "endline": 29,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>Foo\\Bar": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "Foo\\Bar",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 18,
+                    "endline": 54,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageA\\Entity\\Package": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 50,
+                    "endline": 50,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageA\\Mapper\\Query": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageA\\Mapper\\Query",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 34,
+                    "endline": 36,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageA\\Service\\Message": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageA\\Service\\Message",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 18,
+                    "endline": 54,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageB\\Mapper\\CommandInterface": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageB\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 52,
+                    "endline": 52,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageB\\Service\\Message": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageB\\Service\\Message",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 18,
+                    "endline": 54,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 26,
+                    "endline": 29,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\DocBlockTag=>PackageX\\Constant": {
+            "from": "PackageX\\DocBlockTag",
+            "to": "PackageX\\Constant",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                    "startLine": 18,
+                    "endline": 54,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "Closure": {
+            "name": "Closure",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "DomainException": {
+            "name": "DomainException",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "Foo\\Bar": {
+            "name": "Foo\\Bar",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Entity\\Package": {
+            "name": "PackageA\\Entity\\Package",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Mapper\\Query": {
+            "name": "PackageA\\Mapper\\Query",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Service\\Message": {
+            "name": "PackageA\\Service\\Message",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageB\\Mapper\\CommandInterface": {
+            "name": "PackageB\\Mapper\\CommandInterface",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageB\\Service\\Message": {
+            "name": "PackageB\\Service\\Message",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageC\\Filter\\FilterInterface": {
+            "name": "PackageC\\Filter\\FilterInterface",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\Constant": {
+            "name": "PackageX\\Constant",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\DocBlockTag": {
+            "name": "PackageX\\DocBlockTag",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "DomainException": "DomainException",
+                    "PackageA\\Mapper\\Query": "PackageA\\Mapper\\Query",
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package",
+                    "PackageB\\Mapper\\CommandInterface": "PackageB\\Mapper\\CommandInterface",
+                    "PackageA\\Service\\Message": "PackageA\\Service\\Message",
+                    "PackageB\\Service\\Message": "PackageB\\Service\\Message",
+                    "Foo\\Bar": "Foo\\Bar",
+                    "PackageX\\Constant": "PackageX\\Constant",
+                    "Closure": "Closure"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
+                "startLine": 18,
+                "endline": 54,
+                "isComment": false
+            },
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

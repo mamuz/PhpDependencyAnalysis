@@ -49,4 +49,12 @@ class ArgumentsCest
         $tester->assertSame($expected, $result);
         $tester->assertSame(0, $return);
     }
+
+    /**
+     * @param FunctionalTester $tester
+     */
+    public function testInvokeIgnoreArgument(FunctionalTester $tester)
+    {
+        // @todo
+    }
 }

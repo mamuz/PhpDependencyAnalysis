@@ -1,0 +1,2017 @@
+{
+    "edges": {
+        "PackageA\\Controller\\AbstractController=>Zend\\Http\\Request": {
+            "from": "PackageA\\Controller\\AbstractController",
+            "to": "Zend\\Http\\Request",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                    "startLine": 13,
+                    "endline": 16,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Controller\\AbstractController=>Zend\\Mvc\\Controller\\AbstractController": {
+            "from": "PackageA\\Controller\\AbstractController",
+            "to": "Zend\\Mvc\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Controller\\Command=>PackageA\\Controller\\AbstractController": {
+            "from": "PackageA\\Controller\\Command",
+            "to": "PackageA\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Controller\\Command=>PackageA\\Service\\Command": {
+            "from": "PackageA\\Controller\\Command",
+            "to": "PackageA\\Service\\Command",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Command.php",
+                    "startLine": 12,
+                    "endline": 12,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Controller\\Query=>PackageA\\Controller\\AbstractController": {
+            "from": "PackageA\\Controller\\Query",
+            "to": "PackageA\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Controller\\Query=>PackageA\\Service\\Query": {
+            "from": "PackageA\\Controller\\Query",
+            "to": "PackageA\\Service\\Query",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Query.php",
+                    "startLine": 12,
+                    "endline": 12,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\Command=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Mapper\\Command",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\Command=>PackageA\\Mapper\\CommandInterface": {
+            "from": "PackageA\\Mapper\\Command",
+            "to": "PackageA\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\Command=>PackageA\\Mapper\\EntityManagerAwareTrait": {
+            "from": "PackageA\\Mapper\\Command",
+            "to": "PackageA\\Mapper\\EntityManagerAwareTrait",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\CommandInterface=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Mapper\\CommandInterface",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/CommandInterface.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\EntityManagerAwareTrait=>Doctrine\\ORM\\EntityManagerInterface": {
+            "from": "PackageA\\Mapper\\EntityManagerAwareTrait",
+            "to": "Doctrine\\ORM\\EntityManagerInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\EntityManagerAwareTrait=>DomainException": {
+            "from": "PackageA\\Mapper\\EntityManagerAwareTrait",
+            "to": "DomainException",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\Query=>PackageA\\Mapper\\EntityManagerAwareTrait": {
+            "from": "PackageA\\Mapper\\Query",
+            "to": "PackageA\\Mapper\\EntityManagerAwareTrait",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\Query=>PackageA\\Mapper\\QueryInterface": {
+            "from": "PackageA\\Mapper\\Query",
+            "to": "PackageA\\Mapper\\QueryInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Query.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Query.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Mapper\\QueryInterface=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Mapper\\QueryInterface",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/QueryInterface.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 28,
+                    "endline": 28,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>PackageA\\Mapper\\CommandInterface": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 16,
+                    "endline": 19,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>PackageA\\Service\\AbstractService": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Service\\AbstractService",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>array_map": {
+            "from": "PackageA\\Service\\Command",
+            "to": "array_map",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 27,
+                    "endline": 27,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>intval": {
+            "from": "PackageA\\Service\\Command",
+            "to": "intval",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 37,
+                    "endline": 37,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Message=>PackageB\\Service\\Message": {
+            "from": "PackageA\\Service\\Message",
+            "to": "PackageB\\Service\\Message",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Query=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Service\\Query",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                    "startLine": 24,
+                    "endline": 31,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Query=>PackageA\\Mapper\\QueryInterface": {
+            "from": "PackageA\\Service\\Query",
+            "to": "PackageA\\Mapper\\QueryInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                    "startLine": 15,
+                    "endline": 18,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Query=>PackageA\\Service\\AbstractService": {
+            "from": "PackageA\\Service\\Query",
+            "to": "PackageA\\Service\\AbstractService",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Query=>array_key_exists": {
+            "from": "PackageA\\Service\\Query",
+            "to": "array_key_exists",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                    "startLine": 26,
+                    "endline": 26,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\AbstractController=>Zend\\Http\\Request": {
+            "from": "PackageB\\Controller\\AbstractController",
+            "to": "Zend\\Http\\Request",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                    "startLine": 13,
+                    "endline": 16,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\AbstractController=>Zend\\Mvc\\Controller\\AbstractController": {
+            "from": "PackageB\\Controller\\AbstractController",
+            "to": "Zend\\Mvc\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\Command=>PackageB\\Controller\\AbstractController": {
+            "from": "PackageB\\Controller\\Command",
+            "to": "PackageB\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\Command=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Controller\\Command",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                    "startLine": 31,
+                    "endline": 31,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\Command=>PackageB\\Mapper\\CommandInterface": {
+            "from": "PackageB\\Controller\\Command",
+            "to": "PackageB\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                    "startLine": 13,
+                    "endline": 13,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\Query=>PackageB\\Controller\\AbstractController": {
+            "from": "PackageB\\Controller\\Query",
+            "to": "PackageB\\Controller\\AbstractController",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Controller\\Query=>PackageB\\Service\\Query": {
+            "from": "PackageB\\Controller\\Query",
+            "to": "PackageB\\Service\\Query",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Query.php",
+                    "startLine": 12,
+                    "endline": 12,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\Command=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Mapper\\Command",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\Command=>PackageB\\Mapper\\CommandInterface": {
+            "from": "PackageB\\Mapper\\Command",
+            "to": "PackageB\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\Command=>PackageB\\Mapper\\EntityManagerAwareTrait": {
+            "from": "PackageB\\Mapper\\Command",
+            "to": "PackageB\\Mapper\\EntityManagerAwareTrait",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\CommandInterface=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Mapper\\CommandInterface",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/CommandInterface.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\EntityManagerAwareTrait=>Doctrine\\ORM\\EntityManagerInterface": {
+            "from": "PackageB\\Mapper\\EntityManagerAwareTrait",
+            "to": "Doctrine\\ORM\\EntityManagerInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\EntityManagerAwareTrait=>DomainException": {
+            "from": "PackageB\\Mapper\\EntityManagerAwareTrait",
+            "to": "DomainException",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\Query=>PackageB\\Mapper\\EntityManagerAwareTrait": {
+            "from": "PackageB\\Mapper\\Query",
+            "to": "PackageB\\Mapper\\EntityManagerAwareTrait",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\Query=>PackageB\\Mapper\\QueryInterface": {
+            "from": "PackageB\\Mapper\\Query",
+            "to": "PackageB\\Mapper\\QueryInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Query.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Query.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Mapper\\QueryInterface=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Mapper\\QueryInterface",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/QueryInterface.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Command=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Service\\Command",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 28,
+                    "endline": 28,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Command=>PackageB\\Mapper\\CommandInterface": {
+            "from": "PackageB\\Service\\Command",
+            "to": "PackageB\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 16,
+                    "endline": 19,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Command=>PackageB\\Service\\AbstractService": {
+            "from": "PackageB\\Service\\Command",
+            "to": "PackageB\\Service\\AbstractService",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Command=>array_map": {
+            "from": "PackageB\\Service\\Command",
+            "to": "array_map",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 27,
+                    "endline": 27,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Command=>intval": {
+            "from": "PackageB\\Service\\Command",
+            "to": "intval",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                    "startLine": 37,
+                    "endline": 37,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Message=>PackageC\\Service\\Message": {
+            "from": "PackageB\\Service\\Message",
+            "to": "PackageC\\Service\\Message",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Query=>PackageB\\Entity\\Package": {
+            "from": "PackageB\\Service\\Query",
+            "to": "PackageB\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                    "startLine": 24,
+                    "endline": 31,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Query=>PackageB\\Mapper\\QueryInterface": {
+            "from": "PackageB\\Service\\Query",
+            "to": "PackageB\\Mapper\\QueryInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                    "startLine": 15,
+                    "endline": 18,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Query=>PackageB\\Service\\AbstractService": {
+            "from": "PackageB\\Service\\Query",
+            "to": "PackageB\\Service\\AbstractService",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB\\Service\\Query=>array_key_exists": {
+            "from": "PackageB\\Service\\Query",
+            "to": "array_key_exists",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                    "startLine": 26,
+                    "endline": 26,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterA=>PackageC\\Filter\\FilterB": {
+            "from": "PackageC\\Filter\\FilterA",
+            "to": "PackageC\\Filter\\FilterB",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterA=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterA",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterB=>PackageC\\Filter\\FilterC": {
+            "from": "PackageC\\Filter\\FilterB",
+            "to": "PackageC\\Filter\\FilterC",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterB=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterB",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterC=>PackageC\\Filter\\FilterD": {
+            "from": "PackageC\\Filter\\FilterC",
+            "to": "PackageC\\Filter\\FilterD",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterC=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterC",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterD=>PackageC\\Filter\\FilterA": {
+            "from": "PackageC\\Filter\\FilterD",
+            "to": "PackageC\\Filter\\FilterA",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterD=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterD",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterE=>PackageC\\Filter\\FilterA": {
+            "from": "PackageC\\Filter\\FilterE",
+            "to": "PackageC\\Filter\\FilterA",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterE=>PackageC\\Filter\\FilterB": {
+            "from": "PackageC\\Filter\\FilterE",
+            "to": "PackageC\\Filter\\FilterB",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Service\\Message=>PackageA\\Service\\Message": {
+            "from": "PackageC\\Service\\Message",
+            "to": "PackageA\\Service\\Message",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "Doctrine\\ORM\\EntityManagerInterface": {
+            "name": "Doctrine\\ORM\\EntityManagerInterface",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -8
+        },
+        "DomainException": {
+            "name": "DomainException",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -9
+        },
+        "PackageA\\Controller\\AbstractController": {
+            "name": "PackageA\\Controller\\AbstractController",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "Zend\\Mvc\\Controller\\AbstractController": "Zend\\Mvc\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": true,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "Zend\\Mvc\\Controller\\AbstractController": "Zend\\Mvc\\Controller\\AbstractController",
+                    "Zend\\Http\\Request": "Zend\\Http\\Request"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                "startLine": 8,
+                "endline": 17,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Controller\\Command": {
+            "name": "PackageA\\Controller\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA\\Controller\\AbstractController": "PackageA\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Controller\\AbstractController": "PackageA\\Controller\\AbstractController",
+                    "PackageA\\Service\\Command": "PackageA\\Service\\Command"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Command.php",
+                "startLine": 7,
+                "endline": 40,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Controller\\Query": {
+            "name": "PackageA\\Controller\\Query",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA\\Controller\\AbstractController": "PackageA\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Controller\\AbstractController": "PackageA\\Controller\\AbstractController",
+                    "PackageA\\Service\\Query": "PackageA\\Service\\Query"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Query.php",
+                "startLine": 7,
+                "endline": 24,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Entity\\Package": {
+            "name": "PackageA\\Entity\\Package",
+            "usedByCount": 5,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Entity\/Package.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Mapper\\Command": {
+            "name": "PackageA\\Mapper\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageA\\Mapper\\CommandInterface": "PackageA\\Mapper\\CommandInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": {
+                        "PackageA\\Mapper\\EntityManagerAwareTrait": "PackageA\\Mapper\\EntityManagerAwareTrait"
+                    },
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Mapper\\CommandInterface": "PackageA\\Mapper\\CommandInterface",
+                    "PackageA\\Mapper\\EntityManagerAwareTrait": "PackageA\\Mapper\\EntityManagerAwareTrait",
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Command.php",
+                "startLine": 7,
+                "endline": 20,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Mapper\\CommandInterface": {
+            "name": "PackageA\\Mapper\\CommandInterface",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/CommandInterface.php",
+                "startLine": 7,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Mapper\\EntityManagerAwareTrait": {
+            "name": "PackageA\\Mapper\\EntityManagerAwareTrait",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "trait",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "Doctrine\\ORM\\EntityManagerInterface": "Doctrine\\ORM\\EntityManagerInterface",
+                    "DomainException": "DomainException"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/EntityManagerAwareTrait.php",
+                "startLine": 7,
+                "endline": 34,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Mapper\\Query": {
+            "name": "PackageA\\Mapper\\Query",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageA\\Mapper\\QueryInterface": "PackageA\\Mapper\\QueryInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": {
+                        "PackageA\\Mapper\\EntityManagerAwareTrait": "PackageA\\Mapper\\EntityManagerAwareTrait"
+                    },
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Mapper\\QueryInterface": "PackageA\\Mapper\\QueryInterface",
+                    "PackageA\\Mapper\\EntityManagerAwareTrait": "PackageA\\Mapper\\EntityManagerAwareTrait"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/Query.php",
+                "startLine": 5,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Mapper\\QueryInterface": {
+            "name": "PackageA\\Mapper\\QueryInterface",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/QueryInterface.php",
+                "startLine": 5,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Service\\AbstractService": {
+            "name": "PackageA\\Service\\AbstractService",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": true,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/AbstractService.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Service\\Command": {
+            "name": "PackageA\\Service\\Command",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService",
+                    "PackageA\\Mapper\\CommandInterface": "PackageA\\Mapper\\CommandInterface",
+                    "array_map": "array_map",
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package",
+                    "intval": "intval"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                "startLine": 8,
+                "endline": 39,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Service\\Message": {
+            "name": "PackageA\\Service\\Message",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Service\\Message": "PackageB\\Service\\Message"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Message.php",
+                "startLine": 7,
+                "endline": 13,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageA\\Service\\Query": {
+            "name": "PackageA\\Service\\Query",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService",
+                    "PackageA\\Mapper\\QueryInterface": "PackageA\\Mapper\\QueryInterface",
+                    "array_key_exists": "array_key_exists",
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Query.php",
+                "startLine": 7,
+                "endline": 32,
+                "isComment": false
+            },
+            "group": -2
+        },
+        "PackageB\\Controller\\AbstractController": {
+            "name": "PackageB\\Controller\\AbstractController",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "Zend\\Mvc\\Controller\\AbstractController": "Zend\\Mvc\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": true,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "Zend\\Mvc\\Controller\\AbstractController": "Zend\\Mvc\\Controller\\AbstractController",
+                    "Zend\\Http\\Request": "Zend\\Http\\Request"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                "startLine": 8,
+                "endline": 17,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Controller\\Command": {
+            "name": "PackageB\\Controller\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageB\\Controller\\AbstractController": "PackageB\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Controller\\AbstractController": "PackageB\\Controller\\AbstractController",
+                    "PackageB\\Mapper\\CommandInterface": "PackageB\\Mapper\\CommandInterface",
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                "startLine": 8,
+                "endline": 41,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Controller\\Query": {
+            "name": "PackageB\\Controller\\Query",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageB\\Controller\\AbstractController": "PackageB\\Controller\\AbstractController"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Controller\\AbstractController": "PackageB\\Controller\\AbstractController",
+                    "PackageB\\Service\\Query": "PackageB\\Service\\Query"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Query.php",
+                "startLine": 7,
+                "endline": 24,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Entity\\Package": {
+            "name": "PackageB\\Entity\\Package",
+            "usedByCount": 6,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Entity\/Package.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Mapper\\Command": {
+            "name": "PackageB\\Mapper\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageB\\Mapper\\CommandInterface": "PackageB\\Mapper\\CommandInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": {
+                        "PackageB\\Mapper\\EntityManagerAwareTrait": "PackageB\\Mapper\\EntityManagerAwareTrait"
+                    },
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Mapper\\CommandInterface": "PackageB\\Mapper\\CommandInterface",
+                    "PackageB\\Mapper\\EntityManagerAwareTrait": "PackageB\\Mapper\\EntityManagerAwareTrait",
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Command.php",
+                "startLine": 7,
+                "endline": 20,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Mapper\\CommandInterface": {
+            "name": "PackageB\\Mapper\\CommandInterface",
+            "usedByCount": 3,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/CommandInterface.php",
+                "startLine": 7,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Mapper\\EntityManagerAwareTrait": {
+            "name": "PackageB\\Mapper\\EntityManagerAwareTrait",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "trait",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "Doctrine\\ORM\\EntityManagerInterface": "Doctrine\\ORM\\EntityManagerInterface",
+                    "DomainException": "DomainException"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/EntityManagerAwareTrait.php",
+                "startLine": 7,
+                "endline": 34,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Mapper\\Query": {
+            "name": "PackageB\\Mapper\\Query",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageB\\Mapper\\QueryInterface": "PackageB\\Mapper\\QueryInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": {
+                        "PackageB\\Mapper\\EntityManagerAwareTrait": "PackageB\\Mapper\\EntityManagerAwareTrait"
+                    },
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Mapper\\QueryInterface": "PackageB\\Mapper\\QueryInterface",
+                    "PackageB\\Mapper\\EntityManagerAwareTrait": "PackageB\\Mapper\\EntityManagerAwareTrait"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/Query.php",
+                "startLine": 5,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Mapper\\QueryInterface": {
+            "name": "PackageB\\Mapper\\QueryInterface",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/QueryInterface.php",
+                "startLine": 5,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Service\\AbstractService": {
+            "name": "PackageB\\Service\\AbstractService",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": true,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/AbstractService.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Service\\Command": {
+            "name": "PackageB\\Service\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageB\\Service\\AbstractService": "PackageB\\Service\\AbstractService"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Service\\AbstractService": "PackageB\\Service\\AbstractService",
+                    "PackageB\\Mapper\\CommandInterface": "PackageB\\Mapper\\CommandInterface",
+                    "array_map": "array_map",
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package",
+                    "intval": "intval"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Command.php",
+                "startLine": 8,
+                "endline": 39,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Service\\Message": {
+            "name": "PackageB\\Service\\Message",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Service\\Message": "PackageC\\Service\\Message"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Message.php",
+                "startLine": 7,
+                "endline": 13,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageB\\Service\\Query": {
+            "name": "PackageB\\Service\\Query",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageB\\Service\\AbstractService": "PackageB\\Service\\AbstractService"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB\\Service\\AbstractService": "PackageB\\Service\\AbstractService",
+                    "PackageB\\Mapper\\QueryInterface": "PackageB\\Mapper\\QueryInterface",
+                    "array_key_exists": "array_key_exists",
+                    "PackageB\\Entity\\Package": "PackageB\\Entity\\Package"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Query.php",
+                "startLine": 7,
+                "endline": 32,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageC\\Filter\\FilterA": {
+            "name": "PackageC\\Filter\\FilterA",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterB": {
+            "name": "PackageC\\Filter\\FilterB",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterC": "PackageC\\Filter\\FilterC"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterC": {
+            "name": "PackageC\\Filter\\FilterC",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterD": "PackageC\\Filter\\FilterD"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterD": {
+            "name": "PackageC\\Filter\\FilterD",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterA": "PackageC\\Filter\\FilterA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterE": {
+            "name": "PackageC\\Filter\\FilterE",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB",
+                    "PackageC\\Filter\\FilterA": "PackageC\\Filter\\FilterA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterInterface": {
+            "name": "PackageC\\Filter\\FilterInterface",
+            "usedByCount": 4,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterInterface.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Service\\Message": {
+            "name": "PackageC\\Service\\Message",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Service\\Message": "PackageA\\Service\\Message"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Service\/Message.php",
+                "startLine": 7,
+                "endline": 13,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "Zend\\Http\\Request": {
+            "name": "Zend\\Http\\Request",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -4
+        },
+        "Zend\\Mvc\\Controller\\AbstractController": {
+            "name": "Zend\\Mvc\\Controller\\AbstractController",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -4
+        },
+        "array_key_exists": {
+            "name": "array_key_exists",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -7
+        },
+        "array_map": {
+            "name": "array_map",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -5
+        },
+        "intval": {
+            "name": "intval",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": -6
+        }
+    },
+    "cycles": [
+        [
+            "PackageC\\Service\\Message",
+            "PackageA\\Service\\Message",
+            "PackageB\\Service\\Message",
+            "PackageC\\Service\\Message"
+        ],
+        [
+            "PackageC\\Filter\\FilterC",
+            "PackageC\\Filter\\FilterD",
+            "PackageC\\Filter\\FilterA",
+            "PackageC\\Filter\\FilterB",
+            "PackageC\\Filter\\FilterC"
+        ]
+    ],
+    "groups": {
+        "-1": "PackageC",
+        "-2": "PackageA",
+        "-3": "PackageB",
+        "-4": "Zend",
+        "-5": "array_map",
+        "-6": "intval",
+        "-7": "array_key_exists",
+        "-8": "Doctrine",
+        "-9": "DomainException"
+    },
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

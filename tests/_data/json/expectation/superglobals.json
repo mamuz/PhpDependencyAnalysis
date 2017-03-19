@@ -1,0 +1,233 @@
+{
+    "edges": {
+        "PackageX\\SuperGlobalAccess=>GLOBALS": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "GLOBALS",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_COOKIE": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_COOKIE",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 12,
+                    "endline": 12,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_ENV": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_ENV",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 15,
+                    "endline": 15,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_FILES": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_FILES",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 13,
+                    "endline": 13,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_GET": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_GET",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 10,
+                    "endline": 10,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_POST": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_POST",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_REQUEST": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_REQUEST",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_SERVER": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_SERVER",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 14,
+                    "endline": 14,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\SuperGlobalAccess=>_SESSION": {
+            "from": "PackageX\\SuperGlobalAccess",
+            "to": "_SESSION",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "GLOBALS": {
+            "name": "GLOBALS",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\SuperGlobalAccess": {
+            "name": "PackageX\\SuperGlobalAccess",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "_POST": "_POST",
+                    "_GET": "_GET",
+                    "_REQUEST": "_REQUEST",
+                    "_COOKIE": "_COOKIE",
+                    "_FILES": "_FILES",
+                    "_SERVER": "_SERVER",
+                    "_ENV": "_ENV",
+                    "GLOBALS": "GLOBALS",
+                    "_SESSION": "_SESSION"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/SuperGlobalAccess.php",
+                "startLine": 5,
+                "endline": 19,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "_COOKIE": {
+            "name": "_COOKIE",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_ENV": {
+            "name": "_ENV",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_FILES": {
+            "name": "_FILES",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_GET": {
+            "name": "_GET",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_POST": {
+            "name": "_POST",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_REQUEST": {
+            "name": "_REQUEST",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_SERVER": {
+            "name": "_SERVER",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "_SESSION": {
+            "name": "_SESSION",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

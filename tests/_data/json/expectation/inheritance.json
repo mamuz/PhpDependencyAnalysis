@@ -1,0 +1,362 @@
+{
+    "edges": {
+        "PhpDA\\Writer\\Adapter=>PhpDA\\Writer\\AdapterInterface": {
+            "from": "PhpDA\\Writer\\Adapter",
+            "to": "PhpDA\\Writer\\AdapterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Adapter.php",
+                    "startLine": 32,
+                    "endline": 32,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Extractor\\Graph=>PhpDA\\Writer\\Extractor\\ExtractionInterface": {
+            "from": "PhpDA\\Writer\\Extractor\\Graph",
+            "to": "PhpDA\\Writer\\Extractor\\ExtractionInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Extractor\/Graph.php",
+                    "startLine": 32,
+                    "endline": 32,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Strategy\\AbstractGraphViz=>PhpDA\\Writer\\Strategy\\StrategyInterface": {
+            "from": "PhpDA\\Writer\\Strategy\\AbstractGraphViz",
+            "to": "PhpDA\\Writer\\Strategy\\StrategyInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/AbstractGraphViz.php",
+                    "startLine": 31,
+                    "endline": 31,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Strategy\\Html=>PhpDA\\Writer\\Strategy\\AbstractGraphViz": {
+            "from": "PhpDA\\Writer\\Strategy\\Html",
+            "to": "PhpDA\\Writer\\Strategy\\AbstractGraphViz",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Html.php",
+                    "startLine": 30,
+                    "endline": 30,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Strategy\\Json=>PhpDA\\Writer\\Strategy\\StrategyInterface": {
+            "from": "PhpDA\\Writer\\Strategy\\Json",
+            "to": "PhpDA\\Writer\\Strategy\\StrategyInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Json.php",
+                    "startLine": 32,
+                    "endline": 32,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Strategy\\Script=>PhpDA\\Writer\\Strategy\\AbstractGraphViz": {
+            "from": "PhpDA\\Writer\\Strategy\\Script",
+            "to": "PhpDA\\Writer\\Strategy\\AbstractGraphViz",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Script.php",
+                    "startLine": 30,
+                    "endline": 30,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Writer\\Strategy\\Svg=>PhpDA\\Writer\\Strategy\\AbstractGraphViz": {
+            "from": "PhpDA\\Writer\\Strategy\\Svg",
+            "to": "PhpDA\\Writer\\Strategy\\AbstractGraphViz",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Svg.php",
+                    "startLine": 30,
+                    "endline": 30,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PhpDA\\Writer\\Adapter": {
+            "name": "PhpDA\\Writer\\Adapter",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PhpDA\\Writer\\AdapterInterface": "PhpDA\\Writer\\AdapterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Adapter.php",
+                "startLine": 32,
+                "endline": 93,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\AdapterInterface": {
+            "name": "PhpDA\\Writer\\AdapterInterface",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/AdapterInterface.php",
+                "startLine": 30,
+                "endline": 49,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Extractor\\ExtractionInterface": {
+            "name": "PhpDA\\Writer\\Extractor\\ExtractionInterface",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Extractor\/ExtractionInterface.php",
+                "startLine": 30,
+                "endline": 37,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Extractor\\Graph": {
+            "name": "PhpDA\\Writer\\Extractor\\Graph",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PhpDA\\Writer\\Extractor\\ExtractionInterface": "PhpDA\\Writer\\Extractor\\ExtractionInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Extractor\/Graph.php",
+                "startLine": 32,
+                "endline": 127,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\AbstractGraphViz": {
+            "name": "PhpDA\\Writer\\Strategy\\AbstractGraphViz",
+            "usedByCount": 3,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PhpDA\\Writer\\Strategy\\StrategyInterface": "PhpDA\\Writer\\Strategy\\StrategyInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": true,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/AbstractGraphViz.php",
+                "startLine": 31,
+                "endline": 83,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\Html": {
+            "name": "PhpDA\\Writer\\Strategy\\Html",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PhpDA\\Writer\\Strategy\\AbstractGraphViz": "PhpDA\\Writer\\Strategy\\AbstractGraphViz"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Html.php",
+                "startLine": 30,
+                "endline": 91,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\Json": {
+            "name": "PhpDA\\Writer\\Strategy\\Json",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PhpDA\\Writer\\Strategy\\StrategyInterface": "PhpDA\\Writer\\Strategy\\StrategyInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Json.php",
+                "startLine": 32,
+                "endline": 67,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\Script": {
+            "name": "PhpDA\\Writer\\Strategy\\Script",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PhpDA\\Writer\\Strategy\\AbstractGraphViz": "PhpDA\\Writer\\Strategy\\AbstractGraphViz"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Script.php",
+                "startLine": 30,
+                "endline": 36,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\StrategyInterface": {
+            "name": "PhpDA\\Writer\\Strategy\\StrategyInterface",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/StrategyInterface.php",
+                "startLine": 30,
+                "endline": 38,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Writer\\Strategy\\Svg": {
+            "name": "PhpDA\\Writer\\Strategy\\Svg",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PhpDA\\Writer\\Strategy\\AbstractGraphViz": "PhpDA\\Writer\\Strategy\\AbstractGraphViz"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Writer\/Strategy\/Svg.php",
+                "startLine": 30,
+                "endline": 36,
+                "isComment": false
+            },
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -52,6 +52,6 @@ class InvalidArgumentsCest
         exec('./bin/phpda -q analyze ' . $argument . ' 2>&1', $output, $return);
 
         $tester->assertNotSame(false, strpos(strtolower(implode(PHP_EOL, $output)), $error));
-        $tester->assertNotSame(0, $return); // @todo should be always 1 here
+        $tester->assertSame(2, $return);
     }
 }

@@ -1,0 +1,57 @@
+{
+    "edges": {
+        "PackageX\\ReturnType=>PackageX\\MyObject": {
+            "from": "PackageX\\ReturnType",
+            "to": "PackageX\\MyObject",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/ReturnType.php",
+                    "startLine": 7,
+                    "endline": 7,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PackageX\\MyObject": {
+            "name": "PackageX\\MyObject",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\ReturnType": {
+            "name": "PackageX\\ReturnType",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageX\\MyObject": "PackageX\\MyObject"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/ReturnType.php",
+                "startLine": 5,
+                "endline": 10,
+                "isComment": false
+            },
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

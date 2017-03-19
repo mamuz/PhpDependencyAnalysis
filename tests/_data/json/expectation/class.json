@@ -1,0 +1,153 @@
+{
+    "edges": {
+        "PackageA\\Service\\Command=>PackageA\\Entity\\Package": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Entity\\Package",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 28,
+                    "endline": 28,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>PackageA\\Mapper\\CommandInterface": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Mapper\\CommandInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 16,
+                    "endline": 19,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>PackageA\\Service\\AbstractService": {
+            "from": "PackageA\\Service\\Command",
+            "to": "PackageA\\Service\\AbstractService",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>array_map": {
+            "from": "PackageA\\Service\\Command",
+            "to": "array_map",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 27,
+                    "endline": 27,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA\\Service\\Command=>intval": {
+            "from": "PackageA\\Service\\Command",
+            "to": "intval",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                    "startLine": 37,
+                    "endline": 37,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PackageA\\Entity\\Package": {
+            "name": "PackageA\\Entity\\Package",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Mapper\\CommandInterface": {
+            "name": "PackageA\\Mapper\\CommandInterface",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Service\\AbstractService": {
+            "name": "PackageA\\Service\\AbstractService",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA\\Service\\Command": {
+            "name": "PackageA\\Service\\Command",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA\\Service\\AbstractService": "PackageA\\Service\\AbstractService",
+                    "PackageA\\Mapper\\CommandInterface": "PackageA\\Mapper\\CommandInterface",
+                    "array_map": "array_map",
+                    "PackageA\\Entity\\Package": "PackageA\\Entity\\Package",
+                    "intval": "intval"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
+                "startLine": 8,
+                "endline": 39,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "array_map": {
+            "name": "array_map",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "intval": {
+            "name": "intval",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -1,0 +1,153 @@
+{
+    "edges": {
+        "PackageX\\AnonymousClass=>ArrayIterator": {
+            "from": "PackageX\\AnonymousClass",
+            "to": "ArrayIterator",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\AnonymousClass=>EmptyIterator": {
+            "from": "PackageX\\AnonymousClass",
+            "to": "EmptyIterator",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 21,
+                    "endline": 21,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 21,
+                    "endline": 21,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\AnonymousClass=>IteratorAggregate": {
+            "from": "PackageX\\AnonymousClass",
+            "to": "IteratorAggregate",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\AnonymousClass=>RecursiveArrayIterator": {
+            "from": "PackageX\\AnonymousClass",
+            "to": "RecursiveArrayIterator",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 14,
+                    "endline": 14,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                    "startLine": 14,
+                    "endline": 14,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "ArrayIterator": {
+            "name": "ArrayIterator",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "EmptyIterator": {
+            "name": "EmptyIterator",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "IteratorAggregate": {
+            "name": "IteratorAggregate",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\AnonymousClass": {
+            "name": "PackageX\\AnonymousClass",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "IteratorAggregate": "IteratorAggregate"
+                    },
+                    "extendedNamespaces": {
+                        "ArrayIterator": "ArrayIterator",
+                        "RecursiveArrayIterator": "RecursiveArrayIterator",
+                        "EmptyIterator": "EmptyIterator"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "IteratorAggregate": "IteratorAggregate",
+                    "ArrayIterator": "ArrayIterator",
+                    "RecursiveArrayIterator": "RecursiveArrayIterator",
+                    "EmptyIterator": "EmptyIterator"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
+                "startLine": 5,
+                "endline": 25,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "RecursiveArrayIterator": {
+            "name": "RecursiveArrayIterator",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Remove support for PHP5.5
+- BC: Exit code for detected violations is 1 instead of 2, 2 is reserved for misconfiguration and other exceptions
 
 ### Added
 - [Add support to build phar](https://github.com/mamuz/PhpDependencyAnalysis/pull/25)

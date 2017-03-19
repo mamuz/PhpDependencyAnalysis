@@ -1,0 +1,79 @@
+{
+    "edges": {
+        "PackageX\\Constant=>Locale": {
+            "from": "PackageX\\Constant",
+            "to": "Locale",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/Constant.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\Constant=>PHP_EOL": {
+            "from": "PackageX\\Constant",
+            "to": "PHP_EOL",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/Constant.php",
+                    "startLine": 15,
+                    "endline": 15,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "Locale": {
+            "name": "Locale",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PHP_EOL": {
+            "name": "PHP_EOL",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\Constant": {
+            "name": "PackageX\\Constant",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PHP_EOL": "PHP_EOL",
+                    "Locale": "Locale"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/Constant.php",
+                "startLine": 5,
+                "endline": 18,
+                "isComment": false
+            },
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -1,0 +1,124 @@
+{
+    "edges": {
+        "PackageX\\NamespacedString=>\\Test": {
+            "from": "PackageX\\NamespacedString",
+            "to": "\\Test",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
+                    "startLine": 10,
+                    "endline": 10,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\NamespacedString=>\\Test\\Object": {
+            "from": "PackageX\\NamespacedString",
+            "to": "\\Test\\Object",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\NamespacedString=>foo_bar": {
+            "from": "PackageX\\NamespacedString",
+            "to": "foo_bar",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\NamespacedString=>stdClass": {
+            "from": "PackageX\\NamespacedString",
+            "to": "stdClass",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
+                    "startLine": 13,
+                    "endline": 13,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PackageX\\NamespacedString": {
+            "name": "PackageX\\NamespacedString",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "stdClass": "stdClass"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": {
+                    "\\Test\\Object": "\\Test\\Object",
+                    "\\Test": "\\Test",
+                    "foo_bar": "foo_bar"
+                }
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
+                "startLine": 5,
+                "endline": 19,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "\\Test": {
+            "name": "\\Test",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "\\Test\\Object": {
+            "name": "\\Test\\Object",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "foo_bar": {
+            "name": "foo_bar",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "stdClass": {
+            "name": "stdClass",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -33,6 +33,7 @@ class SvgCest
      */
     public function testGraphCreationForAllUseCases(FunctionalTester $tester)
     {
+        // @todo using namespacefilter
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
@@ -47,7 +48,7 @@ class SvgCest
                 $tester->assertSame($expected, $result, $file->getBasename());
 
                 if (in_array($file->getBasename('.yml'), $this->resultsWithViolations)) {
-                    $tester->assertSame(2, $return);
+                    $tester->assertSame(1, $return);
                 } else {
                     $tester->assertSame(0, $return);
                 }

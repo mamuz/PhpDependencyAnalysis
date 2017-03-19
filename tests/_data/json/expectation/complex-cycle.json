@@ -1,0 +1,364 @@
+{
+    "edges": {
+        "PackageC\\Filter\\FilterA=>PackageC\\Filter\\FilterB": {
+            "from": "PackageC\\Filter\\FilterA",
+            "to": "PackageC\\Filter\\FilterB",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterA=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterA",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterB=>PackageC\\Filter\\FilterC": {
+            "from": "PackageC\\Filter\\FilterB",
+            "to": "PackageC\\Filter\\FilterC",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterB=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterB",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterC=>PackageC\\Filter\\FilterD": {
+            "from": "PackageC\\Filter\\FilterC",
+            "to": "PackageC\\Filter\\FilterD",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterC=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterC",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterD=>PackageC\\Filter\\FilterA": {
+            "from": "PackageC\\Filter\\FilterD",
+            "to": "PackageC\\Filter\\FilterA",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterD=>PackageC\\Filter\\FilterInterface": {
+            "from": "PackageC\\Filter\\FilterD",
+            "to": "PackageC\\Filter\\FilterInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterE=>PackageC\\Filter\\FilterA": {
+            "from": "PackageC\\Filter\\FilterE",
+            "to": "PackageC\\Filter\\FilterA",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC\\Filter\\FilterE=>PackageC\\Filter\\FilterB": {
+            "from": "PackageC\\Filter\\FilterE",
+            "to": "PackageC\\Filter\\FilterB",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                    "startLine": 5,
+                    "endline": 5,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PackageC\\Filter\\FilterA": {
+            "name": "PackageC\\Filter\\FilterA",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -4
+        },
+        "PackageC\\Filter\\FilterB": {
+            "name": "PackageC\\Filter\\FilterB",
+            "usedByCount": 2,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterC": "PackageC\\Filter\\FilterC"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -5
+        },
+        "PackageC\\Filter\\FilterC": {
+            "name": "PackageC\\Filter\\FilterC",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterD": "PackageC\\Filter\\FilterD"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -1
+        },
+        "PackageC\\Filter\\FilterD": {
+            "name": "PackageC\\Filter\\FilterD",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterInterface": "PackageC\\Filter\\FilterInterface",
+                    "PackageC\\Filter\\FilterA": "PackageC\\Filter\\FilterA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -3
+        },
+        "PackageC\\Filter\\FilterE": {
+            "name": "PackageC\\Filter\\FilterE",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageC\\Filter\\FilterB": "PackageC\\Filter\\FilterB",
+                    "PackageC\\Filter\\FilterA": "PackageC\\Filter\\FilterA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": -6
+        },
+        "PackageC\\Filter\\FilterInterface": {
+            "name": "PackageC\\Filter\\FilterInterface",
+            "usedByCount": 4,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterInterface.php",
+                "startLine": 5,
+                "endline": 8,
+                "isComment": false
+            },
+            "group": -2
+        }
+    },
+    "cycles": [
+        [
+            "PackageC\\Filter\\FilterC",
+            "PackageC\\Filter\\FilterD",
+            "PackageC\\Filter\\FilterA",
+            "PackageC\\Filter\\FilterB",
+            "PackageC\\Filter\\FilterC"
+        ]
+    ],
+    "groups": {
+        "-1": "PackageC\\Filter\\FilterC",
+        "-2": "PackageC\\Filter\\FilterInterface",
+        "-3": "PackageC\\Filter\\FilterD",
+        "-4": "PackageC\\Filter\\FilterA",
+        "-5": "PackageC\\Filter\\FilterB",
+        "-6": "PackageC\\Filter\\FilterE"
+    },
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

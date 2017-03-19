@@ -1,0 +1,463 @@
+{
+    "edges": {
+        "PackageX\\UnsupportedStmt=>call_user_func": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "call_user_func",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 13,
+                    "endline": 13,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>call_user_func_array": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "call_user_func_array",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 14,
+                    "endline": 14,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>call_user_method": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "call_user_method",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 17,
+                    "endline": 17,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>call_user_method_array": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "call_user_method_array",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 18,
+                    "endline": 18,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>create_function": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "create_function",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 19,
+                    "endline": 19,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>eval": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "eval",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 12,
+                    "endline": 12,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>forward_static_call": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "forward_static_call",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 15,
+                    "endline": 15,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>forward_static_call_array": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "forward_static_call_array",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 16,
+                    "endline": 16,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedStmt=>global": {
+            "from": "PackageX\\UnsupportedStmt",
+            "to": "global",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 9,
+                    "endline": 9,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar1=>dynamic varname": {
+            "from": "PackageX\\UnsupportedVar1",
+            "to": "dynamic varname",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 28,
+                    "endline": 28,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar2=>Locale": {
+            "from": "PackageX\\UnsupportedVar2",
+            "to": "Locale",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 37,
+                    "endline": 37,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar2=>dynamic varname": {
+            "from": "PackageX\\UnsupportedVar2",
+            "to": "dynamic varname",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 38,
+                    "endline": 38,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar3=>dynamic varname": {
+            "from": "PackageX\\UnsupportedVar3",
+            "to": "dynamic varname",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 47,
+                    "endline": 47,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar4=>dynamic varname": {
+            "from": "PackageX\\UnsupportedVar4",
+            "to": "dynamic varname",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 56,
+                    "endline": 56,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageX\\UnsupportedVar5=>dynamic varname": {
+            "from": "PackageX\\UnsupportedVar5",
+            "to": "dynamic varname",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                    "startLine": 65,
+                    "endline": 65,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "Locale": {
+            "name": "Locale",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageX\\UnsupportedStmt": {
+            "name": "PackageX\\UnsupportedStmt",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": {
+                    "global": "global",
+                    "eval": "eval",
+                    "call_user_func": "call_user_func",
+                    "call_user_func_array": "call_user_func_array",
+                    "forward_static_call": "forward_static_call",
+                    "forward_static_call_array": "forward_static_call_array",
+                    "call_user_method": "call_user_method",
+                    "call_user_method_array": "call_user_method_array",
+                    "create_function": "create_function"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 5,
+                "endline": 21,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageX\\UnsupportedVar1": {
+            "name": "PackageX\\UnsupportedVar1",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": {
+                    "dynamic varname": "dynamic varname"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 23,
+                "endline": 30,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageX\\UnsupportedVar2": {
+            "name": "PackageX\\UnsupportedVar2",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "Locale": "Locale"
+                },
+                "unsupportedStmts": {
+                    "dynamic varname": "dynamic varname"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 32,
+                "endline": 40,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageX\\UnsupportedVar3": {
+            "name": "PackageX\\UnsupportedVar3",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": {
+                    "dynamic varname": "dynamic varname"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 42,
+                "endline": 49,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageX\\UnsupportedVar4": {
+            "name": "PackageX\\UnsupportedVar4",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": {
+                    "dynamic varname": "dynamic varname"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 51,
+                "endline": 58,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageX\\UnsupportedVar5": {
+            "name": "PackageX\\UnsupportedVar5",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": {
+                    "dynamic varname": "dynamic varname"
+                },
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/UnsupportedStatement.php",
+                "startLine": 60,
+                "endline": 67,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "call_user_func": {
+            "name": "call_user_func",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "call_user_func_array": {
+            "name": "call_user_func_array",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "call_user_method": {
+            "name": "call_user_method",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "call_user_method_array": {
+            "name": "call_user_method_array",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "create_function": {
+            "name": "create_function",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "dynamic varname": {
+            "name": "dynamic varname",
+            "usedByCount": 5,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "eval": {
+            "name": "eval",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "forward_static_call": {
+            "name": "forward_static_call",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "forward_static_call_array": {
+            "name": "forward_static_call_array",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "global": {
+            "name": "global",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

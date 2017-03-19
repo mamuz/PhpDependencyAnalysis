@@ -145,7 +145,7 @@ class Config
      */
     public function getTarget()
     {
-        if (!is_string($this->target)) {
+        if (!is_string($this->target) || empty($this->target)) {
             throw new \InvalidArgumentException('Config for target must be a string');
         }
 

@@ -1,0 +1,290 @@
+{
+    "edges": {
+        "PhpDA\\Plugin\\Loader=>PhpDA\\Plugin\\ConfigurableInterface": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "PhpDA\\Plugin\\ConfigurableInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 103,
+                    "endline": 103,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>PhpDA\\Plugin\\FactoryInterface": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "PhpDA\\Plugin\\FactoryInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 48,
+                    "endline": 48,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>Psr\\Log\\LoggerInterface": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "Psr\\Log\\LoggerInterface",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 36,
+                    "endline": 36,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>ReflectionClass": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "ReflectionClass",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 78,
+                    "endline": 78,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>RuntimeException": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "RuntimeException",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 76,
+                    "endline": 85,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>class_exists": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "class_exists",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 67,
+                    "endline": 67,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>is_array": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "is_array",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 54,
+                    "endline": 54,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\Loader=>sprintf": {
+            "from": "PhpDA\\Plugin\\Loader",
+            "to": "sprintf",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                    "startLine": 82,
+                    "endline": 82,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PhpDA\\Plugin\\LoaderInterface=>RuntimeException": {
+            "from": "PhpDA\\Plugin\\LoaderInterface",
+            "to": "RuntimeException",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/LoaderInterface.php",
+                    "startLine": 36,
+                    "endline": 36,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "PhpDA\\Plugin\\ConfigurableInterface": {
+            "name": "PhpDA\\Plugin\\ConfigurableInterface",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/ConfigurableInterface.php",
+                "startLine": 28,
+                "endline": 34,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Plugin\\FactoryInterface": {
+            "name": "PhpDA\\Plugin\\FactoryInterface",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": [],
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/FactoryInterface.php",
+                "startLine": 28,
+                "endline": 34,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Plugin\\Loader": {
+            "name": "PhpDA\\Plugin\\Loader",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": {
+                        "PhpDA\\Plugin\\LoaderInterface": "PhpDA\\Plugin\\LoaderInterface",
+                        "Psr\\Log\\LoggerAwareInterface": "Psr\\Log\\LoggerAwareInterface"
+                    },
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PhpDA\\Plugin\\LoaderInterface": "PhpDA\\Plugin\\LoaderInterface",
+                    "Psr\\Log\\LoggerAwareInterface": "Psr\\Log\\LoggerAwareInterface",
+                    "Psr\\Log\\LoggerInterface": "Psr\\Log\\LoggerInterface",
+                    "PhpDA\\Plugin\\FactoryInterface": "PhpDA\\Plugin\\FactoryInterface",
+                    "is_array": "is_array",
+                    "class_exists": "class_exists",
+                    "RuntimeException": "RuntimeException",
+                    "sprintf": "sprintf",
+                    "ReflectionClass": "ReflectionClass",
+                    "PhpDA\\Plugin\\ConfigurableInterface": "PhpDA\\Plugin\\ConfigurableInterface"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/Loader.php",
+                "startLine": 31,
+                "endline": 107,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PhpDA\\Plugin\\LoaderInterface": {
+            "name": "PhpDA\\Plugin\\LoaderInterface",
+            "usedByCount": 0,
+            "adt": {
+                "meta": {
+                    "type": "interface",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "RuntimeException": "RuntimeException"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/..\/..\/src\/Plugin\/LoaderInterface.php",
+                "startLine": 28,
+                "endline": 37,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "Psr\\Log\\LoggerInterface": {
+            "name": "Psr\\Log\\LoggerInterface",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "ReflectionClass": {
+            "name": "ReflectionClass",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "RuntimeException": {
+            "name": "RuntimeException",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "class_exists": {
+            "name": "class_exists",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "is_array": {
+            "name": "is_array",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "sprintf": {
+            "name": "sprintf",
+            "usedByCount": 1,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

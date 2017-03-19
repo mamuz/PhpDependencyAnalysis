@@ -42,7 +42,7 @@ use Symfony\Component\Yaml\Parser;
  */
 class Analyze extends Command
 {
-    const EXIT_SUCCESS = 0, EXIT_VIOLATION = 2;
+    const EXIT_SUCCESS = 0, EXIT_VIOLATION = 1, EXIT_EXCEPTION = 2;
 
     /** @var string */
     private $defaultConfigFilePath = __DIR__ . '/../../phpda.yml.dist';
@@ -90,23 +90,27 @@ class Analyze extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->addLogLevelFormatsTo($output);
-        $config = $this->createConfigBy($input);
-        $label = Message::NAME . ' (' . Version::read() . ')';
+        try {
+            $config = $this->createConfigBy($input);
+            $this->addLogLevelFormatsTo($output);
+            $label = Message::NAME . ' (' . Version::read() . ')';
 
-        $output->writeln($label . PHP_EOL);
-        $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);
+            $output->writeln($label . PHP_EOL);
+            $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);
 
-        $strategyOptions = [
-            'config' => $config,
-            'output' => $output,
-            'layoutLabel' => $label,
-        ];
+            $strategyOptions = [
+                'config' => $config,
+                'output' => $output,
+                'layoutLabel' => $label,
+            ];
 
-        if ($this->loadStrategy($config->getMode(), $strategyOptions)->execute()) {
-            return self::EXIT_SUCCESS;
-        } else {
-            return self::EXIT_VIOLATION;
+            if ($this->loadStrategy($config->getMode(), $strategyOptions)->execute()) {
+                return self::EXIT_SUCCESS;
+            } else {
+                return self::EXIT_VIOLATION;
+            }
+        } catch (\Exception $e) {
+            throw new \Exception('Execution failed', self::EXIT_EXCEPTION, $e);
         }
     }
 
