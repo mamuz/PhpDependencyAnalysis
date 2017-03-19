@@ -37,7 +37,7 @@ class JsonCest
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
-                $target = './tests/_output/json/'  . $file->getBasename('yml') . 'json';
+                $target = './tests/_output/json/' . $file->getBasename('yml') . 'json';
 
                 $cmd = './bin/phpda -q analyze ' . $file->getRealPath()
                        . ' -f "PhpDA\Writer\Strategy\Json"'
@@ -46,8 +46,8 @@ class JsonCest
                 exec($cmd, $output, $return);
 
                 $jsonFilename = DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'json';
-                $expected = json_decode(file_get_contents($this->expectationFolder . $jsonFilename), true);
-                $result = json_decode(file_get_contents($this->outputFolder . $jsonFilename), true);
+                $expected = $this->readResultFrom($this->expectationFolder . $jsonFilename);
+                $result = $this->readResultFrom($this->outputFolder . $jsonFilename);
 
                 $tester->assertNotEmpty($expected, $file->getBasename());
                 $tester->assertNotEmpty($result, $file->getBasename());
@@ -60,5 +60,56 @@ class JsonCest
                 }
             }
         }
+    }
+
+    /**
+     * @param string $jsonFile
+     * @return array
+     */
+    private function readResultFrom($jsonFile)
+    {
+        $result = json_decode(file_get_contents($jsonFile), true);
+
+        $result['edges'] = $this->normalizeFileLocationsIn($result['edges']);
+        $result['vertices'] = $this->normalizeFileLocationsIn($result['vertices']);
+
+        return $result;
+    }
+
+    /**
+     * @param array $dependency
+     * @return array
+     */
+    private function normalizeFileLocationsIn(array $dependency)
+    {
+        foreach ($dependency as $index => $details) {
+            if (isset($details['locations'])) {
+                foreach ($details['locations'] as $key => $value) {
+                    $value['file'] = $this->filter($value['file']);
+                    $dependency[$index]['locations'][$key] = $value;
+                }
+            } elseif (isset($details['location'])) {
+                $details['location']['file'] = $this->filter($details['location']['file']);
+            }
+        }
+
+        return $dependency;
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    private function filter($path)
+    {
+        if (strpos($path, 'src') !== false) {
+            $path = substr($path, strpos($path, 'src') -1);
+        }
+
+        if (strpos($path, 'Project') !== false) {
+            $path = substr($path, strpos($path, 'Project') -1);
+        }
+        
+        return $path;
     }
 }
