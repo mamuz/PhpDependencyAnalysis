@@ -25,7 +25,7 @@ class InvalidConfigCest
             $configfile = codecept_data_dir('invalid-configs') . DIRECTORY_SEPARATOR . $config . '.yml';
             exec('./bin/phpda -q analyze ' . $configfile . ' 2>&1', $output, $return);
 
-            $tester->assertNotSame(false, strpos(strtolower(implode(PHP_EOL, $output)), $error));
+            $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
             $tester->assertSame(2, $return);
             unset($output);
         }
