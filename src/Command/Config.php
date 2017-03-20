@@ -91,9 +91,9 @@ class Config
     {
         if (!in_array($this->mode, $this->allowedModes, true)) {
             throw new \InvalidArgumentException(
-                'Config for mode must be "' . self::USAGE_MODE
-                . '" or "' . self::CALL_MODE . '"'
-                . '" or "' . self::INHERITANCE_MODE . '"'
+                'Config for mode must be "' . self::USAGE_MODE . '"'
+                . ' or "' . self::CALL_MODE . '"'
+                . ' or "' . self::INHERITANCE_MODE . '"'
             );
         }
 

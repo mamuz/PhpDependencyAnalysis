@@ -4,7 +4,7 @@ class InvalidConfigCest
 {
     /** @var array */
     private $invalidConfigs = [
-        'mode'               => 'mode must be "usage" or "call"" or "inheritance"',
+        'mode'               => 'mode must be "usage" or "call" or "inheritance"',
         'source'             => 'directory does not exist',
         'filePattern'        => 'filepattern must be a string',
         'formatter'          => 'does not exist',

@@ -7,7 +7,7 @@ class InvalidArgumentsCest
         'mode'        => [
             'longsyntax'    => '--mode=foo',
             'shortsyntax'   => '-m foo',
-            'expectedError' => 'mode must be "usage" or "call"" or "inheritance"',
+            'expectedError' => 'mode must be "usage" or "call" or "inheritance"',
         ],
         'source'      => [
             'longsyntax'    => '--source=foo',
