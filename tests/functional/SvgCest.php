@@ -45,7 +45,7 @@ class SvgCest
 
                 $tester->assertNotEmpty($expected, $file->getBasename());
                 $tester->assertNotEmpty($result, $file->getBasename());
-                $tester->assertSame($expected, $result, $file->getBasename());
+                $tester->assertEquals($expected, $result, $file->getBasename());
 
                 if (in_array($file->getBasename('.yml'), $this->resultsWithViolations)) {
                     $tester->assertSame(1, $return);
