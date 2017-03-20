@@ -1,6 +1,6 @@
 NAME = phpda
 
-default: clean image vendor
+default: clean image vendor-on-host
 
 clean:
 	-docker rm -fv $(NAME)-php56
@@ -19,7 +19,7 @@ image:
 	docker build -t $(NAME)-hhvm -f ./build/Dockerfile-hhvm .
 	docker build -t $(NAME)-php71 -f ./build/Dockerfile-php71 .
 
-vendor:
+vendor-on-host:
 	docker create --name $(NAME)-php71 $(NAME)-php71
 	docker cp $(NAME)-php71:/app/vendor ./
 	docker rm -fv $(NAME)-php71
