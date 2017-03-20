@@ -37,12 +37,6 @@
                     "startLine": 8,
                     "endline": 8,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Command.php",
-                    "startLine": 8,
-                    "endline": 8,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,

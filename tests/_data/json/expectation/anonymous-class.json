@@ -9,12 +9,6 @@
                     "startLine": 9,
                     "endline": 9,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
-                    "startLine": 9,
-                    "endline": 9,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,
@@ -24,12 +18,6 @@
             "from": "PackageX\\AnonymousClass",
             "to": "EmptyIterator",
             "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
-                    "startLine": 21,
-                    "endline": 21,
-                    "isComment": false
-                },
                 {
                     "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
                     "startLine": 21,
@@ -49,12 +37,6 @@
                     "startLine": 5,
                     "endline": 5,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,
@@ -64,12 +46,6 @@
             "from": "PackageX\\AnonymousClass",
             "to": "RecursiveArrayIterator",
             "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
-                    "startLine": 14,
-                    "endline": 14,
-                    "isComment": false
-                },
                 {
                     "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/AnonymousClass.php",
                     "startLine": 14,

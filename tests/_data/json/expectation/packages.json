@@ -125,13 +125,11 @@
             "adt": {
                 "meta": {
                     "type": "class",
-                    "implementedNamespaces": {
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
                         "PackageA": "PackageA"
                     },
-                    "extendedNamespaces": [],
-                    "usedTraitNamespaces": {
-                        "PackageA": "PackageA"
-                    },
+                    "usedTraitNamespaces": [],
                     "isAbstract": false,
                     "isFinal": false
                 },
@@ -142,9 +140,9 @@
                 "namespacedStrings": []
             },
             "location": {
-                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/Command.php",
-                "startLine": 7,
-                "endline": 40,
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                "startLine": 8,
+                "endline": 17,
                 "isComment": false
             },
             "group": 0
@@ -155,13 +153,11 @@
             "adt": {
                 "meta": {
                     "type": "class",
-                    "implementedNamespaces": {
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
                         "PackageB": "PackageB"
                     },
-                    "extendedNamespaces": [],
-                    "usedTraitNamespaces": {
-                        "PackageB": "PackageB"
-                    },
+                    "usedTraitNamespaces": [],
                     "isAbstract": false,
                     "isFinal": false
                 },
@@ -172,9 +168,9 @@
                 "namespacedStrings": []
             },
             "location": {
-                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/Command.php",
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
                 "startLine": 8,
-                "endline": 41,
+                "endline": 17,
                 "isComment": false
             },
             "group": 0
@@ -185,24 +181,22 @@
             "adt": {
                 "meta": {
                     "type": "class",
-                    "implementedNamespaces": {
-                        "PackageC": "PackageC"
-                    },
+                    "implementedNamespaces": [],
                     "extendedNamespaces": [],
                     "usedTraitNamespaces": [],
                     "isAbstract": false,
                     "isFinal": false
                 },
                 "usedNamespaces": {
-                    "PackageC": "PackageC"
+                    "PackageA": "PackageA"
                 },
                 "unsupportedStmts": [],
                 "namespacedStrings": []
             },
             "location": {
-                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Service\/Message.php",
-                "startLine": 7,
-                "endline": 13,
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                "startLine": 5,
+                "endline": 11,
                 "isComment": false
             },
             "group": 0
@@ -217,10 +211,10 @@
     },
     "cycles": [
         [
-            "PackageC",
             "PackageA",
             "PackageB",
-            "PackageC"
+            "PackageC",
+            "PackageA"
         ]
     ],
     "groups": [],

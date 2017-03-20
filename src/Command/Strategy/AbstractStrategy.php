@@ -117,7 +117,8 @@ abstract class AbstractStrategy implements ConfigurableInterface, StrategyInterf
         $this->getFinder()
              ->files()
              ->name($this->getConfig()->getFilePattern())
-             ->in($this->getConfig()->getSource());
+             ->in($this->getConfig()->getSource())
+             ->sortByName();
 
         if ($ignores = $this->getConfig()->getIgnore()) {
             $this->getFinder()->exclude($ignores);

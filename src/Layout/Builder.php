@@ -323,7 +323,9 @@ class Builder implements BuilderInterface
     private function addLocationTo(AttributeAware $attributeAware, Location $location)
     {
         $locations = $attributeAware->getAttribute('locations', []);
-        $locations[] = $location;
+
+        $key = base64_encode(serialize($location->toArray()));
+        $locations[$key] = $location;
 
         $attributeAware->setAttribute('locations', $locations);
     }

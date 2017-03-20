@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 - [Context of warnings is empty in JSON result](https://github.com/mamuz/PhpDependencyAnalysis/pull/26)
 - Using cwd in case of default config usage in order to save outputs in working dir
 - Add missing level check to errorhandler to support supressing by @
+- Duplicated locations entries in metadata of edges are unique now
+- Use sort by name in file iteration for having same inspection results on differents hosts
 
 ### Changed
 - Remove support for PHP5.5

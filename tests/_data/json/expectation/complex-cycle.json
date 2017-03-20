@@ -23,12 +23,6 @@
                     "startLine": 5,
                     "endline": 5,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,
@@ -52,12 +46,6 @@
             "from": "PackageC\\Filter\\FilterB",
             "to": "PackageC\\Filter\\FilterInterface",
             "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
-                },
                 {
                     "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterB.php",
                     "startLine": 5,
@@ -91,12 +79,6 @@
                     "startLine": 5,
                     "endline": 5,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterC.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,
@@ -125,12 +107,6 @@
                     "startLine": 5,
                     "endline": 5,
                     "isComment": false
-                },
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterD.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
                 }
             ],
             "belongsToCycle": false,
@@ -154,12 +130,6 @@
             "from": "PackageC\\Filter\\FilterE",
             "to": "PackageC\\Filter\\FilterB",
             "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
-                    "startLine": 5,
-                    "endline": 5,
-                    "isComment": false
-                },
                 {
                     "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterE.php",
                     "startLine": 5,
@@ -199,7 +169,7 @@
                 "endline": 11,
                 "isComment": false
             },
-            "group": -4
+            "group": -1
         },
         "PackageC\\Filter\\FilterB": {
             "name": "PackageC\\Filter\\FilterB",
@@ -228,7 +198,7 @@
                 "endline": 11,
                 "isComment": false
             },
-            "group": -5
+            "group": -3
         },
         "PackageC\\Filter\\FilterC": {
             "name": "PackageC\\Filter\\FilterC",
@@ -257,7 +227,7 @@
                 "endline": 11,
                 "isComment": false
             },
-            "group": -1
+            "group": -4
         },
         "PackageC\\Filter\\FilterD": {
             "name": "PackageC\\Filter\\FilterD",
@@ -286,7 +256,7 @@
                 "endline": 11,
                 "isComment": false
             },
-            "group": -3
+            "group": -5
         },
         "PackageC\\Filter\\FilterE": {
             "name": "PackageC\\Filter\\FilterE",
@@ -344,19 +314,19 @@
     },
     "cycles": [
         [
-            "PackageC\\Filter\\FilterC",
-            "PackageC\\Filter\\FilterD",
             "PackageC\\Filter\\FilterA",
             "PackageC\\Filter\\FilterB",
-            "PackageC\\Filter\\FilterC"
+            "PackageC\\Filter\\FilterC",
+            "PackageC\\Filter\\FilterD",
+            "PackageC\\Filter\\FilterA"
         ]
     ],
     "groups": {
-        "-1": "PackageC\\Filter\\FilterC",
+        "-1": "PackageC\\Filter\\FilterA",
         "-2": "PackageC\\Filter\\FilterInterface",
-        "-3": "PackageC\\Filter\\FilterD",
-        "-4": "PackageC\\Filter\\FilterA",
-        "-5": "PackageC\\Filter\\FilterB",
+        "-3": "PackageC\\Filter\\FilterB",
+        "-4": "PackageC\\Filter\\FilterC",
+        "-5": "PackageC\\Filter\\FilterD",
         "-6": "PackageC\\Filter\\FilterE"
     },
     "log": [],

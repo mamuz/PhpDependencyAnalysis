@@ -37,7 +37,7 @@ class JsonCest
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
-                $target = './tests/_output/json/' . $file->getBasename('yml') . 'json';
+                $target = codecept_output_dir() . 'json' . DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'json';
 
                 $cmd = './bin/phpda -q analyze ' . $file->getRealPath()
                        . ' -f "PhpDA\Writer\Strategy\Json"'
@@ -109,7 +109,7 @@ class JsonCest
         if (strpos($path, 'Project') !== false) {
             $path = substr($path, strpos($path, 'Project') -1);
         }
-        
+
         return $path;
     }
 }
