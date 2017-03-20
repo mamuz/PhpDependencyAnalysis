@@ -89,7 +89,7 @@ class JsonCest
                     $dependency[$index]['locations'][$key] = $value;
                 }
             } elseif (isset($details['location'])) {
-                $details['location']['file'] = $this->filter($details['location']['file']);
+                $dependency[$index]['location']['file'] = $this->filter($details['location']['file']);
             }
         }
 
