@@ -33,7 +33,6 @@ class JsonCest
      */
     public function testResultCreationForAllUseCases(FunctionalTester $tester)
     {
-        // @todo using namespacefilter
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 

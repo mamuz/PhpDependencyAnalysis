@@ -74,6 +74,10 @@ class Analyze extends Command
 
     protected function configure()
     {
+        if (strpos($this->defaultConfigFilePath, '://') === false) {
+            $this->defaultConfigFilePath = realpath($this->defaultConfigFilePath);
+        }
+
         $this->addArgument(
             'config',
             InputArgument::OPTIONAL,
@@ -143,10 +147,6 @@ class Analyze extends Command
     {
         $this->configFilePath = trim($input->getArgument('config'));
 
-        if (strpos($this->configFilePath, 'phar://') === false) {
-            $this->configFilePath = realpath($this->configFilePath);
-        }
-
         if (!is_readable($this->configFilePath)) {
             throw new \InvalidArgumentException('Configfile "' . $input->getArgument('config') . '" is not readable');
         }
@@ -170,7 +170,6 @@ class Analyze extends Command
     }
 
     /**
-     * @link https://goo.gl/t6PuXz from phpunit
      * @param string $path
      * @return bool
      */

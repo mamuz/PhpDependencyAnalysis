@@ -33,7 +33,6 @@ class SvgCest
      */
     public function testGraphCreationForAllUseCases(FunctionalTester $tester)
     {
-        // @todo using namespacefilter
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
