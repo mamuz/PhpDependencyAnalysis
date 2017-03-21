@@ -51,7 +51,10 @@ class InvalidArgumentsCest
     {
         exec('./bin/phpda -q analyze ' . $argument . ' 2>&1', $output, $return);
 
-        $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
+        if (!defined('HHVM_VERSION')) {
+            $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
+        }
+        
         $tester->assertSame(2, $return);
     }
 }
