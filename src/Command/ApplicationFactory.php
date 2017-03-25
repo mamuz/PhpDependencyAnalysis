@@ -53,7 +53,10 @@ class ApplicationFactory implements FactoryInterface
         $app = new Application(Message::NAME, Version::read());
         $app->setDefaultCommand(Message::CMD_ANALYZE);
         $app->add($this->createAnalyzeCommand());
-        $app->add($this->createUpdateCommand());
+
+        if (\Phar::running()) {
+            $app->add($this->createUpdateCommand());
+        }
 
         return $app;
     }
