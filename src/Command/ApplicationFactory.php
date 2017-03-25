@@ -25,6 +25,7 @@
 
 namespace PhpDA\Command;
 
+use Composer\Autoload\ClassLoader;
 use PhpDA\Command\MessageInterface as Message;
 use PhpDA\Plugin\FactoryInterface;
 use PhpDA\Plugin\Loader;
@@ -33,6 +34,17 @@ use Symfony\Component\Yaml\Parser;
 
 class ApplicationFactory implements FactoryInterface
 {
+    /** @var ClassLoader */
+    public static $classLoader;
+
+    /**
+     * @param ClassLoader $classLoader
+     */
+    public function __construct(ClassLoader $classLoader)
+    {
+        self::$classLoader = $classLoader;
+    }
+
     /**
      * @return Application
      */

@@ -1,0 +1,223 @@
+{
+    "edges": {
+        "PackageA=>Doctrine": {
+            "from": "PackageA",
+            "to": "Doctrine",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageA=>PackageB": {
+            "from": "PackageA",
+            "to": "PackageB",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageA=>Framework": {
+            "from": "PackageA",
+            "to": "Framework",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                    "startLine": 13,
+                    "endline": 16,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB=>Doctrine": {
+            "from": "PackageB",
+            "to": "Doctrine",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Mapper\/EntityManagerAwareTrait.php",
+                    "startLine": 26,
+                    "endline": 33,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageB=>PackageC": {
+            "from": "PackageB",
+            "to": "PackageC",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        },
+        "PackageB=>Framework": {
+            "from": "PackageB",
+            "to": "Framework",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                    "startLine": 8,
+                    "endline": 8,
+                    "isComment": false
+                },
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                    "startLine": 13,
+                    "endline": 16,
+                    "isComment": true
+                }
+            ],
+            "belongsToCycle": false,
+            "referenceValidatorMessages": null
+        },
+        "PackageC=>PackageA": {
+            "from": "PackageC",
+            "to": "PackageA",
+            "locations": [
+                {
+                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Service\/Message.php",
+                    "startLine": 11,
+                    "endline": 11,
+                    "isComment": false
+                }
+            ],
+            "belongsToCycle": true,
+            "referenceValidatorMessages": null
+        }
+    },
+    "vertices": {
+        "Doctrine": {
+            "name": "Doctrine",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": 0
+        },
+        "PackageA": {
+            "name": "PackageA",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageA": "PackageA"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA": "PackageA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageA\/Controller\/AbstractController.php",
+                "startLine": 8,
+                "endline": 17,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageB": {
+            "name": "PackageB",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": {
+                        "PackageB": "PackageB"
+                    },
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageB": "PackageB"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageB\/Controller\/AbstractController.php",
+                "startLine": 8,
+                "endline": 17,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "PackageC": {
+            "name": "PackageC",
+            "usedByCount": 1,
+            "adt": {
+                "meta": {
+                    "type": "class",
+                    "implementedNamespaces": [],
+                    "extendedNamespaces": [],
+                    "usedTraitNamespaces": [],
+                    "isAbstract": false,
+                    "isFinal": false
+                },
+                "usedNamespaces": {
+                    "PackageA": "PackageA"
+                },
+                "unsupportedStmts": [],
+                "namespacedStrings": []
+            },
+            "location": {
+                "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/PackageC\/Filter\/FilterA.php",
+                "startLine": 5,
+                "endline": 11,
+                "isComment": false
+            },
+            "group": 0
+        },
+        "Framework": {
+            "name": "Framework",
+            "usedByCount": 2,
+            "adt": [],
+            "location": null,
+            "group": 0
+        }
+    },
+    "cycles": [
+        [
+            "PackageA",
+            "PackageB",
+            "PackageC",
+            "PackageA"
+        ]
+    ],
+    "groups": [],
+    "log": [],
+    "label": "PhpDependencyAnalysis by Marco Muths (dev-master)"
+}

@@ -71,6 +71,9 @@ class Config
     /** @var string|null */
     private $namespaceFilter;
 
+    /** @var array */
+    private $classMap = [];
+
     /**
      * @param array $config
      */
@@ -257,5 +260,18 @@ class Config
         }
 
         return $this->namespaceFilter;
+    }
+
+    /**
+     * @return array
+     * @throws \InvalidArgumentException
+     */
+    public function getClassMap()
+    {
+        if (!is_array($this->classMap)) {
+            throw new \InvalidArgumentException('Config for classMap must be an array');
+        }
+
+        return $this->classMap;
     }
 }

@@ -23,34 +23,19 @@
  * SOFTWARE.
  */
 
-set_time_limit(0);
-ini_set('memory_limit', -1);
-ini_set('xdebug.max_nesting_level', 4000);
+namespace MyDomain\Plugin;
 
-set_error_handler(
-    function ($severity, $message, $file, $line) {
-        if (error_reporting() & $severity) {
-            throw new \ErrorException($message, $severity, 2, $file, $line);
+use PhpDA\Parser\Filter\NamespaceFilterInterface;
+
+class NamespaceFilter implements NamespaceFilterInterface
+{
+    public function filter(array $nameParts)
+    {
+        var_dump($nameParts);
+        if ($nameParts[0] == 'Zend') {
+            $nameParts[0] = 'Framework';
         }
-    }
-);
 
-$autoloadFiles = [
-    __DIR__ . '/../vendor/autoload.php',
-    __DIR__ . '/../../../autoload.php'
-];
-
-foreach ($autoloadFiles as $autoloadFile) {
-    if (file_exists($autoloadFile)) {
-        $loader = require_once $autoloadFile;
-        break;
+        return $nameParts;
     }
 }
-
-if (!isset($loader)) {
-    throw new \RuntimeException('Cannot find vendor/autoload.php');
-}
-
-
-$appFactory = new PhpDA\Command\ApplicationFactory($loader);
-$appFactory->create()->run();

@@ -12,7 +12,7 @@ class JsonCest
     private $dir;
 
     /** @var array */
-    private $resultsWithViolations = ['total', 'packages', 'layers', 'complex-cycle'];
+    private $resultsWithViolations = ['total', 'packages', 'layers', 'complex-cycle', 'namespace-filter'];
 
     public function _before()
     {

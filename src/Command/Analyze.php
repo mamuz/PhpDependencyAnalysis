@@ -84,6 +84,7 @@ class Analyze extends Command
             Message::CMD_ANALYZE_ARG_CONFIG,
             $this->defaultConfigFilePath
         );
+        
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_FILE_PATTERN);
@@ -96,6 +97,7 @@ class Analyze extends Command
     {
         try {
             $config = $this->createConfigBy($input);
+            $this->addClassMapToClassLoaderFrom($config);
             $this->addLogLevelFormatsTo($output);
             $label = Message::NAME . ' (' . Version::read() . ')';
 
@@ -157,8 +159,7 @@ class Analyze extends Command
             throw new \InvalidArgumentException('Configuration is invalid');
         }
 
-        $config['source'] = !isset($config['source']) ?: $this->generateAbsolutePathFrom($config['source']);
-        $config['target'] = !isset($config['target']) ?: $this->generateAbsolutePathFrom($config['target']);
+        $config = $this->normalizePathsIn($config);
 
         $config = array_merge($config, array_filter($input->getOptions()));
 
@@ -170,11 +171,34 @@ class Analyze extends Command
     }
 
     /**
+     * @param array $config
+     * @return array
+     */
+    private function normalizePathsIn(array $config)
+    {
+        $config['source'] = !isset($config['source']) ?: $this->generateAbsolutePathFrom($config['source']);
+        $config['target'] = !isset($config['target']) ?: $this->generateAbsolutePathFrom($config['target']);
+
+        if (isset($config['classMap']) && is_array($config['classMap'])) {
+            foreach ($config['classMap'] as $class => $path) {
+                $config['classMap'][$class] = $this->generateAbsolutePathFrom($path);
+            }
+        }
+
+        return $config;
+    }
+
+    /**
      * @param string $path
      * @return bool
+     * @throws \InvalidArgumentException
      */
-    public function generateAbsolutePathFrom($path)
+    private function generateAbsolutePathFrom($path)
     {
+        if (!is_string($path)) {
+            throw new \InvalidArgumentException('Path must be a string');
+        }
+
         $path = trim($path);
 
         if ($path[0] === '/') {
@@ -196,6 +220,14 @@ class Analyze extends Command
         }
 
         return dirname($this->configFilePath) . DIRECTORY_SEPARATOR . $path;
+    }
+
+    /**
+     * @param Config $config
+     */
+    private function addClassMapToClassLoaderFrom(Config $config)
+    {
+        ApplicationFactory::$classLoader->addClassMap($config->getClassMap());
     }
 
     /**

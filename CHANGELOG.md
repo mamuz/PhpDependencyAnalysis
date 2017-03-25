@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - [Add a PHAR with selfupdate](https://github.com/mamuz/PhpDependencyAnalysis/pull/23)
 - E2E tests with codeception and docker
 - Issue template for github
+- In order to simplify adding customer plugins: ClassMap configuration for autoloading custom plugins
 
 ## v1.2.0 - 2016-02-20
 ### Added

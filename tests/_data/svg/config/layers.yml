@@ -4,7 +4,7 @@ filePattern: '*.php'
 ignore: 'tests'
 formatter: 'PhpDA\Writer\Strategy\Svg'
 target: '../../../_output/svg/layers.svg'
-referenceValidator: 'PhpDA\Reference\ExampleValidator'
+referenceValidator: 'MyDomain\Plugin\ReferenceValidator'
 groupLength: 1
 visitor:
   - PhpDA\Parser\Visitor\TagCollector
@@ -14,3 +14,5 @@ visitorOptions:
   PhpDA\Parser\Visitor\Required\MetaNamespaceCollector: {minDepth: 2, sliceLength: 2}
   PhpDA\Parser\Visitor\Required\UsedNamespaceCollector: {minDepth: 2, sliceLength: 2}
   PhpDA\Parser\Visitor\TagCollector: {minDepth: 2, sliceLength: 2}
+classMap:
+  MyDomain\Plugin\ReferenceValidator: '../../../_data/Plugin/ReferenceValidator.php'

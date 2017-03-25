@@ -23,14 +23,12 @@
  * SOFTWARE.
  */
 
-namespace PhpDA\Reference;
+namespace MyDomain\Plugin;
 
+use PhpDA\Reference\ValidatorInterface;
 use PhpParser\Node\Name;
 
-/**
- * @codeCoverageIgnore
- */
-class ExampleValidator implements ValidatorInterface
+class ReferenceValidator implements ValidatorInterface
 {
     const PACKAGE_VIOLATION = 'Violation of reference between packages';
 
