@@ -31,7 +31,6 @@ class NamespaceFilter implements NamespaceFilterInterface
 {
     public function filter(array $nameParts)
     {
-        var_dump($nameParts);
         if ($nameParts[0] == 'Zend') {
             $nameParts[0] = 'Framework';
         }
