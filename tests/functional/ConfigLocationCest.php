@@ -15,6 +15,11 @@ class ConfigLocationCest
         chdir($this->rootDirectory);
     }
 
+    public function _failed()
+    {
+        chdir($this->rootDirectory);
+    }
+
     /**
      * @param FunctionalTester $tester
      */
