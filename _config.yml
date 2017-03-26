@@ -1,0 +1,8 @@
+title: PhpDependencyAnalysis
+description: Static code analysis to provide and verify a dependency graph against a defined architecture
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-hacker
+
+gems:
+  - jekyll-mentions
