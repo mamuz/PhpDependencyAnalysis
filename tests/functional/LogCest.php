@@ -7,7 +7,7 @@ class LogCest
      */
     public function testDisplayParseErrors(FunctionalTester $tester)
     {
-        $cmd = './bin/phpda analyze'
+        $cmd = $tester->getTool() . ' analyze'
                . ' -s ' . codecept_data_dir('log' . DIRECTORY_SEPARATOR . 'PackageA')
                . ' -t ' . codecept_output_dir() . 'log.svg'
                . ' 2>&1';

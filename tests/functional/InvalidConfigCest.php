@@ -23,7 +23,7 @@ class InvalidConfigCest
     {
         foreach ($this->invalidConfigs as $config => $error) {
             $configfile = codecept_data_dir('invalid-configs') . DIRECTORY_SEPARATOR . $config . '.yml';
-            exec('./bin/phpda -q analyze ' . $configfile . ' 2>&1', $output, $return);
+            exec($tester->getTool() . ' -q analyze ' . $configfile . ' 2>&1', $output, $return);
 
             if (!defined('HHVM_VERSION')) {
                 $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));

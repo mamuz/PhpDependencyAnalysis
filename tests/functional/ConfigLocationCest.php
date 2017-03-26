@@ -29,4 +29,19 @@ class ConfigLocationCest
 
         unlink('phpda.svg');
     }
+
+    /**
+     * @param FunctionalTester $tester
+     */
+    public function testUsingDefaultInWorkingDirectoryInPharEnv(FunctionalTester $tester)
+    {
+        chdir(codecept_data_dir('config-location'));
+        $cmd = $this->rootDirectory . '/download/phpda -q';
+        exec($cmd, $output, $return);
+
+        $tester->assertTrue(file_exists('phpda.svg'));
+        $tester->assertSame(0, $return);
+
+        unlink('phpda.svg');
+    }
 }

@@ -6,6 +6,8 @@ namespace Helper;
 
 class Functional extends \Codeception\Module
 {
+    protected $requiredFields = ['tool'];
+
     /**
      * @param string $filepath
      * @return array
@@ -18,5 +20,13 @@ class Functional extends \Codeception\Module
         sort($titles);
 
         return $titles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTool()
+    {
+        return $this->config['tool'];
     }
 }

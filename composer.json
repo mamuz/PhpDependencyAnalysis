@@ -63,7 +63,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/codecept run",
+        "test": "./vendor/bin/codecept run --env bin --env phar",
         "phar": "./build/phar.sh"
     }
 }

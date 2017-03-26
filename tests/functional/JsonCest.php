@@ -38,7 +38,7 @@ class JsonCest
 
                 $target = codecept_output_dir() . 'json' . DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'json';
 
-                $cmd = './bin/phpda -q analyze ' . $file->getRealPath()
+                $cmd = $tester->getTool() . ' -q analyze ' . $file->getRealPath()
                        . ' -f "PhpDA\Writer\Strategy\Json"'
                        . ' -t ' . $target;
 
@@ -71,6 +71,8 @@ class JsonCest
 
         $result['edges'] = $this->normalizeFileLocationsIn($result['edges']);
         $result['vertices'] = $this->normalizeFileLocationsIn($result['vertices']);
+
+        unset($result['label']);
 
         return $result;
     }

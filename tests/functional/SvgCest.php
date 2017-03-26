@@ -36,7 +36,7 @@ class SvgCest
         foreach ($this->dir as $file) {
             if (!$file->isDot()) {
 
-                exec('./bin/phpda -q analyze ' . $file->getRealPath(), $output, $return);
+                exec($tester->getTool() . ' -q analyze ' . $file->getRealPath(), $output, $return);
 
                 $svgFilename = DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'svg';
                 $expected = $tester->readGraphNodeTitlesFrom($this->expectationFolder . $svgFilename);

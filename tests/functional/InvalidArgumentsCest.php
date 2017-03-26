@@ -49,7 +49,7 @@ class InvalidArgumentsCest
      */
     private function failWith(FunctionalTester $tester, $argument, $error)
     {
-        exec('./bin/phpda -q analyze ' . $argument . ' 2>&1', $output, $return);
+        exec($tester->getTool() . ' -q analyze ' . $argument . ' 2>&1', $output, $return);
 
         if (!defined('HHVM_VERSION')) {
             $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));

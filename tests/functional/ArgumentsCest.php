@@ -29,7 +29,7 @@ class ArgumentsCest
         $source = codecept_data_dir('Project' . DIRECTORY_SEPARATOR . 'PackageA' . DIRECTORY_SEPARATOR . 'Controller');
         $target = $this->outputFolder . DIRECTORY_SEPARATOR . 'inheritance.json';
 
-        $cmd = './bin/phpda -q analyze ' . $this->configFolder .  DIRECTORY_SEPARATOR . 'class.yml '
+        $cmd = $tester->getTool() . ' -q analyze ' . $this->configFolder .  DIRECTORY_SEPARATOR . 'class.yml '
                . '-m inheritance '
                . '-s ' . $source . ' '
                . '-p *.php '
@@ -48,13 +48,5 @@ class ArgumentsCest
 
         $tester->assertSame($expected, $result);
         $tester->assertSame(0, $return);
-    }
-
-    /**
-     * @param FunctionalTester $tester
-     */
-    public function testInvokeIgnoreArgument(FunctionalTester $tester)
-    {
-        // @todo
     }
 }

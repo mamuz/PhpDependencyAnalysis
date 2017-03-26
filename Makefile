@@ -27,7 +27,7 @@ vendor-on-host:
 test:
 	docker run --rm -it -v $(shell pwd):/app $(NAME)-php56 composer test
 	docker run --rm -it -v $(shell pwd):/app $(NAME)-php70 composer test
-	-docker run --rm -it -v $(shell pwd):/app $(NAME)-hhvm hhvm ./vendor/bin/codecept run
+	-docker run --rm -it -v $(shell pwd):/app $(NAME)-hhvm hhvm ./vendor/bin/codecept run --env bin --env phar --skip-group nohhvm
 	docker run --rm -it -v $(shell pwd):/app $(NAME)-php71 composer test
 
 release:
