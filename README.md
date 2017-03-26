@@ -29,7 +29,7 @@ an open source graph visualization software and available for the most platforms
 After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
 [`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is..
 
-### As a Phar (WIP: dev-master only)
+### As a Phar
 
 ```sh
 $ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
