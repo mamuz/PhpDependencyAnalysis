@@ -13,7 +13,7 @@ modules:
         \Helper\Functional:
             tool: './bin/phpda'
 groups:
-    nohhvm: [tests/functional/ConfigLocationCest.php]
+    nohhvm: [tests/functional/ConfigLocationCest.php, tests/functional/InstallAndUpdatePharCest.php]
 env:
     bin:
         modules:
