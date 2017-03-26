@@ -9,6 +9,9 @@ modules:
     enabled:
         - \Helper\Functional
         - Asserts
+    config:
+        \Helper\Functional:
+            tool: './bin/phpda'
 groups:
     nohhvm: [tests/functional/ConfigLocationCest.php]
 env:
