@@ -1,8 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.3.1 - UNRELEASED
+## v1.3.2 - UNRELEASED
 Nothing yet.
+
+## v1.3.1 - 2017-03-27
+### Fixed
+- Update Command
 
 ## v1.3.0 - 2017-03-27
 ### Fixed

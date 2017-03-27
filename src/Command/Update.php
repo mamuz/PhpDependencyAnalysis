@@ -41,10 +41,8 @@ class Update extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $updater = new Updater;
-        $updater->setStrategy(Updater::STRATEGY_GITHUB);
-        $updater->getStrategy()->setPackageName('mamuz/php-dependency-analysis');
-        $updater->getStrategy()->setPharName('download/phpda');
-        $updater->getStrategy()->setCurrentLocalVersion(Version::read());
+        $updater->getStrategy()->setPharUrl('https://mamuz.github.io/PhpDependencyAnalysis/phpda');
+        $updater->getStrategy()->setVersionUrl('https://mamuz.github.io/PhpDependencyAnalysis/phpda.version');
 
         if ($input->getOption('rollback')) {
             $updater->rollback();
