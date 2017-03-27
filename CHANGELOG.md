@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.3.0 - UNRELEASED
+## v1.3.1 - UNRELEASED
+Nothing yet.
+
+## v1.3.0 - 2017-03-27
 ### Fixed
 - [Context of warnings is empty in JSON result](https://github.com/mamuz/PhpDependencyAnalysis/pull/26)
 - Using cwd in case of default config usage in order to save outputs in working dir
