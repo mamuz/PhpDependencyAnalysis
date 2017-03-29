@@ -45,7 +45,7 @@ The three lines above will, in order:
 
 The phar file is securely signed with OpenSSL. To be able to execute the phar file,
 the public key must be named as the phar file, with `.pubkey` added, 
-and must be placed in the same directory. That means don't change the name and location of the publiy key.
+and must be placed in the same directory. That means don't change the name and location of the public key.
 
 #### Update
 
