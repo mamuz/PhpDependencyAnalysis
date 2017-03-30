@@ -84,7 +84,7 @@ class Analyze extends Command
             Message::CMD_ANALYZE_ARG_CONFIG,
             $this->defaultConfigFilePath
         );
-        
+
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
         $this->addOption('source', 's', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_SOURCE);
         $this->addOption('filePattern', 'p', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_FILE_PATTERN);
@@ -105,8 +105,8 @@ class Analyze extends Command
             $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);
 
             $strategyOptions = [
-                'config' => $config,
-                'output' => $output,
+                'config'      => $config,
+                'output'      => $output,
                 'layoutLabel' => $label,
             ];
 
@@ -149,8 +149,12 @@ class Analyze extends Command
     {
         $this->configFilePath = trim($input->getArgument('config'));
 
+        if (strpos($this->configFilePath, '://') === false) {
+            $this->configFilePath = realpath($this->configFilePath);
+        }
+
         if (!is_readable($this->configFilePath)) {
-            throw new \InvalidArgumentException('Configfile "' . $input->getArgument('config') . '" is not readable');
+            throw new \InvalidArgumentException('Configfile "' . $this->configFilePath . '" is not readable');
         }
 
         $config = $this->configParser->parse(file_get_contents($this->configFilePath));
