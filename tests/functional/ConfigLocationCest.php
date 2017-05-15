@@ -38,6 +38,22 @@ class ConfigLocationCest
     /**
      * @param FunctionalTester $tester
      */
+    public function testUsingDefaultInWorkingDirectoryWithDefaultConfig(FunctionalTester $tester)
+    {
+        chdir(codecept_data_dir('default-config'));
+        $cmd = $this->rootDirectory . '/bin/phpda -q';
+        exec($cmd, $output, $return);
+
+        $tester->assertTrue(file_exists('phpda.svg'));
+        $tester->assertSame(0, $return);
+
+        unlink('phpda.svg');
+    }
+
+
+    /**
+     * @param FunctionalTester $tester
+     */
     public function testUsingDefaultInWorkingDirectoryWithLocalConfig(FunctionalTester $tester)
     {
         chdir(codecept_data_dir('config-location'));

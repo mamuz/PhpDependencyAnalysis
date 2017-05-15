@@ -43,6 +43,7 @@ use Symfony\Component\Yaml\Parser;
 class Analyze extends Command
 {
     const EXIT_SUCCESS = 0, EXIT_VIOLATION = 1, EXIT_EXCEPTION = 2;
+    const DEFAULT_CONFIGURATION_FILE_NAME = 'phpda';
 
     /** @var string */
     private $defaultConfigFilePath = __DIR__ . '/../../phpda.yml.dist';
@@ -82,7 +83,7 @@ class Analyze extends Command
             'config',
             InputArgument::OPTIONAL,
             Message::CMD_ANALYZE_ARG_CONFIG,
-            $this->defaultConfigFilePath
+            $this->getDefaultConfigFilePathl()
         );
 
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
@@ -252,5 +253,22 @@ class Analyze extends Command
         }
 
         return $strategy;
+    }
+
+    /**
+     * Lookup for config file in current working directory.
+     *
+     * @return string
+     */
+    private function getDefaultConfigFilePathl()
+    {
+        $configFilePaths = glob(getcwd(). DIRECTORY_SEPARATOR . self::DEFAULT_CONFIGURATION_FILE_NAME . '.[yml|yaml]*');
+
+        // Return only first file path that matches the mask.
+        if (count($configFilePaths) > 0) {
+            return $configFilePaths[0];
+        }
+
+        return $this->defaultConfigFilePath;
     }
 }
