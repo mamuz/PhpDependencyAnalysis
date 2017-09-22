@@ -83,7 +83,7 @@ class Analyze extends Command
             'config',
             InputArgument::OPTIONAL,
             Message::CMD_ANALYZE_ARG_CONFIG,
-            $this->getDefaultConfigFilePathl()
+            $this->getDefaultConfigFilePath()
         );
 
         $this->addOption('mode', 'm', InputOption::VALUE_OPTIONAL, Message::CMD_ANALYZE_OPT_MODE);
