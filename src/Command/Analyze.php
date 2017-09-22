@@ -260,7 +260,7 @@ class Analyze extends Command
      *
      * @return string
      */
-    private function getDefaultConfigFilePathl()
+    private function getDefaultConfigFilePath()
     {
         $configFilePaths = glob(getcwd(). DIRECTORY_SEPARATOR . self::DEFAULT_CONFIGURATION_FILE_NAME . '.[yml|yaml]*');
 
