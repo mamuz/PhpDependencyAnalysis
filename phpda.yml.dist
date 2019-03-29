@@ -7,6 +7,7 @@ target: './phpda.svg'
 # namespaceFilter: 'Fully\Qualified\Class\Name\To\NamespaceFilter'
 # referenceValidator: 'Fully\Qualified\Class\Name\To\ReferenceValidator'
 groupLength: 1
+#detectCycles: false
 visitor:
   - PhpDA\Parser\Visitor\TagCollector
   - PhpDA\Parser\Visitor\SuperglobalCollector

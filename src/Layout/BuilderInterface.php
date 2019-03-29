@@ -44,6 +44,11 @@ interface BuilderInterface
     public function setGroupLength($groupLength);
 
     /**
+     * @param bool $detectCycles
+     */
+    public function setDetectCycles($detectCycles);
+
+    /**
      * @param LayoutInterface $layout
      */
     public function setLayout(LayoutInterface $layout);

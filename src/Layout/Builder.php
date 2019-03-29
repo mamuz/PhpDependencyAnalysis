@@ -34,6 +34,7 @@ use PhpDA\Entity\AnalysisCollection;
 use PhpDA\Entity\Location;
 use PhpDA\Layout\Helper\CycleDetector;
 use PhpDA\Layout\Helper\GroupGenerator;
+use PhpDA\Plugin\ConfigurableInterface;
 use PhpDA\Reference\ValidatorInterface;
 use PhpParser\Node\Name;
 use Symfony\Component\Finder\SplFileInfo;
@@ -52,10 +53,13 @@ class Builder implements BuilderInterface
     /** @var GroupGenerator */
     private $groupGenerator;
 
+    /** @var bool */
+    private $detectCyclesEnabled;
+
     /** @var array */
     private $logEntries = [];
 
-    /** @var CycleDetector */
+    /** @var CycleDetector|null */
     private $cycleDetector;
 
     /** @var AnalysisCollection */
@@ -136,6 +140,14 @@ class Builder implements BuilderInterface
     }
 
     /**
+     * @param bool $detectCycles
+     */
+    public function setDetectCycles($detectCycles)
+    {
+        $this->detectCyclesEnabled = $detectCycles;
+    }
+
+    /**
      * @param LayoutInterface $layout
      */
     public function setLayout(LayoutInterface $layout)
@@ -146,7 +158,11 @@ class Builder implements BuilderInterface
     public function create()
     {
         $this->createDependencies();
-        $this->detectCycles();
+
+        if ( $this->detectCyclesEnabled ) {
+            $this->detectCycles();
+        }
+
         $this->bindLayoutTo($this->getGraph(), $this->layout->getGraph(), 'graphviz.graph.');
         $this->getGraph()->setAttribute('graphviz.groups', $this->groupGenerator->getGroups());
         $this->getGraph()->setAttribute('graphviz.groupLayout', $this->layout->getGroup());

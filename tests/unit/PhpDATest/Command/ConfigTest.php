@@ -39,6 +39,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
             'target'             => 'myTarget',
             'filePattern'        => 'myFilePattern',
             'groupLength'        => 4,
+            'detectCycles'        => false,
             'visitor'            => array('foo', 'baz'),
             'visitorOptions'     => array('bar'),
             'referenceValidator' => 'myValidator',
@@ -62,6 +63,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array(), $config->getVisitorOptions());
         $this->assertSame('usage', $config->getMode());
         $this->assertSame(0, $config->getGroupLength());
+        $this->assertSame(true, $config->getDetectCycles());
         $this->assertNull($config->getReferenceValidator());
         $this->assertNull($config->getNamespaceFilter());
     }
@@ -135,6 +137,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         $config = new Config(array('groupLength' => 1.34));
         $this->assertSame(1, $config->getGroupLength());
+    }
+
+    public function testInvalidDetectCycles()
+    {
+        $this->setExpectedException('InvalidArgumentException');
+        $config = new Config(array('detectCycles' => 'test'));
+
+        $config->getDetectCycles();
     }
 
     public function testInvalidVisitor()
