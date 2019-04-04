@@ -36,7 +36,12 @@ class Location
     /** @var int */
     private $startLine;
 
-    /** @var int */
+    /**
+     * @var int
+     * @todo  fix inconsistent camel case: startLine but endline.
+     *  Because toArray uses get_object_vars(), this name is part of the public interface.
+     *  Changing it would be a breaking change to the JSON format.
+     */
     private $endline;
 
     /** @var boolean */
@@ -50,6 +55,13 @@ class Location
     public function __construct(SplFileInfo $file, Name $name)
     {
         $attributes = $name->getAttributes();
+
+        // NOTE: due to inconsistent naming of the private fields in this class,
+        // the JSON output uses the key "endline" instead of "endLine".
+        // Accept both here.
+        if (!isset($attributes['endLine']) && isset($attributes['endline'])) {
+            $attributes['endLine'] = $attributes['endline'];
+        }
 
         if (!isset($attributes['startLine']) || !isset($attributes['endLine'])) {
             throw new \DomainException('Values for startLine and/or endLine are not set in attributes');

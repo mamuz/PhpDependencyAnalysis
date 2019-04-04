@@ -49,6 +49,20 @@ interface MessageInterface
 
     const CMD_ANALYZE_OPT_TARGET = 'Filepath for writing created dependency graph.';
 
+    const CMD_RENDER = 'render';
+
+    const CMD_RENDER_HELP = "Read the result of an analysis from a JSON file and render it in the desired format.";
+
+    const CMD_RENDER_DESCR = 'Render a previously created JSON file';
+
+    const CMD_RENDER_ARG_SOURCE = 'The JSON file to load.';
+
+    const CMD_RENDER_ARG_TARGET = 'Filepath for writing created dependency graph.';
+
+    const CMD_RENDER_OPT_CONFIG = 'Path to the yaml configuration file.';
+
+    const CMD_RENDER_OPT_FORMATTER = 'Formatter as FQCN for creating dependency graph.';
+
     const CMD_UPDATE = 'update';
 
     const CMD_UPDATE_DESCR = 'Update to latest version';
@@ -58,6 +72,8 @@ interface MessageInterface
     const CMD_UPDATE_OPT_ROLLBACK = 'Revert to an older installation';
 
     const READ_CONFIG_FROM = 'Configuration read from %s';
+
+    const RENDER_FROM_TO = 'Render data from %s to %s';
 
     const WRITE_GRAPH_TO = 'Write dependency graph to %s';
 

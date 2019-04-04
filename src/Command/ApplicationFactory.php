@@ -53,6 +53,7 @@ class ApplicationFactory implements FactoryInterface
         $app = new Application(Message::NAME, Version::read());
         $app->setDefaultCommand(Message::CMD_ANALYZE);
         $app->add($this->createAnalyzeCommand());
+        $app->add($this->createRenderCommand());
 
         if (\Phar::running()) {
             $app->add($this->createUpdateCommand());
@@ -70,6 +71,21 @@ class ApplicationFactory implements FactoryInterface
 
         $command->setHelp(Message::CMD_ANALYZE_HELP);
         $command->setDescription(Message::CMD_ANALYZE_DESCR);
+        $command->setConfigParser(new Parser);
+        $command->setStrategyLoader(new Loader);
+
+        return $command;
+    }
+
+    /**
+     * @return Render
+     */
+    protected function createRenderCommand()
+    {
+        $command = new Render(Message::CMD_RENDER);
+
+        $command->setHelp(Message::CMD_RENDER_HELP);
+        $command->setDescription(Message::CMD_RENDER_DESCR);
         $command->setConfigParser(new Parser);
         $command->setStrategyLoader(new Loader);
 
