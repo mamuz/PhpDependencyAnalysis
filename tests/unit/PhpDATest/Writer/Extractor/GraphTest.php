@@ -65,10 +65,10 @@ class GraphTest extends \PHPUnit_Framework_TestCase
                     'group'       => 'group',
                 ),
             ),
-            'cycles'   => array('cycle'),
             'groups'   => array('groups'),
             'log'      => array('logentries'),
             'label'    => 'label',
+            'cycles'   => array('cycle'),
         );
 
         $edges = \Mockery::mock('Fhaculty\Graph\Set\Edges');
@@ -105,10 +105,38 @@ class GraphTest extends \PHPUnit_Framework_TestCase
 
         $graph->shouldReceive('getAttribute')->with('graphviz.groups', array())->andReturn($expected['groups']);
         $graph->shouldReceive('getAttribute')->with('graphviz.graph.label')->andReturn($expected['label']);
-        $graph->shouldReceive('getAttribute')->with('cycles', array())->andReturn(array($cycle));
+        $graph->shouldReceive('getAttribute')->with('cycles')->andReturn(array($cycle));
         $graph->shouldReceive('getAttribute')->with('logEntries', array())->andReturn(array('logentries'));
 
         $graph->shouldReceive('getEdges')->once()->andReturn(array($edge));
+
+        $this->assertSame($expected, $this->fixture->extract($graph));
+    }
+
+    public function testExtractionWithoutCycles()
+    {
+        $expected = array(
+            'edges'    => array(),
+            'vertices' => array(),
+            'groups'   => array(),
+            'log'      => array('logentries'),
+            'label'    => 'label',
+        );
+
+        $edges = \Mockery::mock('Fhaculty\Graph\Set\Edges');
+        $edges->shouldReceive('count')->andReturn(0);
+
+        $cycle = \Mockery::mock('PhpDA\Entity\Cycle');
+        $cycle->shouldNotReceive('toArray');
+
+        $graph = \Mockery::mock('Fhaculty\Graph\Graph');
+
+        $graph->shouldReceive('getAttribute')->with('graphviz.groups', array())->andReturn($expected['groups']);
+        $graph->shouldReceive('getAttribute')->with('graphviz.graph.label')->andReturn($expected['label']);
+        $graph->shouldReceive('getAttribute')->with('cycles')->andReturn(null);
+        $graph->shouldReceive('getAttribute')->with('logEntries', array())->andReturn(array('logentries'));
+
+        $graph->shouldReceive('getEdges')->once()->andReturn(array());
 
         $this->assertSame($expected, $this->fixture->extract($graph));
     }

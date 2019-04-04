@@ -59,6 +59,9 @@ class Config
     /** @var int */
     private $groupLength = 0;
 
+    /** @var bool */
+    private $detectCycles = true;
+
     /** @var array */
     private $visitor = [];
 
@@ -234,6 +237,19 @@ class Config
         }
 
         return (int) $this->groupLength;
+    }
+
+    /**
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
+    public function getDetectCycles()
+    {
+        if (!is_bool($this->detectCycles)) {
+            throw new \InvalidArgumentException('Config for detectCycles must be a boolean');
+        }
+
+        return (bool) $this->detectCycles;
     }
 
     /**

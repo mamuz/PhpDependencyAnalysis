@@ -39,11 +39,15 @@ class Graph implements ExtractionInterface
         $this->data = [
             'edges'    => [],
             'vertices' => [],
-            'cycles'   => $this->extractEntities($graph->getAttribute('cycles', [])),
             'groups'   => $graph->getAttribute('graphviz.groups', []),
             'log'      => $graph->getAttribute('logEntries', []),
             'label'    => $graph->getAttribute('graphviz.graph.label'),
         ];
+
+        $cycles = $graph->getAttribute('cycles');
+        if ( $cycles !== null ) {
+            $this->data['cylces'] = $this->extractEntities($cycles);
+        }
 
         $edges = $graph->getEdges();
         foreach ($edges as $edge) {

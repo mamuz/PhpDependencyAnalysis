@@ -74,6 +74,7 @@ class JsonCest
 
         unset($result['label']);
 
+        ksort( $result );
         return $result;
     }
 

@@ -95,6 +95,14 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setGroupLength(4);
     }
 
+    public function testDetectCyclesMutator()
+    {
+        $this->fixture->setDetectCycles(false);
+        $this->cycleDetector->shouldNotReceive('inspect');
+        $this->cycleDetector->shouldNotReceive('getCycles');
+        $this->fixture->create();
+    }
+
     public function testFluentInterfaceForCreating()
     {
         $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
