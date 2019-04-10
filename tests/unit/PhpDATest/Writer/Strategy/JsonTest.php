@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,10 +43,10 @@ class JsonTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessExtractor()
     {
-        $this->assertInstanceOf('PhpDA\Writer\Extractor\Graph', $this->fixture->getExtractor());
+        self::assertInstanceOf('PhpDA\Writer\Extractor\Graph', $this->fixture->getExtractor());
 
         $this->fixture->setExtractor($this->extractor);
-        $this->assertSame($this->extractor, $this->fixture->getExtractor());
+        self::assertSame($this->extractor, $this->fixture->getExtractor());
     }
 
     public function testFilter()
@@ -56,6 +56,6 @@ class JsonTest extends \PHPUnit_Framework_TestCase
         $this->extractor->shouldReceive('extract')->with($graph)->once()->andReturn($data);
         $this->fixture->setExtractor($this->extractor);
 
-        $this->assertSame(json_encode($data), $this->fixture->filter($graph));
+        self::assertSame(json_encode($data), $this->fixture->filter($graph));
     }
 }

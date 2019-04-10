@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,28 +44,28 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
 
     public function testLogging()
     {
-        $this->assertSame('', $this->fixture->toString());
-        $this->assertTrue($this->fixture->isEmpty());
+        self::assertSame('', $this->fixture->toString());
+        self::assertTrue($this->fixture->isEmpty());
 
         $this->fixture->log(LogLevel::CRITICAL, 'CRITICALfoo', array('CRITICALbar'));
         $this->fixture->log(LogLevel::NOTICE, 'NOTICEfoo', array('NOTICEbar'));
         $this->fixture->log(LogLevel::EMERGENCY, 'EMERGENCYfoo', array('EMERGENCYbar'));
 
-        $this->assertNotEmpty($this->fixture->toString());
-        $this->assertFalse($this->fixture->isEmpty());
+        self::assertNotEmpty($this->fixture->toString());
+        self::assertFalse($this->fixture->isEmpty());
     }
 
     public function testLoggingWithWrapping()
     {
         $this->file->shouldReceive('__toString')->andReturn('filename');
 
-        $this->assertSame('', $this->fixture->toString());
-        $this->assertTrue($this->fixture->isEmpty());
+        self::assertSame('', $this->fixture->toString());
+        self::assertTrue($this->fixture->isEmpty());
 
         $this->fixture->log(LogLevel::CRITICAL, 'CRITICALfoo', array($this->file));
         $this->fixture->log(LogLevel::NOTICE, 'NOTICEfoo', array('NOTICEbar' => $this->file));
 
-        $this->assertNotEmpty($this->fixture->toString());
-        $this->assertFalse($this->fixture->isEmpty());
+        self::assertNotEmpty($this->fixture->toString());
+        self::assertFalse($this->fixture->isEmpty());
     }
 }

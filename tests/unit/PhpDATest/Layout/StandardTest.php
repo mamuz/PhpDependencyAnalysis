@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,67 +40,67 @@ class StandardTest extends \PHPUnit_Framework_TestCase
     public function testAccessGraph()
     {
         $data = $this->fixture->getGraph();
-        $this->assertNotEmpty($data);
-        $this->assertSame('foo', $data['label']);
+        self::assertNotEmpty($data);
+        self::assertSame('foo', $data['label']);
     }
 
     public function testAccessGroup()
     {
-        $this->assertNotEmpty($this->fixture->getGroup());
+        self::assertNotEmpty($this->fixture->getGroup());
     }
 
     public function testAccessEdge()
     {
-        $this->assertNotEmpty($this->fixture->getEdge());
+        self::assertNotEmpty($this->fixture->getEdge());
     }
 
     public function testAccessEdgeExtend()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeExtend());
+        self::assertNotEmpty($this->fixture->getEdgeExtend());
     }
 
     public function testAccessEdgeImplement()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeImplement());
+        self::assertNotEmpty($this->fixture->getEdgeImplement());
     }
 
     public function testAccessEdgeTraitUse()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeTraitUse());
+        self::assertNotEmpty($this->fixture->getEdgeTraitUse());
     }
 
     public function testAccessEdgeUnsupported()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeUnsupported());
+        self::assertNotEmpty($this->fixture->getEdgeUnsupported());
     }
 
     public function testAccessEdgeNamespacedString()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeNamespacedString());
+        self::assertNotEmpty($this->fixture->getEdgeNamespacedString());
     }
 
     public function testAccessVertex()
     {
-        $this->assertNotEmpty($this->fixture->getVertex());
+        self::assertNotEmpty($this->fixture->getVertex());
     }
 
     public function testAccessVertexNamespacedString()
     {
-        $this->assertNotEmpty($this->fixture->getVertexNamespacedString());
+        self::assertNotEmpty($this->fixture->getVertexNamespacedString());
     }
 
     public function testAccessVertexUnsupported()
     {
-        $this->assertNotEmpty($this->fixture->getVertexUnsupported());
+        self::assertNotEmpty($this->fixture->getVertexUnsupported());
     }
 
     public function testAccessEdgeInvalid()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeInvalid());
+        self::assertNotEmpty($this->fixture->getEdgeInvalid());
     }
 
     public function testAccessEdgeCycle()
     {
-        $this->assertNotEmpty($this->fixture->getEdgeCycle());
+        self::assertNotEmpty($this->fixture->getEdgeCycle());
     }
 }

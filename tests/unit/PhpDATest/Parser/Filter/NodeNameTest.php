@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -56,12 +56,12 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
             $nodeName = $nodeName->toString();
         }
 
-        $this->assertSame($this->expected, $nodeName);
+        self::assertSame($this->expected, $nodeName);
     }
 
     public function testAccessAggregationIndicator()
     {
-        $this->assertSame('slice', $this->fixture->getAggregationIndicator());
+        self::assertSame('slice', $this->fixture->getAggregationIndicator());
     }
 
     public function testUnFiltered()
@@ -69,7 +69,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->expected = '\Foo\Bar';
         $this->entity->parts = explode('\\', $this->expected);
         $this->entity->shouldReceive('toString')->andReturn($this->expected);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testSelfIgnored()
@@ -77,7 +77,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $ignore = 'self';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($ignore);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testParentIgnored()
@@ -85,7 +85,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $ignore = 'parent';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($ignore);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testNullIgnored()
@@ -93,7 +93,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $ignore = 'NULL';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($ignore);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testTrueIgnored()
@@ -101,7 +101,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $ignore = 'true';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($ignore);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testFalseIgnored()
@@ -109,7 +109,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $ignore = 'False';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($ignore);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testExcludingByDepth()
@@ -119,27 +119,27 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $string = $this->expected = '\Foo\Bar';
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
 
         $string = $this->expected = 'Foo\Bar\Baz';
         $this->createEntityMock();
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
 
         $string = 'Foo';
         $this->expected = null;
         $this->createEntityMock();
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
 
         $string = '';
         $this->expected = null;
         $this->createEntityMock();
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testExcludingByPattern()
@@ -149,13 +149,13 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $string = 'Foo';
         $this->expected = null;
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
 
         $string = $this->expected = 'Bar';
         $this->createEntityMock();
         $this->entity->parts = explode('\\', $this->expected);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testSlicingWithOffset()
@@ -166,7 +166,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->expected = 'Baz';
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testSlicingWithLength()
@@ -177,7 +177,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->expected = 'Foo\Bar';
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testSlicingWithOffsetAndLength()
@@ -188,7 +188,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->expected = 'Bar\Baz';
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testSlicingToNull()
@@ -199,7 +199,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->expected = null;
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn($string);
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 
     public function testFilteringNamespace()
@@ -212,6 +212,6 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
         $this->entity->parts = explode('\\', $string);
         $this->entity->shouldReceive('toString')->andReturn('Baz\Foo');
         $filter->shouldReceive('filter')->with($this->entity->parts)->andReturn(array('Baz', 'Foo'));
-        $this->assertNamespaceFilter();
+        self::assertNamespaceFilter();
     }
 }

@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,21 +39,21 @@ class EdgeTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessFrom()
     {
-        $this->assertSame('A', $this->fixture->getFrom());
+        self::assertSame('A', $this->fixture->getFrom());
     }
 
     public function testAccessTo()
     {
-        $this->assertSame('B', $this->fixture->getTo());
+        self::assertSame('B', $this->fixture->getTo());
     }
 
     public function testStringRepresentation()
     {
-        $this->assertSame('A -> B', $this->fixture->toString());
+        self::assertSame('A -> B', $this->fixture->toString());
     }
 
     public function testArrayRepresentation()
     {
-        $this->assertSame(array('A', 'B'), $this->fixture->toArray());
+        self::assertSame(array('A', 'B'), $this->fixture->toArray());
     }
 }

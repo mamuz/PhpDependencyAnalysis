@@ -12,16 +12,3 @@ modules:
     config:
         \Helper\Functional:
             tool: './bin/phpda'
-groups:
-    nohhvm: [tests/functional/ConfigLocationCest.php, tests/functional/InstallAndUpdatePharCest.php]
-env:
-    bin:
-        modules:
-            config:
-                \Helper\Functional:
-                    tool: './bin/phpda'
-    phar:
-        modules:
-            config:
-                \Helper\Functional:
-                    tool: './download/phpda'

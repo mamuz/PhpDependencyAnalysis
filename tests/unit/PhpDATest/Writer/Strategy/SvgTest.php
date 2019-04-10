@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,6 +48,6 @@ class SvgTest extends \PHPUnit_Framework_TestCase
 
         $this->fixture->setGraphViz($graphViz);
 
-        $this->assertSame('foo', $this->fixture->filter($graph));
+        self::assertSame('foo', $this->fixture->filter($graph));
     }
 }

@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ class AdtCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
-        $this->assertSame(array(), $this->fixture->getStmts());
+        self::assertSame(array(), $this->fixture->getStmts());
 
         $invalidNode = \Mockery::mock('PhpParser\Node');
         $classNode = \Mockery::mock('PhpParser\Node\Stmt\Class_');
@@ -51,12 +51,12 @@ class AdtCollectorTest extends \PHPUnit_Framework_TestCase
         $this->fixture->leaveNode($traitNode->shouldIgnoreMissing());
         $this->fixture->leaveNode($interfaceNode->shouldIgnoreMissing());
 
-        $this->assertSame(
+        self::assertSame(
             array($classNode, $traitNode, $interfaceNode),
             $this->fixture->getStmts()
         );
 
         $this->fixture->flush();
-        $this->assertSame(array(), $this->fixture->getStmts());
+        self::assertSame(array(), $this->fixture->getStmts());
     }
 }

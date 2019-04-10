@@ -45,15 +45,5 @@
 <path fill="none" stroke="#ffcc66" d="M204.707,-89.575C237.811,-86.4921 272.256,-83.2844 296.466,-81.0298"/>
 <polygon fill="#ffcc66" stroke="#ffcc66" points="296.924,-83.0963 302.703,-80.4489 296.534,-78.9144 296.924,-83.0963"/>
 </g>
-<!-- foo_bar -->
-<g id="node5" class="node"><title>foo_bar</title>
-<path fill="#ffcc66" stroke="black" d="M352.5,-53C352.5,-53 307.5,-53 307.5,-53 301.5,-53 295.5,-47 295.5,-41 295.5,-41 295.5,-29 295.5,-29 295.5,-23 301.5,-17 307.5,-17 307.5,-17 352.5,-17 352.5,-17 358.5,-17 364.5,-23 364.5,-29 364.5,-29 364.5,-41 364.5,-41 364.5,-47 358.5,-53 352.5,-53"/>
-<text text-anchor="middle" x="330" y="-32.5" font-family="Times,serif" font-size="10.00" fill="#000033">foo_bar</text>
-</g>
-<!-- PackageX\\NamespacedString&#45;&gt;foo_bar -->
-<g id="edge4" class="edge"><title>PackageX\\NamespacedString&#45;&gt;foo_bar</title>
-<path fill="none" stroke="#ffcc66" d="M167.215,-80.9168C206.45,-69.7814 255.523,-55.8538 289.275,-46.2746"/>
-<polygon fill="#ffcc66" stroke="#ffcc66" points="290.194,-48.1967 295.393,-44.5382 289.047,-44.1563 290.194,-48.1967"/>
-</g>
 </g>
 </svg>

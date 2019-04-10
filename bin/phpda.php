@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,6 @@ foreach ($autoloadFiles as $autoloadFile) {
 if (!isset($loader)) {
     throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
-
 
 $appFactory = new PhpDA\Command\ApplicationFactory($loader);
 $appFactory->create()->run();

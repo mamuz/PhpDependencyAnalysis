@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testWriteWithLoadingWrongStrategy()
     {
-        $this->setExpectedException('RuntimeException');
+        self::expectException('RuntimeException');
 
         $writerFqcn = 'foo';
         $graph = \Mockery::mock('Fhaculty\Graph\Graph');
@@ -74,6 +74,6 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
         $this->loader->shouldReceive('get')->with($writerFqcn)->once()->andReturn($writer);
 
         $this->fixture->write($graph)->with($writerFqcn)->to($this->file);
-        $this->assertSame($content, file_get_contents($this->file));
+        self::assertSame($content, file_get_contents($this->file));
     }
 }

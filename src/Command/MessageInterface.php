@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -66,12 +66,6 @@ interface MessageInterface
     const PARSE_LOGS = 'Logs:';
 
     const NOTHING_TO_PARSE = '<error>No files found!</error>';
-
-    const UPDATE_SUCCESS = '<fg=green>Update done. Installed new Version is %s</>';
-
-    const UPDATE_NOT_NEEDED = '<info>Current installation is already the latest version</info>';
-
-    const ROLLBACK_SUCCESS = '<fg=green>Rollback to the last version done</>';
 
     const DONE = '<fg=green>Done</>';
 }

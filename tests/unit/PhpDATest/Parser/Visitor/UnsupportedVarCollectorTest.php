@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,25 +58,25 @@ class UnsupportedVarCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\New_');
         $node->class = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $this->assertCollectingByFilteredToNull($node);
+        self::assertCollectingByFilteredToNull($node);
     }
 
     public function testCollectingByFilteredToNullForVariable()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $this->assertCollectingByFilteredToNull($node);
+        self::assertCollectingByFilteredToNull($node);
     }
 
     public function testCollectingByFilteredToNullForFuncCall()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
-        $this->assertCollectingByFilteredToNull($node);
+        self::assertCollectingByFilteredToNull($node);
     }
 
     public function testCollectingByFilteredToNullForStaticCall()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\StaticCall');
-        $this->assertCollectingByFilteredToNull($node);
+        self::assertCollectingByFilteredToNull($node);
     }
 
     protected function assertCollectingByFilteredToNull($node)
@@ -90,32 +90,30 @@ class UnsupportedVarCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\New_');
         $node->class = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $this->assertCollecting($node);
+        self::assertCollecting($node);
     }
 
     public function testCollectingVariable()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\Variable');
-        $this->assertCollecting($node);
+        self::assertCollecting($node);
     }
 
     public function testCollectingFuncCall()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
-        $this->assertCollecting($node);
+        self::assertCollecting($node);
     }
 
     public function testCollectingStaticCall()
     {
         $node = \Mockery::mock('PhpParser\Node\Expr\StaticCall');
-        $this->assertCollecting($node);
+        self::assertCollecting($node);
     }
 
     protected function assertCollecting(\Mockery\MockInterface $node)
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
-        $node->name = \Mockery::mock('PhpParser\Node\Expr\Variable');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $this->nodeNameFilter->shouldReceive('filter')->once()->andReturnUsing(
             function ($object) {
@@ -123,10 +121,10 @@ class UnsupportedVarCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUnsupportedStmt')->once()->andReturnUsing(
-            function ($object) use ($testcase) {
+            function ($object) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), 'dynamic varname');
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertSame($object->toString(), 'dynamic varname');
             }
         );
 

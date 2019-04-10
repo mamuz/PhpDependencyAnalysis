@@ -21,45 +21,8 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
 
-## Installation
-
-For graph creation [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
-an open source graph visualization software and available for the most platforms.
-
-After installing [`GraphViz`](http://www.graphviz.org/) the recommended way to install
-[`mamuz/php-dependency-analysis`](https://packagist.org/packages/mamuz/php-dependency-analysis) is..
-
-### As a Phar
-
-```sh
-$ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda.pubkey
-$ curl -OsSL https://raw.github.com/mamuz/PhpDependencyAnalysis/master/download/phpda
-$ chmod +x phpda
-```
-
-The three lines above will, in order:
-
-- Download the public key to the current directory
-- Download the phar file to the current directory
-- Make the phar file executable
-
-The phar file is securely signed with OpenSSL. To be able to execute the phar file,
-the public key must be named as the phar file, with `.pubkey` added, 
-and must be placed in the same directory. That means don't change the name and location of the public key.
-
-#### Update
-
-Use the provided update command to get the latest version.
-
-```sh
-$ phpda update
-```
-
-### As a Composer Dependency
-
-```sh
-$ composer require --dev mamuz/php-dependency-analysis
-```
+## Usage with Docker
+-tba
 
 ## Features
 

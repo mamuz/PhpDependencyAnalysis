@@ -42,8 +42,8 @@ class JsonCest
                        . ' -f "PhpDA\Writer\Strategy\Json"'
                        . ' -t ' . $target;
 
+                \Codeception\Util\Debug::debug($cmd);
                 exec($cmd, $output, $return);
-
                 $jsonFilename = DIRECTORY_SEPARATOR . $file->getBasename('yml') . 'json';
                 $expected = $this->readResultFrom($this->expectationFolder . $jsonFilename);
                 $result = $this->readResultFrom($this->outputFolder . $jsonFilename);

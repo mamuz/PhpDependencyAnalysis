@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
         foreach ($values as $property => $value) {
             $getter = 'get' . ucfirst($property);
-            $this->assertSame($value, $config->$getter());
+            self::assertSame($value, $config->$getter());
         }
     }
 
@@ -57,24 +57,24 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     {
         $config = new Config(array());
 
-        $this->assertSame(array(), $config->getIgnore());
-        $this->assertSame(array(), $config->getVisitor());
-        $this->assertSame(array(), $config->getVisitorOptions());
-        $this->assertSame('usage', $config->getMode());
-        $this->assertSame(0, $config->getGroupLength());
-        $this->assertNull($config->getReferenceValidator());
-        $this->assertNull($config->getNamespaceFilter());
+        self::assertSame(array(), $config->getIgnore());
+        self::assertSame(array(), $config->getVisitor());
+        self::assertSame(array(), $config->getVisitorOptions());
+        self::assertSame('usage', $config->getMode());
+        self::assertSame(0, $config->getGroupLength());
+        self::assertNull($config->getReferenceValidator());
+        self::assertNull($config->getNamespaceFilter());
     }
 
     public function testInheritanceMode()
     {
         $config = new Config(array('mode' => 'inheritance'));
-        $this->assertSame('inheritance', $config->getMode());
+        self::assertSame('inheritance', $config->getMode());
     }
 
     public function testInvalidMode()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('mode' => 'foo'));
 
         $config->getMode();
@@ -82,7 +82,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidSource()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('source' => 1));
 
         $config->getSource();
@@ -90,7 +90,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidFormatter()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('formatter' => 1));
 
         $config->getFormatter();
@@ -98,7 +98,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidTarget()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('target' => 1));
 
         $config->getTarget();
@@ -106,7 +106,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidFilePattern()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('filePattern' => 1));
 
         $config->getFilePattern();
@@ -114,7 +114,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidIgnore()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('ignore' => 1));
 
         $config->getIgnore();
@@ -122,7 +122,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidGroupLength()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('groupLength' => 'test'));
 
         $config->getGroupLength();
@@ -131,15 +131,15 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testNumericGroupLength()
     {
         $config = new Config(array('groupLength' => '4'));
-        $this->assertSame(4, $config->getGroupLength());
+        self::assertSame(4, $config->getGroupLength());
 
         $config = new Config(array('groupLength' => 1.34));
-        $this->assertSame(1, $config->getGroupLength());
+        self::assertSame(1, $config->getGroupLength());
     }
 
     public function testInvalidVisitor()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('visitor' => 1));
 
         $config->getVisitor();
@@ -147,7 +147,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidVisitorOptions()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('visitorOptions' => 1));
 
         $config->getVisitorOptions();
@@ -155,7 +155,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidReferenceValidator()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('referenceValidator' => 1));
 
         $config->getReferenceValidator();
@@ -163,7 +163,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidNamespaceFilter()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        self::expectException('InvalidArgumentException');
         $config = new Config(array('namespaceFilter' => 1));
 
         $config->getNamespaceFilter();
@@ -177,21 +177,21 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
                 'baz' => array('minDepth' => 'bar'),
             ),
         ));
-        $this->assertFalse($config->hasVisitorOptionsForAggregation());
+        self::assertFalse($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'foo' => array('sliceOffset' => 'bar'),
             ),
         ));
-        $this->assertTrue($config->hasVisitorOptionsForAggregation());
+        self::assertTrue($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'foo' => array('sliceOffset' => '', 'slice' => null, 'sliceLength' => ''),
             ),
         ));
-        $this->assertFalse($config->hasVisitorOptionsForAggregation());
+        self::assertFalse($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
@@ -199,14 +199,14 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
                 'foo' => array('sliceLength' => 'bar'),
             ),
         ));
-        $this->assertTrue($config->hasVisitorOptionsForAggregation());
+        self::assertTrue($config->hasVisitorOptionsForAggregation());
 
         $config = new Config(array(
             'visitorOptions' => array(
                 'baz' => array('excludePattern' => 'bar', 'sliceLength' => 'bar'),
             ),
         ));
-        $this->assertTrue($config->hasVisitorOptionsForAggregation());
+        self::assertTrue($config->hasVisitorOptionsForAggregation());
     }
 
     public function testSetGlobalVisitorOption()
@@ -221,7 +221,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $config->setGlobalVisitorOption('namespaceFilter', 'filter');
         $options = $config->getVisitorOptions();
 
-        $this->assertSame(array('excludePattern' => 'bar', 'namespaceFilter' => 'filter'), $options['baz']);
-        $this->assertSame(array('sliceLength' => 'bar', 'namespaceFilter' => 'filter'), $options['foo']);
+        self::assertSame(array('excludePattern' => 'bar', 'namespaceFilter' => 'filter'), $options['baz']);
+        self::assertSame(array('sliceLength' => 'bar', 'namespaceFilter' => 'filter'), $options['foo']);
     }
 }

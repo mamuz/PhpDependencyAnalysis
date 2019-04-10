@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,47 +63,47 @@ class SuperglobalCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testNotCollectingGlobalsByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('GLOBALS');
+        self::assertNotCollectingByFilteredToNull('GLOBALS');
     }
 
     public function testNotCollectingServerByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_SERVER');
+        self::assertNotCollectingByFilteredToNull('_SERVER');
     }
 
     public function testNotCollectingQueryByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_GET');
+        self::assertNotCollectingByFilteredToNull('_GET');
     }
 
     public function testNotCollectingPostByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_POST');
+        self::assertNotCollectingByFilteredToNull('_POST');
     }
 
     public function testNotCollectingFilesByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_FILES');
+        self::assertNotCollectingByFilteredToNull('_FILES');
     }
 
     public function testNotCollectingCookieByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_COOKIE');
+        self::assertNotCollectingByFilteredToNull('_COOKIE');
     }
 
     public function testNotCollectingSessionByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_SESSION');
+        self::assertNotCollectingByFilteredToNull('_SESSION');
     }
 
     public function testNotCollectingRequestByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_REQUEST');
+        self::assertNotCollectingByFilteredToNull('_REQUEST');
     }
 
     public function testNotCollectingEnvByFilteredToNull()
     {
-        $this->assertNotCollectingByFilteredToNull('_ENV');
+        self::assertNotCollectingByFilteredToNull('_ENV');
     }
 
     protected function assertNotCollectingByFilteredToNull($var)
@@ -116,52 +116,51 @@ class SuperglobalCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollectionGlobals()
     {
-        $this->assertCollecting('GLOBALS');
+        self::assertCollecting('GLOBALS');
     }
 
     public function testCollectionServer()
     {
-        $this->assertCollecting('_SERVER');
+        self::assertCollecting('_SERVER');
     }
 
     public function testCollectionQuery()
     {
-        $this->assertCollecting('_GET');
+        self::assertCollecting('_GET');
     }
 
     public function testCollectionPost()
     {
-        $this->assertCollecting('_POST');
+        self::assertCollecting('_POST');
     }
 
     public function testCollectionFiles()
     {
-        $this->assertCollecting('_FILES');
+        self::assertCollecting('_FILES');
     }
 
     public function testCollectionCookie()
     {
-        $this->assertCollecting('_COOKIE');
+        self::assertCollecting('_COOKIE');
     }
 
     public function testCollectionSession()
     {
-        $this->assertCollecting('_SESSION');
+        self::assertCollecting('_SESSION');
     }
 
     public function testCollectionRequest()
     {
-        $this->assertCollecting('_REQUEST');
+        self::assertCollecting('_REQUEST');
     }
 
     public function testCollectionEnv()
     {
-        $this->assertCollecting('_ENV');
+        self::assertCollecting('_ENV');
     }
 
     protected function assertCollecting($var)
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Expr\Variable');
         $node->shouldReceive('getAttributes')->once()->andReturn($attributes);
@@ -172,10 +171,10 @@ class SuperglobalCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUsedNamespace')->once()->andReturnUsing(
-            function ($object) use ($testcase, $var) {
+            function ($object) use ($var) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), $var);
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertSame($object->toString(), $var);
             }
         );
 

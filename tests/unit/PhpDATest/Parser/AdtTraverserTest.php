@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -69,14 +69,14 @@ class AdtTraverserTest extends \PHPUnit_Framework_TestCase
 
         foreach ($stmts as $nodes) {
             foreach ($nodes as $node) {
-                $this->assertSame($stmtNode, $node);
+                self::assertSame($stmtNode, $node);
             }
         }
     }
 
     public function testThrowExceptionForBindingFileWithoutNameResolver()
     {
-        $this->setExpectedException('DomainException');
+        self::expectException('DomainException');
         $this->fixture->bindFile($this->file);
     }
 }

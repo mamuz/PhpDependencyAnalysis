@@ -46,14 +46,14 @@ class JsonSerializableFileInfoTest extends \PHPUnit_Framework_TestCase
 
     public function testIsWrapper()
     {
-        $this->assertSame('pathname', $this->fixture->getFile()->getPathname());
-        $this->assertSame('relative/path', $this->fixture->getFile()->getRelativePath());
+        self::assertSame('pathname', $this->fixture->getFile()->getPathname());
+        self::assertSame('relative/path', $this->fixture->getFile()->getRelativePath());
     }
 
     public function testIsSerializable()
     {
-        $this->assertInstanceOf('\JsonSerializable', $this->fixture);
-        $this->assertSame('filename', $this->fixture->jsonSerialize());
-        $this->assertSame('filename', $this->fixture->__toString());
+        self::assertInstanceOf('\JsonSerializable', $this->fixture);
+        self::assertSame('filename', $this->fixture->jsonSerialize());
+        self::assertSame('filename', $this->fixture->__toString());
     }
 }

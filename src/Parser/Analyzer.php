@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,6 @@ namespace PhpDA\Parser;
 
 use PhpDA\Entity\Analysis;
 use PhpDA\Entity\AnalysisCollection;
-use PhpParser\Error;
 use PhpParser\Parser;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -91,7 +90,7 @@ class Analyzer implements AnalyzerInterface
                     $this->nodeTraverser->traverse([$node]);
                 }
             }
-        } catch (Error $error) {
+        } catch (\Throwable $error) {
             $this->logger->error($error->getMessage(), [$file]);
         }
 

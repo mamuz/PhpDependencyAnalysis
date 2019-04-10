@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -170,7 +170,7 @@ class NodeTraverser extends \PhpParser\NodeTraverser implements AdtAwareInterfac
         return $visitor;
     }
 
-    public function traverse(array $nodes)
+    public function traverse(array $nodes) : array
     {
         if ($this->hasAdt()) {
             foreach ($this->visitors as $visitor) {

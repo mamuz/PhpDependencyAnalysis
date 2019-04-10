@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,12 +42,12 @@ class CycleTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingArrayCollection()
     {
-        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', $this->fixture);
+        self::assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', $this->fixture);
     }
 
     public function testStringRepresentation()
     {
-        $this->assertSame(implode(' -> ', $this->path), $this->fixture->toString());
+        self::assertSame(implode(' -> ', $this->path), $this->fixture->toString());
     }
 
     public function testAccessEdges()
@@ -60,7 +60,7 @@ class CycleTest extends \PHPUnit_Framework_TestCase
 
         $edges = $this->fixture->getEdges();
         foreach ($edges as $index => $edge) {
-            $this->assertSame($expected[$index], $edge->toString());
+            self::assertSame($expected[$index], $edge->toString());
         }
     }
 }

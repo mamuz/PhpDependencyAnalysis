@@ -9,7 +9,6 @@ Thumbs.db
 .Trashes
 .git*
 .*.yml
-composer.lock
 app/vendor/**/test
 app/vendor/**/tests
 tests/_output/*

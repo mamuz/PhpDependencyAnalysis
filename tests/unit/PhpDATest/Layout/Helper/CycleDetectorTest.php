@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
         $vertexB->createEdgeTo($vertexC);
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
-        $this->assertEmpty($cycles);
+        self::assertEmpty($cycles);
     }
 
     public function testFindSimpleCyle()
@@ -65,8 +65,8 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(1, $cycles);
-        $this->assertSame('A -> B -> A', $cycles[0]->toString());
+        self::assertCount(1, $cycles);
+        self::assertSame('A -> B -> A', $cycles[0]->toString());
     }
 
     public function testFindDelayedCyle()
@@ -83,8 +83,8 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(1, $cycles);
-        $this->assertSame('B -> C -> B', $cycles[0]->toString());
+        self::assertCount(1, $cycles);
+        self::assertSame('B -> C -> B', $cycles[0]->toString());
     }
 
     public function testFindComplexCyle()
@@ -102,8 +102,8 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(1, $cycles);
-        $this->assertSame('A -> B -> D -> A', $cycles[0]->toString());
+        self::assertCount(1, $cycles);
+        self::assertSame('A -> B -> D -> A', $cycles[0]->toString());
     }
 
     public function testFindMultipleCyles()
@@ -120,9 +120,9 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(2, $cycles);
-        $this->assertSame('A -> B -> A', $cycles[0]->toString());
-        $this->assertSame('C -> D -> C', $cycles[1]->toString());
+        self::assertCount(2, $cycles);
+        self::assertSame('A -> B -> A', $cycles[0]->toString());
+        self::assertSame('C -> D -> C', $cycles[1]->toString());
     }
 
     public function testFindMultipleComplexCyles()
@@ -149,9 +149,9 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(2, $cycles);
-        $this->assertSame('A -> B -> D -> A', $cycles[0]->toString());
-        $this->assertSame('F -> G -> I -> F', $cycles[1]->toString());
+        self::assertCount(2, $cycles);
+        self::assertSame('A -> B -> D -> A', $cycles[0]->toString());
+        self::assertSame('F -> G -> I -> F', $cycles[1]->toString());
     }
 
     /**
@@ -185,9 +185,9 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(2, $cycles);
-        $this->assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
-        $this->assertSame('B -> G -> H -> I -> J -> F -> B', $cycles[1]->toString());
+        self::assertCount(2, $cycles);
+        self::assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
+        self::assertSame('B -> G -> H -> I -> J -> F -> B', $cycles[1]->toString());
     }
 
     public function testFindParallelCycles()
@@ -209,9 +209,9 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(2, $cycles);
-        $this->assertSame('B -> E -> C -> B', $cycles[0]->toString());
-        $this->assertSame('B -> F -> C -> B', $cycles[1]->toString());
+        self::assertCount(2, $cycles);
+        self::assertSame('B -> E -> C -> B', $cycles[0]->toString());
+        self::assertSame('B -> F -> C -> B', $cycles[1]->toString());
     }
 
     public function testFindCycleOnCycle()
@@ -239,9 +239,9 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycles = $this->fixture->inspect($this->graph)->getCycles();
 
-        $this->assertCount(2, $cycles);
-        $this->assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
-        $this->assertSame('B -> C -> D -> G -> H -> I -> F -> B', $cycles[1]->toString());
+        self::assertCount(2, $cycles);
+        self::assertSame('B -> C -> D -> E -> F -> B', $cycles[0]->toString());
+        self::assertSame('B -> C -> D -> G -> H -> I -> F -> B', $cycles[1]->toString());
     }
 
     public function testFindCycledEdges()
@@ -259,6 +259,6 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
 
         $cycledEdges = $this->fixture->inspect($this->graph)->getCycledEdges();
 
-        $this->assertSame(2, $cycledEdges->count());
+        self::assertSame(2, $cycledEdges->count());
     }
 }

@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -101,7 +101,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->groupGenerator->shouldReceive('getGroups')->andReturn(array());
         $this->graph->shouldReceive('setAttribute');
 
-        $this->assertSame($this->fixture, $this->fixture->create());
+        self::assertSame($this->fixture, $this->fixture->create());
     }
 
     public function testDelegatingLogEntriesAndGraphLayoutGeneratedGroups()
@@ -121,12 +121,12 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setLayout($layout);
         $this->fixture->setLogEntries(array('baz'));
 
-        $this->assertSame($this->fixture, $this->fixture->create());
+        self::assertSame($this->fixture, $this->fixture->create());
     }
 
     public function testAccessGraph()
     {
-        $this->assertSame($this->graph, $this->fixture->getGraph());
+        self::assertSame($this->graph, $this->fixture->getGraph());
     }
 
     private function prepareDependencyCreation()
@@ -223,17 +223,17 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $called1 = $this->createName('Called\\Name1', $declared);
         $called2 = $this->createName('Called\\Name2', $declared);
 
-        $uns1 = $this->createName('Uns\\Name1', $declared, false, self::LVUS, self::LEUS);
-        $uns2 = $this->createName('Uns\\Name2', $declared, false, self::LVUS, self::LEUS);
+        $uns1 = $this->createName('Uns\\Name1', $declared, false);
+        $uns2 = $this->createName('Uns\\Name2', $declared, false);
 
-        $string1 = $this->createName('String\\Name1', $declared, true, self::LVNS, self::LENS);
-        $string2 = $this->createName('String\\Name2', $declared, false, self::LVNS, self::LENS);
+        $string1 = $this->createName('String\\Name1', $declared, true);
+        $string2 = $this->createName('String\\Name2', $declared, false);
 
         $this->adt->shouldReceive('getCalledNamespaces')->once()->andReturn(array($called1, $called2));
         $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($uns1, $uns2));
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($string1, $string2));
 
-        $this->assertSame($this->fixture, $this->fixture->create());
+        self::assertSame($this->fixture, $this->fixture->create());
     }
 
     public function testDependencyCreationNotInCallMode()
@@ -248,24 +248,24 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->adt->shouldReceive('getCalledNamespaces')->never();
 
-        $imp1 = $this->createName('Imp\\Name1', $declared, false, null, self::LEIM);
-        $imp2 = $this->createName('Imp\\Name2', $declared, false, null, self::LEIM);
+        $imp1 = $this->createName('Imp\\Name1', $declared, false);
+        $imp2 = $this->createName('Imp\\Name2', $declared, false);
 
-        $ext = $this->createName('Ext\\Name1', $declared, false, null, self::LEEX);
+        $ext = $this->createName('Ext\\Name1', $declared, false);
 
-        $trait1 = $this->createName('Trait\\Name1', $declared, false, null, self::LETU);
-        $trait2 = $this->createName('Trait\\Name2', $declared, false, null, self::LETU);
+        $trait1 = $this->createName('Trait\\Name1', $declared, false);
+        $trait2 = $this->createName('Trait\\Name2', $declared, false);
 
         $used1 = $this->createName('Used\\Name1', $declared);
         $used2 = $this->createName('Used\\Name2', $declared);
         $used3 = $this->createName('Used\\Name2', $declared, true);
         $used4 = $this->createName('Used\\Name2', $declared);
 
-        $uns1 = $this->createName('Uns\\Name1', $declared, true, self::LVUS, self::LEUS);
-        $uns2 = $this->createName('Uns\\Name2', $declared, false, self::LVUS, self::LEUS);
+        $uns1 = $this->createName('Uns\\Name1', $declared, true);
+        $uns2 = $this->createName('Uns\\Name2', $declared, false);
 
-        $string1 = $this->createName('String\\Name1', $declared, false, self::LVNS, self::LENS);
-        $string2 = $this->createName('String\\Name2', $declared, false, self::LVNS, self::LENS);
+        $string1 = $this->createName('String\\Name1', $declared, false);
+        $string2 = $this->createName('String\\Name2', $declared, false);
 
         $meta = \Mockery::mock('PhpDa\Entity\Meta');
         $this->adt->shouldReceive('getMeta')->andReturn($meta);
@@ -277,7 +277,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUnsupportedStmts')->once()->andReturn(array($uns1, $uns2));
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array($string1, $string2));
 
-        $this->assertSame($this->fixture, $this->fixture->create());
+        self::assertSame($this->fixture, $this->fixture->create());
     }
 
     public function testDependencyCreationWhenAdtIsGlobalNamespace()
@@ -292,12 +292,11 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getUnsupportedStmts')->never();
         $this->adt->shouldReceive('getNamespacedStrings')->never();
 
-        $this->assertSame($this->fixture, $this->fixture->create());
+        self::assertSame($this->fixture, $this->fixture->create());
     }
 
     public function testDependencyCreationWithReferenceValidator()
     {
-        $testcase = $this;
         $this->cycleDetector->shouldReceive('getCycledEdges')->andReturn(array());
         $validator = \Mockery::mock('PhpDA\Reference\ValidatorInterface');
         $this->fixture->setReferenceValidator($validator);
@@ -317,17 +316,17 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $this->adt->shouldReceive('getNamespacedStrings')->once()->andReturn(array());
 
         $validator->shouldReceive('isValidBetween')->andReturnUsing(
-            function ($from, $to) use ($declared, $called1, $testcase) {
-                $testcase->assertNotSame($from, $declared);
-                $testcase->assertEquals($from, $declared);
-                $testcase->assertNotSame($to, $called1);
-                $testcase->assertEquals($to, $called1);
+            function ($from, $to) use ($declared, $called1) {
+                self::assertNotSame($from, $declared);
+                self::assertEquals($from, $declared);
+                self::assertNotSame($to, $called1);
+                self::assertEquals($to, $called1);
                 return true;
             }
         );
 
-        $this->assertSame($this->fixture, $this->fixture->create());
-        $this->assertFalse($this->fixture->hasViolations());
+        self::assertSame($this->fixture, $this->fixture->create());
+        self::assertFalse($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithReferenceValidatorAndInvalidEdge()
@@ -354,8 +353,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('isValidBetween')->andReturn(false);
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
-        $this->assertSame($this->fixture, $this->fixture->create());
-        $this->assertTrue($this->fixture->hasViolations());
+        self::assertSame($this->fixture, $this->fixture->create());
+        self::assertTrue($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithDetectedCyleAndInvalidEdge()
@@ -385,8 +384,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('isValidBetween')->andReturn(false);
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
-        $this->assertSame($this->fixture, $this->fixture->create());
-        $this->assertTrue($this->fixture->hasViolations());
+        self::assertSame($this->fixture, $this->fixture->create());
+        self::assertTrue($this->fixture->hasViolations());
     }
 
     public function testDependencyCreationWithDetectedCyle()
@@ -416,7 +415,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $validator->shouldReceive('isValidBetween')->andReturn(false);
         $validator->shouldReceive('getMessages')->andReturn($validatorMessages);
 
-        $this->assertSame($this->fixture, $this->fixture->create());
-        $this->assertTrue($this->fixture->hasViolations());
+        self::assertSame($this->fixture, $this->fixture->create());
+        self::assertTrue($this->fixture->hasViolations());
     }
 }

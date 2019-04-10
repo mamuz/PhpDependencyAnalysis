@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -118,7 +118,6 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
         $value = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $value->value = 'Baz';
@@ -134,10 +133,10 @@ class IocContainerAccessorCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addNamespacedString')->once()->andReturnUsing(
-            function ($object) use ($testcase) {
+            function ($object) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), 'Baz');
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertSame($object->toString(), 'Baz');
             }
         );
 

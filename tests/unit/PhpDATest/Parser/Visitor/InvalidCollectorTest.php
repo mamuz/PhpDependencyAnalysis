@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,6 @@ class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
 
         $this->fixture = new InvalidCollector;
@@ -47,7 +46,7 @@ class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
     public function testCollecting()
     {
         $attributes = array('foo' => 'bar');
-        $this->setExpectedException('RuntimeException');
+        self::expectException('RuntimeException');
         $node = \Mockery::mock('PhpParser\Node\Name');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
         $node->shouldReceive('setAttribute');

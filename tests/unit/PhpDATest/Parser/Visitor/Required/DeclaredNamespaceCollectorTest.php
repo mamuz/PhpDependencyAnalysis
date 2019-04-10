@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testHavingNamespaceException()
     {
-        $this->setExpectedException('PhpParser\Error');
+        self::expectException('PhpParser\Error');
         $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
         $node->name = true;
         $node->shouldReceive('getLine')->andReturn(12);
@@ -77,7 +77,6 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
-        $testcase = $this;
         $namespace = 'Foo\Bar';
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Stmt\ClassLike');
@@ -91,11 +90,11 @@ class DeclaredNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
         );
         $this->adt->shouldReceive('hasDeclaredGlobalNamespace')->once()->andReturn(true);
         $this->adt->shouldReceive('setDeclaredNamespace')->once()->andReturnUsing(
-            function ($nodeName) use ($namespace, $testcase) {
+            function ($nodeName) use ($namespace) {
                 /** @var \PhpParser\Node\Name $nodeName */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $nodeName);
-                $testcase->assertSame('bar', $nodeName->getAttribute('foo'));
-                $testcase->assertSame($namespace, $nodeName->toString());
+                self::assertInstanceOf('PhpParser\Node\Name', $nodeName);
+                self::assertSame('bar', $nodeName->getAttribute('foo'));
+                self::assertSame($namespace, $nodeName->toString());
             }
         );
         $this->fixture->leaveNode($node);
