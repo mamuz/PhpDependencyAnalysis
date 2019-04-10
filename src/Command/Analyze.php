@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -116,7 +116,7 @@ class Analyze extends Command
             } else {
                 return self::EXIT_VIOLATION;
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new \Exception('Execution failed', self::EXIT_EXCEPTION, $e);
         }
     }

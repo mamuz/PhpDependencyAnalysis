@@ -1,34 +1,26 @@
+SHELL:=/bin/bash
 NAME = phpda
 
-default: clean image vendor-on-host
+.PHONY: all
+all: build test ## Build and test
 
-clean:
-	-docker rm -fv $(NAME)-php56
-	-docker rm -fv $(NAME)-php70
-	-docker rm -fv $(NAME)-hhvm
-	-docker rm -fv $(NAME)-php71
-	-docker rmi -f $(NAME)-php56
-	-docker rmi -f $(NAME)-php70
-	-docker rmi -f $(NAME)-hhvm
-	-docker rmi -f $(NAME)-php71
-	-rm -rf ./vendor
+.PHONY: build
+build: clean ## Build a new docker image.
+	docker build -t $(NAME) -f ./build/Dockerfile .
+	docker create --name $(NAME) $(NAME)
+	docker cp $(NAME):/app/vendor ./
+	docker cp $(NAME):/app/composer.lock ./composer.lock
+	docker rm -fv $(NAME)
 
-image:
-	docker build -t $(NAME)-php56 -f ./build/Dockerfile-php56 .
-	docker build -t $(NAME)-php70 -f ./build/Dockerfile-php70 .
-	docker build -t $(NAME)-hhvm -f ./build/Dockerfile-hhvm .
-	docker build -t $(NAME)-php71 -f ./build/Dockerfile-php71 .
+.PHONY: clean
+clean: ## Purge all related artifacts.
+	-@docker rm -fv $(NAME) 2>/dev/null
+	-@rm -rf ./vendor 2>/dev/null
 
-vendor-on-host:
-	docker create --name $(NAME)-php71 $(NAME)-php71
-	docker cp $(NAME)-php71:/app/vendor ./
-	docker rm -fv $(NAME)-php71
+.PHONY: test
+test: ## Run all tests.
+	docker run --rm -it -v $(shell pwd):/app $(NAME) sh -c "composer test"
 
-test:
-	docker run --rm -it -v $(shell pwd):/app $(NAME)-php56 composer test
-	docker run --rm -it -v $(shell pwd):/app $(NAME)-php70 composer test
-	-docker run --rm -it -v $(shell pwd):/app $(NAME)-hhvm hhvm ./vendor/bin/codecept run --env bin --env phar --skip-group nohhvm
-	docker run --rm -it -v $(shell pwd):/app $(NAME)-php71 composer test
-
-release:
-	docker run --rm -it -v $(shell pwd):/app $(NAME)-php71 composer phar
+.PHONY: help
+help: ## Output this help.
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'

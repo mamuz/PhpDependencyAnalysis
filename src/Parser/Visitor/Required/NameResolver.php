@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +25,15 @@
 
 namespace PhpDA\Parser\Visitor\Required;
 
+use PhpDA\Parser\NameContext;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\Types\Compound;
 use phpDocumentor\Reflection\Types\Context;
 use phpDocumentor\Reflection\Types\Object_;
 use PhpParser\Error;
+use PhpParser\ErrorHandler;
 use PhpParser\Node;
-use PhpParser\Node\Name;
-use PhpParser\Node\Stmt;
 use PhpParser\NodeVisitor\NameResolver as PhpParserNameResolver;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -53,8 +53,8 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
     /** @var SplFileInfo */
     private $file;
 
-    /** @var array */
-    private $namespaceAliases;
+    /** @var DocBlockFactory */
+    private $docBlockFactory;
 
     /** @var array */
     private $validTags = [
@@ -76,8 +76,10 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         'true', 'false', 'object',
     ];
 
-    public function __construct()
+    public function __construct(ErrorHandler $errorHandler = null, array $options = [])
     {
+        parent::__construct($errorHandler, $options);
+        $this->nameContext = new NameContext($errorHandler ?? new ErrorHandler\Throwing);
         $this->logger = new NullLogger;
         $this->docBlockFactory = DocBlockFactory::createInstance();
     }
@@ -95,35 +97,23 @@ class NameResolver extends PhpParserNameResolver implements LoggerAwareInterface
         $this->file = $file;
     }
 
-    protected function addAlias(Stmt\UseUse $use, $type, Name $prefix = null)
-    {
-        parent::addAlias($use, $type, $prefix);
-
-        $aliasName = $use->alias;
-        $type |= $use->type;
-
-        if (isset($this->aliases[$type][$aliasName])) {
-            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][$aliasName];
-        } elseif (isset($this->aliases[$type][strtolower($aliasName)])) {
-            $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][strtolower($aliasName)];
-        }
-    }
-
     public function enterNode(Node $node)
     {
         parent::enterNode($node);
 
         try {
             if ($doc = $node->getDocComment()) {
+                /** @var NameContext $nameContext */
+                $nameContext = $this->getNameContext();
                 $docBlock = $this->docBlockFactory->create(
                     str_replace('[]', '', $doc->getText()),
-                    new Context((string) $this->namespace, (array) $this->namespaceAliases)
+                    new Context((string) $nameContext->getNamespace(), $nameContext->getNamespaceAliases())
                 );
                 if ($tagNames = $this->collectTagNamesBy($docBlock->getTags())) {
                     $node->setAttribute(self::TAG_NAMES_ATTRIBUTE, $tagNames);
                 }
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $parseError = new Error($e->getMessage(), $node->getLine());
             $this->logger->warning($parseError->getMessage(), [$this->file]);
         }

@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v1.3.2 - UNRELEASED
-Nothing yet.
+## v2.0.0 - UNRELEASED
+### Changed
+- Remove phar archive support
 
 ## v1.3.1 - 2017-03-30
 ### Fixed

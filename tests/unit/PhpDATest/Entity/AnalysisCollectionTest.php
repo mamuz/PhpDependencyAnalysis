@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,14 +39,14 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingArrayCollection()
     {
-        $this->assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', $this->fixture);
+        self::assertInstanceOf('Doctrine\Common\Collections\ArrayCollection', $this->fixture);
     }
 
     public function testAttachingAnalyses()
     {
         $array = $this->fixture->getAll();
-        $this->assertInstanceOf('ArrayIterator', $array);
-        $this->assertSame(0, count($array));
+        self::assertInstanceOf('ArrayIterator', $array);
+        self::assertSame(0, count($array));
 
         $analysis1 = \Mockery::mock('PhpDA\Entity\Analysis');
         $analysis2 = \Mockery::mock('PhpDA\Entity\Analysis');
@@ -55,9 +55,9 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
         $this->fixture->attach($analysis2);
 
         $array = $this->fixture->getAll();
-        $this->assertInstanceOf('ArrayIterator', $array);
-        $this->assertSame(2, count($array));
-        $this->assertSame($analysis1, $array->offsetGet('0'));
-        $this->assertSame($analysis2, $array->offsetGet('1'));
+        self::assertInstanceOf('ArrayIterator', $array);
+        self::assertSame(2, count($array));
+        self::assertSame($analysis1, $array->offsetGet('0'));
+        self::assertSame($analysis2, $array->offsetGet('1'));
     }
 }

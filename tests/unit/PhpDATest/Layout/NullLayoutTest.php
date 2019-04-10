@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,66 +39,66 @@ class NullLayoutTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessGraph()
     {
-        $this->assertSame(array(), $this->fixture->getGraph());
+        self::assertSame(array(), $this->fixture->getGraph());
     }
 
     public function testAccessGroup()
     {
-        $this->assertSame(array(), $this->fixture->getGroup());
+        self::assertSame(array(), $this->fixture->getGroup());
     }
 
     public function testAccessEdge()
     {
-        $this->assertSame(array(), $this->fixture->getEdge());
+        self::assertSame(array(), $this->fixture->getEdge());
     }
 
     public function testAccessEdgeExtend()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeExtend());
+        self::assertSame(array(), $this->fixture->getEdgeExtend());
     }
 
     public function testAccessEdgeImplement()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeImplement());
+        self::assertSame(array(), $this->fixture->getEdgeImplement());
     }
 
     public function testAccessEdgeTraitUse()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeTraitUse());
+        self::assertSame(array(), $this->fixture->getEdgeTraitUse());
     }
 
     public function testAccessEdgeUnsupported()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeUnsupported());
+        self::assertSame(array(), $this->fixture->getEdgeUnsupported());
     }
 
     public function testAccessEdgeNamespacedString()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeNamespacedString());
+        self::assertSame(array(), $this->fixture->getEdgeNamespacedString());
     }
 
     public function testAccessVertex()
     {
-        $this->assertSame(array(), $this->fixture->getVertex());
+        self::assertSame(array(), $this->fixture->getVertex());
     }
 
     public function testAccessVertexNamespacedString()
     {
-        $this->assertSame(array(), $this->fixture->getVertexNamespacedString());
+        self::assertSame(array(), $this->fixture->getVertexNamespacedString());
     }
 
     public function testAccessVertexUnsupported()
     {
-        $this->assertSame(array(), $this->fixture->getVertexUnsupported());
+        self::assertSame(array(), $this->fixture->getVertexUnsupported());
     }
 
     public function testAccessEdgeInvalid()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeInvalid());
+        self::assertSame(array(), $this->fixture->getEdgeInvalid());
     }
 
     public function testAccessEdgeCycle()
     {
-        $this->assertSame(array(), $this->fixture->getEdgeCycle());
+        self::assertSame(array(), $this->fixture->getEdgeCycle());
     }
 }

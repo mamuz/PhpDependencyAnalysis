@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -287,7 +287,6 @@ class Builder implements BuilderInterface
     /**
      * @param Name           $dependency
      * @param AttributeAware $edge
-     * @return array
      */
     private function validateDependency(Name $dependency, AttributeAware $edge)
     {

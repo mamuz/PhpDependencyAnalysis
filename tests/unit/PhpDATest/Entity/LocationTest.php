@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,37 +67,37 @@ class LocationTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessFile()
     {
-        $this->assertSame($this->file, $this->fixture->getFile());
+        self::assertSame($this->file, $this->fixture->getFile());
     }
 
     public function testAccessIsComment()
     {
-        $this->assertTrue($this->fixture->isComment());
+        self::assertTrue($this->fixture->isComment());
 
         $attributes = array(
             'startLine' => 30,
             'endLine'   => 40,
         );
         $this->fixture = new Location($this->file, $this->createNameMock($attributes));
-        $this->assertFalse($this->fixture->isComment());
+        self::assertFalse($this->fixture->isComment());
     }
 
     public function testAccessStartAndEndLine()
     {
-        $this->assertSame($this->defaultAttributes['startLine'], $this->fixture->getStartLine());
-        $this->assertSame($this->defaultAttributes['endLine'], $this->fixture->getEndLine());
+        self::assertSame($this->defaultAttributes['startLine'], $this->fixture->getStartLine());
+        self::assertSame($this->defaultAttributes['endLine'], $this->fixture->getEndLine());
     }
 
     public function testDomainExceptionForMissingStartline()
     {
-        $this->setExpectedException('DomainException');
+        self::expectException('DomainException');
         $attributes = array('endLine' => 40);
         $this->fixture = new Location($this->file, $this->createNameMock($attributes));
     }
 
     public function testDomainExceptionForMissingEndline()
     {
-        $this->setExpectedException('DomainException');
+        self::expectException('DomainException');
         $attributes = array('startLine' => 40);
         $this->fixture = new Location($this->file, $this->createNameMock($attributes));
     }
@@ -106,9 +106,9 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     {
         $data = $this->fixture->toArray();
 
-        $this->assertArrayHasKey('file', $data);
-        $this->assertSame(30, $data['startLine']);
-        $this->assertSame(40, $data['endline']);
-        $this->assertTrue($data['isComment']);
+        self::assertArrayHasKey('file', $data);
+        self::assertSame(30, $data['startLine']);
+        self::assertSame(40, $data['endline']);
+        self::assertTrue($data['isComment']);
     }
 }

@@ -23,40 +23,39 @@
  * SOFTWARE.
  */
 
-namespace PhpDATest\Entity;
+namespace PhpDA\Parser;
 
-use PhpDA\Entity\Analysis;
+use PhpParser\Node\Name;
 
-class AnalysisTest extends \PHPUnit_Framework_TestCase
+class NameContext extends \PhpParser\NameContext
 {
-    /** @var Analysis */
-    protected $fixture;
+    /** @var array */
+    private $namespaceAliases = [];
 
-    /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
-    protected $file;
-
-    protected function setUp()
+    public function addAlias(Name $name, string $aliasName, int $type, array $errorAttrs = [])
     {
-        $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
-        $this->fixture = new Analysis($this->file);
+        parent::addAlias($name, $aliasName, $type);
+
+        // if ($name instanceof UseUse) {
+        //     $aliasName = $name->alias;
+        //     $type |= $name->type;
+        //
+        //     if (isset($this->aliases[$type][$aliasName])) {
+        //         $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][$aliasName];
+        //     } elseif (isset($this->aliases[$type][strtolower($aliasName)])) {
+        //         $this->namespaceAliases[$aliasName] = (string) $this->aliases[$type][strtolower($aliasName)];
+        //     }
+        // }
+        if (isset($this->origAliases[$type][$aliasName])) {
+            $this->namespaceAliases[$aliasName] = (string) $this->origAliases[$type][$aliasName];
+        }
     }
 
-    public function testAccessFile()
+    /**
+     * @return \PhpParser\Node\Name[][]
+     */
+    public function getNamespaceAliases()
     {
-        self::assertSame($this->file, $this->fixture->getFile());
-    }
-
-    public function testAdtCreation()
-    {
-        $adt1 = $this->fixture->createAdt();
-        $adt2 = $this->fixture->createAdt();
-
-        self::assertInstanceOf('PhpDA\Entity\Adt', $adt1);
-        self::assertNotSame($adt2, $adt1);
-        self::assertEquals($adt2, $adt1);
-
-        $adts = $this->fixture->getAdts();
-        self::assertSame($adts[0], $adt1);
-        self::assertSame($adts[1], $adt2);
+        return $this->namespaceAliases;
     }
 }

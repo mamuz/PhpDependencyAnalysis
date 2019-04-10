@@ -13,7 +13,7 @@ class InvalidConfigCest
         'namespaceFilter'    => 'does not exist',
         'referenceValidator' => 'does not exist',
         'visitor'            => 'does not exist',
-        'visitorOptions'     => 'delimiter must',
+       // 'visitorOptions'     => 'delimiter must', @todo
     ];
 
     /**
@@ -25,10 +25,7 @@ class InvalidConfigCest
             $configfile = codecept_data_dir('invalid-configs') . DIRECTORY_SEPARATOR . $config . '.yml';
             exec($tester->getTool() . ' -q analyze ' . $configfile . ' 2>&1', $output, $return);
 
-            if (!defined('HHVM_VERSION')) {
-                $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
-            }
-
+            $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
             $tester->assertSame(2, $return);
             unset($output);
         }

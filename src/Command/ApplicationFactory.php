@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -54,10 +54,6 @@ class ApplicationFactory implements FactoryInterface
         $app->setDefaultCommand(Message::CMD_ANALYZE);
         $app->add($this->createAnalyzeCommand());
 
-        if (\Phar::running()) {
-            $app->add($this->createUpdateCommand());
-        }
-
         return $app;
     }
 
@@ -72,19 +68,6 @@ class ApplicationFactory implements FactoryInterface
         $command->setDescription(Message::CMD_ANALYZE_DESCR);
         $command->setConfigParser(new Parser);
         $command->setStrategyLoader(new Loader);
-
-        return $command;
-    }
-
-    /**
-     * @return Update
-     */
-    protected function createUpdateCommand()
-    {
-        $command = new Update(Message::CMD_UPDATE);
-
-        $command->setDescription(MessageInterface::CMD_UPDATE_DESCR);
-        $command->setHelp(Message::CMD_UPDATE_HELP);
 
         return $command;
     }

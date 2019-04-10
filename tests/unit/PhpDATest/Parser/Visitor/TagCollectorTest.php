@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,15 +41,12 @@ class TagCollectorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        try {
-            $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
-            $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
-            $this->fixture = new TagCollector;
-            $this->fixture->setAdt($this->adt);
-            $this->fixture->setNodeNameFilter($this->nodeNameFilter);
-        } catch (\LogicException $e) {
-            $this->markTestSkipped($e->getMessage());
-        }
+        $this->adt = \Mockery::mock('PhpDA\Entity\Adt');
+        $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
+        $this->fixture = new TagCollector;
+        $this->fixture->setAdt($this->adt);
+        $this->fixture->setNodeNameFilter($this->nodeNameFilter);
+
     }
 
     public function testNotCollectingNodeNotHavingTagNames()
@@ -80,7 +77,6 @@ class TagCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
@@ -94,12 +90,12 @@ class TagCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUsedNamespace')->twice()->andReturnUsing(
-            function ($object) use ($testcase, $attributes) {
+            function ($object) use ($attributes) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertTrue($object->getAttribute('isComment'));
-                $testcase->assertContains($object->toString(), array('foo', 'bar'));
-                $testcase->assertSame('bar', $object->getAttribute('foo'));
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertTrue($object->getAttribute('isComment'));
+                self::assertContains($object->toString(), array('foo', 'bar'));
+                self::assertSame('bar', $object->getAttribute('foo'));
             }
         );
 

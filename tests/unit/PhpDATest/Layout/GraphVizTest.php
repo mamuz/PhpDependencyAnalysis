@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,7 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');
-
-        $this->fixture = new GraphViz($this->graph);
+        $this->fixture = new GraphViz();
     }
 
     protected function tearDown()
@@ -50,7 +48,7 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingFhacultyGraphViz()
     {
-        $this->assertInstanceOf('Graphp\GraphViz\GraphViz', $this->fixture);
+        self::assertInstanceOf('Graphp\GraphViz\GraphViz', $this->fixture);
     }
 
     public function testGroupLayouting()
@@ -58,12 +56,12 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setGroups(array(1 => 'foo', '2' => 'bar'));
         $this->fixture->setGroupLayout(array('baz' => 'boo', 'attr' => 5));
 
-        $this->assertSame(3, GraphViz::escape(3));
-        $this->assertSame('"foo"', GraphViz::escape('foo'));
-        $this->assertSame('2', GraphViz::escape('2'));
-        $this->assertSame('1', GraphViz::escape('1'));
+        self::assertSame(3, GraphViz::escape(3));
+        self::assertSame('"foo"', GraphViz::escape('foo'));
+        self::assertSame('2', GraphViz::escape('2'));
+        self::assertSame('1', GraphViz::escape('1'));
 
         $expected = '"foo"' . PHP_EOL . 'baz="boo";' . PHP_EOL . 'attr=5;';
-        $this->assertSame($expected, GraphViz::escape(1));
+        self::assertSame($expected, GraphViz::escape(1));
     }
 }

@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,18 +58,18 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessRequiredVisitors()
     {
-        $this->assertSame($this->requiredVisitors, $this->fixture->getRequiredVisitors());
+        self::assertSame($this->requiredVisitors, $this->fixture->getRequiredVisitors());
     }
 
     public function testMutateAndAccessVisitorLoader()
     {
         $this->fixture->setVisitorLoader($this->visitorLoader);
-        $this->assertSame($this->visitorLoader, $this->fixture->getVisitorLoader());
+        self::assertSame($this->visitorLoader, $this->fixture->getVisitorLoader());
     }
 
     public function testNullPointerExceptionForAccessVisitorLoader()
     {
-        $this->setExpectedException('DomainException');
+        self::expectException('DomainException');
         $this->fixture->getVisitorLoader();
     }
 
@@ -113,7 +113,7 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
 
     public function testBindingInvalidVisitor()
     {
-        $this->setExpectedException('RuntimeException');
+        self::expectException('RuntimeException');
 
         $visitors = array('foo',);
 
@@ -125,12 +125,12 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessAdt()
     {
-        $this->assertNull($this->fixture->getAdt());
-        $this->assertFalse($this->fixture->hasAdt());
+        self::assertNull($this->fixture->getAdt());
+        self::assertFalse($this->fixture->hasAdt());
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->fixture->setAdt($adt);
-        $this->assertTrue($this->fixture->hasAdt());
-        $this->assertSame($adt, $this->fixture->getAdt());
+        self::assertTrue($this->fixture->hasAdt());
+        self::assertSame($adt, $this->fixture->getAdt());
     }
 
     public function testTraversingWithAdtAwareness()
@@ -150,7 +150,7 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
 
         $nodes = array('foo', 'bar');
 
-        $this->assertSame($nodes, $this->fixture->traverse($nodes));
+        self::assertSame($nodes, $this->fixture->traverse($nodes));
     }
 
     public function testTraversingWithoutAdtAwareness()
@@ -166,6 +166,6 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
 
         $nodes = array('foo', 'bar');
 
-        $this->assertSame($nodes, $this->fixture->traverse($nodes));
+        self::assertSame($nodes, $this->fixture->traverse($nodes));
     }
 }

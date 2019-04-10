@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,36 +45,36 @@ class GroupGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testIdRetrievalWithEmptyGroupLength()
     {
-        $this->assertSame(array(), $this->fixture->getGroups());
-        $this->assertNull($this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(), $this->fixture->getGroups());
+        self::assertSame(array(), $this->fixture->getGroups());
+        self::assertNull($this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(), $this->fixture->getGroups());
     }
 
     public function testIdRetrievalWithGroupLength()
     {
         $this->fixture->setGroupLength(2);
-        $this->assertSame(array(), $this->fixture->getGroups());
+        self::assertSame(array(), $this->fixture->getGroups());
 
-        $this->assertSame(-1, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar'), $this->fixture->getGroups());
+        self::assertSame(-1, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar'), $this->fixture->getGroups());
 
-        $this->assertSame(-1, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar'), $this->fixture->getGroups());
+        self::assertSame(-1, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar'), $this->fixture->getGroups());
 
         $this->namespace->parts = array('Baz', 'Foo');
 
-        $this->assertSame(-2, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo'), $this->fixture->getGroups());
+        self::assertSame(-2, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo'), $this->fixture->getGroups());
 
-        $this->assertSame(-2, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo'), $this->fixture->getGroups());
+        self::assertSame(-2, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo'), $this->fixture->getGroups());
 
         $this->namespace->parts = array('Baz');
 
-        $this->assertSame(-3, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo', -3 => 'Baz'), $this->fixture->getGroups());
+        self::assertSame(-3, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo', -3 => 'Baz'), $this->fixture->getGroups());
 
-        $this->assertSame(-3, $this->fixture->getIdFor($this->namespace));
-        $this->assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo', -3 => 'Baz'), $this->fixture->getGroups());
+        self::assertSame(-3, $this->fixture->getIdFor($this->namespace));
+        self::assertSame(array(-1 => 'Foo\\Bar', -2 => 'Baz\\Foo', -3 => 'Baz'), $this->fixture->getGroups());
     }
 }

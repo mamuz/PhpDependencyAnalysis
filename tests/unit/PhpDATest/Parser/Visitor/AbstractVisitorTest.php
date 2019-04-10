@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,37 +37,37 @@ class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingNodeVisitor()
     {
-        $this->assertInstanceOf('PhpParser\NodeVisitorAbstract', $this->fixture);
+        self::assertInstanceOf('PhpParser\NodeVisitorAbstract', $this->fixture);
     }
 
     public function testMutateAndAccessNodeNameFilter()
     {
         $filter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
         $this->fixture->setNodeNameFilter($filter);
-        $this->assertSame($filter, $this->fixture->getNodeNameFilter());
+        self::assertSame($filter, $this->fixture->getNodeNameFilter());
     }
 
     public function testMutateAndAccessNodeNameFilterInitial()
     {
-        $this->assertInstanceOf('PhpDA\Parser\Filter\NodeName', $this->fixture->getNodeNameFilter());
+        self::assertInstanceOf('PhpDA\Parser\Filter\NodeName', $this->fixture->getNodeNameFilter());
     }
 
     public function testMutateAndAccessAdt()
     {
         $adt = \Mockery::mock('PhpDA\Entity\Adt');
         $this->fixture->setAdt($adt);
-        $this->assertSame($adt, $this->fixture->getAdt());
+        self::assertSame($adt, $this->fixture->getAdt());
     }
 
     public function testNullPointerExceptionOnAdtAccess()
     {
-        $this->setExpectedException('DomainException');
+        self::expectException('DomainException');
         $this->fixture->getAdt();
     }
 
     public function testAccessNodeNameFilter()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             'PhpDA\Parser\Filter\NodeNameInterface',
             $this->fixture->getNodeNameFilter()
         );

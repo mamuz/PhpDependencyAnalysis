@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -91,7 +91,6 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollecting()
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Scalar\String_');
         $node->shouldReceive('getAttributes')->andReturn($attributes);
@@ -102,10 +101,10 @@ class NamespacedStringCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addNamespacedString')->once()->andReturnUsing(
-            function ($object) use ($testcase) {
+            function ($object) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), '\\Foo\\Bar');
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertSame($object->toString(), '\\Foo\\Bar');
             }
         );
 

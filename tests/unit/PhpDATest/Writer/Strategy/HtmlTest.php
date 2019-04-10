@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,16 +39,16 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
     public function testMutateAndAccessImagePlaceholder()
     {
-        $this->assertSame('{GRAPH_IMAGE}', $this->fixture->getImagePlaceholder());
+        self::assertSame('{GRAPH_IMAGE}', $this->fixture->getImagePlaceholder());
         $this->fixture->setImagePlaceholder('foo');
-        $this->assertSame('foo', $this->fixture->getImagePlaceholder());
+        self::assertSame('foo', $this->fixture->getImagePlaceholder());
     }
 
     public function testMutateAndAccessTemplate()
     {
-        $this->assertSame('<html><body>{GRAPH_IMAGE}</body></html>', $this->fixture->getTemplate());
+        self::assertSame('<html><body>{GRAPH_IMAGE}</body></html>', $this->fixture->getTemplate());
         $this->fixture->setTemplate('foo');
-        $this->assertSame('foo', $this->fixture->getTemplate());
+        self::assertSame('foo', $this->fixture->getTemplate());
     }
 
     public function testFilter()
@@ -62,7 +62,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 
         $this->fixture->setGraphViz($graphViz);
 
-        $this->assertSame(
+        self::assertSame(
             '<html><body>foo</body></html>',
             $this->fixture->filter($graph)
         );

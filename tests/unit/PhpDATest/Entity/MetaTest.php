@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,57 +39,57 @@ class MetaTest extends \PHPUnit_Framework_TestCase
 
     public function testIsClass()
     {
-        $this->assertFalse($this->fixture->isClass());
-        $this->assertFalse($this->fixture->isTrait());
-        $this->assertFalse($this->fixture->isInterface());
+        self::assertFalse($this->fixture->isClass());
+        self::assertFalse($this->fixture->isTrait());
+        self::assertFalse($this->fixture->isInterface());
 
         $this->fixture->setClass();
-        $this->assertTrue($this->fixture->isClass());
-        $this->assertFalse($this->fixture->isTrait());
-        $this->assertFalse($this->fixture->isInterface());
+        self::assertTrue($this->fixture->isClass());
+        self::assertFalse($this->fixture->isTrait());
+        self::assertFalse($this->fixture->isInterface());
     }
 
     public function testIsInterface()
     {
-        $this->assertFalse($this->fixture->isClass());
-        $this->assertFalse($this->fixture->isTrait());
-        $this->assertFalse($this->fixture->isInterface());
+        self::assertFalse($this->fixture->isClass());
+        self::assertFalse($this->fixture->isTrait());
+        self::assertFalse($this->fixture->isInterface());
 
         $this->fixture->setInterface();
-        $this->assertFalse($this->fixture->isClass());
-        $this->assertFalse($this->fixture->isTrait());
-        $this->assertTrue($this->fixture->isInterface());
+        self::assertFalse($this->fixture->isClass());
+        self::assertFalse($this->fixture->isTrait());
+        self::assertTrue($this->fixture->isInterface());
     }
 
     public function testIsTrait()
     {
-        $this->assertFalse($this->fixture->isClass());
-        $this->assertFalse($this->fixture->isTrait());
-        $this->assertFalse($this->fixture->isInterface());
+        self::assertFalse($this->fixture->isClass());
+        self::assertFalse($this->fixture->isTrait());
+        self::assertFalse($this->fixture->isInterface());
 
         $this->fixture->setTrait();
-        $this->assertFalse($this->fixture->isClass());
-        $this->assertTrue($this->fixture->isTrait());
-        $this->assertFalse($this->fixture->isInterface());
+        self::assertFalse($this->fixture->isClass());
+        self::assertTrue($this->fixture->isTrait());
+        self::assertFalse($this->fixture->isInterface());
     }
 
     public function testIsAbstract()
     {
-        $this->assertFalse($this->fixture->isAbstract());
+        self::assertFalse($this->fixture->isAbstract());
         $this->fixture->setAbstract();
-        $this->assertTrue($this->fixture->isAbstract());
+        self::assertTrue($this->fixture->isAbstract());
     }
 
     public function testIsFinal()
     {
-        $this->assertFalse($this->fixture->isFinal());
+        self::assertFalse($this->fixture->isFinal());
         $this->fixture->setFinal();
-        $this->assertTrue($this->fixture->isFinal());
+        self::assertTrue($this->fixture->isFinal());
     }
 
     public function testMutateAndAccessExtendedNamespaces()
     {
-        $this->assertSame(array(), $this->fixture->getExtendedNamespaces());
+        self::assertSame(array(), $this->fixture->getExtendedNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
@@ -98,12 +98,12 @@ class MetaTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addExtendedNamespace($name1);
         $this->fixture->addExtendedNamespace($name2);
 
-        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getExtendedNamespaces());
+        self::assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getExtendedNamespaces());
     }
 
     public function testMutateAndAccessImplementedNamespaces()
     {
-        $this->assertSame(array(), $this->fixture->getImplementedNamespaces());
+        self::assertSame(array(), $this->fixture->getImplementedNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
@@ -112,12 +112,12 @@ class MetaTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addImplementedNamespace($name1);
         $this->fixture->addImplementedNamespace($name2);
 
-        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getImplementedNamespaces());
+        self::assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getImplementedNamespaces());
     }
 
     public function testMutateAndAccessUsedTraitNamespaces()
     {
-        $this->assertSame(array(), $this->fixture->getUsedTraitNamespaces());
+        self::assertSame(array(), $this->fixture->getUsedTraitNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
@@ -126,12 +126,12 @@ class MetaTest extends \PHPUnit_Framework_TestCase
         $this->fixture->addUsedTraitNamespace($name1);
         $this->fixture->addUsedTraitNamespace($name2);
 
-        $this->assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getUsedTraitNamespaces());
+        self::assertSame(array('1' => $name1, '2' => $name2), $this->fixture->getUsedTraitNamespaces());
     }
 
     public function testMutateAndAccessAllNamespaces()
     {
-        $this->assertSame(array(), $this->fixture->getAllNamespaces());
+        self::assertSame(array(), $this->fixture->getAllNamespaces());
 
         $name1 = \Mockery::mock('PhpParser\Node\Name');
         $name1->shouldReceive('toString')->andReturn('1');
@@ -145,15 +145,15 @@ class MetaTest extends \PHPUnit_Framework_TestCase
 
         $namespaces = $this->fixture->getAllNamespaces();
 
-        $this->assertSame(3, sizeof($namespaces));
-        $this->assertSame($name1, $namespaces['1']);
-        $this->assertSame($name2, $namespaces['2']);
-        $this->assertSame($name3, $namespaces['3']);
+        self::assertSame(3, sizeof($namespaces));
+        self::assertSame($name1, $namespaces['1']);
+        self::assertSame($name2, $namespaces['2']);
+        self::assertSame($name3, $namespaces['3']);
     }
 
     public function testArrayRepresentation()
     {
-        $this->assertSame(
+        self::assertSame(
             array(
                 'type'                  => '',
                 'implementedNamespaces' => array(),

@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -68,12 +68,12 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessNodeTraverser()
     {
-        $this->assertSame($this->nodeTraverser, $this->fixture->getNodeTraverser());
+        self::assertSame($this->nodeTraverser, $this->fixture->getNodeTraverser());
     }
 
     public function testAccessLogger()
     {
-        $this->assertSame($this->logger, $this->fixture->getLogger());
+        self::assertSame($this->logger, $this->fixture->getLogger());
     }
 
     public function testAnalyzeWithParseError()
@@ -83,29 +83,28 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->logger->shouldReceive('error')->once()->with('errormessage on unknown line', array($this->file));
 
         $analysis = $this->fixture->analyze($this->file);
-        $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+        self::assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
     }
 
     public function testAnalyze()
     {
-        $testcase = $this;
         $stmts = array('foo', 'bar');
         $adts = array('baz', 'faz');
         $this->parser->shouldReceive('parse')->once()->with('foo')->andReturn($stmts);
         $this->adtTraverser->shouldReceive('bindFile')->once()->with($this->file);
         $this->adtTraverser->shouldReceive('getAdtStmtsBy')->once()->with($stmts)->andReturn($adts);
         $this->nodeTraverser->shouldReceive('setAdt')->twice()->andReturnUsing(
-            function ($adt) use ($testcase) {
-                $testcase->assertInstanceOf('PhpDA\Entity\Adt', $adt);
+            function ($adt) {
+                self::assertInstanceOf('PhpDA\Entity\Adt', $adt);
             }
         );
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('baz'));
         $this->nodeTraverser->shouldReceive('traverse')->once()->with(array('faz'));
 
         $analysis = $this->fixture->analyze($this->file);
-        $this->assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
+        self::assertInstanceOf('PhpDA\Entity\Analysis', $analysis);
 
         $collection = $this->fixture->getAnalysisCollection();
-        $this->assertSame($analysis, $collection->offsetGet('0'));
+        self::assertSame($analysis, $collection->offsetGet('0'));
     }
 }

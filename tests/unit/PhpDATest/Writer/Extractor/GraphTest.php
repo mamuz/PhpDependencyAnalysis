@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -110,6 +110,6 @@ class GraphTest extends \PHPUnit_Framework_TestCase
 
         $graph->shouldReceive('getEdges')->once()->andReturn(array($edge));
 
-        $this->assertSame($expected, $this->fixture->extract($graph));
+        self::assertSame($expected, $this->fixture->extract($graph));
     }
 }

@@ -28,20 +28,6 @@
             "belongsToCycle": false,
             "referenceValidatorMessages": null
         },
-        "PackageX\\NamespacedString=>foo_bar": {
-            "from": "PackageX\\NamespacedString",
-            "to": "foo_bar",
-            "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/NamespacedString.php",
-                    "startLine": 16,
-                    "endline": 16,
-                    "isComment": false
-                }
-            ],
-            "belongsToCycle": false,
-            "referenceValidatorMessages": null
-        },
         "PackageX\\NamespacedString=>stdClass": {
             "from": "PackageX\\NamespacedString",
             "to": "stdClass",
@@ -76,8 +62,7 @@
                 "unsupportedStmts": [],
                 "namespacedStrings": {
                     "\\Test\\Object": "\\Test\\Object",
-                    "\\Test": "\\Test",
-                    "foo_bar": "foo_bar"
+                    "\\Test": "\\Test"
                 }
             },
             "location": {
@@ -97,13 +82,6 @@
         },
         "\\Test\\Object": {
             "name": "\\Test\\Object",
-            "usedByCount": 1,
-            "adt": [],
-            "location": null,
-            "group": 0
-        },
-        "foo_bar": {
-            "name": "foo_bar",
             "usedByCount": 1,
             "adt": [],
             "location": null,

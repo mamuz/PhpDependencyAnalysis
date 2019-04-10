@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -74,42 +74,41 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCollectingCallUserFunc()
     {
-        $this->assertCollecting('call_user_func');
+        self::assertCollecting('call_user_func');
     }
 
     public function testCollectingCallUserFuncArray()
     {
-        $this->assertCollecting('call_user_func_array');
+        self::assertCollecting('call_user_func_array');
     }
 
     public function testCollectingCallUserMethod()
     {
-        $this->assertCollecting('call_user_method');
+        self::assertCollecting('call_user_method');
     }
 
     public function testCollectingCallUserMethodArray()
     {
-        $this->assertCollecting('call_user_method_array');
+        self::assertCollecting('call_user_method_array');
     }
 
     public function testCollectingCallForwardStaticCall()
     {
-        $this->assertCollecting('forward_static_call');
+        self::assertCollecting('forward_static_call');
     }
 
     public function testCollectingCallForwardStaticCallArray()
     {
-        $this->assertCollecting('forward_static_call_array');
+        self::assertCollecting('forward_static_call_array');
     }
 
     public function testCollectingCallCreateFunction()
     {
-        $this->assertCollecting('create_function');
+        self::assertCollecting('create_function');
     }
 
     protected function assertCollecting($funcName)
     {
-        $testcase = $this;
         $attributes = array('foo' => 'bar');
         $node = \Mockery::mock('PhpParser\Node\Expr\FuncCall');
         $name = \Mockery::mock('PhpParser\Node\Name');
@@ -122,10 +121,10 @@ class UnsupportedFuncCollectorTest extends \PHPUnit_Framework_TestCase
             }
         );
         $this->adt->shouldReceive('addUnsupportedStmt')->once()->andReturnUsing(
-            function ($object) use ($testcase, $funcName) {
+            function ($object) use ($funcName) {
                 /** @var \PhpParser\Node\Name $object */
-                $testcase->assertInstanceOf('PhpParser\Node\Name', $object);
-                $testcase->assertSame($object->toString(), $funcName);
+                self::assertInstanceOf('PhpParser\Node\Name', $object);
+                self::assertSame($object->toString(), $funcName);
             }
         );
 

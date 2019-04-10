@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,12 +39,12 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingPhpParserNameResolver()
     {
-        $this->assertInstanceOf('PhpParser\NodeVisitor\NameResolver', $this->fixture);
+        self::assertInstanceOf('PhpParser\NodeVisitor\NameResolver', $this->fixture);
     }
 
     public function testImplementingLoggerAwareInterface()
     {
-        $this->assertInstanceOf('Psr\Log\LoggerAwareInterface', $this->fixture);
+        self::assertInstanceOf('Psr\Log\LoggerAwareInterface', $this->fixture);
     }
 
     public function testResolving()
@@ -56,7 +56,6 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolvingDocBlock()
     {
-
         $docBlock = '
         /**
          * MyClass <please specify short description>
@@ -94,6 +93,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
          * @throws Filter\RuntimeException
          */
         ';
+
         $comment = \Mockery::mock('PhpParser\Comment\Doc');
         $comment->shouldReceive('getText')->andReturn($docBlock);
         $node = \Mockery::mock('PhpParser\Node');
@@ -134,14 +134,13 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidDocBlock()
     {
-        $testcase = $this;
         $file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $logger = \Mockery::mock('Psr\Log\LoggerInterface');
         $logger->shouldReceive('warning')->once()->andReturnUsing(
-            function ($message, $options) use ($file, $testcase) {
-                $testcase->assertTrue(is_string($message));
-                $testcase->assertNotEmpty($message);
-                $testcase->assertSame(array($file), $options);
+            function ($message, $options) use ($file) {
+                self::assertTrue(is_string($message));
+                self::assertNotEmpty($message);
+                self::assertSame(array($file), $options);
             }
         );
 

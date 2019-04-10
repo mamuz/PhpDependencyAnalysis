@@ -2,7 +2,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Marco Muths
+ * Copyright (c) 2019 Marco Muths
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,13 +39,13 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
 
     public function testGetWithNotExisingClassfile()
     {
-        $this->setExpectedException('RuntimeException');
+        self::expectException('RuntimeException');
         $this->fixture->get('FooBar');
     }
 
     public function testGetPluginWithClassConstructorWithParams()
     {
-        $this->setExpectedException('RuntimeException');
+        self::expectException('RuntimeException');
         $this->fixture->get('PhpDATest\Plugin\Stub\ConstructerParam');
     }
 
@@ -54,7 +54,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $fqcn = 'PhpDATest\Plugin\Stub\Constructer';
         $plugin = $this->fixture->get($fqcn);
 
-        $this->assertInstanceOf($fqcn, $plugin);
+        self::assertInstanceOf($fqcn, $plugin);
     }
 
     public function testGetPluginWithoutConstructor()
@@ -62,14 +62,14 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         $fqcn = 'PhpDATest\Plugin\Stub\WithoutConstructer';
         $plugin = $this->fixture->get($fqcn);
 
-        $this->assertInstanceOf($fqcn, $plugin);
+        self::assertInstanceOf($fqcn, $plugin);
     }
 
     public function testGetPluginWithFactory()
     {
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\Factory');
 
-        $this->assertInstanceOf('stdClass', $plugin);
+        self::assertInstanceOf('stdClass', $plugin);
     }
 
     public function testGetPluginWithMutateOptions()
@@ -78,7 +78,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         /** @var \PhpDATest\Plugin\Stub\Option $plugin */
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\Option', $options);
 
-        $this->assertSame($options, $plugin->getOptions());
+        self::assertSame($options, $plugin->getOptions());
     }
 
     public function testGetPluginWithFactoryAndMutateOptions()
@@ -87,7 +87,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         /** @var \PhpDATest\Plugin\Stub\Option $plugin */
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\OptionFactory', $options);
 
-        $this->assertSame($options, $plugin->getOptions());
+        self::assertSame($options, $plugin->getOptions());
     }
 
     public function testGetPluginWithLoggerAwarenessAndNotHavingLogger()
@@ -95,7 +95,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAware');
 
-        $this->assertNull($plugin->getLogger());
+        self::assertNull($plugin->getLogger());
     }
 
     public function testGetPluginWithLoggerAwareness()
@@ -105,7 +105,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAware');
 
-        $this->assertSame($logger, $plugin->getLogger());
+        self::assertSame($logger, $plugin->getLogger());
     }
 
     public function testGetPluginWithFactoryAndLoggerAwareness()
@@ -115,6 +115,6 @@ class LoaderTest extends \PHPUnit_Framework_TestCase
         /** @var \PhpDATest\Plugin\Stub\LoggerAware $plugin */
         $plugin = $this->fixture->get('PhpDATest\Plugin\Stub\LoggerAwareFactory');
 
-        $this->assertSame($logger, $plugin->getLogger());
+        self::assertSame($logger, $plugin->getLogger());
     }
 }
