@@ -67,6 +67,8 @@ Perform an analysis with that configuration:
 ```sh
 $ phpda analyze ./myconfig.yml
 ```
+  
+You can create default `phpda.yml` file in current working directory and it will be used automatically.  
 
 After that open the graph file `./phpda.svg` with your prefered tool.
 

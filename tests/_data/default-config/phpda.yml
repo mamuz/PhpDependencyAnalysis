@@ -1,0 +1,26 @@
+mode: 'usage' # usage | call | inheritance
+source: './src'
+filePattern: '*.php'
+ignore: 'tests'
+formatter: 'PhpDA\Writer\Strategy\Svg'
+target: './phpda.svg'
+# namespaceFilter: 'Fully\Qualified\Class\Name\To\NamespaceFilter'
+# referenceValidator: 'Fully\Qualified\Class\Name\To\ReferenceValidator'
+groupLength: 1
+visitor:
+  - PhpDA\Parser\Visitor\TagCollector
+  - PhpDA\Parser\Visitor\SuperglobalCollector
+#  - PhpDA\Parser\Visitor\UnsupportedEvalCollector
+#  - PhpDA\Parser\Visitor\UnsupportedFuncCollector
+#  - PhpDA\Parser\Visitor\UnsupportedVarCollector
+#  - PhpDA\Parser\Visitor\UnsupportedGlobalCollector
+#  - PhpDA\Parser\Visitor\NamespacedStringCollector
+#  - PhpDA\Parser\Visitor\IocContainerAccessorCollector
+visitorOptions:
+  PhpDA\Parser\Visitor\Required\DeclaredNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\Required\MetaNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\Required\UsedNamespaceCollector: {minDepth: 2, sliceLength: 2}
+  PhpDA\Parser\Visitor\TagCollector: {minDepth: 2, sliceLength: 2}
+# classMap:
+#   Fully\Qualified\Class\Name\To\NamespaceFilter: 'path/to/NamespaceFilter.php'
+#   Fully\Qualified\Class\Name\To\ReferenceValidator: 'path/to/ReferenceValidator.php'
