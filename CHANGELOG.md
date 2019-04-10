@@ -1,9 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v2.0.0 - UNRELEASED
+## v2.0.0 - 2019-04-10
 ### Changed
 - Remove phar archive support
+- [Lookup for config file in current working directory](https://github.com/mamuz/PhpDependencyAnalysis/pull/35/)
+- [@see tag is interpreted wrong](https://github.com/mamuz/PhpDependencyAnalysis/issues/29)
+- [Symfony 4?](https://github.com/mamuz/PhpDependencyAnalysis/issues/38)
 
 ## v1.3.1 - 2017-03-30
 ### Fixed

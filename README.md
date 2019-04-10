@@ -21,8 +21,11 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
 
-## Usage with Docker
--tba
+## Installation with Docker
+
+```bash
+docker pull mamuz/php-analyzer
+```
 
 ## Features
 
@@ -42,7 +45,7 @@ See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examp
 Phpda can run out of the box by using a prepared [`configuration`](https://github.com/mamuz/PhpDependencyAnalysis/blob/master/phpda.yml.dist).
 As you can see configuration is defined by a [`YAML`](http://en.wikipedia.org/wiki/YAML) file.
 
-To provide your own configuration create a yml file, e.g. located in `./myconfig.yml`: 
+To provide your own configuration create a yml file, e.g. located in `./phpda.yml`: 
 
 ```yml
 mode: 'usage'
@@ -65,12 +68,8 @@ visitorOptions:
 Perform an analysis with that configuration:
 
 ```sh
-$ phpda analyze ./myconfig.yml
+$ docker run --rm -v $(pwd):/app mamuz/php-analyzer bash - c "phpda analyze"
 ```
-  
-You can create default `phpda.yml` file in current working directory and it will be used automatically.  
-
-After that open the graph file `./phpda.svg` with your prefered tool.
 
 Read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
 to get knowledge about all available options.
