@@ -256,15 +256,12 @@ class Analyze extends Command
     }
 
     /**
-     * Lookup for config file in current working directory.
-     *
      * @return string
      */
     private function getDefaultConfigFilePath()
     {
         $configFilePaths = glob(getcwd(). DIRECTORY_SEPARATOR . self::DEFAULT_CONFIGURATION_FILE_NAME . '.[yml|yaml]*');
 
-        // Return only first file path that matches the mask.
         if (count($configFilePaths) > 0) {
             return $configFilePaths[0];
         }
