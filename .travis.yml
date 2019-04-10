@@ -10,7 +10,7 @@ before_install:
   - composer install --prefer-source
 
 install:
-  - travis_retry composer update
+  - travis_retry composer install
 
 before_script:
   - mkdir -p tests/files
