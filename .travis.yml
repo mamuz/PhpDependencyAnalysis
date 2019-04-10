@@ -1,13 +1,7 @@
 language: php
 
-sudo: required
-
 php:
   - 7.3
-
-env:
-  - COMPOSER_OPTS=""
-  - COMPOSER_OPTS="--prefer-lowest"
 
 before_install:
   - sudo apt-get -qq update
@@ -16,7 +10,7 @@ before_install:
   - composer install --prefer-source
 
 install:
-  - travis_retry composer update $COMPOSER_OPTS
+  - travis_retry composer update
 
 before_script:
   - mkdir -p tests/files
