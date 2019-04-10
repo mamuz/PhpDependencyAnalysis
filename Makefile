@@ -6,7 +6,7 @@ all: build test ## Build and test
 
 .PHONY: build
 build: clean ## Build a new docker image.
-	docker build -t $(NAME) -f ./build/Dockerfile .
+	docker build -t $(NAME) -f ./Dockerfile-dev .
 	docker create --name $(NAME) $(NAME)
 	docker cp $(NAME):/app/vendor ./
 	docker cp $(NAME):/app/composer.lock ./composer.lock
@@ -19,7 +19,7 @@ clean: ## Purge all related artifacts.
 
 .PHONY: test
 test: ## Run all tests.
-	docker run --rm -it -v $(shell pwd):/app $(NAME) sh -c "composer test"
+	docker run --rm -it -v $(shell pwd):/app $(NAME) bash -c "composer test"
 
 .PHONY: help
 help: ## Output this help.
