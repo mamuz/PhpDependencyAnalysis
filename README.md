@@ -24,7 +24,7 @@ See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examp
 ## Installation with Docker
 
 ```bash
-docker pull mamuz/php-analyzer
+docker pull mamuz/php-dependency-analysis
 ```
 
 ## Features
@@ -68,7 +68,7 @@ visitorOptions:
 Perform an analysis with that configuration:
 
 ```sh
-$ docker run --rm -v $(pwd):/app mamuz/php-analyzer bash - c "phpda analyze"
+$ docker run --rm -v $(pwd):/app mamuz/php-dependency-analysis
 ```
 
 Read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
