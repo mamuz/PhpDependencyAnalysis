@@ -29,7 +29,6 @@ namespace PhpDA\Command;
 class Version
 {
     const VERSION = '@package_version@';
-    const LOCAL_VERSION = 'dev-master';
 
     /**
      * @return string
@@ -40,6 +39,6 @@ class Version
             return self::VERSION;
         }
 
-        return self::LOCAL_VERSION;
+        return '';
     }
 }

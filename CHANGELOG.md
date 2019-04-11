@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## v2.0.0 - 2019-04-11
+### Fixed
+- Version retrieval
+
+## v2.0.0 - 2019-04-11
 ### Added
 - Docker support
 ### Changed

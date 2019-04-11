@@ -100,7 +100,7 @@ class Analyze extends Command
             $config = $this->createConfigBy($input);
             $this->addClassMapToClassLoaderFrom($config);
             $this->addLogLevelFormatsTo($output);
-            $label = Message::NAME . ' (' . Version::read() . ')';
+            $label = Message::NAME . ' ' . Version::read();
 
             $output->writeln($label . PHP_EOL);
             $output->writeln(sprintf(Message::READ_CONFIG_FROM, $this->configFilePath) . PHP_EOL);

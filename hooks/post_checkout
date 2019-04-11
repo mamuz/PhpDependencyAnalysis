@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+echo "[***] Build version"
+
+git fetch --tags --unshallow --quiet origin
+find . -type f -print0 | xargs -0 sed -i "s/@package_version@/$(git describe --tags --always)/g"
