@@ -7,7 +7,7 @@ ENV COMPOSER_DISABLE_XDEBUG_WARN 1
 ENV PHPDA_DIR /opt/phpda
 ENV PATH="${PHPDA_DIR}/bin:${PATH}"
 
-RUN apk --no-cache add curl graphviz
+RUN apk --no-cache add curl openssl graphviz
 
 COPY ./bin ${PHPDA_DIR}/bin
 COPY ./src ${PHPDA_DIR}/src
