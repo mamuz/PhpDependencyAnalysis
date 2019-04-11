@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 993)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-993 2269.69,-993 2269.69,4 -4,4"/>
-<text text-anchor="middle" x="1132.84" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths (dev&#45;master)</text>
+<text text-anchor="middle" x="1132.84" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths(dev&#45;master)</text>
 <g id="clust1" class="cluster"><title>cluster_0</title>
 <path fill="#ccccff" stroke="#000033" d="M62.6892,-734C62.6892,-734 1346.19,-734 1346.19,-734 1352.19,-734 1358.19,-740 1358.19,-746 1358.19,-746 1358.19,-969 1358.19,-969 1358.19,-975 1352.19,-981 1346.19,-981 1346.19,-981 62.6892,-981 62.6892,-981 56.6892,-981 50.6892,-975 50.6892,-969 50.6892,-969 50.6892,-746 50.6892,-746 50.6892,-740 56.6892,-734 62.6892,-734"/>
 <text text-anchor="middle" x="89.1892" y="-965.8" font-family="Times,serif" font-size="14.00" fill="#000033">PackageA</text>

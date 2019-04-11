@@ -2,7 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## v2.0.0 - 2019-04-11
+### Added
+- Docker support
 ### Changed
+- Support only PHP7.3
 - Remove phar archive support
 - [Lookup for config file in current working directory](https://github.com/mamuz/PhpDependencyAnalysis/pull/35/)
 - [@see tag is interpreted wrong](https://github.com/mamuz/PhpDependencyAnalysis/issues/29)

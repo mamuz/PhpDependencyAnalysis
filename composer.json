@@ -27,7 +27,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-json": "*",
         "psr/log": "~1.0",
         "nikic/php-parser": "~4.0",
