@@ -21,11 +21,25 @@ Read the [Introduction-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/w
 
 See more [examples](https://github.com/mamuz/PhpDependencyAnalysis/wiki/4.-Examples).
 
-## Installation with Docker
+## Installation
+
+### As a Docker Image (recommend way)
 
 ```bash
 docker pull mamuz/phpda
 ```
+
+### As a Composer Dependency
+
+**NOTE:** For graph creation [`GraphViz`](http://www.graphviz.org/) is required on your machine, which is
+an open source graph visualization software and available for the most platforms.
+
+```sh
+$ composer require --dev mamuz/php-dependency-analysis
+
+### As a Phar
+
+Since version 2.0.0 not supoorted anymore.
 
 ## Features
 
