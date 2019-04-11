@@ -4,11 +4,12 @@ ENV COMPOSER_HOME /tmp
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_DISABLE_XDEBUG_WARN 1
 
-ENV PHPDA_DIR /opt/phpda
+ENV PHPDA_DIR /phpda
 ENV PATH="${PHPDA_DIR}/bin:${PATH}"
 
 RUN apk --no-cache add curl openssl graphviz
 
+COPY ./LICENSE ${PHPDA_DIR}/
 COPY ./bin ${PHPDA_DIR}/bin
 COPY ./src ${PHPDA_DIR}/src
 COPY ./composer* ${PHPDA_DIR}/
