@@ -49,14 +49,6 @@ interface MessageInterface
 
     const CMD_ANALYZE_OPT_TARGET = 'Filepath for writing created dependency graph.';
 
-    const CMD_UPDATE = 'update';
-
-    const CMD_UPDATE_DESCR = 'Update to latest version';
-
-    const CMD_UPDATE_HELP = "The update command checks github.com for newer version and if found, installs the latest.\n\nphpda update";
-
-    const CMD_UPDATE_OPT_ROLLBACK = 'Revert to an older installation';
-
     const READ_CONFIG_FROM = 'Configuration read from %s';
 
     const WRITE_GRAPH_TO = 'Write dependency graph to %s';
