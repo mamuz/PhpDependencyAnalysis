@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 444)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-444 500,-444 500,4 -4,4"/>
-<text text-anchor="middle" x="248" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths(dev&#45;master)</text>
+<text text-anchor="middle" x="248" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths</text>
 <!-- PackageX\\DocBlockTag -->
 <g id="node1" class="node"><title>PackageX\\DocBlockTag</title>
 <path fill="#9999cc" stroke="black" d="M155,-246C155,-246 12,-246 12,-246 6,-246 1.42109e-14,-240 1.42109e-14,-234 1.42109e-14,-234 1.42109e-14,-222 1.42109e-14,-222 1.42109e-14,-216 6,-210 12,-210 12,-210 155,-210 155,-210 161,-210 167,-216 167,-222 167,-222 167,-234 167,-234 167,-240 161,-246 155,-246"/>

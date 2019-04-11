@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 100)">
 <title>G</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-100 388,-100 388,4 -4,4"/>
-<text text-anchor="middle" x="192" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths(dev&#45;master)</text>
+<text text-anchor="middle" x="192" y="-6.6" font-family="Times,serif" font-size="8.00">PhpDependencyAnalysis by Marco Muths</text>
 <!-- PackageX\\Constant -->
 <g id="node1" class="node"><title>PackageX\\Constant</title>
 <path fill="#9999cc" stroke="black" d="M181.5,-74C181.5,-74 61.5,-74 61.5,-74 55.5,-74 49.5,-68 49.5,-62 49.5,-62 49.5,-50 49.5,-50 49.5,-44 55.5,-38 61.5,-38 61.5,-38 181.5,-38 181.5,-38 187.5,-38 193.5,-44 193.5,-50 193.5,-50 193.5,-62 193.5,-62 193.5,-68 187.5,-74 181.5,-74"/>
