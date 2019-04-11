@@ -16,5 +16,5 @@ COPY ./phpda* ${PHPDA_DIR}/
 RUN composer-install.sh && composer install -d ${PHPDA_DIR} --no-dev --no-scripts
 
 WORKDIR /app
-ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/phpda/bin/docker-entrypoint.sh"]
 CMD ["phpda"]

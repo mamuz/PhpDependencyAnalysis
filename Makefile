@@ -2,15 +2,19 @@ SHELL:=/bin/bash
 NAME = phpda
 
 .PHONY: all
-all: build test ## Build and test
+all: build-dev test ## Build and test
 
-.PHONY: build
-build: clean ## Build a new docker image.
+.PHONY: build-dev
+build-dev: clean ## Build a new docker image for development.
 	docker build -t $(NAME) -f ./Dockerfile-dev .
 	docker create --name $(NAME) $(NAME)
 	docker cp $(NAME):/app/vendor ./
 	docker cp $(NAME):/app/composer.lock ./composer.lock
 	docker rm -fv $(NAME)
+
+.PHONY: build-prod
+build-prod: ## Build a new docker image for production.
+	docker build -t $(NAME) .
 
 .PHONY: clean
 clean: ## Purge all related artifacts.
