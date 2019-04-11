@@ -36,10 +36,11 @@ an open source graph visualization software and available for the most platforms
 
 ```sh
 $ composer require --dev mamuz/php-dependency-analysis
+```
 
 ### As a Phar
 
-Since version 2.0.0 not supoorted anymore.
+Since version 2.0.0 not supported anymore.
 
 ## Features
 
