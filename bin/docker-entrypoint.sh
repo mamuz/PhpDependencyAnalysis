@@ -1,3 +1,12 @@
 #!/bin/sh
+set -e
 
-/app/bin/phpda analyze "$@"
+if [ "$(printf %c "$1")" = '-' ]; then
+  set -- phpda analyze "$@"
+elif [ "$1" = 'analyze' ]; then
+  set -- phpda "$@"
+else
+  set -- phpda analyze "$@"
+fi
+
+exec "$@"

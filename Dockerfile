@@ -1,16 +1,21 @@
 FROM php:7.3-alpine
 
+ENV COMPOSER_HOME /tmp
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_DISABLE_XDEBUG_WARN 1
 
-RUN apk --no-cache add bash curl git openssl graphviz
+ENV PHPDA_DIR /opt/phpda
+ENV PATH="${PHPDA_DIR}/bin:${PATH}"
 
-COPY ./bin /app/bin
-COPY ./src /app/src
-COPY ./composer* /app/
-COPY ./phpda* /app/
+RUN apk --no-cache add curl git openssl graphviz
 
-RUN cd /app && ./bin/composer-install.sh && composer install --no-dev --no-scripts
+COPY ./bin ${PHPDA_DIR}/bin
+COPY ./src ${PHPDA_DIR}/src
+COPY ./composer* ${PHPDA_DIR}/
+COPY ./phpda* ${PHPDA_DIR}/
 
-WORKDIR /tmp/src
-ENTRYPOINT ["/app/bin/docker-entrypoint.sh"]
+RUN composer-install.sh && cd ${PHPDA_DIR} && composer install --no-dev --no-scripts
+
+WORKDIR /app
+ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]
+CMD ["phpda"]
