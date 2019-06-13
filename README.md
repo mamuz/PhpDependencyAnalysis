@@ -83,7 +83,7 @@ visitorOptions:
 Perform an analysis with that configuration:
 
 ```sh
-$ docker run --rm -v $PWD/app mamuz/phpda
+$ docker run --rm -v $PWD:/app mamuz/phpda
 ```
 
 Read the [Configuration-Chapter](https://github.com/mamuz/PhpDependencyAnalysis/wiki/3.-Configuration)
