@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faedeb5b8d8c5620d3065731f8a37baa",
+    "content-hash": "828af45fa1bd455e8dae7363f631c1d5",
     "packages": [
         {
             "name": "clue/graph",
-            "version": "v0.9.0",
+            "version": "v0.9.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/graph.git",
-                "reference": "0336a4d5229fa61a20ccceaeab25e52ac9542700"
+                "url": "https://github.com/graphp/graph.git",
+                "reference": "d1661c0a0e011a8550fa60ae5354f230d1555909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/graph/zipball/0336a4d5229fa61a20ccceaeab25e52ac9542700",
-                "reference": "0336a4d5229fa61a20ccceaeab25e52ac9542700",
+                "url": "https://api.github.com/repos/graphp/graph/zipball/d1661c0a0e011a8550fa60ae5354f230d1555909",
+                "reference": "d1661c0a0e011a8550fa60ae5354f230d1555909",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8.35"
             },
             "suggest": {
                 "graphp/algorithms": "Common graph algorithms, such as Dijkstra and Moore-Bellman-Ford (shortest path), minimum spanning tree (MST), Kruskal, Prim and many more..",
@@ -40,8 +40,14 @@
             "license": [
                 "MIT"
             ],
-            "description": "A mathematical graph/network library written in PHP",
-            "homepage": "https://github.com/clue/graph",
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering"
+                }
+            ],
+            "description": "GraPHP is the mathematical graph/network library written in PHP.",
+            "homepage": "https://github.com/graphp/graph",
             "keywords": [
                 "edge",
                 "graph",
@@ -50,10 +56,20 @@
                 "vertex"
             ],
             "support": {
-                "issues": "https://github.com/clue/graph/issues",
-                "source": "https://github.com/clue/graph/tree/v0.9.0"
+                "issues": "https://github.com/graphp/graph/issues",
+                "source": "https://github.com/graphp/graph/tree/v0.9.3"
             },
-            "time": "2015-03-07T18:11:31+00:00"
+            "funding": [
+                {
+                    "url": "https://clue.engineering/support",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/clue",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-12-30T09:22:01+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -3969,7 +3985,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3 || 8.0.*",
+        "php": "^7.3 || 8.0.* || 8.1.*",
         "ext-json": "*"
     },
     "platform-dev": {
