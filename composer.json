@@ -36,9 +36,9 @@
         "graphp/graphviz": "0.2.1",
         "phpdocumentor/reflection-docblock": "4.3.*",
         "doctrine/collections": "1.6.*",
-        "symfony/yaml": "~4.2",
-        "symfony/console": "~4.2",
-        "symfony/finder": "~4.2"
+        "symfony/yaml": "4.2.*",
+        "symfony/console": "4.2.*",
+        "symfony/finder": "4.2.*"
     },
     "require-dev": {
         "ext-simplexml": "*",
