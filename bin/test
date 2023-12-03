@@ -13,6 +13,8 @@ main ()
 
     populatePHPVersions
 
+    tearDownRegisterFunction resetComposerLock
+
     runTests
 }
 
@@ -268,6 +270,36 @@ parseOperands_extractValueFromCurrentOperand ()
             optionValue=${parseOperands_operandEnabledValue}
             ;;
     esac
+}
+
+resetComposerLock ()
+{
+    git checkout composer.lock
+}
+
+tearDownRegisterFunction()
+{
+    test x"" != x"${tearDown_functions-}" || {
+        trap 'tearDown' 2 # CTRL-C
+        trap 'tearDown' QUIT TERM EXIT INT KILL SEGV
+    }
+
+    case ${tearDown_functions-} in #(
+        ?*) tearDown_functions="${tearDown_functions} $1" ;; #(
+        *) tearDown_functions=$1 ;;
+    esac
+}
+
+tearDown()
+{
+    test x"" != x"${tearDown_functions-}" || {
+        return 0
+    }
+
+    for tearDown_function in ${tearDown_functions}
+    do
+        ${tearDown_function}
+    done
 }
 
 main ${1+"$@"}
