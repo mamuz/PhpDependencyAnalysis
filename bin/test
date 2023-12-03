@@ -1,13 +1,4 @@
 #! /bin/sh -eu
-#
-# [<php-version>] [<dependency-preference>] [<php-test-runtime>]
-#
-# <php-version>  example: php70
-# <dependency-preference> One of highest (default), lowest
-#
-# Both arguments can be a space separated value.
-# Example: "lowest highest"
-#
 
 __DIR__=`dirname "$0"`
 ROOT_DIR=`dirname "${__DIR__}"`
@@ -18,7 +9,7 @@ main ()
 
     configureWithArguments ${1+"$@"}
 
-    startDockerComposeServices
+    # startDockerComposeServices
 
     populatePHPVersions
 
@@ -102,7 +93,7 @@ configureWithArguments ()
 {
     # Commands
     #
-    DOCKER_COMPOSE_EXEC="${DOCKER_COMPOSE} exec -u `id -u`:`id -g`"
+    DOCKER_COMPOSE_EXEC="${__DIR__}/exec"
     COMPOSER_INSTALL='composer install --prefer-dist'
 
     # Default Options
