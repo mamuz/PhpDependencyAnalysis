@@ -131,7 +131,7 @@ populatePHPVersions ()
 fetchAllPHPVersions ()
 {
     ${DOCKER_COMPOSE} 2>/dev/null ps --services --filter status=running \
-        | grep php \
+        | grep '^php' \
         | sort
 }
 
