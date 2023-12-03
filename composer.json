@@ -52,7 +52,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PhpDATest\\": "tests/unit/"
+            "PhpDATest\\": "tests/unit/PhpDATest/"
         }
     },
     "bin": [

@@ -1,0 +1,282 @@
+#! /bin/sh -eu
+#
+# [<php-version>] [<dependency-preference>] [<php-test-runtime>]
+#
+# <php-version>  example: php70
+# <dependency-preference> One of highest (default), lowest
+#
+# Both arguments can be a space separated value.
+# Example: "lowest highest"
+#
+
+__DIR__=`dirname "$0"`
+ROOT_DIR=`dirname "${__DIR__}"`
+
+main ()
+{
+    importEnvironmentVariablesFromDirectory "${ROOT_DIR}"
+
+    configureWithArguments ${1+"$@"}
+
+    startDockerComposeServices
+
+    populatePHPVersions
+
+    runTests
+}
+
+printHelp ()
+{
+  cat <<EOF
+$0 - symfony1 tests tool.
+
+Usage:
+  test/bin/test [--php-versions <PHP_VERSION>...]
+                [--dependency-preference <DEPENDENCY_PREFERENCE>...]
+                [--php-test-runtime <PHP_TEST_RUNTIME>]
+
+Options:
+  --help                    Show this screen.
+  --php-versions            Select specific php versions. [default: ${PHP_VERSIONS}]
+                            Examples:
+                                php53
+                                'php53 php54'
+  --dependency-preference   Select spectific dependency preference. [default: ${DEPENDENCY_PREFERENCES}]
+                            Allows values:
+                                - highest
+                                - lowest
+  --php-test-runtime        The endpoint command to run test. [default: ${PHP_TEST_RUNTIME}]
+
+Files:
+  There are a few configuration files to control certain aspects of operation.
+
+  <rootdir>/.env
+    This is the default configuration file read on startup.
+
+  <rootdir>/.env.local
+    This is the custom configuration file read on startup.
+    To be used to extends <rootdir>/.env with custom configuration.
+
+Examples:
+
+  * How to execute all tests on all supported PHP versions and dependencies?
+
+        $ test/bin/test
+
+  * How to execute all tests on specific PHP version ?
+
+        $ test/bin/test --php-versions 'php56 php74 php82'
+
+  * How to execute all tests on lowest and highest dependency preference ?
+
+        $ test/bin/test --dependency-preferences 'lowest highest'
+
+  * How to customize the PHP test runtime ?
+
+        $ test/bin/test --php-test-runtime test/unit/config/sfConfigTest.php
+
+  * When you finish your work day, do not forget to clean up your desk
+
+        $ docker-compose down
+EOF
+}
+
+importEnvironmentVariablesFromDirectory ()
+{
+    a_directory=${1}
+
+    . "${a_directory}"/.env
+
+    if test -r "${a_directory}"/.env.local; then
+        . "${a_directory}"/.env.local
+    else :; fi
+}
+
+startDockerComposeServices ()
+{
+    echo "+ ${DOCKER_COMPOSE} build"
+    ${DOCKER_COMPOSE} up -d --build --remove-orphans > /dev/null
+}
+
+configureWithArguments ()
+{
+    # Commands
+    #
+    DOCKER_COMPOSE_EXEC="${DOCKER_COMPOSE} exec -u `id -u`:`id -g`"
+    COMPOSER_INSTALL='composer install --prefer-dist --no-suggest'
+
+    # Default Options
+    #
+    DEPENDENCY_PREFERENCES='highest'
+    PHP_VERSIONS='all'
+    PHP_TEST_RUNTIME='./vendor/bin/codecept run'
+    hasHelpOption=false
+
+    parseOperands ${1+"$@"}
+
+    if ${hasHelpOption}; then
+        printHelp
+
+        exit 0
+    else :; fi
+}
+
+populatePHPVersions ()
+{
+    if test x'all' = x"${PHP_VERSIONS}"; then
+        PHP_VERSIONS=`fetchAllPHPVersions`
+    else :; fi
+}
+
+fetchAllPHPVersions ()
+{
+    ${DOCKER_COMPOSE} 2>/dev/null ps --services --filter status=running \
+        | grep php \
+        | sort
+}
+
+runTests ()
+{
+    for dependencyPreference in ${DEPENDENCY_PREFERENCES}
+    do
+        for phpVersion in ${PHP_VERSIONS}
+        do
+            runTestsForOnePhpVersionAndOneDependencyPreference ${phpVersion} ${dependencyPreference}
+        done
+    done
+}
+
+runTestsForOnePhpVersionAndOneDependencyPreference ()
+{
+    a_phpVersion=${1}
+    a_dependencyPreference=${2}
+
+    echo
+    echo
+    echo $0 ${a_phpVersion} ${a_dependencyPreference}
+    echo
+
+    install_${a_dependencyPreference} ${a_phpVersion}
+
+    ${DOCKER_COMPOSE_EXEC} ${a_phpVersion} php ${PHP_TEST_RUNTIME}
+}
+
+install_highest ()
+{
+    b_service=${1}
+
+    ${DOCKER_COMPOSE_EXEC} ${b_service} ${COMPOSER_INSTALL}
+}
+
+install_lowest ()
+{
+    c_service=${1}
+
+    ${DOCKER_COMPOSE_EXEC} ${c_service} ${COMPOSER_INSTALL} --prefer-lowest
+}
+
+parseOperands ()
+{
+    parseOperands_init
+
+    for parseOperands_currentOperand
+    do
+        if parseOperands_previousOptionNeedsValue; then
+            parseOperands_assignValueToVariableToSet
+
+            continue
+        else :; fi
+
+        parseOperands_extractValueFromCurrentOperand
+
+        case ${parseOperands_endOfOptions}${parseOperands_currentOperand} in #(
+            --)
+                parseOperands_endOfOptions='yes'
+                ;; #(
+            --help)
+                hasHelpOption=${optionValue}
+                ;; #(
+            --php-versions)
+                variableToSet=PHP_VERSIONS
+                ;; #(
+            --php-versions=*)
+                PHP_VERSIONS=${optionValue}
+                ;; #(
+            --dependency-preferences)
+                variableToSet=DEPENDENCY_PREFERENCES
+                ;; #(
+            --dependency-preferences=*)
+                DEPENDENCY_PREFERENCES=${optionValue}
+                ;; #(
+            --php-test-runtime)
+                variableToSet=PHP_TEST_RUNTIME
+                ;; #(
+            --php-test-runtime=*)
+                PHP_TEST_RUNTIME=${optionValue}
+                ;; #(
+            # --flag-option)
+            #     hasFlagOption=${optionValue}
+            #     ;; #(
+            # --value-option)
+            #     variableToSet=valueOption
+            #     ;; #(
+            # --value-option=*)
+            #     valueOption=${optionValue}
+            #     ;; #(
+            -*)
+                :
+                ;; #(
+            *)
+                parseOperands_argumentPosition=`expr 1 \+ ${parseOperands_argumentPosition}`
+
+                case ${parseOperands_argumentPosition} in #(
+                    # 1)
+                    #     firstArgument=${parseOperands_currentOperand}
+                    #     ;; #(
+                    *)
+                        :
+                        ;;
+                esac
+                ;;
+        esac
+    done
+}
+
+parseOperands_init ()
+{
+    variableToSet=
+    optionValue=
+
+    parseOperands_endOfOptions=
+    parseOperands_argumentPosition=0
+    parseOperands_operandEnabledValue=':'
+}
+
+parseOperands_assignValueToVariableToSet ()
+{
+    eval ${variableToSet}=\"${parseOperands_currentOperand}\"
+
+    variableToSet=
+}
+
+parseOperands_previousOptionNeedsValue ()
+{
+    test x != x"${variableToSet}"
+}
+
+parseOperands_extractValueFromCurrentOperand ()
+{
+    case ${parseOperands_currentOperand} in #(
+        ?*=?*)
+            optionValue=`expr X"${parseOperands_currentOperand}" : X'[^=]*=\(.*\)'`
+            ;; #(
+        ?*=)
+            optionValue=
+            ;; #(
+        *)
+            optionValue=${parseOperands_operandEnabledValue}
+            ;;
+    esac
+}
+
+main ${1+"$@"}

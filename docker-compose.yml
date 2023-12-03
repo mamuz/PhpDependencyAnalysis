@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+  php73: &services_php73
+    build:
+      context: .
+      target: dev
+      args:
+        PHP_TAG: '7.3-cli-alpine3.14'
+    environment:
+      COMPOSER_HOME: /app/var/cache/composer
+    working_dir: /phpda
+    volumes:
+      - .:/phpda
+      - .:/app
+    entrypoint:
+      - sh
+      - -c
+      - |
+        exec tail -f /dev/null
+
+  php74:
+    <<: *services_php73
+    build:
+      context: .
+      target: dev
+      args:
+        PHP_TAG: '7.4-cli-alpine3.15'
