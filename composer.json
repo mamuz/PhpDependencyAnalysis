@@ -30,7 +30,7 @@
         "php": "^7.3 || 8.0.*",
         "ext-json": "*",
         "psr/log": "1.1.*",
-        "nikic/php-parser": "4.3.*",
+        "nikic/php-parser": "4.4.*",
         "clue/graph": "v0.9.0",
         "graphp/algorithms": "0.8.*",
         "graphp/graphviz": "0.2.1",
