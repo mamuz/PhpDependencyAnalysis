@@ -1,19 +1,5 @@
 {
     "edges": {
-        "PackageX\\DocBlockTag=>Closure": {
-            "from": "PackageX\\DocBlockTag",
-            "to": "Closure",
-            "locations": [
-                {
-                    "file": "\/app\/tests\/_data\/svg\/config\/..\/..\/Project\/tests\/stubs\/DocBlockTag.php",
-                    "startLine": 18,
-                    "endline": 54,
-                    "isComment": true
-                }
-            ],
-            "belongsToCycle": false,
-            "referenceValidatorMessages": null
-        },
         "PackageX\\DocBlockTag=>DomainException": {
             "from": "PackageX\\DocBlockTag",
             "to": "DomainException",
@@ -142,13 +128,6 @@
         }
     },
     "vertices": {
-        "Closure": {
-            "name": "Closure",
-            "usedByCount": 1,
-            "adt": [],
-            "location": null,
-            "group": 0
-        },
         "DomainException": {
             "name": "DomainException",
             "usedByCount": 1,
@@ -233,8 +212,7 @@
                     "PackageA\\Service\\Message": "PackageA\\Service\\Message",
                     "PackageB\\Service\\Message": "PackageB\\Service\\Message",
                     "Foo\\Bar": "Foo\\Bar",
-                    "PackageX\\Constant": "PackageX\\Constant",
-                    "Closure": "Closure"
+                    "PackageX\\Constant": "PackageX\\Constant"
                 },
                 "unsupportedStmts": [],
                 "namespacedStrings": []
