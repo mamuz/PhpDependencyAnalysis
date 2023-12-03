@@ -74,7 +74,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->groupGenerator = \Mockery::mock('PhpDA\Layout\Helper\GroupGenerator');
         $this->graph = \Mockery::mock('Fhaculty\Graph\Graph');

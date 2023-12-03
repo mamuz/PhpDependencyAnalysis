@@ -32,7 +32,7 @@ class EdgeTest extends \PHPUnit_Framework_TestCase
     /** @var Edge */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new Edge('A', 'B');
     }

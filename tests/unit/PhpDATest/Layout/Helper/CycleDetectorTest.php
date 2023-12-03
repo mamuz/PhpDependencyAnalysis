@@ -36,7 +36,7 @@ class CycleDetectorTest extends \PHPUnit_Framework_TestCase
     /** @var Graph */
     protected $graph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->graph = new Graph;
         $this->fixture = new CycleDetector;

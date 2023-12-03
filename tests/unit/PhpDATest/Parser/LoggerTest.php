@@ -36,7 +36,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $this->fixture = new Logger;

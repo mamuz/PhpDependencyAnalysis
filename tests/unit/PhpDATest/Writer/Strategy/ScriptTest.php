@@ -32,7 +32,7 @@ class ScriptTest extends \PHPUnit_Framework_TestCase
     /** @var Script */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new Script;
     }

@@ -30,7 +30,7 @@ class AbstractVisitorTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Parser\Visitor\AbstractVisitor */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = $this->getMockForAbstractClass('PhpDA\Parser\Visitor\AbstractVisitor');
     }

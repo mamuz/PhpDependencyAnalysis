@@ -32,7 +32,7 @@ class NameResolverTest extends \PHPUnit_Framework_TestCase
     /** @var NameResolver */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new NameResolver;
     }

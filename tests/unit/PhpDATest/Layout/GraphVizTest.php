@@ -35,12 +35,12 @@ class GraphVizTest extends \PHPUnit_Framework_TestCase
     /** @var \Fhaculty\Graph\Graph | \Mockery\MockInterface */
     protected $graph;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new GraphViz();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->fixture->setGroups(array());
         $this->fixture->setGroupLayout(array());
