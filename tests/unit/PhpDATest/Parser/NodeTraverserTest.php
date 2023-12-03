@@ -44,7 +44,7 @@ class NodeTraverserTest extends \PHPUnit_Framework_TestCase
         'PhpDA\Parser\Visitor\Required\UsedNamespaceCollector',
     );
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->visitor = \Mockery::mock('PhpParser\NodeVisitor');
         $this->visitorLoader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');

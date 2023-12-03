@@ -32,7 +32,7 @@ class NullLayoutTest extends \PHPUnit_Framework_TestCase
     /** @var NullLayout */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new NullLayout;
     }

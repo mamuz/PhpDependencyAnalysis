@@ -48,6 +48,7 @@ class JsonSerializableFileInfo implements \JsonSerializable
         return $this->file;
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->__toString();

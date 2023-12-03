@@ -38,7 +38,7 @@ class NodeNameTest extends \PHPUnit_Framework_TestCase
     /** @var string|null */
     protected $expected = '';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->createEntityMock();
         $this->fixture = new NodeName;

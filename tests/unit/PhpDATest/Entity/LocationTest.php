@@ -42,7 +42,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         'isComment' => true,
     );
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');
         $this->file->shouldReceive('__toString')->andReturn('filename');

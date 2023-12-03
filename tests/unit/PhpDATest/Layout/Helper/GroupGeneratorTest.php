@@ -35,7 +35,7 @@ class GroupGeneratorTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpParser\Node\Name | \Mockery\MockInterface */
     protected $namespace;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->namespace = \Mockery::mock('PhpParser\Node\Name');
         $this->namespace->parts = array('Foo', 'Bar', 'Baz');

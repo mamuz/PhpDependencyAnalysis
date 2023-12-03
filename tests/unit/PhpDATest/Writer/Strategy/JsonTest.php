@@ -35,7 +35,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Writer\Extractor\ExtractionInterface | \Mockery\MockInterface */
     protected $extractor;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extractor = \Mockery::mock('PhpDA\Writer\Extractor\ExtractionInterface');
         $this->fixture = new Json;

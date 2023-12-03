@@ -1,0 +1,3 @@
+#! /bin/sh -eu
+
+docker-compose images | grep -E 'release.php|^-|Repository'

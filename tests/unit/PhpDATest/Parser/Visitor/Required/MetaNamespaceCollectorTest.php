@@ -44,7 +44,7 @@ class MetaNamespaceCollectorTest extends \PHPUnit_Framework_TestCase
     /** @var array */
     protected $attributes = array('foo' => 'bar');
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->meta = \Mockery::mock('PhpDA\Entity\Meta');
         $this->adt = \Mockery::mock('PhpDA\Entity\Adt');

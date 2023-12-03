@@ -1,0 +1,53 @@
+#! /bin/sh -eu
+#
+# Exemple:
+#
+#  bin/exec php73 composer install
+#
+
+__DIR__=`dirname "$0"`
+ROOT_DIR=`dirname "${__DIR__}"`
+
+main ()
+{
+    importEnvironmentVariablesFromDirectory "${ROOT_DIR}"
+
+    configureWithArguments ${1+"$@"}
+
+    ensureDockerComposeServiceIsStarted ${1}
+
+    ${DOCKER_COMPOSE_EXEC} "$@"
+}
+
+importEnvironmentVariablesFromDirectory ()
+{
+    a_directory=${1}
+
+    . "${a_directory}"/.env
+
+    if test -r "${a_directory}"/.env.local; then
+        . "${a_directory}"/.env.local
+    else :; fi
+}
+
+configureWithArguments ()
+{
+    DOCKER_COMPOSE_EXEC="${DOCKER_COMPOSE} exec -u `id -u`:`id -g`"
+}
+
+ensureDockerComposeServiceIsStarted ()
+{
+    if ${DOCKER_COMPOSE_EXEC} ${1} true; then
+        :
+    else
+        startDockerComposeService ${1}
+    fi
+}
+
+startDockerComposeService ()
+{
+    echo "+ ${DOCKER_COMPOSE} build"
+    ${DOCKER_COMPOSE} up -d --build --remove-orphans ${1} > /dev/null
+}
+
+main ${1+"$@"}

@@ -35,7 +35,7 @@ class CycleTest extends \PHPUnit_Framework_TestCase
     /** @var array */
     protected $path = array('A', 'B', 'C', 'A');
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new Cycle($this->path);
     }

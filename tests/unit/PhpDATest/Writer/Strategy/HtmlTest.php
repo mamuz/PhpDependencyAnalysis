@@ -32,7 +32,7 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
     /** @var Html */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new Html;
     }

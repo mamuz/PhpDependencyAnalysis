@@ -35,7 +35,7 @@ class InvalidCollectorTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Parser\Filter\NodeNameInterface | \Mockery\MockInterface */
     protected $nodeNameFilter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->nodeNameFilter = \Mockery::mock('PhpDA\Parser\Filter\NodeNameInterface');
 

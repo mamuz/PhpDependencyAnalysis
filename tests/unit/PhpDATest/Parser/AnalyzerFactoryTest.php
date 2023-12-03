@@ -32,7 +32,7 @@ class AnalyzerFactoryTest extends \PHPUnit_Framework_TestCase
     /** @var AnalyzerFactory */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new AnalyzerFactory;
     }

@@ -47,7 +47,7 @@ class AnalyzerTest extends \PHPUnit_Framework_TestCase
     /** @var \PhpDA\Parser\Logger | \Mockery\MockInterface */
     protected $logger;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->logger = \Mockery::mock('PhpDA\Parser\Logger');
         $this->file = \Mockery::mock('Symfony\Component\Finder\SplFileInfo');

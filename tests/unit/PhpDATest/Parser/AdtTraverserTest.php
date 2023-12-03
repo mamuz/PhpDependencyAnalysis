@@ -41,7 +41,7 @@ class AdtTraverserTest extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\Finder\SplFileInfo | \Mockery\MockInterface */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adtCollector = \Mockery::mock('PhpDA\Parser\Visitor\Required\AdtCollector');
         $this->adtCollector->shouldIgnoreMissing();

@@ -32,7 +32,7 @@ class AnalysisCollectionTest extends \PHPUnit_Framework_TestCase
     /** @var AnalysisCollection */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new AnalysisCollection;
     }

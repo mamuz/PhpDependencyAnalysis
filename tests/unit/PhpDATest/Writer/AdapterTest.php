@@ -38,14 +38,14 @@ class AdapterTest extends \PHPUnit_Framework_TestCase
     /** @var string */
     protected $file = 'baz';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->file = __DIR__ . '/' . $this->file;
         $this->loader = \Mockery::mock('PhpDA\Plugin\LoaderInterface');
         $this->fixture = new Adapter($this->loader);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (file_exists($this->file)) {
             unlink($this->file);

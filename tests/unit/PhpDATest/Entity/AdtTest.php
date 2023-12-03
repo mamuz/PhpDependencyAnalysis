@@ -33,7 +33,7 @@ class AdtTest extends \PHPUnit_Framework_TestCase
     /** @var Adt */
     protected $fixture;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fixture = new Adt;
     }

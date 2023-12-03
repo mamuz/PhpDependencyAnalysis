@@ -113,4 +113,24 @@ Before opening up a pull-request please read the
 
 ## Alternatives
 
-Check the resources in [Satic Analysis Section at Awesome PHP](https://github.com/ziadoz/awesome-php#static-analysis)
+Check the resources in [Static Analysis Section at Awesome PHP](https://github.com/ziadoz/awesome-php#static-analysis)
+
+Tests
+-----
+
+### Prerequisites
+
+  * docker-engine version 17.12.0+
+  * docker-compose version 1.20.0+
+
+### How to execute all tests on all supported PHP versions and dependencies?
+
+    test/bin/test
+
+### Want to do specific test ? Ask help with the option.
+
+    test/bin/test --help
+
+### When you finish your work day, do not forget to clean up your desk
+
+    docker-compose down
