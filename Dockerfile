@@ -61,15 +61,19 @@ FROM base as dev
 
 FROM base as prod
 
-COPY ./LICENSE ${PHPDA_DIR}/
-COPY ./bin/phpda ${PHPDA_DIR}/bin
-COPY ./bin/phpda.php ${PHPDA_DIR}/bin
-COPY ./bin/docker-entrypoint.sh ${PHPDA_DIR}/bin
-COPY ./src ${PHPDA_DIR}/src
-COPY ./composer* ${PHPDA_DIR}/
-COPY ./phpda* ${PHPDA_DIR}/
+ARG PHPDA_VERSION
 
-RUN composer update -d ${PHPDA_DIR} --no-dev --no-scripts
+COPY ./LICENSE ${PHPDA_DIR}/
+COPY ./bin/phpda ${PHPDA_DIR}/bin/
+COPY ./bin/phpda.php ${PHPDA_DIR}/bin/
+COPY ./bin/docker-entrypoint.sh ${PHPDA_DIR}/bin/
+COPY ./src ${PHPDA_DIR}/src
+COPY ./composer.json ${PHPDA_DIR}/
+COPY ./phpda.yml.dist ${PHPDA_DIR}/
+
+RUN find ${PHPDA_DIR} -type f -print0 | xargs -0 sed -i "s/@package_version@/${PHPDA_VERSION}/g"
+
+RUN composer update --working-dir=${PHPDA_DIR} --no-dev --no-scripts
 
 WORKDIR /app
 ENTRYPOINT ["/bin/sh", "/phpda/bin/docker-entrypoint.sh"]

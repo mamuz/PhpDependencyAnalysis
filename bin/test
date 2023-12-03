@@ -5,6 +5,8 @@ ROOT_DIR=`dirname "${__DIR__}"`
 
 main ()
 {
+    exportPhpDaVersionToEnv
+
     importEnvironmentVariablesFromDirectory "${ROOT_DIR}"
 
     configureWithArguments ${1+"$@"}
@@ -83,6 +85,11 @@ importEnvironmentVariablesFromDirectory ()
     if test -r "${a_directory}"/.env.local; then
         . "${a_directory}"/.env.local
     else :; fi
+}
+
+exportPhpDaVersionToEnv ()
+{
+    export PHPDA_VERSION=`git describe --tags --always`
 }
 
 startDockerComposeServices ()

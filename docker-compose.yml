@@ -26,6 +26,7 @@ services:
       target: prod
       args:
         PHP_TAG: '7.3-cli-alpine3.14'
+        PHPDA_VERSION: ${PHPDA_VERSION-}
 
   php74:
     <<: *services_php73
@@ -42,6 +43,7 @@ services:
       target: prod
       args:
         PHP_TAG: '7.4-cli-alpine3.15'
+        PHPDA_VERSION: ${PHPDA_VERSION-}
 
   php80:
     <<: *services_php73
@@ -58,27 +60,4 @@ services:
       target: prod
       args:
         PHP_TAG: '8.0-cli-alpine3.16'
-
-  # php81:
-  #   <<: *services_php73
-  #   build:
-  #     context: .
-  #     target: dev
-  #     args:
-  #       PHP_TAG: '8.1-cli-alpine3.18'
-  #
-  # php82:
-  #   <<: *services_php73
-  #   build:
-  #     context: .
-  #     target: dev
-  #     args:
-  #       PHP_TAG: '8.2-cli-alpine3.18'
-  #
-  # php83:
-  #   <<: *services_php73
-  #   build:
-  #     context: .
-  #     target: dev
-  #     args:
-  #       PHP_TAG: '8.3-cli-alpine3.18'
+        PHPDA_VERSION: ${PHPDA_VERSION-}
