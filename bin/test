@@ -94,7 +94,7 @@ configureWithArguments ()
     # Commands
     #
     DOCKER_COMPOSE_EXEC="${DOCKER_COMPOSE} exec -u `id -u`:`id -g`"
-    COMPOSER_INSTALL='composer install --prefer-dist'
+    COMPOSER_INSTALL='composer update --prefer-dist'
 
     # Default Options
     #
