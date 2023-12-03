@@ -9,7 +9,7 @@ main ()
 
     configureWithArguments ${1+"$@"}
 
-    # startDockerComposeServices
+    startDockerComposeServices
 
     populatePHPVersions
 
@@ -93,7 +93,7 @@ configureWithArguments ()
 {
     # Commands
     #
-    DOCKER_COMPOSE_EXEC="${__DIR__}/exec"
+    DOCKER_COMPOSE_EXEC="${DOCKER_COMPOSE} exec -u `id -u`:`id -g`"
     COMPOSER_INSTALL='composer install --prefer-dist'
 
     # Default Options
