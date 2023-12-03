@@ -33,19 +33,19 @@ $0 - symfony1 tests tool.
 Usage:
   test/bin/test [--php-versions <PHP_VERSION>...]
                 [--dependency-preference <DEPENDENCY_PREFERENCE>...]
-                [--php-test-runtime <PHP_TEST_RUNTIME>]
+                [--runtime <RUNTIME>]
 
 Options:
   --help                    Show this screen.
   --php-versions            Select specific php versions. [default: ${PHP_VERSIONS}]
                             Examples:
-                                php53
-                                'php53 php54'
+                                php73
+                                'php73 php74'
   --dependency-preference   Select spectific dependency preference. [default: ${DEPENDENCY_PREFERENCES}]
                             Allows values:
                                 - highest
                                 - lowest
-  --php-test-runtime        The endpoint command to run test. [default: ${PHP_TEST_RUNTIME}]
+  --runtime        The endpoint command to run test. [default: ${RUNTIME}]
 
 Files:
   There are a few configuration files to control certain aspects of operation.
@@ -65,7 +65,7 @@ Examples:
 
   * How to execute all tests on specific PHP version ?
 
-        $ test/bin/test --php-versions 'php56 php74 php82'
+        $ test/bin/test --php-versions 'php74 php82'
 
   * How to execute all tests on lowest and highest dependency preference ?
 
@@ -73,7 +73,7 @@ Examples:
 
   * How to customize the PHP test runtime ?
 
-        $ test/bin/test --php-test-runtime test/unit/config/sfConfigTest.php
+        $ test/bin/test --runtime 'vendor/bin/codecept --help'
 
   * When you finish your work day, do not forget to clean up your desk
 
@@ -109,7 +109,7 @@ configureWithArguments ()
     #
     DEPENDENCY_PREFERENCES='highest'
     PHP_VERSIONS='all'
-    PHP_TEST_RUNTIME='./vendor/bin/codecept run'
+    RUNTIME='./vendor/bin/codecept run'
     hasHelpOption=false
 
     parseOperands ${1+"$@"}
@@ -158,7 +158,7 @@ runTestsForOnePhpVersionAndOneDependencyPreference ()
 
     install_${a_dependencyPreference} ${a_phpVersion}
 
-    ${DOCKER_COMPOSE_EXEC} ${a_phpVersion} php ${PHP_TEST_RUNTIME}
+    ${DOCKER_COMPOSE_EXEC} ${a_phpVersion} php ${RUNTIME}
 }
 
 install_highest ()
@@ -208,11 +208,11 @@ parseOperands ()
             --dependency-preferences=*)
                 DEPENDENCY_PREFERENCES=${optionValue}
                 ;; #(
-            --php-test-runtime)
-                variableToSet=PHP_TEST_RUNTIME
+            --runtime)
+                variableToSet=RUNTIME
                 ;; #(
-            --php-test-runtime=*)
-                PHP_TEST_RUNTIME=${optionValue}
+            --runtime=*)
+                RUNTIME=${optionValue}
                 ;; #(
             # --flag-option)
             #     hasFlagOption=${optionValue}
