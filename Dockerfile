@@ -69,7 +69,7 @@ COPY ./src ${PHPDA_DIR}/src
 COPY ./composer* ${PHPDA_DIR}/
 COPY ./phpda* ${PHPDA_DIR}/
 
-RUN composer install -d ${PHPDA_DIR} --no-dev --no-scripts
+RUN composer update -d ${PHPDA_DIR} --no-dev --no-scripts
 
 WORKDIR /app
 ENTRYPOINT ["/bin/sh", "/phpda/bin/docker-entrypoint.sh"]

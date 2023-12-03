@@ -19,6 +19,14 @@ services:
       - |
         exec tail -f /dev/null
 
+  release.php73:
+    <<: *services_php73
+    build:
+      context: .
+      target: prod
+      args:
+        PHP_TAG: '7.3-cli-alpine3.14'
+
   php74:
     <<: *services_php73
     build:
@@ -27,11 +35,27 @@ services:
       args:
         PHP_TAG: '7.4-cli-alpine3.15'
 
+  release.php74:
+    <<: *services_php73
+    build:
+      context: .
+      target: prod
+      args:
+        PHP_TAG: '7.4-cli-alpine3.15'
+
   php80:
     <<: *services_php73
     build:
       context: .
       target: dev
+      args:
+        PHP_TAG: '8.0-cli-alpine3.16'
+
+  release.php80:
+    <<: *services_php73
+    build:
+      context: .
+      target: prod
       args:
         PHP_TAG: '8.0-cli-alpine3.16'
 
