@@ -134,4 +134,3 @@ Tests
 ### When you finish your work day, do not forget to clean up your desk
 
     docker-compose down
-

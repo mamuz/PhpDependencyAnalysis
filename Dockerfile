@@ -62,7 +62,9 @@ FROM base as dev
 FROM base as prod
 
 COPY ./LICENSE ${PHPDA_DIR}/
-COPY ./bin ${PHPDA_DIR}/bin
+COPY ./bin/phpda ${PHPDA_DIR}/bin
+COPY ./bin/phpda.php ${PHPDA_DIR}/bin
+COPY ./bin/docker-entrypoint.sh ${PHPDA_DIR}/bin
 COPY ./src ${PHPDA_DIR}/src
 COPY ./composer* ${PHPDA_DIR}/
 COPY ./phpda* ${PHPDA_DIR}/
