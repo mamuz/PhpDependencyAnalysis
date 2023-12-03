@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "382c583ffbebb9769a65c2b25d429078",
+    "content-hash": "4fc64a72d465d67fa99866169a2360cd",
     "packages": [
         {
             "name": "clue/graph",
@@ -218,6 +218,10 @@
                 "graph image",
                 "graphviz"
             ],
+            "support": {
+                "issues": "https://github.com/graphp/graphviz/issues",
+                "source": "https://github.com/graphp/graphviz/tree/v0.2.1"
+            },
             "time": "2015-03-08T10:30:28+00:00"
         },
         {
