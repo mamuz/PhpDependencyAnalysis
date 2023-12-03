@@ -41,7 +41,7 @@ services:
   #     context: .
   #     target: dev
   #     args:
-  #       PHP_TAG: '8.2-cli-alpine3.18'
+  #       PHP_TAG: '8.1-cli-alpine3.18'
   #
   # php82:
   #   <<: *services_php73
