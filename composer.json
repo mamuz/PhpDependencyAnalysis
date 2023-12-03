@@ -33,7 +33,7 @@
         "nikic/php-parser": "4.17.*",
         "clue/graph": "v0.9.3",
         "graphp/algorithms": "0.8.*",
-        "graphp/graphviz": "0.2.2",
+        "graphp/graphviz": "0.2.1",
         "phpdocumentor/reflection-docblock": "^4.0 || ^5.0",
         "doctrine/collections": "1.6.*",
         "symfony/yaml": "^4.2",
