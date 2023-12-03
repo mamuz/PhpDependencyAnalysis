@@ -15,9 +15,9 @@ class LogCest
         exec($cmd, $output, $return);
         $output = implode(PHP_EOL, $output);
 
-        $tester->assertContains('Logs', $output);
-        $tester->assertContains('Error', $output);
-        $tester->assertContains('Warning', $output);
+        $tester->assertStringContainsString('Logs', $output);
+        $tester->assertStringContainsString('Error', $output);
+        $tester->assertStringContainsString('Warning', $output);
         $tester->assertSame(1, $return);
 
         unlink(codecept_output_dir() . 'log.svg');

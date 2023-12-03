@@ -51,7 +51,7 @@ class InvalidArgumentsCest
     {
         exec($tester->getTool() . ' -q analyze ' . $argument . ' 2>&1', $output, $return);
 
-        $tester->assertContains($error, strtolower(implode(PHP_EOL, $output)));
+        $tester->assertStringContainsString($error, strtolower(implode(PHP_EOL, $output)));
         $tester->assertSame(2, $return);
     }
 }
