@@ -27,14 +27,14 @@ services:
       args:
         PHP_TAG: '7.4-cli-alpine3.15'
 
-  # php80:
-  #   <<: *services_php73
-  #   build:
-  #     context: .
-  #     target: dev
-  #     args:
-  #       PHP_TAG: '8.0-cli-alpine3.16'
-  #
+  php80:
+    <<: *services_php73
+    build:
+      context: .
+      target: dev
+      args:
+        PHP_TAG: '8.0-cli-alpine3.16'
+
   # php81:
   #   <<: *services_php73
   #   build:
